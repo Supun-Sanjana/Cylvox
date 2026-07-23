@@ -1,10 +1,10 @@
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
+import ProofBand from "@/components/Proofband";
+import Process from "@/components/Process";
 import Closing from "@/components/Closing";
 import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import Process from "@/components/Process";
-import ProofBand from "@/components/Proofband";
-import Services from "@/components/Services";
-
 
 export const metadata = {
   title:       "Cylvox — Digital Agency",
@@ -21,7 +21,8 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <main className="overflow-hidden bg-[#f2efe9]">
+    <main className="overflow-hidden bg-[#f2efe9] relative">
+      <Navbar />
       <Hero />
       <Services />
       <ProofBand />

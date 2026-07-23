@@ -9,9 +9,20 @@
 }
 
 /* ── Base ───────────────────────────────────────────────────── */
-html  { scroll-behavior: smooth; }
-body  { margin: 0; background: var(--stone); color: var(--ink); }
-a     { color: inherit; text-decoration: none; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--stone);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+a {
+  text-decoration: none;
+}
 h1, h2, h3 { margin-top: 0; }
 
 /* ── Dot grid — active layer uses runtime --x / --y ─────────── */

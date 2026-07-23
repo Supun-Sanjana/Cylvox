@@ -1,12 +1,37 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  ArrowUpRight,
+  ShieldCheck,
+  Zap,
+  Cpu,
+  Database,
+  Lock,
+  CheckCircle2,
+  Check,
+  Terminal,
+  Activity,
+  Sparkles
+} from "lucide-react";
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const [pointer, setPointer] = useState({ x: 74, y: 40 });
+  const [pointer, setPointer] = useState({ x: 50, y: 35 });
   const [isHovering, setIsHovering] = useState(false);
+  const [activeTab, setActiveTab] = useState<"audit" | "automation" | "cms" | "perf">("audit");
+
+  // Framer Motion Scroll Parallax
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const deckY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const deckScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const deckRotateX = useTransform(scrollYProgress, [0, 1], [0, 8]);
+  const auraOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.35]);
 
   // Track pointer position relative to hero bounds
   useEffect(() => {
@@ -15,22 +40,29 @@ export default function Hero() {
     const onMove = (e: PointerEvent) => {
       const r = hero.getBoundingClientRect();
       setPointer({
-        x: ((e.clientX - r.left) / r.width)  * 100,
-        y: ((e.clientY - r.top)  / r.height) * 100,
+        x: ((e.clientX - r.left) / r.width) * 100,
+        y: ((e.clientY - r.top) / r.height) * 100,
       });
     };
     hero.addEventListener("pointermove", onMove);
     return () => hero.removeEventListener("pointermove", onMove);
   }, []);
 
-  // CSS custom properties passed via style — Tailwind can't do runtime var chains
+  // Auto switch tabs every 5.5s with easeInOut transition
+  useEffect(() => {
+    const tabs: Array<"audit" | "automation" | "cms" | "perf"> = ["audit", "automation", "cms", "perf"];
+    const interval = setInterval(() => {
+      setActiveTab((current) => {
+        const idx = tabs.indexOf(current);
+        return tabs[(idx + 1) % tabs.length];
+      });
+    }, 5500);
+    return () => clearInterval(interval);
+  }, []);
+
   const pointerVars = {
-    "--x":      `${pointer.x}%`,
-    "--y":      `${pointer.y}%`,
-    "--dx":     `${(pointer.x - 50) * 1.4}px`,
-    "--dy":     `${(pointer.y - 50) * 1.1}px`,
-    "--tilt-x": `${(pointer.y - 50) * -0.08}deg`,
-    "--tilt-y": `${(pointer.x - 50) *  0.08}deg`,
+    "--x": `${pointer.x}%`,
+    "--y": `${pointer.y}%`,
   } as React.CSSProperties;
 
   return (
@@ -40,165 +72,428 @@ export default function Hero() {
       style={pointerVars}
       onPointerEnter={() => setIsHovering(true)}
       onPointerLeave={() => setIsHovering(false)}
-      className={`hero-shell relative overflow-hidden isolate rounded-[18px]
-                  m-3 min-h-[calc(100svh-24px)] bg-[#f2efe9]
-                  max-sm:m-1.75 max-sm:rounded-[13px] max-sm:min-h-[calc(100svh-14px)]
-                  ${isHovering ? "is-hovering" : ""}`}
+      className="hero-shell relative overflow-hidden isolate w-full min-h-[100svh] text-white m-0 rounded-none"
     >
-
-      {/* ── Background art ──────────────────────────────────── */}
+      {/* ── Squish Exact Sky Blue & Electric Cerulean Gradient Base ── */}
       <div
-        aria-hidden="true"
-        className="absolute inset-0 overflow-hidden"
+        className="absolute inset-0 z-0"
         style={{
           background: `
-            radial-gradient(ellipse 58% 64% at 57% 24%, #d6eff7a8 0%, #afdaf0a0 35%, transparent 72%),
-            radial-gradient(ellipse 60% 65% at 8%  87%, #a6a7e38f 0%, transparent 73%),
-            linear-gradient(180deg, #9acee8 0%, #79b7df 35%, #4f71ca 70%, #2344a2 100%)
+            radial-gradient(ellipse 90% 80% at 50% -10%, #60a5fa 0%, #3b82f6 30%, #1d4ed8 65%, #0f172a 100%)
           `,
         }}
-      >
-        {/* Static dot grid */}
-        <div className="dot-grid-base absolute inset-0 opacity-50" />
+      />
 
-        {/* Cursor-reactive dot grid — mask follows --x / --y */}
-        <div
-          className={`dot-grid-active absolute inset-0 transition-opacity duration-500
-                      ${isHovering ? "opacity-[0.68]" : "opacity-0"}`}
+      {/* ── Squish Ethereal Center Bloom (Pink/Peach/Purple Floral Aura) ── */}
+      <motion.div
+        aria-hidden="true"
+        style={{ opacity: auraOpacity }}
+        className="absolute inset-0 overflow-hidden pointer-events-none z-0"
+      >
+        {/* Central Pink/Peach Glowing Bloom */}
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 4, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[8%] left-[25%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full filter blur-[95px] opacity-80 pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(244, 114, 182, 0.75) 0%, rgba(251, 146, 60, 0.55) 35%, rgba(192, 132, 252, 0.35) 65%, transparent 85%)",
+          }}
         />
 
-        {/* Film grain */}
-        <div className="grain absolute inset-0" />
+        {/* Ambient Top Cyan Pulse */}
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+            x: [-15, 15, -15],
+          }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-[20%] -left-[10%] w-[65vw] h-[65vw] max-w-[850px] max-h-[850px] rounded-full filter blur-[110px] opacity-75 pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(56, 189, 248, 0.65) 0%, rgba(99, 102, 241, 0.45) 50%, transparent 75%)",
+          }}
+        />
 
-        {/* Cursor hint — desktop only */}
-        <p
-          className="absolute z-2 top-28 right-[clamp(24px,4.5vw,72px)]
-                     flex items-center gap-2 m-0
-                     text-[#5c5552] text-[10px] tracking-[0.11em] uppercase
-                     max-sm:hidden"
-        >
-          <span className="relative shrink-0 w-7 h-7 border border-[#1c191750] rounded-full">
-            <span className="absolute inset-2.25 rounded-full bg-[#7c3aed]" />
-          </span>
-          Move across the field
-        </p>
-      </div>
-
-      {/* ── Navbar ──────────────────────────────────────────── */}
-      <nav
-        aria-label="Main navigation"
-        className="absolute z-5 inset-x-0 top-0 flex justify-center px-5 pt-4.5"
-      >
+        {/* Squish Signature High-Contrast White Dot Grid Matrix */}
         <div
-          className="flex items-center justify-between gap-8 w-[min(760px,100%)] min-h-14
-                     px-5 py-1.75 pr-2
-                     border border-white/60 rounded-full
-                     bg-[#f8f5f0]/66 backdrop-blur-[18px] saturate-145
-                     shadow-[0_12px_38px_#46306116,inset_0_1px_0_#fff]
-                     max-sm:min-h-12.25 max-sm:px-3.75 max-sm:py-1.5 max-sm:pr-1.5"
-        >
-          <a
-            href="#top"
-            className="font-[family-name:var(--font-syne)] text-[18px] font-extrabold tracking-[-0.08em]
-                       text-[#1c1917]"
-          >
-            CYLVOX<span className="text-[#7c3aed]">.</span>
-          </a>
+          className="absolute inset-0 opacity-35"
+          style={{
+            backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.9) 1.3px, transparent 1.3px)",
+            backgroundSize: "22px 22px",
+            maskImage: "radial-gradient(circle 850px at var(--x, 50%) var(--y, 35%), #000 0%, #000a 60%, transparent 100%)",
+          }}
+        />
 
-          {/* Nav links — hidden on mobile */}
-          <div className="flex gap-[clamp(19px,2.5vw,40px)] text-[12px] font-semibold max-sm:hidden">
-            {[
-              { href: "#services", label: "Services" },
-              { href: "#proof",    label: "Results"  },
-              { href: "#process",  label: "Process"  },
-            ].map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                className="text-[#1c1917] opacity-60 hover:opacity-100 transition-opacity duration-200"
+        {/* Noise overlay */}
+        <div className="grain absolute inset-0 opacity-20 mix-blend-overlay" />
+      </motion.div>
+
+      {/* ── Main Hero Content ──────────────────────────────────── */}
+      <div className="relative z-10 pt-[clamp(90px,12vh,140px)] pb-[clamp(40px,7vh,75px)] px-[clamp(16px,5vw,80px)] max-w-[1440px] mx-auto flex flex-col justify-between min-h-[100svh]">
+        
+        {/* Top Grid: Left Copy & Right Interactive Deck */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center my-auto">
+          
+          {/* Left Column: Hero Copy */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="lg:col-span-7 flex flex-col justify-center"
+          >
+            {/* Agency Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/20 border border-white/30 text-[11px] sm:text-xs font-bold text-white mb-5 w-max backdrop-blur-md shadow-md max-w-full">
+              <Sparkles className="w-3.5 h-3.5 text-amber-200 shrink-0" />
+              <span className="text-white shrink-0">CYLVOX STUDIO</span>
+              <span className="text-white/40">•</span>
+              <span className="text-pink-100 truncate">Design · Dev · AI Workflows · Audits</span>
+            </div>
+
+            {/* Squish-Style Editorial Headline */}
+            <h1
+              className="font-[family-name:var(--font-syne)] font-black leading-[0.95] sm:leading-[0.92] tracking-[-0.06em]
+                         text-[clamp(36px,6.5vw,84px)] mb-5 sm:mb-6 text-white drop-shadow-md"
+            >
+              From <em className="font-[Georgia,serif] font-normal italic text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-rose-200 to-amber-100">vibe-coded</em> to enterprise-ready.
+            </h1>
+
+            {/* Description */}
+            <p className="max-w-xl text-[14.5px] sm:text-[17px] leading-[1.6] sm:leading-[1.65] text-white/90 mb-7 sm:mb-8 font-medium drop-shadow-sm">
+              We design, develop, and optimize high-concurrency web systems. Specializing in 
+              <strong className="text-white font-black"> n8n AI automations</strong>, 
+              <strong className="text-white font-black"> Headless Sanity CMS</strong>, 
+              <strong className="text-white font-black"> sub-second SEO performance</strong>, and 
+              <strong className="text-white font-black"> security audits for AI-generated apps</strong>.
+            </p>
+
+            {/* Service Pills */}
+            <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-8 sm:mb-9 max-w-xl">
+              {[
+                { label: "Vibe-Code Security Scans", icon: ShieldCheck, color: "text-amber-100 bg-white/15 border-white/25" },
+                { label: "n8n AI Automations", icon: Cpu, color: "text-cyan-100 bg-white/15 border-white/25" },
+                { label: "Sanity Headless CMS", icon: Database, color: "text-rose-100 bg-white/15 border-white/25" },
+                { label: "99+ Core Web Vitals & SEO", icon: Zap, color: "text-emerald-100 bg-white/15 border-white/25" },
+              ].map((pill, i) => {
+                const Icon = pill.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    transition={{ ease: "easeInOut", duration: 0.2 }}
+                    className={`flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-3.5 sm:py-1.75 rounded-xl border text-[11px] sm:text-xs font-bold backdrop-blur-md shadow-sm transition-all ${pill.color}`}
+                  >
+                    <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <span>{pill.label}</span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* HIGH-CONTRAST CALL TO ACTION BUTTONS WITH EXPLICIT DARK TEXT */}
+            <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 max-sm:w-full">
+              <motion.a
+                whileHover={{ scale: 1.04, boxShadow: "0 10px 40px rgba(0,0,0,0.3)" }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ ease: "easeInOut", duration: 0.2 }}
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#09080e] font-black text-sm px-6 py-3.5 sm:px-7 sm:py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:bg-slate-100 max-sm:w-full"
+                style={{ color: "#09080e" }}
               >
-                {label}
-              </a>
-            ))}
+                <span style={{ color: "#09080e" }}>Audit Your App</span>
+                <ArrowUpRight className="w-4.5 h-4.5 stroke-[3]" style={{ color: "#09080e" }} />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.03, backgroundColor: "rgba(15, 23, 42, 0.9)" }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ ease: "easeInOut", duration: 0.2 }}
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 text-sm font-extrabold text-white px-6 py-3.5 sm:py-4 rounded-full bg-slate-950/70 border border-white/30 backdrop-blur-md shadow-md transition-all duration-200 max-sm:w-full"
+              >
+                Explore Capabilities
+              </motion.a>
+            </div>
+
+          </motion.div>
+
+          {/* Right Column: Interactive LIVE ENGINE Deck (Framed with Parallax Scroll) */}
+          <motion.div
+            id="deck"
+            style={{ y: deckY, scale: deckScale, rotateX: deckRotateX }}
+            className="lg:col-span-5 w-full perspective-1000 mt-4 lg:mt-0"
+          >
+            <div className="relative rounded-2xl border border-white/20 bg-[#0a0d18]/90 p-4 sm:p-5.5 shadow-[0_30px_80px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-3xl">
+              
+              {/* Window Header */}
+              <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-white/10">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-rose-500/90 inline-block shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
+                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-amber-500/90 inline-block shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500/90 inline-block shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+                  <span className="ml-1.5 sm:ml-2 text-[11px] sm:text-xs font-mono text-gray-300 flex items-center gap-1.5 font-semibold">
+                    <Terminal className="w-3.5 h-3.5 text-purple-400 shrink-0" /> cylvox-system-deck.v2
+                  </span>
+                </div>
+                
+                {/* LIVE ENGINE indicator - STATIC GLOW */}
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 sm:px-2.5 rounded-full border border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+                  <Activity className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400" /> LIVE ENGINE
+                </div>
+              </div>
+
+              {/* Tab Selector Buttons */}
+              <div className="grid grid-cols-4 gap-1 p-1 sm:p-1.5 bg-white/5 rounded-xl border border-white/10 mb-3.5 text-[11px] sm:text-xs font-bold">
+                {[
+                  { id: "audit", label: "Audit", icon: ShieldCheck },
+                  { id: "automation", label: "n8n AI", icon: Cpu },
+                  { id: "cms", label: "Sanity", icon: Database },
+                  { id: "perf", label: "SEO/Perf", icon: Zap },
+                ].map((t) => {
+                  const Icon = t.icon;
+                  const isActive = activeTab === t.id;
+                  return (
+                    <button
+                      key={t.id}
+                      onClick={() => setActiveTab(t.id as any)}
+                      className={`relative flex items-center justify-center gap-1 py-1.5 px-1 sm:py-2 sm:px-2 rounded-lg transition-all ${
+                        isActive
+                          ? "text-white font-extrabold shadow-lg"
+                          : "text-gray-400 hover:text-gray-200 hover:bg-white/5"
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeTabIndicator"
+                          className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-[0_4px_15px_rgba(147,51,234,0.5)]"
+                          transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                        />
+                      )}
+                      <span className="relative z-10 flex items-center gap-1">
+                        <Icon className="w-3.5 h-3.5 shrink-0" /> <span>{t.label}</span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Tab Content Display */}
+              <div className="bg-[#050811] rounded-xl p-3.5 sm:p-4.5 border border-white/10 min-h-[250px] sm:min-h-[265px] flex flex-col justify-between font-mono text-xs">
+                
+                {/* 1. VIBE CODE SECURITY AUDIT SCANNER */}
+                {activeTab === "audit" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="space-y-2.5 sm:space-y-3"
+                  >
+                    <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
+                      <span className="text-purple-300 font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                        <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" /> Vibe-Code Inspector
+                      </span>
+                      <span className="text-[9.5px] sm:text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30 font-extrabold">
+                        GRADE: A+
+                      </span>
+                    </div>
+
+                    <div className="space-y-1.5 sm:space-y-2 text-[10.5px] sm:text-[11px]">
+                      <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
+                        <span className="text-gray-200 flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> API Keys & Secrets
+                        </span>
+                        <span className="text-emerald-400 font-bold">0 Leaked Keys</span>
+                      </div>
+
+                      <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
+                        <span className="text-gray-200 flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Auth & Rate Limits
+                        </span>
+                        <span className="text-emerald-400 font-bold">Protected</span>
+                      </div>
+
+                      <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
+                        <span className="text-gray-200 flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" /> Prompt Injection
+                        </span>
+                        <span className="text-purple-300 font-bold">Hardened</span>
+                      </div>
+
+                      <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
+                        <span className="text-gray-200 flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> SQLi / XSS Code
+                        </span>
+                        <span className="text-emerald-400 font-bold">Cleaned</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-1.5 flex items-center justify-between text-[10.5px] sm:text-[11px] text-gray-400 font-sans">
+                      <span>Status: <strong className="text-white">Bulletproof</strong></span>
+                      <a href="#contact" className="text-purple-300 font-bold hover:underline flex items-center gap-1">
+                        Request Audit &rarr;
+                      </a>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* 2. N8N AI WORKFLOWS */}
+                {activeTab === "automation" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="space-y-2.5 sm:space-y-3"
+                  >
+                    <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
+                      <span className="text-cyan-300 font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                        <Cpu className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 shrink-0" /> n8n AI Pipeline
+                      </span>
+                      <span className="text-[9.5px] sm:text-[10px] text-cyan-300 bg-cyan-500/20 px-2 py-0.5 rounded border border-cyan-500/30 font-bold">
+                        24/7 ACTIVE
+                      </span>
+                    </div>
+
+                    {/* Visual Workflow Nodes */}
+                    <div className="flex items-center justify-between gap-1 py-2 sm:py-3 text-[10px]">
+                      <div className="flex-1 bg-cyan-950/50 border border-cyan-500/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
+                        <span className="block text-gray-400 text-[8.5px]">TRIGGER</span>
+                        <strong className="text-cyan-200 text-[10px]">Webhook</strong>
+                      </div>
+                      <span className="text-cyan-400 font-bold">&rarr;</span>
+                      <div className="flex-1 bg-purple-950/50 border border-purple-500/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
+                        <span className="block text-gray-400 text-[8.5px]">AI AGENT</span>
+                        <strong className="text-purple-200 text-[10px]">n8n Engine</strong>
+                      </div>
+                      <span className="text-purple-400 font-bold">&rarr;</span>
+                      <div className="flex-1 bg-emerald-950/50 border border-emerald-500/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
+                        <span className="block text-gray-400 text-[8.5px]">OUTPUT</span>
+                        <strong className="text-emerald-200 text-[10px]">Sanity+Slack</strong>
+                      </div>
+                    </div>
+
+                    <div className="bg-white/[0.04] p-2 rounded-lg border border-white/5 text-[10.5px] sm:text-[11px] space-y-1 text-gray-300">
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Execution Speed:</span>
+                        <span className="text-emerald-400 font-bold">1.18s avg</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Pipeline Uptime:</span>
+                        <span className="text-emerald-400 font-bold">99.99%</span>
+                      </div>
+                    </div>
+
+                    <p className="text-[10px] text-gray-400 font-sans italic">
+                      Automating web leads, CRM syncing, AI content pipelines & DB actions.
+                    </p>
+                  </motion.div>
+                )}
+
+                {/* 3. HEADLESS CMS (SANITY) */}
+                {activeTab === "cms" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="space-y-2.5 sm:space-y-3"
+                  >
+                    <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
+                      <span className="text-rose-300 font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                        <Database className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-400 shrink-0" /> Sanity CMS Engine
+                      </span>
+                      <span className="text-[9.5px] sm:text-[10px] text-rose-300 bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/30 font-bold">
+                        ISR REAL-TIME
+                      </span>
+                    </div>
+
+                    <div className="bg-[#03050c] p-2.5 sm:p-3 rounded-lg border border-white/10 font-mono text-[10px] sm:text-[10.5px] text-gray-300 leading-relaxed overflow-hidden">
+                      <span className="text-purple-400">// Sanity GROQ Schema Sync</span><br />
+                      <span className="text-rose-400">*[_type == &quot;landingPage&quot;]</span> &#123;<br />
+                      &nbsp;&nbsp;<span className="text-cyan-300">title</span>: <span className="text-amber-200">&quot;Cylvox Agency&quot;</span>,<br />
+                      &nbsp;&nbsp;<span className="text-cyan-300">status</span>: <span className="text-emerald-400">&quot;PUBLISHED&quot;</span>,<br />
+                      &nbsp;&nbsp;<span className="text-cyan-300">revalidate</span>: <span className="text-purple-300">60</span><br />
+                      &#125;
+                    </div>
+
+                    <div className="flex items-center justify-between text-[10.5px] sm:text-[11px] text-gray-300 pt-1 font-sans">
+                      <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                        <Check className="w-3.5 h-3.5 shrink-0" /> No Code Redeployment Required
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* 4. SPEED & SEO ENGINE */}
+                {activeTab === "perf" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="space-y-2.5 sm:space-y-3"
+                  >
+                    <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
+                      <span className="text-emerald-300 font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                        <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 shrink-0" /> Core Web Vitals & SEO
+                      </span>
+                      <span className="text-[9.5px] sm:text-[10px] text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/30 font-bold">
+                        99/100 LIGHTHOUSE
+                      </span>
+                    </div>
+
+                    {/* Gauges */}
+                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center py-1.5 sm:py-2 font-mono">
+                      <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-1.5 sm:p-2">
+                        <div className="text-base sm:text-lg font-black text-emerald-400">100</div>
+                        <div className="text-[8.5px] sm:text-[9px] text-gray-300 font-bold">PERF</div>
+                      </div>
+                      <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-1.5 sm:p-2">
+                        <div className="text-base sm:text-lg font-black text-emerald-400">100</div>
+                        <div className="text-[8.5px] sm:text-[9px] text-gray-300 font-bold">SEO</div>
+                      </div>
+                      <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-1.5 sm:p-2">
+                        <div className="text-base sm:text-lg font-black text-purple-300">0.38s</div>
+                        <div className="text-[8.5px] sm:text-[9px] text-gray-300 font-bold">LCP</div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white/[0.04] p-2 rounded-lg border border-white/5 text-[10.5px] sm:text-[11px] space-y-1 text-gray-300">
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Structured Schema:</span>
+                        <span className="text-emerald-400 font-bold">Validated</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Edge Cache Ratio:</span>
+                        <span className="text-emerald-400 font-bold">99.4%</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* Bottom Social Proof Bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="pt-6 sm:pt-8 border-t border-white/20 mt-6 sm:mt-8 flex flex-wrap items-center justify-between gap-4 sm:gap-6 text-xs text-white/90"
+        >
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)] shrink-0" />
+            <span className="font-bold text-white">Accepting Q3 Client Projects & App Audits</span>
           </div>
 
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-[#ffffff] text-gray-100 rounded-full
-                       text-[13px] font-bold px-4.5 py-3 pr-3.75
-                       hover:-translate-y-0.5 transition-all duration-200
-                       max-sm:text-[11px] max-sm:px-3.5 max-sm:py-2.5"
-          >
-            Let&apos;s talk <ArrowUpRight className="w-4 h-4" />
-          </a>
-        </div>
-      </nav>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-bold text-white/90 text-[11px] sm:text-xs">
+            <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-200 shrink-0" /> 100% Audit Coverage</span>
+            <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-200 shrink-0" /> Sub-Second Speed</span>
+            <span className="flex items-center gap-1.5"><Cpu className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-200 shrink-0" /> Custom n8n Workflows</span>
+          </div>
+        </motion.div>
 
-      {/* ── Hero copy ────────────────────────────────────────── */}
-      <div
-        className="absolute z-3 text-white
-                   bottom-[clamp(55px,11vh,120px)] left-[clamp(24px,8.5vw,140px)] max-w-140
-                   [text-shadow:0_2px_18px_#183b8b33]
-                   max-sm:bottom-9.5 max-sm:left-5.5 max-sm:right-5.5 max-sm:max-w-none"
-      >
-        <p className="flex items-center gap-2 m-0 mb-5.75
-                      text-[10px] font-extrabold tracking-[0.15em] uppercase text-[#f5f7ff]
-                      max-sm:mb-4.25 max-sm:text-[8px]">
-          <span className="w-1.75 h-1.75 rounded-full bg-[#7c3aed] shadow-[0_0_0_5px_#7c3aed18]" />
-          Independent digital agency
-        </p>
-
-        <h1
-          className="font-(family-name:--font-syne) font-bold mb-0
-                     leading-[0.91] tracking-[-0.075em]
-                     text-[clamp(51px,6.3vw,102px)]
-                     max-sm:text-[clamp(49px,15vw,70px)]"
-        >
-          Make your<br />
-          <em className="font-[Georgia,serif] font-normal tracking-[-0.085em] text-[#f0dcff] not-italic">
-            next move
-          </em>
-          <br />matter.
-        </h1>
-
-        <p className="max-w-92.5 mt-7 mb-6.75 text-[15px] leading-[1.55] text-[#eef3ff]
-                      max-sm:mt-5 max-sm:mb-5 max-sm:max-w-77.5 max-sm:text-[13px]">
-          We design, develop, and optimize digital systems for ambitious brands
-          ready to be impossible to ignore.
-        </p>
-
-        <a
-          href="#contact"
-          className="inline-flex items-center gap-2 bg-[#1c1917] text-white rounded-full
-                     text-[13px] font-bold px-5.75 py-4 pr-4.75
-                     hover:-translate-y-0.5 hover:bg-[#7c3aed] transition-all duration-200
-                     max-sm:px-4.75 max-sm:py-3.5 max-sm:pr-4"
-        >
-          Start a project <ArrowUpRight className="w-4 h-4" />
-        </a>
-      </div>
-
-      {/* ── Hero meta — desktop only ─────────────────────────── */}
-      <div
-        className="absolute z-3 bottom-10.5 right-[clamp(24px,4.5vw,72px)] w-[205px]
-                   text-[11px] leading-normal text-[#eff4ff]
-                   [text-shadow:0_2px_13px_#183b8b2e]
-                   max-sm:hidden"
-      >
-        <div
-          className="tilt-card px-4 py-3.5 text-[#1c1917] bg-[#fffffff0]
-                     border border-white rounded-[13px]
-                     shadow-[0_16px_35px_#16326b29,inset_0_1px_0_#fff]"
-        >
-          Sri Lanka · Working globally
-          <p className=" border-b border-gray-300/80 mt-5"></p>
-           <p className="m-0 mt-2 flex justify-between border-t border-[#edf4ff6b] pt-2.5">
-          Scroll to explore{" "}
-          <b className="text-white text-[17px] font-normal"><ArrowDown className="w-4 h-4 text-black"/></b>
-        </p>
-        </div>
-
-       
       </div>
 
     </section>

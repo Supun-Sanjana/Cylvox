@@ -1,49 +1,50 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 type RevealProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  /** When true, direct children are staggered individually */
-  stagger?: boolean;
+  delay?: number;
+  direction?: "up" | "down" | "left" | "right" | "none";
 };
 
-export default function Reveal({ children, className = "", stagger = false }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target); // fire once only
-          }
-        });
-      },
-      { threshold: 0.14 }
-    );
-
-    observer.observe(el);
-
-    // Also observe direct children for stagger effect
-    if (stagger) {
-      el.querySelectorAll(":scope > *").forEach((child) => observer.observe(child));
+export default function Reveal({
+  children,
+  className = "",
+  delay = 0,
+  direction = "up",
+}: RevealProps) {
+  const getVariants = () => {
+    switch (direction) {
+      case "up":
+        return { hidden: { opacity: 0, y: 35 }, visible: { opacity: 1, y: 0 } };
+      case "down":
+        return { hidden: { opacity: 0, y: -35 }, visible: { opacity: 1, y: 0 } };
+      case "left":
+        return { hidden: { opacity: 0, x: 45 }, visible: { opacity: 1, x: 0 } };
+      case "right":
+        return { hidden: { opacity: 0, x: -45 }, visible: { opacity: 1, x: 0 } };
+      case "none":
+        return { hidden: { opacity: 0 }, visible: { opacity: 1 } };
     }
-
-    return () => observer.disconnect();
-  }, [stagger]);
+  };
 
   return (
-    <div
-      ref={ref}
-      className={`reveal ${stagger ? "stagger" : ""} ${className}`.trim()}
+    <motion.div
+      variants={getVariants()}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.7,
+        delay,
+        ease: [0.21, 0.47, 0.32, 0.98],
+      }}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
