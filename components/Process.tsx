@@ -39,22 +39,18 @@ export default function Process() {
                      max-md:grid-cols-1 max-md:gap-y-6"
         >
           <div>
-            <p className="flex items-center gap-2 mb-4 text-[11px] font-extrabold
-                          tracking-[0.18em] uppercase text-purple-700">
-              Engineering Process
-            </p>
             <h2
               className="font-[family-name:var(--font-syne)] font-black tracking-[-0.075em] leading-[0.98]
-                         text-[clamp(42px,5.5vw,82px)] mb-0 text-[#1a1724]"
+                         text-[clamp(42px,5.5vw,82px)] mb-0 text-white"
             >
               A clear path from{" "}
-              <em className="text-[#7c3aed] not-italic">
+              <em className="text-[#ccff00] not-italic">
                 prototype to scale.
               </em>
             </h2>
           </div>
 
-          <p className="max-w-[400px] text-[15px] sm:text-[16px] leading-relaxed text-[#59534c] font-medium
+          <p className="max-w-[400px] text-[15px] sm:text-[16px] leading-relaxed text-gray-400 font-medium
                         max-md:max-w-none">
             Senior software engineers & designers. Direct Slack access. Zero handoffs into black boxes.
           </p>
@@ -63,7 +59,7 @@ export default function Process() {
 
       {/* Steps track */}
       <div
-        className="grid grid-cols-4 mt-[clamp(60px,9vw,130px)] border-t border-[#1c191722]
+        className="grid grid-cols-4 mt-[clamp(60px,9vw,130px)] border-t border-white/10
                    max-sm:grid-cols-1"
       >
         {steps.map((step, i) => (
@@ -71,24 +67,24 @@ export default function Process() {
             <motion.div
               whileHover={{ y: -4 }}
               className={`relative min-h-82.5 py-7 px-6 transition-all duration-300 rounded-3xl cursor-default
-                          hover:bg-white/60 hover:backdrop-blur-md hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+                          hover:bg-white/5 hover:backdrop-blur-md hover:shadow-[0_8px_30px_rgba(255,255,255,0.06)]
                           ${i > 0
-                            ? "border-l border-[#1c191722] max-sm:border-l-0 max-sm:border-t"
+                            ? "border-l border-white/10 max-sm:border-l-0 max-sm:border-t"
                             : ""
                           }
                           max-sm:min-h-61.25 max-sm:py-6.25 max-sm:px-2`}
             >
-              <span className="block mb-16 font-[family-name:var(--font-syne)] font-black text-[18px] text-[#7c3aed]
+              <span className="block mb-16 font-black text-[18px] text-[#ccff00]
                                max-sm:mb-10">
                 {step.number}
               </span>
               <h3
-                className="font-[family-name:var(--font-syne)] font-black tracking-[-0.05em]
-                           text-[28px] leading-tight mb-4 text-[#1a1724]"
+                className="font-black tracking-[-0.05em]
+                           text-[28px] leading-tight mb-4 text-white"
               >
                 {step.title}
               </h3>
-              <p className="text-[13.5px] leading-[1.6] text-[#59534c] font-medium max-w-[230px] mb-0">
+              <p className="text-[13.5px] leading-[1.6] text-gray-400 font-medium max-w-[230px] mb-0">
                 {step.text}
               </p>
 
@@ -97,7 +93,7 @@ export default function Process() {
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3 }}
-                className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-purple-600 to-indigo-600 origin-left"
+                className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#ccff00] origin-left"
               />
             </motion.div>
           </Reveal>

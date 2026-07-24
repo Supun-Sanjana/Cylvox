@@ -26,10 +26,10 @@ export default function Navbar() {
         {/* Brand Logo */}
         <a
           href="#top"
-          className="font-[family-name:var(--font-syne)] text-[18px] sm:text-[20px] font-black tracking-[-0.07em]
+          className="text-[18px] sm:text-[20px] font-black tracking-[-0.07em]
                      text-white flex items-center gap-0.5 shrink-0"
         >
-          CYLVOX<span className="text-[#8b5cf6] font-black text-xl leading-none ml-0.5">•</span>
+          CYLVOX<span className="text-[#ccff00] font-black text-xl leading-none ml-0.5">•</span>
         </a>
 
         {/* Navigation Links */}
@@ -51,16 +51,16 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA BUTTON: WHITE BACKGROUND WITH VIOLET TEXT */}
+        {/* CTA BUTTON: LIME BACKGROUND WITH DARK TEXT */}
         <motion.a
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.96 }}
           transition={{ ease: "easeInOut", duration: 0.2 }}
           href="#contact"
-          className="inline-flex items-center gap-1.5 bg-white text-violet-600 font-black rounded-full
+          className="inline-flex items-center gap-1.5 bg-[#ccff00] text-[#09080e] font-black rounded-full
                      text-[12px] sm:text-[13px] px-5 py-2 sm:py-2.5
-                     shadow-[0_4px_20px_rgba(124,58,237,0.3)]
-                     hover:bg-violet-50 transition-all duration-200 shrink-0"
+                     shadow-[0_4px_20px_rgba(204,255,0,0.3)]
+                     hover:bg-[#a3cc00] transition-all duration-200 shrink-0"
         >
           <span>Book Audit</span>
           <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3]" />

@@ -116,6 +116,20 @@ export default function Hero() {
           }}
         />
 
+        {/* Ambient Bottom Lime Pulse */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [10, -10, 10],
+            y: [10, -10, 10],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-[15%] -left-[5%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full filter blur-[120px] opacity-50 pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(204, 255, 0, 0.35) 0%, rgba(204, 255, 0, 0.1) 45%, transparent 75%)",
+          }}
+        />
+
         {/* Squish Signature High-Contrast White Dot Grid Matrix */}
         <div
           className="absolute inset-0 opacity-35"
@@ -150,7 +164,7 @@ export default function Hero() {
               className="font-[family-name:var(--font-syne)] font-black leading-[0.95] sm:leading-[0.92] tracking-[-0.06em]
                          text-[clamp(36px,6.5vw,84px)] mb-5 sm:mb-6 text-white drop-shadow-md"
             >
-              From <em className="font-[family-name:var(--font-syne)] text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-rose-200 to-amber-100 pr-1">vibe-coded</em> to enterprise-ready.
+              From <em className="text-[#ccff00] not-italic pr-1">vibe-coded</em> to enterprise-ready.
             </h1>
 
             {/* Description */}
@@ -192,7 +206,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.96 }}
                 transition={{ ease: "easeInOut", duration: 0.2 }}
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#09080e] font-black text-sm px-6 py-3.5 sm:px-7 sm:py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:bg-slate-100 max-sm:w-full"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#09080e] font-black text-sm px-6 py-3.5 sm:px-7 sm:py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:bg-[#ccff00] max-sm:w-full"
                 style={{ color: "#09080e" }}
               >
                 <span style={{ color: "#09080e" }}>Audit Your App</span>
@@ -227,7 +241,7 @@ export default function Hero() {
                   <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-amber-500/90 inline-block shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
                   <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500/90 inline-block shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
                   <span className="ml-1.5 sm:ml-2 text-[11px] sm:text-xs font-mono text-gray-300 flex items-center gap-1.5 font-semibold">
-                    <Terminal className="w-3.5 h-3.5 text-purple-400 shrink-0" /> cylvox-system-deck.v2
+                    <Terminal className="w-3.5 h-3.5 text-[#ccff00] shrink-0" /> cylvox-system-deck.v2
                   </span>
                 </div>
                 
@@ -253,14 +267,14 @@ export default function Hero() {
                       onClick={() => setActiveTab(t.id as any)}
                       className={`relative flex items-center justify-center gap-1 py-1.5 px-1 sm:py-2 sm:px-2 rounded-lg transition-all ${
                         isActive
-                          ? "text-white font-extrabold shadow-lg"
+                          ? "text-[#09080e] font-extrabold shadow-lg"
                           : "text-gray-400 hover:text-gray-200 hover:bg-white/5"
                       }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="activeTabIndicator"
-                          className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-[0_4px_15px_rgba(147,51,234,0.5)]"
+                          className="absolute inset-0 bg-[#ccff00] rounded-lg shadow-[0_4px_15px_rgba(204,255,0,0.3)]"
                           transition={{ type: "spring", stiffness: 380, damping: 28 }}
                         />
                       )}
@@ -284,8 +298,8 @@ export default function Hero() {
                     className="space-y-2.5 sm:space-y-3"
                   >
                     <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
-                      <span className="text-purple-300 font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-                        <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" /> Vibe-Code Inspector
+                      <span className="text-[#ccff00] font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                        <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ccff00] shrink-0" /> Vibe-Code Inspector
                       </span>
                       <span className="text-[9.5px] sm:text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30 font-extrabold">
                         GRADE: A+
@@ -311,7 +325,7 @@ export default function Hero() {
                         <span className="text-gray-200 flex items-center gap-1.5">
                           <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" /> Prompt Injection
                         </span>
-                        <span className="text-purple-300 font-bold">Hardened</span>
+                        <span className="text-[#ccff00] font-bold">Hardened</span>
                       </div>
 
                       <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
@@ -324,7 +338,7 @@ export default function Hero() {
 
                     <div className="pt-1.5 flex items-center justify-between text-[10.5px] sm:text-[11px] text-gray-400 font-sans">
                       <span>Status: <strong className="text-white">Bulletproof</strong></span>
-                      <a href="#contact" className="text-purple-300 font-bold hover:underline flex items-center gap-1">
+                      <a href="#contact" className="text-[#ccff00] font-bold hover:underline flex items-center gap-1">
                         Request Audit &rarr;
                       </a>
                     </div>
@@ -354,12 +368,12 @@ export default function Hero() {
                         <span className="block text-gray-400 text-[8.5px]">TRIGGER</span>
                         <strong className="text-cyan-200 text-[10px]">Webhook</strong>
                       </div>
-                      <span className="text-cyan-400 font-bold">&rarr;</span>
-                      <div className="flex-1 bg-purple-950/50 border border-purple-500/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
+                      <span className="text-[#ccff00] font-bold">&rarr;</span>
+                      <div className="flex-1 bg-[#ccff00]/10 border border-[#ccff00]/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
                         <span className="block text-gray-400 text-[8.5px]">AI AGENT</span>
-                        <strong className="text-purple-200 text-[10px]">n8n Engine</strong>
+                        <strong className="text-[#ccff00] text-[10px]">n8n Engine</strong>
                       </div>
-                      <span className="text-purple-400 font-bold">&rarr;</span>
+                      <span className="text-[#ccff00] font-bold">&rarr;</span>
                       <div className="flex-1 bg-emerald-950/50 border border-emerald-500/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
                         <span className="block text-gray-400 text-[8.5px]">OUTPUT</span>
                         <strong className="text-emerald-200 text-[10px]">Sanity+Slack</strong>
@@ -401,11 +415,11 @@ export default function Hero() {
                     </div>
 
                     <div className="bg-[#03050c] p-2.5 sm:p-3 rounded-lg border border-white/10 font-mono text-[10px] sm:text-[10.5px] text-gray-300 leading-relaxed overflow-hidden">
-                      <span className="text-purple-400">// Sanity GROQ Schema Sync</span><br />
+                      <span className="text-gray-400">// Sanity GROQ Schema Sync</span><br />
                       <span className="text-rose-400">*[_type == &quot;landingPage&quot;]</span> &#123;<br />
-                      &nbsp;&nbsp;<span className="text-cyan-300">title</span>: <span className="text-amber-200">&quot;Cylvox Agency&quot;</span>,<br />
-                      &nbsp;&nbsp;<span className="text-cyan-300">status</span>: <span className="text-emerald-400">&quot;PUBLISHED&quot;</span>,<br />
-                      &nbsp;&nbsp;<span className="text-cyan-300">revalidate</span>: <span className="text-purple-300">60</span><br />
+                      &nbsp;&nbsp;<span className="text-white">title</span>: <span className="text-amber-200">&quot;Cylvox Agency&quot;</span>,<br />
+                      &nbsp;&nbsp;<span className="text-white">status</span>: <span className="text-emerald-400">&quot;PUBLISHED&quot;</span>,<br />
+                      &nbsp;&nbsp;<span className="text-white">revalidate</span>: <span className="text-[#ccff00]">60</span><br />
                       &#125;
                     </div>
 
@@ -445,7 +459,7 @@ export default function Hero() {
                         <div className="text-[8.5px] sm:text-[9px] text-gray-300 font-bold">SEO</div>
                       </div>
                       <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-1.5 sm:p-2">
-                        <div className="text-base sm:text-lg font-black text-purple-300">0.38s</div>
+                        <div className="text-base sm:text-lg font-black text-[#ccff00]">0.38s</div>
                         <div className="text-[8.5px] sm:text-[9px] text-gray-300 font-bold">LCP</div>
                       </div>
                     </div>

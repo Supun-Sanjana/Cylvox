@@ -25,16 +25,12 @@ export default function ProofBand() {
 
         {/* Header */}
         <Reveal direction="up">
-          <p className="flex items-center gap-2 mb-[23px] text-[11px] font-extrabold
-                        tracking-[0.18em] uppercase text-purple-300">
-            Empirical Results
-          </p>
           <h2
             className="font-[family-name:var(--font-syne)] font-black tracking-[-0.075em] leading-[0.98]
                        text-[clamp(42px,5.5vw,82px)] max-w-[800px] mb-0 text-white"
           >
             Good products deserve a{" "}
-            <em className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-indigo-300 not-italic">
+            <em className="text-[#ccff00] not-italic">
               fast, secure
             </em>{" "}
             home.
@@ -56,14 +52,14 @@ export default function ProofBand() {
               >
                 <motion.strong
                   whileHover={{ scale: 1.03, x: 5 }}
-                  className="font-[family-name:var(--font-syne)] font-black tracking-[-0.065em] leading-[1]
+                  className="font-black tracking-[-0.065em] leading-[1]
                              text-[clamp(32px,3.9vw,58px)] text-white"
                 >
                   {m.value}
                   {m.arrow && (
-                    <i className="not-italic text-purple-400"> &rarr; </i>
+                    <i className="not-italic text-[#ccff00]"> &rarr; </i>
                   )}
-                  <span className="text-purple-300 font-black">{m.value2}</span>
+                  <span className="text-[#ccff00] font-black">{m.value2}</span>
                 </motion.strong>
                 <span className="text-[13px] font-medium text-gray-400 mt-2">{m.label}</span>
               </div>

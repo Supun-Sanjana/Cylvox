@@ -44,7 +44,7 @@ const caseStudiesData: CaseStudy[] = [
     description:
       "Audited a rapidly built AI-assisted Next.js fintech dashboard. Uncovered and remediated 14 critical vulnerabilities including API key leaks, missing rate limiters, and JWT auth bypasses.",
     tags: ["Vibe-Code Audit", "Auth Hardening", "Next.js", "Supabase"],
-    gradient: "from-amber-500/20 via-purple-500/10 to-transparent",
+    gradient: "from-amber-500/20 to-transparent",
   },
   {
     id: "omniscale",
@@ -74,7 +74,7 @@ const caseStudiesData: CaseStudy[] = [
     description:
       "Replaced a slow legacy monolith with Next.js App Router and Sanity GROQ schemas. Marketing now publishes landing pages instantly without dev deployments.",
     tags: ["Sanity.io", "GROQ Schema", "Next.js ISR", "Vercel"],
-    gradient: "from-rose-500/20 via-purple-500/10 to-transparent",
+    gradient: "from-rose-500/20 to-transparent",
   },
   {
     id: "hyperdrive",
@@ -121,7 +121,7 @@ export default function CaseStudies() {
             className="w-[70vw] max-w-[800px] h-[70vw] max-h-[800px] rounded-full filter blur-[140px] opacity-60"
             style={{
               background:
-                "radial-gradient(circle, rgba(124, 58, 237, 0.6) 0%, rgba(59, 130, 246, 0.4) 50%, transparent 80%)",
+                "radial-gradient(circle, rgba(204, 255, 0, 0.15) 0%, rgba(204, 255, 0, 0.05) 50%, transparent 80%)",
             }}
           />
         </div>
@@ -139,7 +139,7 @@ export default function CaseStudies() {
             className="w-[65vw] max-w-[750px] h-[65vw] max-h-[750px] rounded-full filter blur-[130px] opacity-50"
             style={{
               background:
-                "radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(16, 185, 129, 0.3) 50%, transparent 80%)",
+                "radial-gradient(circle, rgba(204, 255, 0, 0.1) 0%, rgba(204, 255, 0, 0.03) 50%, transparent 80%)",
             }}
           />
         </div>
@@ -157,7 +157,7 @@ export default function CaseStudies() {
             className="w-[60vw] max-w-[700px] h-[60vw] max-h-[700px] rounded-full filter blur-[120px] opacity-40"
             style={{
               background:
-                "radial-gradient(circle, rgba(245, 158, 11, 0.5) 0%, rgba(244, 63, 94, 0.3) 50%, transparent 80%)",
+                "radial-gradient(circle, rgba(204, 255, 0, 0.1) 0%, rgba(204, 255, 0, 0.05) 50%, transparent 80%)",
             }}
           />
         </div>
@@ -175,7 +175,7 @@ export default function CaseStudies() {
             className="w-[75vw] max-w-[850px] h-[75vw] max-h-[850px] rounded-full filter blur-[150px] opacity-45"
             style={{
               background:
-                "radial-gradient(circle, rgba(6, 182, 212, 0.5) 0%, rgba(20, 184, 166, 0.3) 50%, transparent 80%)",
+                "radial-gradient(circle, rgba(204, 255, 0, 0.12) 0%, rgba(204, 255, 0, 0.04) 50%, transparent 80%)",
             }}
           />
         </div>
@@ -193,13 +193,13 @@ export default function CaseStudies() {
       <div className="relative z-10 max-w-[1240px] mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-purple-300 mb-4 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-[#ccff00] mb-4 backdrop-blur-md">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
             <span>PROVEN CASE STUDIES</span>
           </div>
 
           <h2 className="font-[family-name:var(--font-syne)] font-black text-[clamp(32px,5vw,56px)] leading-[1.05] tracking-[-0.04em] max-w-3xl mb-4 text-white">
-            Real Systems. <em className="text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-purple-300 to-indigo-200 not-italic">Measurable Impact.</em>
+            Real Systems. <em className="text-[#ccff00] not-italic">Measurable Impact.</em>
           </h2>
 
           <p className="text-gray-300 text-base sm:text-lg max-w-2xl font-medium leading-relaxed">
@@ -229,7 +229,7 @@ export default function CaseStudies() {
                   {isActive && (
                     <motion.div
                       layoutId="caseStudyFilter"
-                      className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full shadow-[0_4px_15px_rgba(147,51,234,0.5)]"
+                      className="absolute inset-0 bg-[#ccff00] rounded-full shadow-[0_4px_15px_rgba(204,255,0,0.5)]"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -253,7 +253,7 @@ export default function CaseStudies() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="group relative rounded-2xl border border-white/15 bg-[#0e111f]/90 p-6 sm:p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-2xl hover:border-purple-400/40 transition-all duration-300"
+                  className="group relative rounded-2xl border border-white/15 bg-[#0e111f]/90 p-6 sm:p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-2xl hover:border-[#ccff00]/40 transition-all duration-300"
                 >
                   {/* Top Card Header */}
                   <div>
@@ -269,7 +269,7 @@ export default function CaseStudies() {
                       </span>
                     </div>
 
-                    <h3 className="font-[family-name:var(--font-syne)] font-black text-xl sm:text-2xl text-white mb-3 leading-snug group-hover:text-purple-200 transition-colors">
+                    <h3 className="font-black text-xl sm:text-2xl text-white mb-3 leading-snug group-hover:text-[#ccff00] transition-colors">
                       {item.title}
                     </h3>
 
@@ -295,8 +295,8 @@ export default function CaseStudies() {
                         <span className="block text-[10px] font-mono text-gray-400 uppercase tracking-wider">
                           Business Impact
                         </span>
-                        <strong className="text-purple-300 text-sm font-extrabold flex items-center gap-1">
-                          <TrendingUp className="w-3.5 h-3.5 text-purple-300" />
+                        <strong className="text-[#ccff00] text-sm font-extrabold flex items-center gap-1">
+                          <TrendingUp className="w-3.5 h-3.5 text-[#ccff00]" />
                           {item.impact}
                         </strong>
                       </div>
@@ -317,7 +317,7 @@ export default function CaseStudies() {
 
                       <a
                         href="#contact"
-                        className="inline-flex items-center gap-1 text-xs font-bold text-purple-300 hover:text-white transition-colors"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#ccff00] hover:text-white transition-colors"
                       >
                         Details <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
@@ -335,7 +335,7 @@ export default function CaseStudies() {
             <span>Have a vibe-coded app or workflow ready for scaling?</span>
             <a
               href="#contact"
-              className="text-purple-300 font-extrabold hover:underline inline-flex items-center gap-1"
+              className="text-[#ccff00] font-extrabold hover:underline inline-flex items-center gap-1"
             >
               Book an Agency Audit &rarr;
             </a>

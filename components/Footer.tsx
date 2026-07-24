@@ -8,9 +8,9 @@ export default function Footer() {
     >
       <a
         href="#top"
-        className="font-[family-name:var(--font-syne)] text-[18px] font-extrabold tracking-[-0.08em]"
+        className="text-[18px] font-extrabold tracking-[-0.08em]"
       >
-        CYLVOX<span className="text-[#7c3aed]">.</span>
+        CYLVOX<span className="text-[#ccff00]">.</span>
       </a>
 
       <p className="m-0 text-[11px] text-[#aaa19a]">
