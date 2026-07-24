@@ -35,13 +35,12 @@ export default function Process() {
       {/* Section header */}
       <Reveal direction="up">
         <div
-          className="grid grid-cols-[1fr_1.4fr] items-end gap-x-[8vw] max-w-none
-                     max-sm:block"
+          className="grid grid-cols-[1fr_1.4fr] items-center gap-x-[8vw] max-w-none
+                     max-md:grid-cols-1 max-md:gap-y-6"
         >
           <div>
-            <p className="flex items-center gap-2 mb-5.75 text-[11px] font-extrabold
+            <p className="flex items-center gap-2 mb-4 text-[11px] font-extrabold
                           tracking-[0.18em] uppercase text-purple-700">
-              <span className="w-2 h-2 rounded-full bg-purple-600" />
               Engineering Process
             </p>
             <h2
@@ -49,14 +48,14 @@ export default function Process() {
                          text-[clamp(42px,5.5vw,82px)] mb-0 text-[#1a1724]"
             >
               A clear path from{" "}
-              <em className="font-[Georgia,serif] font-normal tracking-[-0.085em] text-[#7c3aed] not-italic">
+              <em className="text-[#7c3aed] not-italic">
                 prototype to scale.
               </em>
             </h2>
           </div>
 
-          <p className="max-w-71.25 text-[14.5px] leading-relaxed text-[#59534c] mb-[5px] font-medium
-                        max-sm:mt-5.75 max-sm:max-w-none">
+          <p className="max-w-[400px] text-[15px] sm:text-[16px] leading-relaxed text-[#59534c] font-medium
+                        max-md:max-w-none">
             Senior software engineers & designers. Direct Slack access. Zero handoffs into black boxes.
           </p>
         </div>
@@ -71,14 +70,15 @@ export default function Process() {
           <Reveal key={step.number} delay={i * 0.15} direction="up">
             <motion.div
               whileHover={{ y: -4 }}
-              className={`relative min-h-82.5 py-7 transition-all
+              className={`relative min-h-82.5 py-7 px-6 transition-all duration-300 rounded-3xl cursor-default
+                          hover:bg-white/60 hover:backdrop-blur-md hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)]
                           ${i > 0
-                            ? "pl-7 border-l border-[#1c191722] max-sm:pl-0 max-sm:border-l-0 max-sm:border-t"
-                            : "pr-7 max-sm:pr-0"
+                            ? "border-l border-[#1c191722] max-sm:border-l-0 max-sm:border-t"
+                            : ""
                           }
-                          max-sm:min-h-61.25 max-sm:py-6.25`}
+                          max-sm:min-h-61.25 max-sm:py-6.25 max-sm:px-2`}
             >
-              <span className="block mb-16 font-[Georgia,serif] font-bold text-[16px] text-[#7c3aed]
+              <span className="block mb-16 font-[family-name:var(--font-syne)] font-black text-[18px] text-[#7c3aed]
                                max-sm:mb-10">
                 {step.number}
               </span>

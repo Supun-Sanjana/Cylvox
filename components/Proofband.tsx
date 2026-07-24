@@ -27,7 +27,6 @@ export default function ProofBand() {
         <Reveal direction="up">
           <p className="flex items-center gap-2 mb-[23px] text-[11px] font-extrabold
                         tracking-[0.18em] uppercase text-purple-300">
-            <span className="w-2 h-2 rounded-full bg-purple-400" />
             Empirical Results
           </p>
           <h2
@@ -35,7 +34,7 @@ export default function ProofBand() {
                        text-[clamp(42px,5.5vw,82px)] max-w-[800px] mb-0 text-white"
           >
             Good products deserve a{" "}
-            <em className="font-[Georgia,serif] font-normal tracking-[-0.085em] text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-indigo-300 not-italic">
+            <em className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-indigo-300 not-italic">
               fast, secure
             </em>{" "}
             home.
@@ -75,10 +74,7 @@ export default function ProofBand() {
         {/* Proof note */}
         <Reveal delay={0.4} direction="up">
           <p className="flex items-center gap-2 mt-[28px] mb-0 text-[12px] text-gray-400 font-medium">
-            <span
-              className="w-[8px] h-[8px] rounded-full bg-purple-400
-                         shadow-[0_0_10px_rgba(192,132,252,0.8)] flex-shrink-0"
-            />
+            
             Real performance & security benchmark metrics. Zero hype.
           </p>
         </Reveal>

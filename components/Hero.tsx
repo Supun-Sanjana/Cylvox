@@ -122,7 +122,7 @@ export default function Hero() {
           style={{
             backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.9) 1.3px, transparent 1.3px)",
             backgroundSize: "22px 22px",
-            maskImage: "radial-gradient(circle 850px at var(--x, 50%) var(--y, 35%), #000 0%, #000a 60%, transparent 100%)",
+            maskImage: "radial-gradient(circle 400px at var(--x, 50%) var(--y, 35%), #000 0%, #000a 60%, transparent 100%)",
           }}
         />
 
@@ -143,20 +143,14 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
             className="lg:col-span-7 flex flex-col justify-center"
           >
-            {/* Agency Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/20 border border-white/30 text-[11px] sm:text-xs font-bold text-white mb-5 w-max backdrop-blur-md shadow-md max-w-full">
-              <Sparkles className="w-3.5 h-3.5 text-amber-200 shrink-0" />
-              <span className="text-white shrink-0">CYLVOX STUDIO</span>
-              <span className="text-white/40">•</span>
-              <span className="text-pink-100 truncate">Design · Dev · AI Workflows · Audits</span>
-            </div>
+          
 
             {/* Squish-Style Editorial Headline */}
             <h1
               className="font-[family-name:var(--font-syne)] font-black leading-[0.95] sm:leading-[0.92] tracking-[-0.06em]
                          text-[clamp(36px,6.5vw,84px)] mb-5 sm:mb-6 text-white drop-shadow-md"
             >
-              From <em className="font-[Georgia,serif] font-normal italic text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-rose-200 to-amber-100">vibe-coded</em> to enterprise-ready.
+              From <em className="font-[family-name:var(--font-syne)] text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-rose-200 to-amber-100 pr-1">vibe-coded</em> to enterprise-ready.
             </h1>
 
             {/* Description */}
@@ -222,7 +216,7 @@ export default function Hero() {
           <motion.div
             id="deck"
             style={{ y: deckY, scale: deckScale, rotateX: deckRotateX }}
-            className="lg:col-span-5 w-full perspective-1000 mt-4 lg:mt-0"
+            className="lg:col-span-5 w-full perspective-1000 mt-4 lg:mt-0 scroll-mt-32"
           >
             <div className="relative rounded-2xl border border-white/20 bg-[#0a0d18]/90 p-4 sm:p-5.5 shadow-[0_30px_80px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-3xl">
               
@@ -483,7 +477,6 @@ export default function Hero() {
           className="pt-6 sm:pt-8 border-t border-white/20 mt-6 sm:mt-8 flex flex-wrap items-center justify-between gap-4 sm:gap-6 text-xs text-white/90"
         >
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)] shrink-0" />
             <span className="font-bold text-white">Accepting Q3 Client Projects & App Audits</span>
           </div>
 

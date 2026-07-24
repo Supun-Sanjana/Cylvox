@@ -57,9 +57,8 @@ export default function Services() {
     >
       {/* Header */}
       <Reveal direction="up">
-        <p className="flex items-center gap-2 mb-[23px] text-[11px] font-extrabold
+        <p className="flex items-center gap-2 mb-[23px] text-[11px] font-medium
                       tracking-[0.18em] uppercase text-purple-700">
-          <span className="w-2 h-2 rounded-full bg-purple-600" />
           Capabilities & Solutions
         </p>
         <h2
@@ -67,7 +66,7 @@ export default function Services() {
                      leading-[0.98] text-[clamp(42px,5.5vw,82px)] max-w-[850px] mb-0 text-[#1a1724]"
         >
           Engineered to perform.{" "}
-          <em className="font-[Georgia,serif] font-normal tracking-[-0.085em] text-[#7c3aed] not-italic">
+          <em className="text-[#7c3aed] not-italic">
             Hardened to scale.
           </em>
         </h2>
@@ -95,7 +94,7 @@ export default function Services() {
                             max-sm:py-[24px]`}
               >
                 <div className="flex flex-col items-start gap-2">
-                  <span className="font-[Georgia,serif] font-bold text-[14px] text-[#7c3aed]">
+                  <span className="font-bold text-[14px] text-[#7c3aed]">
                     {service.number}
                   </span>
                   <Icon className="w-5 h-5 text-[#7c3aed] group-hover:scale-110 transition-transform duration-200" />
