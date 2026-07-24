@@ -66,8 +66,8 @@ export default function Process() {
           <Reveal key={step.number} delay={i * 0.15} direction="up">
             <motion.div
               whileHover={{ y: -4 }}
-              className={`relative min-h-82.5 py-7 px-6 transition-all duration-300 rounded-3xl cursor-default
-                          hover:bg-white/5 hover:backdrop-blur-md hover:shadow-[0_8px_30px_rgba(255,255,255,0.06)]
+              className={`group relative min-h-82.5 py-7 px-6 transition-all duration-300 rounded-3xl cursor-default
+                          hover:bg-gradient-to-b hover:from-[#ccff00]/15 hover:to-transparent hover:backdrop-blur-md hover:shadow-[0_8px_30px_rgba(204,255,0,0.1)]
                           ${i > 0
                             ? "border-l border-white/10 max-sm:border-l-0 max-sm:border-t"
                             : ""

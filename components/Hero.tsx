@@ -116,20 +116,6 @@ export default function Hero() {
           }}
         />
 
-        {/* Ambient Bottom Lime Pulse */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [10, -10, 10],
-            y: [10, -10, 10],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-[15%] -left-[5%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full filter blur-[120px] opacity-50 pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(204, 255, 0, 0.35) 0%, rgba(204, 255, 0, 0.1) 45%, transparent 75%)",
-          }}
-        />
-
         {/* Squish Signature High-Contrast White Dot Grid Matrix */}
         <div
           className="absolute inset-0 opacity-35"
@@ -176,29 +162,6 @@ export default function Hero() {
               <strong className="text-white font-black"> security audits for AI-generated apps</strong>.
             </p>
 
-            {/* Service Pills */}
-            <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-8 sm:mb-9 max-w-xl">
-              {[
-                { label: "Vibe-Code Security Scans", icon: ShieldCheck, color: "text-amber-100 bg-white/15 border-white/25" },
-                { label: "n8n AI Automations", icon: Cpu, color: "text-cyan-100 bg-white/15 border-white/25" },
-                { label: "Sanity Headless CMS", icon: Database, color: "text-rose-100 bg-white/15 border-white/25" },
-                { label: "99+ Core Web Vitals & SEO", icon: Zap, color: "text-emerald-100 bg-white/15 border-white/25" },
-              ].map((pill, i) => {
-                const Icon = pill.icon;
-                return (
-                  <motion.div
-                    key={i}
-                    whileHover={{ y: -2, scale: 1.02 }}
-                    transition={{ ease: "easeInOut", duration: 0.2 }}
-                    className={`flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-3.5 sm:py-1.75 rounded-xl border text-[11px] sm:text-xs font-bold backdrop-blur-md shadow-sm transition-all ${pill.color}`}
-                  >
-                    <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                    <span>{pill.label}</span>
-                  </motion.div>
-                );
-              })}
-            </div>
-
             {/* HIGH-CONTRAST CALL TO ACTION BUTTONS WITH EXPLICIT DARK TEXT */}
             <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 max-sm:w-full">
               <motion.a
@@ -206,11 +169,11 @@ export default function Hero() {
                 whileTap={{ scale: 0.96 }}
                 transition={{ ease: "easeInOut", duration: 0.2 }}
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#09080e] font-black text-sm px-6 py-3.5 sm:px-7 sm:py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:bg-[#ccff00] max-sm:w-full"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#09080e] font-black text-sm px-6 py-3.5 sm:px-7 sm:py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:bg-[#ccff00] max-sm:hidden"
                 style={{ color: "#09080e" }}
               >
                 <span style={{ color: "#09080e" }}>Audit Your App</span>
-                <ArrowUpRight className="w-4.5 h-4.5 stroke-[3]" style={{ color: "#09080e" }} />
+                <ArrowUpRight className="w-4.5 h-4.5 stroke-3" style={{ color: "#09080e" }} />
               </motion.a>
 
               <motion.a
@@ -482,24 +445,6 @@ export default function Hero() {
           </motion.div>
 
         </div>
-
-        {/* Bottom Social Proof Bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="pt-6 sm:pt-8 border-t border-white/20 mt-6 sm:mt-8 flex flex-wrap items-center justify-between gap-4 sm:gap-6 text-xs text-white/90"
-        >
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-white">Accepting Q3 Client Projects & App Audits</span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-bold text-white/90 text-[11px] sm:text-xs">
-            <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-200 shrink-0" /> 100% Audit Coverage</span>
-            <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-200 shrink-0" /> Sub-Second Speed</span>
-            <span className="flex items-center gap-1.5"><Cpu className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-200 shrink-0" /> Custom n8n Workflows</span>
-          </div>
-        </motion.div>
 
       </div>
 

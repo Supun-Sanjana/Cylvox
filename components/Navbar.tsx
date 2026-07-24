@@ -1,9 +1,30 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -40% 0px" }
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -29,26 +50,32 @@ export default function Navbar() {
           className="text-[18px] sm:text-[20px] font-black tracking-[-0.07em]
                      text-white flex items-center gap-0.5 shrink-0"
         >
-          CYLVOX<span className="text-[#ccff00] font-black text-xl leading-none ml-0.5">•</span>
+          <span className="text-[#ccff00] font-black">C</span> YLVOX
         </a>
 
         {/* Navigation Links */}
         <div className="flex gap-[clamp(14px,1.8vw,36px)] text-[13px] font-semibold max-md:hidden">
           {[
             { href: "#services", label: "Services" },
-            { href: "#deck", label: "Capabilities Deck" },
             { href: "#cases", label: "Case Studies" },
             { href: "#proof", label: "Results" },
             { href: "#process", label: "Process" },
-          ].map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
-              className="text-white/90 hover:text-white transition-colors duration-200"
-            >
-              {label}
-            </a>
-          ))}
+          ].map(({ href, label }) => {
+            const isActive = activeSection === href.replace("#", "");
+            return (
+              <a
+                key={href}
+                href={href}
+                className={`transition-colors duration-200 ${
+                  isActive
+                    ? "text-[#ccff00] drop-shadow-[0_0_8px_rgba(204,255,0,0.5)]"
+                    : "text-white/90 hover:text-white"
+                }`}
+              >
+                {label}
+              </a>
+            );
+          })}
         </div>
 
         {/* CTA BUTTON: LIME BACKGROUND WITH DARK TEXT */}
@@ -62,7 +89,7 @@ export default function Navbar() {
                      shadow-[0_4px_20px_rgba(204,255,0,0.3)]
                      hover:bg-[#a3cc00] transition-all duration-200 shrink-0"
         >
-          <span>Book Audit</span>
+          <span>Let's Talk</span>
           <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3]" />
         </motion.a>
       </div>
