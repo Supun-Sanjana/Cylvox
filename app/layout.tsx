@@ -13,6 +13,9 @@ export const metadata: Metadata = {
    verification: {
     google: "MbW7OSda4rJ-b1SVXUwbjwuheieijZeB4_GUeUJL70Y",
   },
+  icons:{
+    icon: "/logo.svg"
+  }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -22,5 +25,3 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
-
-{/* <meta name="google-site-verification" content="MbW7OSda4rJ-b1SVXUwbjwuheieijZeB4_GUeUJL70Y" /> */}
