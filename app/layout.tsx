@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Syne } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -22,9 +24,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={syne.variable}>
-      <body>
+      <body className="bg-[#070913]">
         <Analytics />
-        {children}
+        <Navbar />
+        <main className="overflow-hidden relative">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

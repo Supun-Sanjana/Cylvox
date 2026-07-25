@@ -1,13 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("");
 
+  // Re-implement IntersectionObserver for highlighting the active section on the homepage
   useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection("");
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -23,7 +31,7 @@ export default function Navbar() {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return (
     <motion.nav
@@ -45,25 +53,28 @@ export default function Navbar() {
         }}
       >
         {/* Brand Logo */}
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="text-[18px] sm:text-[20px] font-black tracking-[-0.07em]
                      text-white flex items-center gap-0.5 shrink-0"
         >
           <span className="text-[#ccff00] font-black">C</span> YLVOX
-        </a>
+        </Link>
 
         {/* Navigation Links */}
         <div className="flex gap-[clamp(14px,1.8vw,36px)] text-[13px] font-semibold max-md:hidden">
           {[
-            { href: "#services", label: "Services" },
-            { href: "#cases", label: "Case Studies" },
-            { href: "#proof", label: "Results" },
-            { href: "#process", label: "Process" },
-          ].map(({ href, label }) => {
-            const isActive = activeSection === href.replace("#", "");
+            { href: "/#services", id: "services", label: "Services" },
+            { href: "/#cases", id: "cases", label: "Work" },
+            { href: "/#process", id: "process", label: "About" },
+          ].map(({ href, id, label }) => {
+            // It's active if the path exactly matches (e.g. /services page) OR if the observer says so on the homepage
+            const isPageActive = pathname === `/${id}`;
+            const isScrollActive = activeSection === id;
+            const isActive = isPageActive || isScrollActive;
+            
             return (
-              <a
+              <Link
                 key={href}
                 href={href}
                 className={`transition-colors duration-200 ${
@@ -73,25 +84,29 @@ export default function Navbar() {
                 }`}
               >
                 {label}
-              </a>
+              </Link>
             );
           })}
         </div>
 
         {/* CTA BUTTON: LIME BACKGROUND WITH DARK TEXT */}
-        <motion.a
+        <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.96 }}
           transition={{ ease: "easeInOut", duration: 0.2 }}
-          href="#contact"
-          className="inline-flex items-center gap-1.5 bg-[#ccff00] text-[#09080e] font-black rounded-full
-                     text-[12px] sm:text-[13px] px-5 py-2 sm:py-2.5
-                     shadow-[0_4px_20px_rgba(204,255,0,0.3)]
-                     hover:bg-[#a3cc00] transition-all duration-200 shrink-0"
+          className="shrink-0"
         >
-          <span>Let's Talk</span>
-          <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3]" />
-        </motion.a>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-1.5 bg-[#ccff00] text-[#09080e] font-black rounded-full
+                       text-[12px] sm:text-[13px] px-5 py-2 sm:py-2.5
+                       shadow-[0_4px_20px_rgba(204,255,0,0.3)]
+                       hover:bg-[#a3cc00] transition-all duration-200"
+          >
+            <span>Let's Talk</span>
+            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3]" />
+          </Link>
+        </motion.div>
       </div>
     </motion.nav>
   );

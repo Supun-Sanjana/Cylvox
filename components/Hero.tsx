@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } from "framer-motion";
 import {
   ArrowUpRight,
   ShieldCheck,
@@ -18,7 +18,8 @@ import {
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const [pointer, setPointer] = useState({ x: 50, y: 35 });
+  const pointerX = useMotionValue(50);
+  const pointerY = useMotionValue(35);
   const [isHovering, setIsHovering] = useState(false);
   const [activeTab, setActiveTab] = useState<"audit" | "automation" | "cms" | "perf">("audit");
 
@@ -39,14 +40,12 @@ export default function Hero() {
     if (!hero) return;
     const onMove = (e: PointerEvent) => {
       const r = hero.getBoundingClientRect();
-      setPointer({
-        x: ((e.clientX - r.left) / r.width) * 100,
-        y: ((e.clientY - r.top) / r.height) * 100,
-      });
+      pointerX.set(((e.clientX - r.left) / r.width) * 100);
+      pointerY.set(((e.clientY - r.top) / r.height) * 100);
     };
-    hero.addEventListener("pointermove", onMove);
+    hero.addEventListener("pointermove", onMove, { passive: true });
     return () => hero.removeEventListener("pointermove", onMove);
-  }, []);
+  }, [pointerX, pointerY]);
 
   // Auto switch tabs every 5.5s with easeInOut transition
   useEffect(() => {
@@ -60,16 +59,14 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  const pointerVars = {
-    "--x": `${pointer.x}%`,
-    "--y": `${pointer.y}%`,
-  } as React.CSSProperties;
-
   return (
-    <section
+    <motion.section
       ref={heroRef}
       id="top"
-      style={pointerVars}
+      style={{
+        "--x": useMotionTemplate`${pointerX}%`,
+        "--y": useMotionTemplate`${pointerY}%`
+      } as any}
       onPointerEnter={() => setIsHovering(true)}
       onPointerLeave={() => setIsHovering(false)}
       className="hero-shell relative overflow-hidden isolate w-full min-h-[100svh] text-white m-0 rounded-none"
@@ -448,6 +445,6 @@ export default function Hero() {
 
       </div>
 
-    </section>
+    </motion.section>
   );
 }

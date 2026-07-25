@@ -16,8 +16,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: var(--stone);
-  color: var(--ink);
+  background: #070913;
+  color: white;
   overflow-x: hidden;
 }
 a {

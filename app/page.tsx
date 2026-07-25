@@ -1,11 +1,9 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import CaseStudies from "@/components/CaseStudies";
 import ProofBand from "@/components/Proofband";
 import Process from "@/components/Process";
 import Closing from "@/components/Closing";
-import Footer from "@/components/Footer";
 
 export const metadata = {
   title:       "Cylvox - Digital Agency",
@@ -22,15 +20,13 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <main className="overflow-hidden bg-[#070913] relative">
+    <>
       <Hero />
       <Services />
       <CaseStudies />
       <ProofBand />
       <Process />
       <Closing />
-      <Footer />
-      <Navbar />
-    </main>
+    </>
   );
 }
