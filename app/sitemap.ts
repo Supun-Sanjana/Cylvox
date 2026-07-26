@@ -3,13 +3,22 @@ import type { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.cylvox.com';
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 1,
-    },
-    // Add more URLs here as your application grows
+  const routes = [
+    '',
+    '/services',
+    '/services/web-development',
+    '/services/ui-ux-design',
+    '/services/optimization',
+    '/services/ai-automation',
+    '/work',
+    '/about',
+    '/contact',
   ];
+
+  return routes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: route === '' ? 'yearly' : 'monthly',
+    priority: route === '' ? 1 : 0.8,
+  }));
 }
