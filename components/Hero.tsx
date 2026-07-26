@@ -88,26 +88,16 @@ export default function Hero() {
         className="absolute inset-0 overflow-hidden pointer-events-none z-0"
       >
         {/* Central Pink/Peach Glowing Bloom */}
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 4, 0],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[8%] left-[25%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full filter blur-[95px] opacity-80 pointer-events-none"
+        <div
+          className="absolute top-[8%] left-[25%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full filter blur-[95px] opacity-80 pointer-events-none animate-aura-1"
           style={{
             background: "radial-gradient(circle, rgba(244, 114, 182, 0.75) 0%, rgba(251, 146, 60, 0.55) 35%, rgba(192, 132, 252, 0.35) 65%, transparent 85%)",
           }}
         />
 
         {/* Ambient Top Cyan Pulse */}
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            x: [-15, 15, -15],
-          }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-[20%] -left-[10%] w-[65vw] h-[65vw] max-w-[850px] max-h-[850px] rounded-full filter blur-[110px] opacity-75 pointer-events-none"
+        <div
+          className="absolute -top-[20%] -left-[10%] w-[65vw] h-[65vw] max-w-[850px] max-h-[850px] rounded-full filter blur-[110px] opacity-75 pointer-events-none animate-aura-2"
           style={{
             background: "radial-gradient(circle, rgba(56, 189, 248, 0.65) 0%, rgba(99, 102, 241, 0.45) 50%, transparent 75%)",
           }}
