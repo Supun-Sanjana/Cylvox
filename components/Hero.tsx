@@ -155,7 +155,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.04, boxShadow: "0 10px 40px rgba(0,0,0,0.3)" }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ ease: "easeInOut", duration: 0.2 }}
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-white text-[#09080e] font-black text-sm px-6 py-3.5 sm:px-7 sm:py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:bg-[#ccff00] max-sm:hidden"
                 style={{ color: "#09080e" }}
               >
@@ -167,7 +167,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.03, backgroundColor: "rgba(15, 23, 42, 0.9)" }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ ease: "easeInOut", duration: 0.2 }}
-                href="#services"
+                href="/services"
                 className="inline-flex items-center justify-center gap-2 text-sm font-extrabold text-white px-6 py-3.5 sm:py-4 rounded-full bg-slate-950/70 border border-white/30 backdrop-blur-md shadow-md transition-all duration-200 max-sm:w-full"
               >
                 Explore Capabilities
@@ -288,7 +288,7 @@ export default function Hero() {
 
                     <div className="pt-1.5 flex items-center justify-between text-[10.5px] sm:text-[11px] text-gray-400 font-sans">
                       <span>Status: <strong className="text-white">Bulletproof</strong></span>
-                      <a href="#contact" className="text-[#ccff00] font-bold hover:underline flex items-center gap-1">
+                      <a href="/contact" className="text-[#ccff00] font-bold hover:underline flex items-center gap-1">
                         Request Audit &rarr;
                       </a>
                     </div>

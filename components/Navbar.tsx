@@ -4,34 +4,15 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+
+const NAV_LINKS = [
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+];
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState("");
-
-  // Re-implement IntersectionObserver for highlighting the active section on the homepage
-  useEffect(() => {
-    if (pathname !== "/") {
-      setActiveSection("");
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-40% 0px -40% 0px" }
-    );
-
-    const sections = document.querySelectorAll("section[id]");
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, [pathname]);
 
   return (
     <motion.nav
@@ -61,18 +42,12 @@ export default function Navbar() {
           <span className="text-[#ccff00] font-black">C</span> YLVOX
         </Link>
 
-        {/* Navigation Links */}
+        {/* Navigation Links - route to dedicated pages, not homepage anchors */}
         <div className="flex gap-[clamp(14px,1.8vw,36px)] text-[13px] font-semibold max-md:hidden">
-          {[
-            { href: "/#services", id: "services", label: "Services" },
-            { href: "/#cases", id: "cases", label: "Work" },
-            { href: "/#process", id: "process", label: "About" },
-          ].map(({ href, id, label }) => {
-            // It's active if the path exactly matches (e.g. /services page) OR if the observer says so on the homepage
-            const isPageActive = pathname === `/${id}`;
-            const isScrollActive = activeSection === id;
-            const isActive = isPageActive || isScrollActive;
-            
+          {NAV_LINKS.map(({ href, label }) => {
+            // Active on the page itself and on any nested route (e.g. /services/web-development)
+            const isActive = pathname === href || pathname.startsWith(`${href}/`);
+
             return (
               <Link
                 key={href}

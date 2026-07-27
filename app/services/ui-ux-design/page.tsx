@@ -1,15 +1,42 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Premium UI/UX Design Services | Cylvox",
   description: "User-centric interface and experience design that converts. We craft digital experiences that are intuitive, beautiful, and aligned with your business goals.",
+  alternates: { canonical: "/services/ui-ux-design" },
 };
 
 export default function UIUXDesignPage() {
   return (
     <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-white">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: "UI/UX Design", path: "/services/ui-ux-design" },
+        ])}
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: "UI/UX Design",
+          description:
+            "User-centric interface and experience design that converts. We craft digital experiences that are intuitive, beautiful, and aligned with your business goals.",
+          path: "/services/ui-ux-design",
+          serviceType: "UI/UX Design",
+        })}
+      />
       <div className="max-w-4xl">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
+            { label: "UI/UX Design" },
+          ]}
+        />
         <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
           Conversion-Engineered Design
         </div>

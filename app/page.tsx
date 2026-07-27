@@ -8,10 +8,11 @@ import Closing from "@/components/Closing";
 export const metadata = {
   title:       "Cylvox - Digital Agency",
   description: "We design, develop, and optimize digital systems for ambitious brands ready to be impossible to ignore.",
+  alternates: { canonical: "/" },
   openGraph: {
     title:       "Cylvox - Digital Agency",
     description: "Design, development, and performance for brands that refuse to be ordinary.",
-    url:         "https://cylvox.com",
+    url:         "/",
     siteName:    "Cylvox",
     locale:      "en_US",
     type:        "website",

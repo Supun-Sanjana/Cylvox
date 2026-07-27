@@ -1,15 +1,42 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Website Performance & SEO Optimization | Cylvox",
   description: "Speed up your website and improve your search rankings. We offer technical SEO, Core Web Vitals optimization, and WordPress speed enhancements.",
+  alternates: { canonical: "/services/optimization" },
 };
 
 export default function OptimizationPage() {
   return (
     <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-white">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: "Performance & SEO Optimization", path: "/services/optimization" },
+        ])}
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: "Performance & Technical SEO Optimization",
+          description:
+            "Speed up your website and improve your search rankings. We offer technical SEO, Core Web Vitals optimization, and WordPress speed enhancements.",
+          path: "/services/optimization",
+          serviceType: "Search Engine Optimization",
+        })}
+      />
       <div className="max-w-4xl">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
+            { label: "Optimization" },
+          ]}
+        />
         <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
           Sub-Second Performance
         </div>

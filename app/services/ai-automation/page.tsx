@@ -1,15 +1,42 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "AI Workflow Automation Agency (n8n) | Cylvox",
   description: "Automate your business processes with custom AI workflows. We build powerful automation pipelines using n8n and modern AI models to save you time.",
+  alternates: { canonical: "/services/ai-automation" },
 };
 
 export default function AIAutomationPage() {
   return (
     <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-white">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: "AI & Workflow Automation", path: "/services/ai-automation" },
+        ])}
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: "AI & Workflow Automation (n8n)",
+          description:
+            "Automate your business processes with custom AI workflows. We build powerful automation pipelines using n8n and modern AI models to save you time.",
+          path: "/services/ai-automation",
+          serviceType: "Business Process Automation",
+        })}
+      />
       <div className="max-w-4xl">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
+            { label: "AI Automation" },
+          ]}
+        />
         <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
           Intelligent Operations
         </div>

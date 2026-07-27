@@ -4,6 +4,8 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import { organizationSchema, baseUrl } from "@/lib/seo";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -11,6 +13,7 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: "Cylvox - Digital systems that move",
   description: "Cylvox is an independent digital agency building high-performing experiences.",
   verification: {
@@ -25,6 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={syne.variable}>
       <body className="bg-[#070913]">
+        <JsonLd data={organizationSchema} />
         <Analytics />
         <Navbar />
         <main className="overflow-hidden relative">

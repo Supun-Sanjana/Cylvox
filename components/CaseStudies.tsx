@@ -77,18 +77,18 @@ const caseStudiesData: CaseStudy[] = [
     gradient: "from-rose-500/20 to-transparent",
   },
   {
-    id: "hyperdrive",
+    id: "outquest",
     category: "perf",
     categoryName: "SEO & Core Web Vitals",
     categoryColor: "bg-emerald-400/10 text-emerald-300 border-emerald-400/30",
     icon: Zap,
-    client: "HyperDrive B2B",
-    title: "Engineering a 99/100 Lighthouse Performance & Organic SEO Engine",
-    metric: "+310% Organic Traffic",
-    impact: "#1 Keyword Rankings",
+    client: "OutQuest",
+    title: "From Zero SEO Foundation to a 99/100 Desktop Performance Score",
+    metric: "99/100 Desktop Speed",
+    impact: "0.4s First Contentful Paint",
     description:
-      "Executed edge bundle minification, JSON-LD structured schema injection, and layout shift elimination to achieve sub-second page loads and 100/100 Lighthouse scores.",
-    tags: ["SEO Optimization", "Core Web Vitals", "Edge Caching", "Lighthouse 99"],
+      "OutQuest curates vetted pathways for people planning a career pivot, a move abroad, or a new certification. We rebuilt their technical SEO foundation across three milestones — CMS-level structure, full indexing and crawl configuration, then a dedicated Core Web Vitals pass on their Next.js App Router platform.",
+    tags: ["Next.js", "Supabase", "Core Web Vitals", "Technical SEO"],
     gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
   },
 ];
@@ -316,7 +316,7 @@ export default function CaseStudies() {
                       </div>
 
                       <a
-                        href="#contact"
+                        href="/contact"
                         className="inline-flex items-center gap-1 text-xs font-bold text-[#ccff00] hover:text-white transition-colors"
                       >
                         Details <ArrowUpRight className="w-3.5 h-3.5" />
@@ -334,7 +334,7 @@ export default function CaseStudies() {
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-gray-200 backdrop-blur-md">
             <span>Have a vibe-coded app or workflow ready for scaling?</span>
             <a
-              href="#contact"
+              href="/contact"
               className="text-[#ccff00] font-extrabold hover:underline inline-flex items-center gap-1"
             >
               Book an Agency Audit &rarr;

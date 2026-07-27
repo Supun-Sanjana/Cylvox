@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Next.js & React Web App Development Agency | Cylvox",
   description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
+  alternates: { canonical: "/services/web-development" },
 };
 
 const TECH_STACK = [
@@ -17,7 +21,30 @@ const TECH_STACK = [
 export default function WebDevelopmentPage() {
   return (
     <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-white">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: "Web Development", path: "/services/web-development" },
+        ])}
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: "Next.js & React Web App Development",
+          description:
+            "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
+          path: "/services/web-development",
+          serviceType: "Web Application Development",
+        })}
+      />
       <div className="max-w-4xl">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
+            { label: "Web Development" },
+          ]}
+        />
         <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
           Next.js & React Engineering
         </div>
