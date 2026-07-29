@@ -8,7 +8,7 @@ export const organizationSchema = {
   logo: `${baseUrl}/logo.svg`,
   description:
     "Cylvox is an independent digital agency building high-performing experiences.",
-  sameAs: ["https://www.fiverr.com/devpress_plus"],
+  sameAs: ["https://www.fiverr.com/s/R717Am8"],
 };
 
 type BreadcrumbItem = { name: string; path: string };
