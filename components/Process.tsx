@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
+import { SectionLabel } from "./SectionLabel";
 
 const steps = [
   {
@@ -30,74 +31,76 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="px-[clamp(24px,8.5vw,140px)] py-[clamp(96px,13vw,190px)] relative"
+      className="px-4 py-20 sm:px-8 sm:py-28 relative bg-background"
     >
-      {/* Section header */}
-      <Reveal direction="up">
-        <div
-          className="grid grid-cols-[1fr_1.4fr] items-center gap-x-[8vw] max-w-none
-                     max-md:grid-cols-1 max-md:gap-y-6"
-        >
-          <div>
-            <h2
-              className="font-[family-name:var(--font-syne)] font-black tracking-[-0.075em] leading-[0.98]
-                         text-[clamp(42px,5.5vw,82px)] mb-0 text-white"
-            >
-              A clear path from{" "}
-              <em className="text-[#ccff00] not-italic">
-                prototype to scale.
-              </em>
-            </h2>
-          </div>
-
-          <p className="max-w-[400px] text-[15px] sm:text-[16px] leading-relaxed text-gray-400 font-medium
-                        max-md:max-w-none">
-            Senior software engineers & designers. Direct Slack access. Zero handoffs into black boxes.
-          </p>
-        </div>
-      </Reveal>
-
-      {/* Steps track */}
-      <div
-        className="grid grid-cols-4 mt-[clamp(60px,9vw,130px)] border-t border-white/10
-                   max-sm:grid-cols-1"
-      >
-        {steps.map((step, i) => (
-          <Reveal key={step.number} delay={i * 0.15} direction="up">
-            <motion.div
-              whileHover={{ y: -4 }}
-              className={`group relative min-h-82.5 py-7 px-6 transition-all duration-300 rounded-3xl cursor-default
-                          hover:bg-gradient-to-b hover:from-[#ccff00]/15 hover:to-transparent hover:backdrop-blur-md hover:shadow-[0_8px_30px_rgba(204,255,0,0.1)]
-                          ${i > 0
-                            ? "border-l border-white/10 max-sm:border-l-0 max-sm:border-t"
-                            : ""
-                          }
-                          max-sm:min-h-61.25 max-sm:py-6.25 max-sm:px-2`}
-            >
-              <span className="block mb-16 font-black text-[18px] text-[#ccff00]
-                               max-sm:mb-10">
-                {step.number}
-              </span>
-              <h3
-                className="font-black tracking-[-0.05em]
-                           text-[28px] leading-tight mb-4 text-white"
+      <div className="mx-auto max-w-7xl">
+        {/* Section header */}
+        <Reveal direction="up">
+          <div
+            className="grid grid-cols-[1fr_1.4fr] items-end gap-x-12
+                       max-md:grid-cols-1 max-md:gap-y-6"
+          >
+            <div>
+              <SectionLabel>Our Process</SectionLabel>
+              <h2
+                className="mt-5 text-balance font-display text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl text-foreground"
               >
-                {step.title}
-              </h3>
-              <p className="text-[13.5px] leading-[1.6] text-gray-400 font-medium max-w-[230px] mb-0">
-                {step.text}
-              </p>
+                A clear path from{" "}
+                <em className="text-primary not-italic">
+                  prototype to scale.
+                </em>
+              </h2>
+            </div>
 
-              {/* Animated bottom highlight indicator on hover */}
+            <p className="max-w-[400px] text-lg text-muted-foreground font-medium
+                          max-md:max-w-none md:pb-2">
+              Senior software engineers & designers. Direct Slack access. Zero handoffs into black boxes.
+            </p>
+          </div>
+        </Reveal>
+
+        {/* Steps track */}
+        <div
+          className="grid grid-cols-4 mt-14 border-t border-border
+                     max-sm:grid-cols-1"
+        >
+          {steps.map((step, i) => (
+            <Reveal key={step.number} delay={i * 0.15} direction="up">
               <motion.div
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-                className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#ccff00] origin-left"
-              />
-            </motion.div>
-          </Reveal>
-        ))}
+                whileHover={{ y: -4 }}
+                className={`group relative min-h-80 py-7 px-6 transition-all duration-300 rounded-3xl cursor-default
+                            hover:bg-gradient-to-b hover:from-primary/10 hover:to-transparent hover:backdrop-blur-md hover:shadow-[0_8px_30px_rgba(204,255,0,0.05)]
+                            ${i > 0
+                              ? "border-l border-border max-sm:border-l-0 max-sm:border-t"
+                              : ""
+                            }
+                            max-sm:min-h-60 max-sm:py-6 max-sm:px-2`}
+              >
+                <span className="block mb-16 font-bold text-lg text-primary
+                                 max-sm:mb-10">
+                  {step.number}
+                </span>
+                <h3
+                  className="font-display font-semibold tracking-tight
+                             text-2xl leading-tight mb-4 text-foreground"
+                >
+                  {step.title}
+                </h3>
+                <p className="text-sm leading-[1.6] text-muted-foreground font-medium max-w-[230px] mb-0">
+                  {step.text}
+                </p>
+
+                {/* Animated bottom highlight indicator on hover */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute bottom-0 left-0 right-0 h-[3px] bg-primary origin-left"
+                />
+              </motion.div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,345 +1,148 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  ShieldCheck,
-  Cpu,
-  Database,
-  Zap,
-  ArrowUpRight,
-  Sparkles,
-  CheckCircle2,
-  TrendingUp,
-  Lock,
-  Globe
-} from "lucide-react";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { SectionLabel } from "@/components/SectionLabel";
 
-interface CaseStudy {
-  id: string;
-  category: "audit" | "automation" | "cms" | "perf";
-  categoryName: string;
-  categoryColor: string;
-  icon: any;
-  client: string;
-  title: string;
-  metric: string;
-  impact: string;
-  description: string;
-  tags: string[];
-  gradient: string;
-}
-
-const caseStudiesData: CaseStudy[] = [
+const projects = [
   {
-    id: "aurapay",
-    category: "audit",
-    categoryName: "Vibe-Code Security Audit",
-    categoryColor: "bg-amber-400/10 text-amber-300 border-amber-400/30",
-    icon: ShieldCheck,
-    client: "AuraPay Fintech",
-    title: "Hardening a Cursor-Built Fintech App Before $2.5M Seed Round",
-    metric: "0 Flaws Remaining",
-    impact: "$2.5M Seed Round Secured",
-    description:
-      "Audited a rapidly built AI-assisted Next.js fintech dashboard. Uncovered and remediated 14 critical vulnerabilities including API key leaks, missing rate limiters, and JWT auth bypasses.",
-    tags: ["Vibe-Code Audit", "Auth Hardening", "Next.js", "Supabase"],
-    gradient: "from-amber-500/20 to-transparent",
-  },
-  {
-    id: "omniscale",
-    category: "automation",
-    categoryName: "n8n AI Automations",
-    categoryColor: "bg-cyan-400/10 text-cyan-300 border-cyan-400/30",
-    icon: Cpu,
-    client: "OmniScale AI SaaS",
-    title: "Autonomous Lead Enrichment & Content Pipeline with n8n",
-    metric: "45,000+ Tasks / mo",
-    impact: "10x Faster Lead Processing",
-    description:
-      "Architected custom multi-step n8n AI workflows that capture web leads, enrich prospect metadata via custom LLM agents, and auto-sync records to Sanity CMS and Slack in real-time.",
-    tags: ["n8n Workflows", "AI Agents", "Sanity CMS", "Webhooks"],
-    gradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
-  },
-  {
-    id: "veloce",
-    category: "cms",
-    categoryName: "Headless Sanity CMS",
-    categoryColor: "bg-rose-400/10 text-rose-300 border-rose-400/30",
-    icon: Database,
-    client: "Veloce Commerce",
-    title: "WordPress to Headless Sanity CMS Migration with Sub-Second ISR",
-    metric: "0.38s LCP Speed",
-    impact: "+185% Conversion Rate",
-    description:
-      "Replaced a slow legacy monolith with Next.js App Router and Sanity GROQ schemas. Marketing now publishes landing pages instantly without dev deployments.",
-    tags: ["Sanity.io", "GROQ Schema", "Next.js ISR", "Vercel"],
-    gradient: "from-rose-500/20 to-transparent",
-  },
-  {
-    id: "outquest",
-    category: "perf",
-    categoryName: "SEO & Core Web Vitals",
-    categoryColor: "bg-emerald-400/10 text-emerald-300 border-emerald-400/30",
-    icon: Zap,
-    client: "OutQuest",
+    tag: "SEO & Core Web Vitals",
     title: "From Zero SEO Foundation to a 99/100 Desktop Performance Score",
-    metric: "99/100 Desktop Speed",
-    impact: "0.4s First Contentful Paint",
-    description:
-      "OutQuest curates vetted pathways for people planning a career pivot, a move abroad, or a new certification. We rebuilt their technical SEO foundation across three milestones — CMS-level structure, full indexing and crawl configuration, then a dedicated Core Web Vitals pass on their Next.js App Router platform.",
-    tags: ["Next.js", "Supabase", "Core Web Vitals", "Technical SEO"],
-    gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
+    image: "/case-studies/out-quest/joinoutquest desktop per.png",
+    client: "OutQuest",
+  },
+  {
+    tag: "Vibe-Code Security Audit",
+    title: "Hardening a Cursor-Built Fintech App Before $2.5M Seed Round",
+    image: "/placeholder-1.png", // We will use a fallback or standard img for these
+    client: "AuraPay Fintech",
+  },
+  {
+    tag: "n8n AI Automations",
+    title: "Autonomous Lead Enrichment & Content Pipeline with n8n",
+    image: "/placeholder-2.png",
+    client: "OmniScale AI SaaS",
+  },
+  {
+    tag: "Headless Sanity CMS",
+    title: "WordPress to Headless Sanity CMS Migration with Sub-Second ISR",
+    image: "/placeholder-3.png",
+    client: "Veloce Commerce",
   },
 ];
 
 export default function CaseStudies() {
-  const [activeFilter, setActiveFilter] = useState<string>("all");
+  const trackRef = useRef<HTMLUListElement>(null);
+  const [active, setActive] = useState(0);
 
-  const filteredData =
-    activeFilter === "all"
-      ? caseStudiesData
-      : caseStudiesData.filter((c) => c.category === activeFilter);
+  const scrollTo = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[index] as HTMLElement | undefined;
+    if (!card) return;
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+    setActive(index);
+  };
+
+  const move = (dir: -1 | 1) => {
+    const next = Math.min(Math.max(active + dir, 0), projects.length - 1);
+    scrollTo(next);
+  };
 
   return (
-    <section
-      id="cases"
-      className="scroll-mt-24 relative py-20 sm:py-28 px-4 sm:px-8 bg-[#070913] text-white overflow-hidden"
-    >
-      {/* Background Ambient Aura */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Purple/Blue Sphere (Top Right) */}
-        <div className="absolute top-[10%] right-[5%]">
-          <motion.div
-            animate={{
-              scale: [1, 1.4, 0.9, 1.3, 1],
-              x: ["0vw", "-15vw", "20vw", "-10vw", "0vw"],
-              y: ["0vh", "20vh", "-15vh", "15vh", "0vh"],
-              rotate: [0, 90, 180, 270, 360],
-            }}
-            transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-            className="w-[70vw] max-w-[800px] h-[70vw] max-h-[800px] rounded-full filter blur-[140px] opacity-60"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(204, 255, 0, 0.15) 0%, rgba(204, 255, 0, 0.05) 50%, transparent 80%)",
-            }}
-          />
-        </div>
-        
-        {/* Pink/Green Sphere (Bottom Left) */}
-        <div className="absolute bottom-[5%] left-[0%]">
-          <motion.div
-            animate={{
-              scale: [1, 1.5, 0.8, 1.4, 1],
-              x: ["0vw", "20vw", "-20vw", "10vw", "0vw"],
-              y: ["0vh", "-20vh", "25vh", "-15vh", "0vh"],
-              rotate: [360, 270, 180, 90, 0],
-            }}
-            transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
-            className="w-[65vw] max-w-[750px] h-[65vw] max-h-[750px] rounded-full filter blur-[130px] opacity-50"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(204, 255, 0, 0.1) 0%, rgba(204, 255, 0, 0.03) 50%, transparent 80%)",
-            }}
-          />
-        </div>
-
-        {/* Amber/Rose Sphere (Top Left) */}
-        <div className="absolute top-[0%] left-[10%]">
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 0.9, 1.2, 1],
-              x: ["0vw", "15vw", "-10vw", "20vw", "0vw"],
-              y: ["0vh", "10vh", "-20vh", "15vh", "0vh"],
-              rotate: [0, 120, 240, 360],
-            }}
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-            className="w-[60vw] max-w-[700px] h-[60vw] max-h-[700px] rounded-full filter blur-[120px] opacity-40"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(204, 255, 0, 0.1) 0%, rgba(204, 255, 0, 0.05) 50%, transparent 80%)",
-            }}
-          />
-        </div>
-
-        {/* Cyan/Teal Sphere (Bottom Right) */}
-        <div className="absolute bottom-[20%] right-[0%]">
-          <motion.div
-            animate={{
-              scale: [1, 1.4, 0.85, 1.3, 1],
-              x: ["0vw", "-25vw", "15vw", "-10vw", "0vw"],
-              y: ["0vh", "-15vh", "20vh", "-20vh", "0vh"],
-              rotate: [360, 240, 120, 0],
-            }}
-            transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-            className="w-[75vw] max-w-[850px] h-[75vw] max-h-[850px] rounded-full filter blur-[150px] opacity-45"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(204, 255, 0, 0.12) 0%, rgba(204, 255, 0, 0.04) 50%, transparent 80%)",
-            }}
-          />
-        </div>
-
-        <div
-          className="absolute inset-0 opacity-15"
-          style={{
-            backgroundImage:
-              "radial-gradient(rgba(255, 255, 255, 0.8) 1.2px, transparent 1.2px)",
-            backgroundSize: "24px 24px",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-[1240px] mx-auto">
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-[#ccff00] mb-4 backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>PROVEN CASE STUDIES</span>
+    <section id="cases" className="px-4 py-20 sm:py-28 sm:px-8 bg-background">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr_auto] lg:items-end">
+          <div>
+            <SectionLabel>Proven Case Studies</SectionLabel>
+            <h2 className="mt-5 text-balance font-display text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl text-foreground">
+              Real Systems. <em className="text-primary not-italic">Measurable Impact.</em>
+            </h2>
           </div>
-
-          <h2 className="font-[family-name:var(--font-syne)] font-black text-[clamp(32px,5vw,56px)] leading-[1.05] tracking-[-0.04em] max-w-3xl mb-4 text-white">
-            Real Systems. <em className="text-[#ccff00] not-italic">Measurable Impact.</em>
-          </h2>
-
-          <p className="text-gray-300 text-base sm:text-lg max-w-2xl font-medium leading-relaxed">
-            See how we transform vibe-coded AI prototypes into hardened, high-performing enterprise platforms for growing software agencies and venture-backed startups.
+          <p className="text-pretty text-muted-foreground lg:pb-2 text-lg">
+            See how we transform vibe-coded AI prototypes into hardened, high-performing enterprise platforms.
           </p>
-
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-8 p-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-xl">
-            {[
-              { id: "all", label: "All Projects" },
-              { id: "audit", label: "Security Audits" },
-              { id: "automation", label: "n8n AI Workflows" },
-              { id: "cms", label: "Sanity CMS" },
-              { id: "perf", label: "SEO / Speed" },
-            ].map((tab) => {
-              const isActive = activeFilter === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveFilter(tab.id)}
-                  className={`relative px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 ${
-                    isActive
-                      ? "text-white shadow-md"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="caseStudyFilter"
-                      className="absolute inset-0 bg-[#ccff00] rounded-full shadow-[0_4px_15px_rgba(204,255,0,0.5)]"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{tab.label}</span>
-                </button>
-              );
-            })}
+          <div className="flex gap-3 lg:pb-2">
+            <button
+              type="button"
+              onClick={() => move(-1)}
+              aria-label="Previous project"
+              className="flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              <ArrowLeft className="size-4" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              onClick={() => move(1)}
+              aria-label="Next project"
+              className="flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </button>
           </div>
         </div>
 
-        {/* Case Study Cards Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredData.map((item) => {
-              const CategoryIcon = item.icon;
-              return (
-                <motion.div
-                  key={item.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="group relative rounded-2xl border border-white/15 bg-[#0e111f]/90 p-6 sm:p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-2xl hover:border-[#ccff00]/40 transition-all duration-300"
-                >
-                  {/* Top Card Header */}
-                  <div>
-                    <div className="flex items-center justify-between gap-3 mb-5">
-                      <span
-                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold border ${item.categoryColor}`}
-                      >
-                        <CategoryIcon className="w-3.5 h-3.5" />
-                        {item.categoryName}
-                      </span>
-                      <span className="text-xs font-mono text-gray-400 font-semibold">
-                        {item.client}
-                      </span>
-                    </div>
-
-                    <h3 className="font-black text-xl sm:text-2xl text-white mb-3 leading-snug group-hover:text-[#ccff00] transition-colors">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-gray-300 text-sm leading-relaxed mb-6 font-normal">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  {/* Bottom Metric & Tags Footer */}
-                  <div>
-                    {/* Metric Callout Box */}
-                    <div className="grid grid-cols-2 gap-3 p-3.5 bg-white/[0.04] border border-white/10 rounded-xl mb-5">
-                      <div>
-                        <span className="block text-[10px] font-mono text-gray-400 uppercase tracking-wider">
-                          Key Outcome
-                        </span>
-                        <strong className="text-emerald-400 text-sm font-extrabold flex items-center gap-1">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                          {item.metric}
-                        </strong>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] font-mono text-gray-400 uppercase tracking-wider">
-                          Business Impact
-                        </span>
-                        <strong className="text-[#ccff00] text-sm font-extrabold flex items-center gap-1">
-                          <TrendingUp className="w-3.5 h-3.5 text-[#ccff00]" />
-                          {item.impact}
-                        </strong>
-                      </div>
-                    </div>
-
-                    {/* Tag Pills & CTA */}
-                    <div className="flex items-center justify-between pt-2 border-t border-white/10">
-                      <div className="flex flex-wrap gap-1.5">
-                        {item.tags.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-white/5 text-gray-300 border border-white/10"
-                          >
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <a
-                        href="/contact"
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#ccff00] hover:text-white transition-colors"
-                      >
-                        Details <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Bottom Banner */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-gray-200 backdrop-blur-md">
-            <span>Have a vibe-coded app or workflow ready for scaling?</span>
-            <a
-              href="/contact"
-              className="text-[#ccff00] font-extrabold hover:underline inline-flex items-center gap-1"
+        <ul
+          ref={trackRef}
+          className="no-scrollbar mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2"
+        >
+          {projects.map((project, i) => (
+            <li
+              key={project.title}
+              className="group relative w-[85%] shrink-0 snap-start overflow-hidden rounded-2xl bg-surface border border-border sm:w-[46%] lg:w-[40%]"
             >
-              Book an Agency Audit &rarr;
-            </a>
-          </div>
+              <div className="relative aspect-[4/3] w-full bg-muted/20">
+                {/* Fallback for placeholder images so Next doesn't error out */}
+                {project.image.includes('placeholder') ? (
+                  <div className="w-full h-full flex items-center justify-center bg-card">
+                    <span className="text-muted-foreground font-mono text-sm">Image Coming Soon</span>
+                  </div>
+                ) : (
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} interface preview`}
+                    fill
+                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 46vw, 40vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                )}
+              </div>
+              <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 rounded-xl bg-background/90 p-5 backdrop-blur border border-border/50 shadow-lg">
+                <div>
+                  <span className="inline-block rounded-full bg-card border border-border px-3 py-1 text-xs text-primary font-bold">
+                    {project.tag}
+                  </span>
+                  <div className="mt-2 text-xs font-mono text-muted-foreground">{project.client}</div>
+                  <h3 className="mt-2 font-display text-lg font-semibold leading-snug text-foreground">
+                    {project.title}
+                  </h3>
+                </div>
+                <span
+                  className="flex size-11 shrink-0 items-center justify-center rounded-full bg-card border border-border text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary"
+                  aria-hidden="true"
+                >
+                  <ArrowUpRight className="size-4" />
+                </span>
+              </div>
+              <span className="sr-only">{`Project ${i + 1} of ${projects.length}`}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-8 flex justify-center gap-2.5">
+          {projects.map((project, i) => (
+            <button
+              key={project.title}
+              type="button"
+              onClick={() => scrollTo(i)}
+              aria-label={`Go to ${project.title}`}
+              aria-current={active === i}
+              className={`size-2.5 rounded-full transition-colors ${
+                active === i ? "bg-primary" : "bg-muted"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -1,45 +1,48 @@
-import Closing from "@/components/Closing";
-import JsonLd from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/seo";
+import ContactForm from "@/components/ContactForm";
+import { SectionLabel } from "@/components/SectionLabel";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Contact Cylvox | Start a Web Development Project",
-  description:
-    "Tell us what you're building. Cylvox replies within one business day with real next steps — no discovery-call runaround required to get a straight answer.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title: "Contact Cylvox | Start a Web Development Project",
-    description: "Tell us what you're building. We reply within one business day.",
-    url: "/contact",
-    siteName: "Cylvox",
-    locale: "en_US",
-    type: "website",
-  },
+export const metadata: Metadata = {
+  title: "Contact Us - Cylvox",
+  description: "Start a conversation with Cylvox to engineer your next digital system.",
 };
 
 export default function ContactPage() {
   return (
-    <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Contact", path: "/contact" },
-        ])}
-      />
-      <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-white">
-        <div className="max-w-3xl">
-          <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
-            Get In Touch
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
-            Tell us about <span className="text-[#ccff00]">your project.</span>
+    <div className="min-h-screen bg-background pt-32 pb-20 px-4 sm:px-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        
+        {/* Left Side: Copy */}
+        <div className="pt-4">
+          <SectionLabel>Get In Touch</SectionLabel>
+          <h1 className="mt-5 font-display font-semibold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-foreground mb-6">
+            Let's engineer your next <em className="text-primary not-italic">unfair advantage.</em>
           </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed">
-            A few lines is enough to start: what you&apos;re building, where you&apos;re stuck, and roughly when you need it live. We reply within one business day with a straight answer, not a discovery-call funnel.
+          <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
+            Whether you need a vibe-coded app hardened for production, an autonomous n8n pipeline, or a sub-second headless CMS—we're ready to build. Fill out the form and a senior engineer will be in touch within 24 hours.
           </p>
+
+          <div className="space-y-6">
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-foreground uppercase tracking-wider mb-1">Email Us Directly</span>
+              <a href="mailto:hello@cylvox.com" className="text-primary text-xl font-medium hover:underline">
+                hello@cylvox.com
+              </a>
+            </div>
+            
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-foreground uppercase tracking-wider mb-1">Office Hours</span>
+              <span className="text-muted-foreground">Monday – Friday, 9am – 6pm EST</span>
+            </div>
+          </div>
         </div>
-      </section>
-      <Closing />
-    </>
+
+        {/* Right Side: Form */}
+        <div className="w-full">
+          <ContactForm />
+        </div>
+
+      </div>
+    </div>
   );
 }

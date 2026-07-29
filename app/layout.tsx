@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Syne } from "next/font/google";
+import { Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/Navbar";
@@ -7,9 +7,10 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, baseUrl } from "@/lib/seo";
 
-const syne = Syne({
+const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
-  variable: "--font-syne",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -26,8 +27,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={syne.variable}>
-      <body className="bg-[#070913]">
+    <html lang="en" className={`${chakraPetch.variable} ${chakraPetch.style.fontFamily}`}>
+      <body className="bg-background">
         <JsonLd data={organizationSchema} />
         <Analytics />
         <Navbar />

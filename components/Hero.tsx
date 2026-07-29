@@ -15,6 +15,7 @@ import {
   Activity,
   Sparkles
 } from "lucide-react";
+import { SectionLabel } from "./SectionLabel";
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -133,20 +134,21 @@ export default function Hero() {
           
 
             {/* Squish-Style Editorial Headline */}
+            <SectionLabel className="mb-4 text-primary">Cylvox Digital Agency</SectionLabel>
             <h1
-              className="font-[family-name:var(--font-syne)] font-black leading-[0.95] sm:leading-[0.92] tracking-[-0.06em]
-                         text-[clamp(36px,6.5vw,84px)] mb-5 sm:mb-6 text-white drop-shadow-md"
+              className="font-display font-semibold text-balance leading-[1.1] tracking-tight
+                         text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground drop-shadow-md"
             >
-              From <em className="text-[#ccff00] not-italic pr-1">vibe-coded</em> to enterprise-ready.
+              From <em className="text-primary not-italic">vibe-coded</em> to enterprise-ready.
             </h1>
 
             {/* Description */}
-            <p className="max-w-xl text-[14.5px] sm:text-[17px] leading-[1.6] sm:leading-[1.65] text-white/90 mb-7 sm:mb-8 font-medium drop-shadow-sm">
+            <p className="max-w-xl text-lg leading-[1.65] text-muted-foreground mb-8 font-medium">
               We design, develop, and optimize high-concurrency web systems. Specializing in 
-              <strong className="text-white font-black"> n8n AI automations</strong>, 
-              <strong className="text-white font-black"> Headless Sanity CMS</strong>, 
-              <strong className="text-white font-black"> sub-second SEO performance</strong>, and 
-              <strong className="text-white font-black"> security audits for AI-generated apps</strong>.
+              <strong className="text-foreground font-bold"> n8n AI automations</strong>, 
+              <strong className="text-foreground font-bold"> Headless Sanity CMS</strong>, 
+              <strong className="text-foreground font-bold"> sub-second SEO performance</strong>, and 
+              <strong className="text-foreground font-bold"> security audits for AI-generated apps</strong>.
             </p>
 
             {/* HIGH-CONTRAST CALL TO ACTION BUTTONS WITH EXPLICIT DARK TEXT */}

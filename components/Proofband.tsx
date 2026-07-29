@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
+import { SectionLabel } from "./SectionLabel";
 
 const metrics = [
   { value: "54", arrow: true, value2: "99", label: "PageSpeed score (Core Web Vitals)" },
@@ -13,7 +14,7 @@ export default function ProofBand() {
   return (
     <section
       id="proof"
-      className="bg-[#0e0c14] text-[#f7f2ec] relative overflow-hidden"
+      className="bg-surface text-foreground relative overflow-hidden"
     >
       {/* Background Subtle Gradient */}
       <div
@@ -21,16 +22,17 @@ export default function ProofBand() {
         style={{ background: "radial-gradient(circle, rgba(168, 85, 247, 0.4), transparent 70%)" }}
       />
 
-      <div className="px-[clamp(24px,8.5vw,140px)] py-[clamp(96px,13vw,190px)] relative z-10">
+      <div className="px-4 py-20 sm:px-8 sm:py-28 relative z-10 mx-auto max-w-7xl">
 
         {/* Header */}
         <Reveal direction="up">
+          <SectionLabel>Performance Metrics</SectionLabel>
           <h2
-            className="font-[family-name:var(--font-syne)] font-black tracking-[-0.075em] leading-[0.98]
-                       text-[clamp(42px,5.5vw,82px)] max-w-[800px] mb-0 text-white"
+            className="mt-5 font-display font-semibold tracking-tight leading-[1.15]
+                       text-3xl sm:text-4xl lg:text-5xl max-w-[800px] mb-0 text-foreground text-balance"
           >
             Good products deserve a{" "}
-            <em className="text-[#ccff00] not-italic">
+            <em className="text-primary not-italic">
               fast, secure
             </em>{" "}
             home.
@@ -39,29 +41,29 @@ export default function ProofBand() {
 
         {/* Metrics grid */}
         <div
-          className="grid grid-cols-3 mt-[clamp(65px,8vw,120px)]
-                     border-t border-b border-white/15
+          className="grid grid-cols-3 mt-14
+                     border-t border-b border-border
                      max-sm:grid-cols-1"
         >
           {metrics.map((m, i) => (
             <Reveal key={i} delay={i * 0.15} direction="up">
               <div
-                className={`flex flex-col justify-between min-h-[185px] py-[31px]
-                            ${i > 0 ? "pl-[35px] border-l border-white/15 max-sm:pl-0 max-sm:border-l-0 max-sm:border-t" : "pr-[35px] max-sm:pr-0"}
-                            max-sm:min-h-[142px] max-sm:py-[27px]`}
+                className={`flex flex-col justify-between min-h-[185px] py-8
+                            ${i > 0 ? "pl-8 border-l border-border max-sm:pl-0 max-sm:border-l-0 max-sm:border-t" : "pr-8 max-sm:pr-0"}
+                            max-sm:min-h-[142px] max-sm:py-6`}
               >
                 <motion.strong
                   whileHover={{ scale: 1.03, x: 5 }}
-                  className="font-black tracking-[-0.065em] leading-[1]
-                             text-[clamp(32px,3.9vw,58px)] text-white"
+                  className="font-display font-semibold tracking-tight leading-none
+                             text-4xl sm:text-5xl lg:text-6xl text-foreground"
                 >
                   {m.value}
                   {m.arrow && (
-                    <i className="not-italic text-[#ccff00]"> &rarr; </i>
+                    <i className="not-italic text-primary"> &rarr; </i>
                   )}
-                  <span className="text-[#ccff00] font-black">{m.value2}</span>
+                  <span className="text-primary font-semibold">{m.value2}</span>
                 </motion.strong>
-                <span className="text-[13px] font-medium text-gray-400 mt-2">{m.label}</span>
+                <span className="text-sm font-medium text-muted-foreground mt-4">{m.label}</span>
               </div>
             </Reveal>
           ))}
@@ -69,8 +71,7 @@ export default function ProofBand() {
 
         {/* Proof note */}
         <Reveal delay={0.4} direction="up">
-          <p className="flex items-center gap-2 mt-[28px] mb-0 text-[12px] text-gray-400 font-medium">
-            
+          <p className="flex items-center gap-2 mt-8 mb-0 text-xs text-muted-foreground font-medium">
             Real performance & security benchmark metrics. Zero hype.
           </p>
         </Reveal>

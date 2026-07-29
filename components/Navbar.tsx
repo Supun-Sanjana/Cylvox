@@ -20,14 +20,14 @@ export default function Navbar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       aria-label="Main navigation"
-      className="fixed top-0 inset-x-0 z-[999999] flex justify-center px-3 pt-3 sm:px-6 sm:pt-4 pointer-events-none"
+      className="fixed top-0 inset-x-0 z-[999999] flex justify-center px-4 pt-4 sm:px-8 pointer-events-none"
     >
       <div
-        className="pointer-events-auto flex items-center justify-between gap-4 w-[min(1200px,100%)] min-h-14
-                   px-4 py-2 sm:px-6 sm:py-2.5
-                   border border-white/20 rounded-full
-                   bg-[#0b0914]/40 backdrop-blur-3xl saturate-150
-                   shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]"
+        className="pointer-events-auto flex items-center justify-between gap-4 w-full max-w-7xl min-h-14
+                   px-5 py-2.5 sm:px-6
+                   border border-border/50 rounded-full
+                   bg-surface/60 backdrop-blur-3xl saturate-150
+                   shadow-sm"
         style={{
           WebkitBackdropFilter: "blur(24px)",
           backdropFilter: "blur(24px)",
@@ -36,16 +36,15 @@ export default function Navbar() {
         {/* Brand Logo */}
         <Link
           href="/"
-          className="text-[18px] sm:text-[20px] font-black tracking-[-0.07em]
-                     text-white flex items-center gap-0.5 shrink-0"
+          className="text-lg sm:text-xl font-display font-black tracking-tight
+                     text-foreground flex items-center gap-0.5 shrink-0"
         >
-          <span className="text-[#ccff00] font-black">C</span> YLVOX
+          <span className="text-primary font-black">C</span> YLVOX
         </Link>
 
-        {/* Navigation Links - route to dedicated pages, not homepage anchors */}
-        <div className="flex gap-[clamp(14px,1.8vw,36px)] text-[13px] font-semibold max-md:hidden">
+        {/* Navigation Links */}
+        <div className="flex gap-8 text-sm font-semibold max-md:hidden">
           {NAV_LINKS.map(({ href, label }) => {
-            // Active on the page itself and on any nested route (e.g. /services/web-development)
             const isActive = pathname === href || pathname.startsWith(`${href}/`);
 
             return (
@@ -54,8 +53,8 @@ export default function Navbar() {
                 href={href}
                 className={`transition-colors duration-200 ${
                   isActive
-                    ? "text-[#ccff00] drop-shadow-[0_0_8px_rgba(204,255,0,0.5)]"
-                    : "text-white/90 hover:text-white"
+                    ? "text-primary drop-shadow-[0_0_8px_rgba(204,255,0,0.3)]"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {label}
@@ -64,7 +63,7 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* CTA BUTTON: LIME BACKGROUND WITH DARK TEXT */}
+        {/* CTA BUTTON */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.96 }}
@@ -73,13 +72,12 @@ export default function Navbar() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 bg-[#ccff00] text-[#09080e] font-black rounded-full
-                       text-[12px] sm:text-[13px] px-5 py-2 sm:py-2.5
-                       shadow-[0_4px_20px_rgba(204,255,0,0.3)]
-                       hover:bg-[#a3cc00] transition-all duration-200"
+            className="inline-flex items-center gap-1.5 bg-primary text-[#000] font-bold rounded-full
+                       text-xs sm:text-sm px-5 py-2 sm:py-2.5
+                       shadow-md hover:opacity-90 transition-opacity"
           >
             <span>Let's Talk</span>
-            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3]" />
+            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
           </Link>
         </motion.div>
       </div>
