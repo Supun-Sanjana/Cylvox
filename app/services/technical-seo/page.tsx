@@ -5,12 +5,12 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata = {
-  title: "Technical SEO, Schema & Core Web Vitals Agency | Cylvox",
+  title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
   description:
     "End-to-end technical SEO architecture, dynamic CMS metadata, automated IndexNow search submission, JSON-LD structured schema, and 95+ Core Web Vitals optimization for Next.js and Supabase websites.",
   alternates: { canonical: "/services/technical-seo" },
   openGraph: {
-    title: "Technical SEO, Schema & Core Web Vitals Agency | Cylvox",
+    title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
     description:
       "End-to-end technical SEO architecture, automated sitemaps, IndexNow integration, JSON-LD schema, and 95+ Core Web Vitals performance tuning.",
     url: "/services/technical-seo",

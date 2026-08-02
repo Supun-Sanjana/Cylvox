@@ -134,7 +134,7 @@ export default function Hero() {
           
 
             {/* Squish-Style Editorial Headline */}
-            <SectionLabel className="mb-4 text-primary">Cylvox Digital Agency</SectionLabel>
+            <SectionLabel className="mb-4 text-primary">Cylvox Solo Studio</SectionLabel>
             <h1
               className="font-display font-semibold text-balance leading-[1.1] tracking-tight
                          text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground drop-shadow-md"
@@ -144,7 +144,7 @@ export default function Hero() {
 
             {/* Description */}
             <p className="max-w-xl text-lg leading-[1.65] text-muted-foreground mb-8 font-medium">
-              We design, develop, and optimize high-concurrency web systems. Specializing in 
+              An independent solo studio engineering digital systems that move. Specializing in 
               <strong className="text-foreground font-bold"> n8n AI automations</strong>, 
               <strong className="text-foreground font-bold"> Headless Sanity CMS</strong>, 
               <strong className="text-foreground font-bold"> sub-second SEO performance</strong>, and 
@@ -369,7 +369,7 @@ export default function Hero() {
                     <div className="bg-[#03050c] p-2.5 sm:p-3 rounded-lg border border-white/10 font-mono text-[10px] sm:text-[10.5px] text-gray-300 leading-relaxed overflow-hidden">
                       <span className="text-gray-400">// Sanity GROQ Schema Sync</span><br />
                       <span className="text-rose-400">*[_type == &quot;landingPage&quot;]</span> &#123;<br />
-                      &nbsp;&nbsp;<span className="text-white">title</span>: <span className="text-amber-200">&quot;Cylvox Agency&quot;</span>,<br />
+                      &nbsp;&nbsp;<span className="text-white">title</span>: <span className="text-amber-200">&quot;Cylvox Solo Studio&quot;</span>,<br />
                       &nbsp;&nbsp;<span className="text-white">status</span>: <span className="text-emerald-400">&quot;PUBLISHED&quot;</span>,<br />
                       &nbsp;&nbsp;<span className="text-white">revalidate</span>: <span className="text-[#ccff00]">60</span><br />
                       &#125;

@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata = {
-  title: "Next.js & React Web App Development Agency | Cylvox",
+  title: "Next.js & React Web App Development Solo Studio | Cylvox",
   description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
   alternates: { canonical: "/services/web-development" },
 };

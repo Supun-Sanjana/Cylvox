@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata = {
-  title: "AI Workflow Automation Agency (n8n) | Cylvox",
+  title: "AI Workflow Automation Solo Studio (n8n) | Cylvox",
   description: "Automate your business processes with custom AI workflows. We build powerful automation pipelines using n8n and modern AI models to save you time.",
   alternates: { canonical: "/services/ai-automation" },
 };

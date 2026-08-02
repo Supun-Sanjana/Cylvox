@@ -3,14 +3,14 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
-  title: "About Cylvox | Independent Web Engineering Agency",
+  title: "About Cylvox | Independent Web Engineering Solo Studio",
   description:
-    "Cylvox is a small, engineer-led agency. The people who build your product are the people you talk to directly — no account managers, no black-box handoffs.",
+    "Cylvox is an independent, engineer-led solo studio. The person who builds your product is who you talk to directly — no account managers, no black-box handoffs.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About Cylvox | Independent Web Engineering Agency",
+    title: "About Cylvox | Independent Web Engineering Solo Studio",
     description:
-      "A small, engineer-led agency. No account managers, no black-box handoffs.",
+      "An independent, engineer-led solo studio. No account managers, no black-box handoffs.",
     url: "/about",
     siteName: "Cylvox",
     locale: "en_US",
@@ -36,10 +36,10 @@ export default function AboutPage() {
             Small team. <span className="text-[#ccff00]">No black boxes.</span>
           </h1>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-5">
-            Cylvox runs lean on purpose. Every project is handled by the same small team of engineers and designers you talk to directly — no account managers relaying messages, no offshore subcontractors you&apos;ll never meet.
+            Cylvox operates as an independent solo studio to eliminate bloat. Every project is engineered directly without middlemen — no account managers relaying messages, no offshore subcontractors you&apos;ll never meet.
           </p>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed">
-            We built the agency around a specific gap: AI tools make it fast to ship something that looks finished. Making it actually hold up — under real traffic, a security review, or a proper SEO audit — is a different job. That&apos;s the work we specialize in: hardening, scaling, and optimizing systems that were built fast enough to have skipped a few steps.
+            This studio was built around a specific gap: AI tools make it fast to ship something that looks finished. Making it actually hold up — under real traffic, a security review, or a proper SEO audit — is a different job. That&apos;s the work we specialize in: hardening, scaling, and optimizing systems that were built fast enough to have skipped a few steps.
           </p>
         </div>
       </section>

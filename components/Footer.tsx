@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="max-w-md">
           <h3 className="font-display font-bold text-primary mb-4 text-xl">Cylvox.</h3>
           <p className="text-muted-foreground leading-relaxed text-sm font-medium">
-            We are an independent digital agency engineering high-concurrency web systems, autonomous n8n workflows, and brutally effective interfaces that command attention. We don't just build apps; we architect unfair advantages.
+            An independent solo studio engineering high-concurrency web systems, autonomous n8n workflows, and interfaces that command attention. We don't just build apps; we architect unfair advantages.
           </p>
         </div>
 
@@ -66,8 +66,8 @@ export default function Footer() {
         
         {/* Copyright Bar */}
         <div className="w-full px-4 sm:px-8 mx-auto max-w-7xl py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-semibold text-muted-foreground border-t border-border mt-8">
-          <p>&copy; {new Date().getFullYear()} Cylvox Agency. All rights reserved.</p>
-          <p>Designing better ways forward.</p>
+          <p>&copy; {new Date().getFullYear()} Cylvox Solo Studio. All rights reserved.</p>
+          <p>Digital systems that move.</p>
         </div>
       </div>
     </footer>

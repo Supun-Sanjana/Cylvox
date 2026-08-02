@@ -15,14 +15,27 @@ const chakraPetch = Chakra_Petch({
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Cylvox - Digital systems that move",
-  description: "Cylvox is an independent digital agency building high-performing experiences.",
+  title: "Cylvox — Solo Studio | Digital systems that move",
+  description: "An independent solo studio engineering high-concurrency web systems, autonomous n8n workflows, and interfaces that move. From vibe-coded to enterprise-ready.",
   verification: {
     google: "MbW7OSda4rJ-b1SVXUwbjwuheieijZeB4_GUeUJL70Y",
   },
   icons: {
     icon: "/logo.svg"
-  }
+  },
+  openGraph: {
+    title: "Cylvox — Solo Studio | Digital systems that move",
+    description: "An independent solo studio engineering high-concurrency web systems, autonomous n8n workflows, and interfaces that move. From vibe-coded to enterprise-ready.",
+    url: baseUrl,
+    siteName: "Cylvox",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cylvox — Solo Studio | Digital systems that move",
+    description: "An independent solo studio engineering high-concurrency web systems, autonomous n8n workflows, and interfaces that move. From vibe-coded to enterprise-ready.",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

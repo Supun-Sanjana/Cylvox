@@ -34,7 +34,7 @@ export const organizationSchema = {
   url: baseUrl,
   logo: `${baseUrl}/logo.svg`,
   description:
-    "Cylvox is an independent digital agency building high-performing experiences.",
+    "Cylvox is an independent solo studio building high-performing experiences.",
   sameAs: ["https://www.fiverr.com/s/R717Am8"],
   areaServed: areaServedSchema,
 };
@@ -47,7 +47,7 @@ export const professionalServiceSchema = {
   logo: `${baseUrl}/logo.svg`,
   image: `${baseUrl}/logo.svg`,
   description:
-    "Cylvox is an independent digital agency building high-performing experiences, scalable web applications, technical SEO, and automated workflows.",
+    "Cylvox is an independent solo studio building high-performing experiences, scalable web applications, technical SEO, and automated workflows.",
   sameAs: ["https://www.fiverr.com/s/R717Am8"],
   priceRange: "$$",
   areaServed: areaServedSchema,
