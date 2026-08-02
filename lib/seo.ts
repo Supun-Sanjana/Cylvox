@@ -32,7 +32,7 @@ export const organizationSchema = {
   "@type": "Organization",
   name: "Cylvox",
   url: baseUrl,
-  logo: `${baseUrl}/logo.svg`,
+  logo: `${baseUrl}/logo.png`,
   description:
     "Cylvox is an independent solo studio building high-performing experiences.",
   sameAs: ["https://www.fiverr.com/s/R717Am8"],
@@ -44,8 +44,8 @@ export const professionalServiceSchema = {
   "@type": "ProfessionalService",
   name: "Cylvox",
   url: baseUrl,
-  logo: `${baseUrl}/logo.svg`,
-  image: `${baseUrl}/logo.svg`,
+  logo: `${baseUrl}/logo.png`,
+  image: `${baseUrl}/logo.png`,
   description:
     "Cylvox is an independent solo studio building high-performing experiences, scalable web applications, technical SEO, and automated workflows.",
   sameAs: ["https://www.fiverr.com/s/R717Am8"],

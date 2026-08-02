@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     google: "MbW7OSda4rJ-b1SVXUwbjwuheieijZeB4_GUeUJL70Y",
   },
   icons: {
-    icon: "/logo.svg"
+    icon: "/logo.png"
   },
   openGraph: {
     title: "Cylvox — Solo Studio | Digital systems that move",
