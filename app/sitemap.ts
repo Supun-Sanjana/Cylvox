@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/web-development',
     '/services/ui-ux-design',
     '/services/optimization',
+    '/services/technical-seo',
     '/services/ai-automation',
     '/work',
     '/about',

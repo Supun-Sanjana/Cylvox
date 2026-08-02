@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, ShieldAlert, Cpu, Database, Zap, Palette, Code2 } from "lucide-react";
+import { ArrowUpRight, ShieldAlert, Cpu, Database, Zap, Palette, Code2, Search, Server } from "lucide-react";
 import Reveal from "./Reveal";
 import Link from "next/link";
 import { SectionLabel } from "./SectionLabel";
@@ -33,14 +33,22 @@ const services = [
   },
   {
     number: "04",
-    title: "SEO & Performance Engine",
-    badge: "Sub-second LCP",
+    title: "Core Web Vitals & Speed Tuning",
+    badge: "Sub-Second LCP",
     icon: Zap,
-    text: "Technical SEO schemas, edge caching, image optimization, and 99+ Core Web Vitals scores that turn organic search into revenue.",
+    text: "Deep frontend remediation, render-blocking JS elimination, edge caching, and guaranteed 90+/95+ PageSpeed Insights and Lighthouse scores.",
     link: "/services/optimization"
   },
   {
     number: "05",
+    title: "Technical SEO & Schema Engine",
+    badge: "IndexNow & JSON-LD",
+    icon: Search,
+    text: "Complete 11-phase indexing architecture: automated IndexNow search pings, dynamic XML sitemaps, server-side CMS metadata, and Schema.org rich results.",
+    link: "/services/technical-seo"
+  },
+  {
+    number: "06",
     title: "Brand & UI/UX Design",
     badge: "Conversion UI",
     icon: Palette,
@@ -48,11 +56,19 @@ const services = [
     link: "/services/ui-ux-design"
   },
   {
-    number: "06",
+    number: "07",
     title: "Full-Stack Web Engineering",
     badge: "Next.js & React",
     icon: Code2,
-    text: "Production-ready, type-safe Next.js applications engineered for high concurrency, security, and effortless scalability.",
+    text: "Production-ready, type-safe Next.js applications engineered for high concurrency, robust security, and effortless scalability.",
+    link: "/services/web-development"
+  },
+  {
+    number: "08",
+    title: "Supabase & Backend Scaling",
+    badge: "Postgres & Edge API",
+    icon: Server,
+    text: "High-concurrency Postgres schema design, database query optimization, automated pagination, and low-latency Serverless Edge infrastructures.",
     link: "/services/web-development"
   },
 ];
@@ -96,7 +112,7 @@ export default function Services() {
                                   ? "pl-4 sm:pl-8 pr-[46px] border-r border-border max-sm:border-r-0 max-sm:pr-4"
                                   : "pl-[46px] pr-4 sm:pr-8 max-sm:pl-4"
                                 }
-                                ${i === 0 || i === 3 ? "bg-primary/5" : ""}
+                                ${i === 0 || i === 3 || i === 4 || i === 7 ? "bg-primary/5" : ""}
                                 max-sm:grid-cols-[40px_1fr_20px] max-sm:min-h-[190px]
                                 max-sm:py-6`}
                   >
