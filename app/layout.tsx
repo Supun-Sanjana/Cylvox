@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import { organizationSchema, baseUrl } from "@/lib/seo";
+import { organizationSchema, professionalServiceSchema, baseUrl } from "@/lib/seo";
 
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
@@ -30,6 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${chakraPetch.variable} ${chakraPetch.style.fontFamily}`}>
       <body className="bg-background">
         <JsonLd data={organizationSchema} />
+        <JsonLd data={professionalServiceSchema} />
         <Analytics />
         <Navbar />
         <main className="overflow-hidden relative">

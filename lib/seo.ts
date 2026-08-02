@@ -1,5 +1,32 @@
 export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.cylvox.com";
 
+export const areaServedSchema = [
+  {
+    "@type": "Country",
+    name: "United States",
+  },
+  {
+    "@type": "Country",
+    name: "United Kingdom",
+  },
+  {
+    "@type": "Country",
+    name: "Australia",
+  },
+  {
+    "@type": "Country",
+    name: "Canada",
+  },
+  {
+    "@type": "AdministrativeArea",
+    name: "Global",
+  },
+  {
+    "@type": "AdministrativeArea",
+    name: "Worldwide",
+  },
+];
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -9,6 +36,21 @@ export const organizationSchema = {
   description:
     "Cylvox is an independent digital agency building high-performing experiences.",
   sameAs: ["https://www.fiverr.com/s/R717Am8"],
+  areaServed: areaServedSchema,
+};
+
+export const professionalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Cylvox",
+  url: baseUrl,
+  logo: `${baseUrl}/logo.svg`,
+  image: `${baseUrl}/logo.svg`,
+  description:
+    "Cylvox is an independent digital agency building high-performing experiences, scalable web applications, technical SEO, and automated workflows.",
+  sameAs: ["https://www.fiverr.com/s/R717Am8"],
+  priceRange: "$$",
+  areaServed: areaServedSchema,
 };
 
 type BreadcrumbItem = { name: string; path: string };
@@ -41,11 +83,12 @@ export function serviceSchema({ name, description, path, serviceType }: ServiceS
     name,
     description,
     provider: {
-      "@type": "Organization",
+      "@type": "ProfessionalService",
       name: "Cylvox",
       url: baseUrl,
+      areaServed: areaServedSchema,
     },
-    areaServed: "Worldwide",
+    areaServed: areaServedSchema,
     url: `${baseUrl}${path}`,
   };
 }
