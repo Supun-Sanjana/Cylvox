@@ -1,13 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Paperclip, FileText, X, Upload } from "lucide-react";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const allowedExtensions = ["txt", "docx", "doc", "csv", "xlsx", "xls", "pdf", "rtf", "odt"];
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setErrorMsg("");
+
+    if (!file) {
+      setSelectedFile(null);
+      return;
+    }
+
+    // Check size (2 MB limit)
+    if (file.size > 2 * 1024 * 1024) {
+      setErrorMsg("File size must not exceed 2 MB.");
+      setSelectedFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    // Check type
+    const ext = file.name.split(".").pop()?.toLowerCase() || "";
+    if (!allowedExtensions.includes(ext)) {
+      setErrorMsg("Invalid format. Only documents are supported (txt, pdf, docx, xlsx, csv, etc.).");
+      setSelectedFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    setSelectedFile(file);
+  };
+
+  const removeFile = () => {
+    setSelectedFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,26 +59,23 @@ export default function ContactForm() {
     setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      projectType: formData.get("projectType"),
-      budget: formData.get("budget"),
-      message: formData.get("message"),
-    };
 
     try {
+      // Send directly as FormData (browser auto-applies correct boundary headers for multipart/form-data)
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
+      const json = await res.json();
+
       if (!res.ok) {
-        throw new Error("Failed to send message. Please try again.");
+        throw new Error(json.error || "Failed to send message. Please try again.");
       }
 
       setIsSuccess(true);
+      setSelectedFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (err: any) {
       setErrorMsg(err.message || "An unexpected error occurred.");
     } finally {
@@ -148,6 +189,57 @@ export default function ContactForm() {
                 placeholder="Tell us about your goals, current stack, and timeline..."
                 className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none"
               />
+            </div>
+
+            {/* Custom File Attachment Field */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">Attach Document <span className="text-muted-foreground font-normal">(Optional)</span></label>
+              <input
+                ref={fileInputRef}
+                type="file"
+                name="attachment"
+                accept=".txt,.doc,.docx,.csv,.xls,.xlsx,.pdf,.rtf"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+
+              {!selectedFile ? (
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="w-full bg-background/60 hover:bg-background border border-dashed border-border hover:border-primary/60 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-center transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center group-hover:scale-105 group-hover:border-primary/50 transition-all">
+                    <Upload className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </div>
+                  <div className="text-sm font-medium text-foreground">
+                    Click to attach a file <span className="text-primary font-semibold">or browse</span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Supports txt, docx, csv, xlsx, pdf (Max size: 2 MB)
+                  </div>
+                </button>
+              ) : (
+                <div className="w-full bg-background border border-border/80 rounded-xl p-4 flex items-center justify-between gap-3 animate-in fade-in zoom-in-95 duration-200">
+                  <div className="flex items-center gap-3 overflow-hidden">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                      <FileText className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="overflow-hidden">
+                      <p className="text-sm font-medium text-foreground truncate">{selectedFile.name}</p>
+                      <p className="text-xs text-muted-foreground">{formatFileSize(selectedFile.size)}</p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={removeFile}
+                    className="p-2 hover:bg-destructive/10 rounded-lg text-muted-foreground hover:text-red-400 transition-colors"
+                    title="Remove attachment"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
             </div>
 
             <motion.button
