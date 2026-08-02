@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2, AlertCircle, Paperclip, FileText, X, Upload } from "lucide-react";
+import { SERVICES } from "@/lib/constants";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -156,26 +157,23 @@ export default function ContactForm() {
                   className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow appearance-none"
                 >
                   <option value="">Select a service...</option>
-                  <option value="Security Audit">Vibe-Coded Security Audit</option>
-                  <option value="AI Automation">n8n AI Automations</option>
-                  <option value="Headless CMS">Headless CMS / Sanity</option>
-                  <option value="Web App">Web App Development</option>
+                  {SERVICES.map((service) => (
+                    <option key={service.number} value={service.title}>
+                      {service.title}
+                    </option>
+                  ))}
                   <option value="Other">Other</option>
                 </select>
               </div>
               <div className="space-y-2">
                 <label htmlFor="budget" className="text-sm font-medium text-foreground">Estimated Budget</label>
-                <select
+                <input
                   id="budget"
                   name="budget"
-                  className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow appearance-none"
-                >
-                  <option value="">Select range...</option>
-                  <option value="<$5k">&lt; $5,000</option>
-                  <option value="$5k-$10k">$5,000 - $10,000</option>
-                  <option value="$10k-$25k">$10,000 - $25,000</option>
-                  <option value="$25k+">$25,000+</option>
-                </select>
+                  type="text"
+                  placeholder="e.g. $500 - $1000 or Flexible"
+                  className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                />
               </div>
             </div>
 
