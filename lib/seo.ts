@@ -1,4 +1,4 @@
-export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.cylvox.com";
+export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://cylvox.com";
 
 export const areaServedSchema = [
   {
