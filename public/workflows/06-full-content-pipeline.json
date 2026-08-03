@@ -1,0 +1,136 @@
+{
+  "name": "Full Content Pipeline: Draft to Indexed (Cylvox)",
+  "nodes": [
+    {
+      "parameters": {"httpMethod": "POST", "path": "content-pipeline-trigger", "options": {}},
+      "id": "f1000000-0000-4000-8000-000000000001",
+      "name": "Webhook - New Topic",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-880, 0],
+      "webhookId": "content-pipeline-trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {"parameters": [
+          {"name": "x-api-key", "value": "REPLACE_WITH_YOUR_ANTHROPIC_API_KEY"},
+          {"name": "anthropic-version", "value": "2023-06-01"},
+          {"name": "content-type", "value": "application/json"}
+        ]},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-haiku-4-5-20251001\",\n  \"max_tokens\": 2000,\n  \"messages\": [{\n    \"role\": \"user\",\n    \"content\": \"Write a 600-800 word SEO-optimized blog article about: {{ $json.body.topic }}.\\nFocus keyword: {{ $json.body.keyword }}.\\nInclude the keyword in the first paragraph and in at least one H2. Respond ONLY with valid JSON in this exact format, no markdown fences, no preamble: {\\\"title\\\": \\\"...\\\", \\\"metaDescription\\\": \\\"...\\\", \\\"content\\\": \\\"<p>...</p><h2>...</h2><p>...</p>\\\"}\"\n  }]\n}",
+        "options": {}
+      },
+      "id": "f1000000-0000-4000-8000-000000000002",
+      "name": "Generate Draft via Claude",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-660, 0]
+    },
+    {
+      "parameters": {
+        "jsMode": "runOnceForAllItems",
+        "jsCode": "// Sanitizer for non-deterministic LLM output - strips markdown fences and parses JSON safely.\nconst raw = items[0].json.content?.[0]?.text || '';\nconst cleaned = raw.replace(/```json|```/g, '').trim();\nlet parsed;\ntry {\n  parsed = JSON.parse(cleaned);\n} catch (e) {\n  throw new Error('Failed to parse LLM output as JSON: ' + cleaned.slice(0, 200));\n}\nreturn [{ json: parsed }];"
+      },
+      "id": "f1000000-0000-4000-8000-000000000003",
+      "name": "Parse & Sanitize Draft",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-440, 0]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.pexels.com/v1/search",
+        "sendHeaders": true,
+        "headerParameters": {"parameters": [{"name": "Authorization", "value": "REPLACE_WITH_YOUR_PEXELS_API_KEY"}]},
+        "sendQuery": true,
+        "queryParameters": {"parameters": [
+          {"name": "query", "value": "={{ $('Webhook - New Topic').item.json.body.topic }}"},
+          {"name": "per_page", "value": "1"}
+        ]},
+        "options": {}
+      },
+      "id": "f1000000-0000-4000-8000-000000000004",
+      "name": "Fetch Stock Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://REPLACE_WITH_YOUR_DOMAIN.com/wp-json/wp/v2/posts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": \"{{ $('Parse & Sanitize Draft').item.json.title }}\",\n  \"content\": \"{{ $('Parse & Sanitize Draft').item.json.content }}\",\n  \"status\": \"draft\",\n  \"excerpt\": \"{{ $('Parse & Sanitize Draft').item.json.metaDescription }}\",\n  \"featured_media\": 0\n}",
+        "options": {}
+      },
+      "id": "f1000000-0000-4000-8000-000000000005",
+      "name": "Create WordPress Post",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [0, 0],
+      "credentials": {"httpBasicAuth": {"id": "REPLACE_WITH_YOUR_CREDENTIAL_ID", "name": "WordPress App Password"}}
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://REPLACE_WITH_YOUR_DOMAIN.com/wp-json/rankmath/v1/updateMeta",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"objectID\": {{ $json.id }},\n  \"objectType\": \"post\",\n  \"meta\": {\n    \"description\": \"{{ $('Parse & Sanitize Draft').item.json.metaDescription }}\",\n    \"focus_keyword\": \"{{ $('Webhook - New Topic').item.json.body.keyword }}\"\n  }\n}",
+        "options": {}
+      },
+      "id": "f1000000-0000-4000-8000-000000000006",
+      "name": "Update Rank Math Meta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0],
+      "credentials": {"httpBasicAuth": {"id": "REPLACE_WITH_YOUR_CREDENTIAL_ID", "name": "WordPress App Password"}}
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.indexnow.org/indexnow",
+        "sendHeaders": true,
+        "headerParameters": {"parameters": [{"name": "Content-Type", "value": "application/json; charset=utf-8"}]},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"host\": \"REPLACE_WITH_YOUR_DOMAIN.com\",\n  \"key\": \"REPLACE_WITH_YOUR_INDEXNOW_KEY\",\n  \"keyLocation\": \"https://REPLACE_WITH_YOUR_DOMAIN.com/REPLACE_WITH_YOUR_INDEXNOW_KEY.txt\",\n  \"urlList\": [\"{{ $('Create WordPress Post').item.json.link }}\"]\n}",
+        "options": {"response": {"response": {"neverError": true}}}
+      },
+      "id": "f1000000-0000-4000-8000-000000000007",
+      "name": "Submit to IndexNow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {},
+      "id": "f1000000-0000-4000-8000-000000000008",
+      "name": "Pipeline Complete",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [660, 0]
+    }
+  ],
+  "connections": {
+    "Webhook - New Topic": {"main": [[{"node": "Generate Draft via Claude", "type": "main", "index": 0}]]},
+    "Generate Draft via Claude": {"main": [[{"node": "Parse & Sanitize Draft", "type": "main", "index": 0}]]},
+    "Parse & Sanitize Draft": {"main": [[{"node": "Fetch Stock Image", "type": "main", "index": 0}]]},
+    "Fetch Stock Image": {"main": [[{"node": "Create WordPress Post", "type": "main", "index": 0}]]},
+    "Create WordPress Post": {"main": [[{"node": "Update Rank Math Meta", "type": "main", "index": 0}]]},
+    "Update Rank Math Meta": {"main": [[{"node": "Submit to IndexNow", "type": "main", "index": 0}]]},
+    "Submit to IndexNow": {"main": [[{"node": "Pipeline Complete", "type": "main", "index": 0}]]}
+  },
+  "pinData": {},
+  "meta": {"templateCredsSetupCompleted": false}
+}

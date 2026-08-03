@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/optimization',
     '/services/technical-seo',
     '/services/ai-automation',
+    '/products',
     '/work',
     '/about',
     '/contact',

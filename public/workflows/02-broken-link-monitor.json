@@ -1,0 +1,138 @@
+{
+  "name": "Broken Link (404) Monitor (Cylvox)",
+  "nodes": [
+    {
+      "parameters": {"rule": {"interval": [{"field": "days", "daysInterval": 1, "triggerAtHour": 6}]}},
+      "id": "b1000000-0000-4000-8000-000000000001",
+      "name": "Daily Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [-440, 0]
+    },
+    {
+      "parameters": {
+        "url": "https://REPLACE_WITH_YOUR_DOMAIN.com/sitemap.xml",
+        "options": {"response": {"response": {"responseFormat": "text"}}}
+      },
+      "id": "b1000000-0000-4000-8000-000000000002",
+      "name": "Fetch Sitemap",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-220, 0]
+    },
+    {
+      "parameters": {
+        "jsMode": "runOnceForAllItems",
+        "jsCode": "const xml = items[0].json.data || items[0].json.body || items[0].json;\nconst text = typeof xml === 'string' ? xml : JSON.stringify(xml);\nconst matches = [...text.matchAll(/<loc>(.*?)<\\/loc>/g)].map(m => m[1]);\nreturn matches.map(url => ({ json: { url } }));"
+      },
+      "id": "b1000000-0000-4000-8000-000000000003",
+      "name": "Extract URLs from Sitemap",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.url }}",
+        "options": {
+          "response": {"response": {"neverError": true, "fullResponse": true}},
+          "batching": {"batch": {"batchSize": 5, "batchInterval": 1000}},
+          "timeout": 10000
+        }
+      },
+      "id": "b1000000-0000-4000-8000-000000000004",
+      "name": "Check URL Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "loose"},
+          "conditions": [{"id": "c1", "leftValue": "={{ $json.statusCode }}", "rightValue": 400, "operator": {"type": "number", "operation": "gte"}}],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-000000000005",
+      "name": "Is Broken (>=400)?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "assignments": {"assignments": [
+          {"id": "g1", "name": "brokenUrl", "type": "string", "value": "={{ $('Check URL Status').item.json.request?.url || $json.url }}"},
+          {"id": "g2", "name": "status", "type": "number", "value": "={{ $json.statusCode }}"}
+        ]},
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-000000000006",
+      "name": "Format Broken Item",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [660, -100]
+    },
+    {
+      "parameters": {},
+      "id": "b1000000-0000-4000-8000-000000000007",
+      "name": "OK - No Action",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [660, 100]
+    },
+    {
+      "parameters": {"aggregate": "aggregateAllItemData", "options": {}},
+      "id": "b1000000-0000-4000-8000-000000000008",
+      "name": "Aggregate Broken Links",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [880, -100]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "loose"},
+          "conditions": [{"id": "c2", "leftValue": "={{ $json.data.length }}", "rightValue": 0, "operator": {"type": "number", "operation": "gt"}}],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-000000000009",
+      "name": "Has Broken Links?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1100, -100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "REPLACE_WITH_YOUR_SLACK_WEBHOOK_URL",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"🔗 Broken link check found {{ $json.data.length }} broken URL(s):\\n{{ $json.data.map(d => `• ${d.brokenUrl} (${d.status})`).join('\\n') }}\"\n}",
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-00000000000a",
+      "name": "Send Slack Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1320, -100]
+    }
+  ],
+  "connections": {
+    "Daily Schedule": {"main": [[{"node": "Fetch Sitemap", "type": "main", "index": 0}]]},
+    "Fetch Sitemap": {"main": [[{"node": "Extract URLs from Sitemap", "type": "main", "index": 0}]]},
+    "Extract URLs from Sitemap": {"main": [[{"node": "Check URL Status", "type": "main", "index": 0}]]},
+    "Check URL Status": {"main": [[{"node": "Is Broken (>=400)?", "type": "main", "index": 0}]]},
+    "Is Broken (>=400)?": {"main": [[{"node": "Format Broken Item", "type": "main", "index": 0}], [{"node": "OK - No Action", "type": "main", "index": 0}]]},
+    "Format Broken Item": {"main": [[{"node": "Aggregate Broken Links", "type": "main", "index": 0}]]},
+    "Aggregate Broken Links": {"main": [[{"node": "Has Broken Links?", "type": "main", "index": 0}]]},
+    "Has Broken Links?": {"main": [[{"node": "Send Slack Alert", "type": "main", "index": 0}]]}
+  },
+  "pinData": {},
+  "meta": {"templateCredsSetupCompleted": false}
+}

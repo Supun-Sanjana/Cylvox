@@ -1,0 +1,210 @@
+{
+  "name": "WordPress → IndexNow Instant Indexing (Cylvox)",
+  "nodes": [
+    {
+      "parameters": {
+        "event": "postCreated"
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "WordPress Trigger",
+      "type": "n8n-nodes-base.wordpressTrigger",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        0
+      ],
+      "credentials": {
+        "wordpressApi": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+          "name": "WordPress account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1",
+              "name": "host",
+              "type": "string",
+              "value": "={{ $json.link.split('/')[2] }}"
+            },
+            {
+              "id": "f2",
+              "name": "postUrl",
+              "type": "string",
+              "value": "={{ $json.link }}"
+            },
+            {
+              "id": "f3",
+              "name": "indexNowKey",
+              "type": "string",
+              "value": "REPLACE_WITH_YOUR_INDEXNOW_KEY"
+            },
+            {
+              "id": "f4",
+              "name": "keyLocation",
+              "type": "string",
+              "value": "=https://{{ $json.link.split('/')[2] }}/REPLACE_WITH_YOUR_INDEXNOW_KEY.txt"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Build IndexNow Payload",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.indexnow.org/indexnow",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"host\": \"{{ $json.host }}\",\n  \"key\": \"{{ $json.indexNowKey }}\",\n  \"keyLocation\": \"{{ $json.keyLocation }}\",\n  \"urlList\": [\"{{ $json.postUrl }}\"]\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true,
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Submit to IndexNow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.statusCode }}",
+              "rightValue": 202,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "Submitted OK?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "Success - Indexed",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        660,
+        -100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "Failed - Check Manually",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        660,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "WordPress Trigger": {
+      "main": [
+        [
+          {
+            "node": "Build IndexNow Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build IndexNow Payload": {
+      "main": [
+        [
+          {
+            "node": "Submit to IndexNow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Submit to IndexNow": {
+      "main": [
+        [
+          {
+            "node": "Submitted OK?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Submitted OK?": {
+      "main": [
+        [
+          {
+            "node": "Success - Indexed",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Failed - Check Manually",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}

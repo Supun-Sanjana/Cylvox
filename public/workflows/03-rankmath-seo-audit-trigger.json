@@ -1,0 +1,86 @@
+{
+  "name": "Rank Math SEO Score Audit Trigger (Cylvox)",
+  "nodes": [
+    {
+      "parameters": {"event": "postCreated"},
+      "id": "c1000000-0000-4000-8000-000000000001",
+      "name": "WordPress Trigger",
+      "type": "n8n-nodes-base.wordpressTrigger",
+      "typeVersion": 1,
+      "position": [-440, 0],
+      "credentials": {"wordpressApi": {"id": "REPLACE_WITH_YOUR_CREDENTIAL_ID", "name": "WordPress account"}}
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://REPLACE_WITH_YOUR_DOMAIN.com/wp-json/wp/v2/posts/{{ $json.id }}?context=edit",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000002",
+      "name": "Get Full Post",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-220, 0],
+      "credentials": {"httpBasicAuth": {"id": "REPLACE_WITH_YOUR_CREDENTIAL_ID", "name": "WordPress App Password"}}
+    },
+    {
+      "parameters": {
+        "jsMode": "runOnceForAllItems",
+        "jsCode": "const post = items[0].json;\nconst title = (post.title?.rendered || '').replace(/<[^>]*>/g, '');\nconst content = (post.content?.rendered || '').replace(/<[^>]*>/g, '');\nconst wordCount = content.trim().split(/\\s+/).filter(Boolean).length;\nconst hasMetaDesc = !!(post.meta?.rank_math_description || post.yoast_head_json?.description);\nconst focusKeyword = post.meta?.rank_math_focus_keyword || '';\n\nconst issues = [];\nlet score = 100;\n\nif (title.length < 30 || title.length > 65) { issues.push(`Title length is ${title.length} chars (ideal: 30-65)`); score -= 15; }\nif (!hasMetaDesc) { issues.push('No meta description set'); score -= 20; }\nif (wordCount < 300) { issues.push(`Content is only ${wordCount} words (ideal: 300+)`); score -= 20; }\nif (focusKeyword && !content.toLowerCase().includes(focusKeyword.toLowerCase())) { issues.push(`Focus keyword \"${focusKeyword}\" not found in body content`); score -= 15; }\nif (!content.includes('<img') && !content.includes('wp-image')) { issues.push('No images found in content'); score -= 10; }\n\nreturn [{ json: { postId: post.id, postTitle: title, postLink: post.link, score: Math.max(score, 0), issues } }];"
+      },
+      "id": "c1000000-0000-4000-8000-000000000003",
+      "name": "Run SEO Checks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "loose"},
+          "conditions": [{"id": "c1", "leftValue": "={{ $json.score }}", "rightValue": 70, "operator": {"type": "number", "operation": "lt"}}],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000004",
+      "name": "Score Below 70?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "REPLACE_WITH_YOUR_SLACK_WEBHOOK_URL",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"⚠️ SEO Audit: \\\"{{ $json.postTitle }}\\\" scored {{ $json.score }}/100\\n{{ $json.issues.map(i => `• ${i}`).join('\\n') }}\\n{{ $json.postLink }}\"\n}",
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000005",
+      "name": "Send Slack Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, -100]
+    },
+    {
+      "parameters": {},
+      "id": "c1000000-0000-4000-8000-000000000006",
+      "name": "Passed - No Action",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [440, 100]
+    }
+  ],
+  "connections": {
+    "WordPress Trigger": {"main": [[{"node": "Get Full Post", "type": "main", "index": 0}]]},
+    "Get Full Post": {"main": [[{"node": "Run SEO Checks", "type": "main", "index": 0}]]},
+    "Run SEO Checks": {"main": [[{"node": "Score Below 70?", "type": "main", "index": 0}]]},
+    "Score Below 70?": {"main": [[{"node": "Send Slack Alert", "type": "main", "index": 0}], [{"node": "Passed - No Action", "type": "main", "index": 0}]]}
+  },
+  "pinData": {},
+  "meta": {"templateCredsSetupCompleted": false}
+}
