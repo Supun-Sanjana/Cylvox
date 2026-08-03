@@ -84,6 +84,7 @@ const PAID_TEMPLATES = [
   {
     name: "Full Content Pipeline: Draft → SEO Check → Publish → Index",
     tag: "$19 · Best Value",
+    image: "/products/content-pipeline.png",
     oneLiner:
       "Send a topic. Get a fully drafted, SEO-tagged, image-matched, search-engine-notified post.",
     description:
