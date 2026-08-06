@@ -15,7 +15,17 @@ export default function Footer() {
         </div>
 
         {/* Right: Links Grid */}
-        <div className="grid grid-cols-2 gap-x-12 sm:gap-x-20 gap-y-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 sm:gap-x-20 gap-y-8">
+          <div>
+            <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Explore</h4>
+            <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
+              <li><Link href="/services" className="hover:text-primary transition-colors">Services</Link></li>
+              <li><Link href="/products" className="hover:text-primary transition-colors">Products</Link></li>
+              <li><Link href="/work" className="hover:text-primary transition-colors">Work</Link></li>
+              <li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
+              <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
+            </ul>
+          </div>
           <div>
             <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Platforms</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
