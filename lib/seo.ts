@@ -30,7 +30,7 @@ export const areaServedSchema = [
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Cylvox",
+  name: "Cylvox Solo Studio",
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
   description:
@@ -42,7 +42,7 @@ export const organizationSchema = {
 export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Cylvox",
+  name: "Cylvox Solo Studio",
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
   image: `${baseUrl}/logo.png`,
@@ -89,6 +89,42 @@ export function serviceSchema({ name, description, path, serviceType }: ServiceS
       areaServed: areaServedSchema,
     },
     areaServed: areaServedSchema,
-    url: `${baseUrl}${path}`,
+  };
+}
+
+type ProductItem = {
+  name: string;
+  description: string;
+  price: string;
+  priceCurrency?: string;
+};
+
+export function productListSchema(products: ProductItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "n8n Automation Templates by Cylvox",
+    description: "Free and premium n8n workflow templates for technical SEO, Core Web Vitals monitoring, and content automation.",
+    numberOfItems: products.length,
+    itemListElement: products.map((product, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: product.name,
+        description: product.description,
+        brand: {
+          "@type": "Organization",
+          name: "Cylvox",
+        },
+        offers: {
+          "@type": "Offer",
+          price: product.price,
+          priceCurrency: product.priceCurrency || "USD",
+          availability: "https://schema.org/InStock",
+          url: `${baseUrl}/products`,
+        },
+      },
+    })),
   };
 }

@@ -72,7 +72,7 @@ export default function ProofBand() {
         {/* Proof note */}
         <Reveal delay={0.4} direction="up">
           <p className="flex items-center gap-2 mt-8 mb-0 text-xs text-muted-foreground font-medium">
-            Real performance & security benchmark metrics. Zero hype.
+            *Metrics recorded post-migration for Veloce Commerce & OutQuest. View full case studies below.
           </p>
         </Reveal>
 

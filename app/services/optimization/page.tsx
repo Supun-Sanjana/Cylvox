@@ -8,6 +8,21 @@ export const metadata = {
   title: "Website Performance & SEO Optimization | Cylvox",
   description: "Speed up your website and improve your search rankings. We offer technical SEO, Core Web Vitals optimization, and WordPress speed enhancements.",
   alternates: { canonical: "/services/optimization" },
+  openGraph: {
+    title: "Website Performance & SEO Optimization | Cylvox",
+    description: "Speed up your website and improve your search rankings. We offer technical SEO, Core Web Vitals optimization, and WordPress speed enhancements.",
+    url: "/services/optimization",
+    siteName: "Cylvox",
+    locale: "en_US",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox Performance Optimization Services" }],
+  },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "Website Performance & SEO Optimization | Cylvox",
+    description: "Speed up your website and improve your search rankings. We offer technical SEO, Core Web Vitals optimization, and WordPress speed enhancements.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function OptimizationPage() {

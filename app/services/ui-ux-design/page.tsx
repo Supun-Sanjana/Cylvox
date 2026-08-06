@@ -8,6 +8,21 @@ export const metadata = {
   title: "Premium UI/UX Design Services | Cylvox",
   description: "User-centric interface and experience design that converts. We craft digital experiences that are intuitive, beautiful, and aligned with your business goals.",
   alternates: { canonical: "/services/ui-ux-design" },
+  openGraph: {
+    title: "Premium UI/UX Design Services | Cylvox",
+    description: "User-centric interface and experience design that converts. We craft digital experiences that are intuitive, beautiful, and aligned with your business goals.",
+    url: "/services/ui-ux-design",
+    siteName: "Cylvox",
+    locale: "en_US",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox UI/UX Design Services" }],
+  },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "Premium UI/UX Design Services | Cylvox",
+    description: "User-centric interface and experience design that converts. We craft digital experiences that are intuitive, beautiful, and aligned with your business goals.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function UIUXDesignPage() {

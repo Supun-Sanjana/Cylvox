@@ -18,6 +18,12 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
+    description: "End-to-end technical SEO architecture, dynamic CMS metadata, automated IndexNow search submission, JSON-LD structured schema, and 95+ Core Web Vitals optimization for Next.js and Supabase websites.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 const KEYWORDS_AND_TECH = [

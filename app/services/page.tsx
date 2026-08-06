@@ -15,6 +15,12 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "Web Development, Design & SEO Services | Cylvox",
+    description: "Full-stack web development, UI/UX design, technical SEO, and AI workflow automation — explore Cylvox's complete service stack.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function ServicesPage() {

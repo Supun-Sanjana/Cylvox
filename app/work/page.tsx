@@ -15,6 +15,12 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "Case Studies | Web Development & Automation | Cylvox",
+    description: "See how Cylvox hardens AI-assisted apps, migrates slow sites to modern stacks, and builds automation that runs without supervision.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function WorkPage() {

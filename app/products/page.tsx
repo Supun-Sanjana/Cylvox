@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, productListSchema } from "@/lib/seo";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
@@ -19,6 +19,21 @@ export const metadata: Metadata = {
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cylvox n8n Automation Templates for SEO & WordPress",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "n8n Automation Templates for SEO & WordPress | Cylvox",
+    description:
+      "Free and premium n8n workflow templates for technical SEO, Core Web Vitals monitoring, and content automation.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -68,7 +83,7 @@ const PAID_TEMPLATES = [
     description:
       "Every day, this workflow checks your competitors' pages — pricing, titles, meta descriptions — logs it to a tracking sheet, and sends you a digest. Built from the same logic behind Cylvox's competitor-monitoring service.",
     cta: "Buy Now — $12",
-    ctaHref: "#",
+    ctaHref: "/contact?ref=competitor-monitor",
   },
   {
     name: "Core Web Vitals Daily Monitor",
@@ -79,7 +94,7 @@ const PAID_TEMPLATES = [
     description:
       "Runs Google PageSpeed Insights against your key pages daily, logs LCP/CLS/INP trends to a sheet, and alerts you the moment a score drops below 90. The same monitoring discipline that got a client site to 95 mobile / 99 desktop.",
     cta: "Buy Now — $15",
-    ctaHref: "#",
+    ctaHref: "/contact?ref=core-web-vitals",
   },
   {
     name: "Full Content Pipeline: Draft → SEO Check → Publish → Index",
@@ -90,7 +105,7 @@ const PAID_TEMPLATES = [
     description:
       "This is the whole system — the one that's been quietly producing content at roughly a penny an article in production. Send a topic and keyword, and it drafts the article, pulls a matching stock photo, creates the WordPress draft, sets your Rank Math meta, and pings IndexNow the moment it's live. Everything the other templates do, chained into one pipeline.",
     cta: "Buy Now — $19",
-    ctaHref: "#",
+    ctaHref: "/contact?ref=content-pipeline",
     isFlagship: true,
   },
 ];
@@ -120,6 +135,20 @@ export default function ProductsPage() {
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
           { name: "Products", path: "/products" },
+        ])}
+      />
+      <JsonLd
+        data={productListSchema([
+          ...FREE_TEMPLATES.map((t) => ({
+            name: t.name,
+            description: t.description,
+            price: "0",
+          })),
+          ...PAID_TEMPLATES.map((t) => ({
+            name: t.name,
+            description: t.description,
+            price: t.tag.replace(/[^0-9]/g, ""),
+          })),
         ])}
       />
 
@@ -249,7 +278,7 @@ export default function ProductsPage() {
               </div>
 
               <a
-                href="#"
+                href="/contact?ref=full-bundle"
                 className="inline-flex items-center gap-2 bg-primary text-black font-bold rounded-full px-8 py-3.5 text-sm shadow-md hover:opacity-90 transition-opacity shrink-0"
               >
                 <span>Get the Bundle</span>

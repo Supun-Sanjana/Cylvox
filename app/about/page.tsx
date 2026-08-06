@@ -16,6 +16,12 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "About Cylvox | Independent Web Engineering Solo Studio",
+    description: "Cylvox is an independent, engineer-led solo studio. The person who builds your product is who you talk to directly.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function AboutPage() {

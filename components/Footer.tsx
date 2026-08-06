@@ -20,9 +20,9 @@ export default function Footer() {
             <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Platforms</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
               <li>
-                <a href="#"  target="_blank" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
-                  Upwork <ArrowUpRight className="w-3.5 h-3.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-                </a>
+                <span className="text-muted-foreground/50 inline-flex items-center gap-1 cursor-default">
+                  Upwork <span className="text-[10px] text-muted-foreground/30 ml-1">(soon)</span>
+                </span>
               </li>
               <li>
                 <a href="https://www.fiverr.com/s/R717Am8" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
@@ -35,19 +35,19 @@ export default function Footer() {
             <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Socials</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
-                  X / Twitter <ArrowUpRight className="w-3.5 h-3.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-                </a>
+                <span className="text-muted-foreground/50 inline-flex items-center gap-1 cursor-default">
+                  X / Twitter <span className="text-[10px] text-muted-foreground/30 ml-1">(soon)</span>
+                </span>
               </li>
               <li>
-                <a href="#" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
-                  LinkedIn <ArrowUpRight className="w-3.5 h-3.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-                </a>
+                <span className="text-muted-foreground/50 inline-flex items-center gap-1 cursor-default">
+                  LinkedIn <span className="text-[10px] text-muted-foreground/30 ml-1">(soon)</span>
+                </span>
               </li>
               <li>
-                <a href="#" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
-                  GitHub <ArrowUpRight className="w-3.5 h-3.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-                </a>
+                <span className="text-muted-foreground/50 inline-flex items-center gap-1 cursor-default">
+                  GitHub <span className="text-[10px] text-muted-foreground/30 ml-1">(soon)</span>
+                </span>
               </li>
             </ul>
           </div>

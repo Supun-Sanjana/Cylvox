@@ -1,27 +1,12 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-const NAV_LINKS = [
-  { href: "/services", label: "Services" },
-  { href: "/products", label: "Products" },
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-];
+import NavLinks from "./NavLinks";
 
 export default function Navbar() {
-  const pathname = usePathname();
-
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+    <nav
       aria-label="Main navigation"
-      className="fixed top-0 inset-x-0 z-[999999] flex justify-center px-4 pt-4 sm:px-8 pointer-events-none"
+      className="fixed top-0 inset-x-0 z-[999999] flex justify-center px-4 pt-4 sm:px-8 pointer-events-none animate-navbar-in"
     >
       <div
         className="pointer-events-auto flex items-center justify-between gap-4 w-full max-w-7xl min-h-14
@@ -43,45 +28,23 @@ export default function Navbar() {
           <span className="text-primary font-black">C</span> YLVOX
         </Link>
 
-        {/* Navigation Links */}
-        <div className="flex gap-8 text-sm font-semibold max-md:hidden">
-          {NAV_LINKS.map(({ href, label }) => {
-            const isActive = pathname === href || pathname.startsWith(`${href}/`);
+        {/* Navigation Links — client component for active state only */}
+        <NavLinks />
 
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={`transition-colors duration-200 ${
-                  isActive
-                    ? "text-primary drop-shadow-[0_0_8px_rgba(204,255,0,0.3)]"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* CTA BUTTON */}
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.96 }}
-          transition={{ ease: "easeInOut", duration: 0.2 }}
-          className="shrink-0"
-        >
+        {/* CTA BUTTON — CSS hover/active replaces framer-motion */}
+        <div className="shrink-0">
           <Link
             href="/contact"
             className="inline-flex items-center gap-1.5 bg-primary text-[#000] font-bold rounded-full
                        text-xs sm:text-sm px-5 py-2 sm:py-2.5
-                       shadow-md hover:opacity-90 transition-opacity"
+                       shadow-md hover:opacity-90 transition-all duration-200
+                       hover:scale-105 active:scale-95"
           >
-            <span>Let's Talk</span>
-            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
+            <span>Let&apos;s Talk</span>
+            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" aria-hidden="true" />
           </Link>
-        </motion.div>
+        </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }

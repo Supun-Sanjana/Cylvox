@@ -8,6 +8,21 @@ export const metadata = {
   title: "Next.js & React Web App Development Solo Studio | Cylvox",
   description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
   alternates: { canonical: "/services/web-development" },
+  openGraph: {
+    title: "Next.js & React Web App Development Solo Studio | Cylvox",
+    description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
+    url: "/services/web-development",
+    siteName: "Cylvox",
+    locale: "en_US",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox Web Development Services" }],
+  },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "Next.js & React Web App Development Solo Studio | Cylvox",
+    description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 const TECH_STACK = [

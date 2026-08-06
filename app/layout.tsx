@@ -15,8 +15,8 @@ const chakraPetch = Chakra_Petch({
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Cylvox — Solo Studio | Digital systems that move",
-  description: "An independent solo studio engineering high-concurrency web systems, autonomous n8n workflows, and interfaces that move. From vibe-coded to enterprise-ready.",
+  title: "Next.js Web Development & AI Automation Studio | Cylvox",
+  description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
   verification: {
     google: "MbW7OSda4rJ-b1SVXUwbjwuheieijZeB4_GUeUJL70Y",
   },
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     icon: "/logo.png"
   },
   openGraph: {
-    title: "Cylvox — Solo Studio | Digital systems that move",
-    description: "An independent solo studio engineering high-concurrency web systems, autonomous n8n workflows, and interfaces that move. From vibe-coded to enterprise-ready.",
+    title: "Next.js Web Development & AI Automation Studio | Cylvox",
+    description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
     url: baseUrl,
     siteName: "Cylvox",
     locale: "en_US",
@@ -35,14 +35,14 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Cylvox Solo Studio — Digital systems that move",
+        alt: "Cylvox Solo Studio — Next.js & AI Automation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cylvox — Solo Studio | Digital systems that move",
-    description: "An independent solo studio engineering high-concurrency web systems, autonomous n8n workflows, and interfaces that move. From vibe-coded to enterprise-ready.",
+    title: "Next.js Web Development & AI Automation Studio | Cylvox",
+    description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
     images: ["/og-image.jpg"],
   },
 };
