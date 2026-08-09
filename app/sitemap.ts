@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/work',
     '/about',
     '/contact',
+    '/trust-signal-auditor',
   ];
 
   return routes.map((route) => ({
