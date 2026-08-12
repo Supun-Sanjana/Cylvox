@@ -17,6 +17,11 @@ export interface ServiceItem {
   icon: LucideIcon;
   text: string;
   link: string;
+  /**
+   * The raw problems this service exists to remove. Surfaced underneath the
+   * hardened card by the cursor scanner on the homepage.
+   */
+  findings: string[];
 }
 
 export const SERVICES: ServiceItem[] = [
@@ -27,6 +32,11 @@ export const SERVICES: ServiceItem[] = [
     icon: ShieldAlert,
     text: "Deep vulnerability scans, logic flaw fixes, auth hardening, and architectural cleanup for apps built with Cursor, v0, Bolt, or Lovable.",
     link: "/services/web-development",
+    findings: [
+      "Service-role key shipped in the client bundle",
+      "Row-level security never enabled on 6 tables",
+      "Price and quantity trusted from the request body",
+    ],
   },
   {
     number: "02",
@@ -35,6 +45,11 @@ export const SERVICES: ServiceItem[] = [
     icon: Cpu,
     text: "Autonomous n8n pipelines, custom AI agents, and webhook integrations that handle content, leads, and operational tasks 24/7.",
     link: "/services/ai-automation",
+    findings: [
+      "Four hours a day lost to manual copy-paste",
+      "Webhook retries fire twice, duplicating records",
+      "No dead-letter queue when a run fails at 3am",
+    ],
   },
   {
     number: "03",
@@ -43,6 +58,11 @@ export const SERVICES: ServiceItem[] = [
     icon: Database,
     text: "Structured, editor-friendly content architectures powered by Sanity.io and Next.js for lightning-fast publishing without code updates.",
     link: "/services/web-development",
+    findings: [
+      "Copy changes require a developer and a redeploy",
+      "Content hardcoded across 40+ JSX files",
+      "No preview before publishing to production",
+    ],
   },
   {
     number: "04",
@@ -51,6 +71,11 @@ export const SERVICES: ServiceItem[] = [
     icon: Zap,
     text: "Deep frontend remediation, render-blocking JS elimination, edge caching, and guaranteed 90+/95+ PageSpeed Insights and Lighthouse scores.",
     link: "/services/optimization",
+    findings: [
+      "LCP at 4.8s on a mid-range Android device",
+      "1.2MB of render-blocking JavaScript on first paint",
+      "Layout shifts as unsized hero images load in",
+    ],
   },
   {
     number: "05",
@@ -59,6 +84,11 @@ export const SERVICES: ServiceItem[] = [
     icon: Search,
     text: "Complete 11-phase indexing architecture: automated IndexNow search pings, dynamic XML sitemaps, server-side CMS metadata, and Schema.org rich results.",
     link: "/services/technical-seo",
+    findings: [
+      "New pages sit unindexed for weeks",
+      "Zero structured data, so no rich results",
+      "Metadata rendered client-side where crawlers miss it",
+    ],
   },
   {
     number: "06",
@@ -67,6 +97,11 @@ export const SERVICES: ServiceItem[] = [
     icon: Palette,
     text: "High-end visual design systems, interactive prototypes, and conversion-engineered interfaces built to make brands impossible to ignore.",
     link: "/services/ui-ux-design",
+    findings: [
+      "Visitors cannot tell what the product does",
+      "Nine competing accent colours, no hierarchy",
+      "The primary action sits below the fold on mobile",
+    ],
   },
   {
     number: "07",
@@ -75,6 +110,11 @@ export const SERVICES: ServiceItem[] = [
     icon: Code2,
     text: "Production-ready, type-safe Next.js applications engineered for high concurrency, robust security, and effortless scalability.",
     link: "/services/web-development",
+    findings: [
+      "`any` types papering over the whole data layer",
+      "Errors swallowed silently with empty catch blocks",
+      "No validation between the form and the database",
+    ],
   },
   {
     number: "08",
