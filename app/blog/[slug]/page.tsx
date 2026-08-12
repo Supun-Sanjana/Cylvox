@@ -87,13 +87,13 @@ export default async function BlogPostPage({ params }: Props) {
       />
       <JsonLd data={articleSchema} />
       
-      <article className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto text-white">
+      <article className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto text-foreground">
         <header className="mb-12 border-b border-border pb-8">
           <div className="flex items-center gap-3 mb-6">
             <time className="text-sm font-mono text-muted-foreground">{post.date}</time>
             <div className="flex gap-2">
               {post.tags.map(tag => (
-                <span key={tag} className="text-[10px] font-bold uppercase tracking-wider bg-white/5 text-gray-300 px-2 py-0.5 rounded-full">
+                <span key={tag} className="text-[10px] font-bold uppercase tracking-wider bg-surface text-muted-foreground px-2 py-0.5 rounded-full">
                   {tag}
                 </span>
               ))}

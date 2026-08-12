@@ -32,15 +32,15 @@ export default function ServicesPage() {
           { name: "Services", path: "/services" },
         ])}
       />
-      <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-white">
+      <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-foreground">
         <div className="max-w-3xl">
-          <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-foreground bg-surface rounded-full border border-border shadow-sm mb-8">
             Full Capability Range
           </div>
-          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
-            The full <span className="text-[#ccff00]">service stack.</span>
+          <h1 className="text-5xl md:text-7xl font-display mb-6 tracking-tight leading-[1.05]">
+            The full <em className="text-primary not-italic">service stack.</em>
           </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             From first pixel to production traffic: design, engineering, technical SEO, and the automation that keeps things running after launch. Each service below is a specialty in its own right, not a bolt-on.
           </p>
         </div>

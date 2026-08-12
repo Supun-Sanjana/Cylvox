@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { InteractiveSkewText } from "./InteractiveSkewText";
 
 export default function Footer() {
   return (
@@ -66,13 +67,7 @@ export default function Footer() {
 
       {/* Massive Brand Text */}
       <div className="border-t border-border pt-8 overflow-hidden flex flex-col items-center">
-        <a href="#top" className="block text-center w-full px-4 hover:opacity-80 transition-opacity">
-          <span 
-            className="font-display font-black text-[clamp(60px,18vw,280px)] leading-none tracking-tight text-foreground select-none whitespace-nowrap block w-full"
-          >
-            CYLVOX<span className="text-primary">.</span>
-          </span>
-        </a>
+        <InteractiveSkewText />
         
         {/* Copyright Bar */}
         <div className="w-full px-4 sm:px-8 mx-auto max-w-7xl py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-semibold text-muted-foreground border-t border-border mt-8">

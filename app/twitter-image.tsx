@@ -192,16 +192,9 @@ export default async function Image() {
           >
             Digital systems that move.
           </span>
-          <span
-            style={{
-              fontSize: "26px",
-              fontWeight: 600,
-              color: "#f43f5e",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            From vibe-coded to enterprise-ready.
-          </span>
+          <div style={{ fontSize: 36, color: "#888", marginTop: 24, letterSpacing: "-0.02em" }}>
+            From invisible to page one.
+          </div>
         </div>
       </div>
     ),

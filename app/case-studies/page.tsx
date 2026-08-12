@@ -61,11 +61,11 @@ export default function CaseStudiesPage() {
           { name: 'Case Studies', path: '/case-studies' },
         ])}
       />
-      <section className="max-w-5xl mx-auto py-12 px-4">
+      <section className="max-w-5xl mx-auto pt-32 pb-12 px-4">
         <h1 className="font-display text-4xl font-bold mb-8 text-center">Case Studies</h1>
         <div className="grid gap-8 md:grid-cols-2">
           {caseStudies.map((cs) => (
-            <article key={cs.slug} className="border border-white/10 rounded-lg p-6 bg-gray-900/50 backdrop-blur-md">
+            <article key={cs.slug} className="border border-border rounded-lg p-6 bg-gray-900/50 backdrop-blur-md">
               <h2 className="font-semibold text-2xl mb-2 text-primary">{cs.name}</h2>
               <p className="text-muted-foreground mb-2"><strong>Client:</strong> {cs.client}</p>
               <p className="text-muted-foreground mb-2"><strong>Problem:</strong> {cs.problem}</p>

@@ -86,7 +86,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           { name: data.title, path: `/case-studies/${data.slug}` },
         ])}
       />
-      <section className="max-w-4xl mx-auto py-12 px-4">
+      <section className="max-w-4xl mx-auto pt-32 pb-12 px-4">
         <h1 className="font-display text-4xl font-bold mb-6 text-center">{data.title}</h1>
         <p className="mb-4"><strong>Client:</strong> {data.client}</p>
         <p className="mb-4"><strong>Problem:</strong> {data.problem}</p>

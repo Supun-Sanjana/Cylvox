@@ -59,22 +59,20 @@ export default function Process() {
           </div>
         </Reveal>
 
-        {/* Steps track */}
         <div
-          className="grid grid-cols-4 mt-14 border-t border-border
+          className="grid grid-cols-4 gap-6 mt-14
                      max-sm:grid-cols-1"
         >
           {steps.map((step, i) => (
             <Reveal key={step.number} delay={i * 0.15} direction="up">
               <motion.div
-                whileHover={{ y: -4 }}
-                className={`group relative min-h-80 py-7 px-6 transition-all duration-300 rounded-3xl cursor-default
-                            hover:bg-gradient-to-b hover:from-primary/10 hover:to-transparent hover:backdrop-blur-md hover:shadow-[0_8px_30px_rgba(204,255,0,0.05)]
+                className={`group relative min-h-80 py-10 px-8 transition-all duration-300 rounded-[2.5rem] cursor-default bg-surface border border-border shadow-sm
+                            hover:shadow-md hover:-translate-y-1
                             ${i > 0
-                              ? "border-l border-border max-sm:border-l-0 max-sm:border-t"
+                              ? "max-sm:mt-4"
                               : ""
                             }
-                            max-sm:min-h-60 max-sm:py-6 max-sm:px-2`}
+                            max-sm:min-h-60 max-sm:py-8 max-sm:px-6`}
               >
                 <span className="block mb-16 font-bold text-lg text-primary
                                  max-sm:mb-10">

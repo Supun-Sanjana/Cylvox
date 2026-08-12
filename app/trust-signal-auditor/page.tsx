@@ -40,7 +40,7 @@ export default function TrustSignalAuditorPage() {
   });
 
   return (
-    <main className="bg-zinc-950 min-h-screen selection:bg-emerald-500/30 selection:text-emerald-200">
+    <main className="bg-background min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -19,7 +19,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
               {item.label}
             </Link>
           ) : (
-            <span className="text-white/70">{item.label}</span>
+            <span className="text-muted-foreground">{item.label}</span>
           )}
           {i < items.length - 1 && <ChevronRight className="w-3 h-3 text-gray-600" />}
         </span>

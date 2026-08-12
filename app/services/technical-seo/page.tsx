@@ -129,7 +129,7 @@ const DELIVERABLES = [
 
 export default function TechnicalSEOPage() {
   return (
-    <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-white">
+    <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-foreground">
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
@@ -156,7 +156,7 @@ export default function TechnicalSEOPage() {
           ]}
         />
         
-        <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-foreground bg-surface rounded-full border border-border shadow-sm mb-8">
           Complete Indexing & Performance Architecture
         </div>
         
@@ -164,71 +164,69 @@ export default function TechnicalSEOPage() {
           Technical SEO & <span className="text-[#ccff00]">Core Web Vitals Architecture</span>
         </h1>
         
-        <p className="text-lg md:text-xl text-white/70 mb-16 leading-relaxed max-w-3xl">
+        <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed max-w-3xl">
           We engineer bulletproof search infrastructures for high-growth Next.js and Supabase websites. By uniting real-time indexing automation, server-side rendered metadata, structured JSON-LD schema, and aggressive Core Web Vitals optimization, we turn search algorithms into your unfair commercial advantage.
         </p>
 
         {/* Why You Need This & What We Deliver Split */}
-        <div className="grid md:grid-cols-2 gap-12 mb-20 border-t border-white/10 pt-12">
+        <div className="grid md:grid-cols-2 gap-12 mb-20 border-t border-border pt-12">
           <div>
-            <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
-              <span className="text-[#ccff00]">/</span> Why Technical SEO Wins
+            <h2 className="text-3xl font-display font-semibold mb-6 text-foreground flex items-center gap-2">Why Technical SEO Wins
             </h2>
-            <ul className="space-y-4 text-gray-400">
+            <ul className="space-y-4 text-muted-foreground">
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ccff00] shrink-0" />
-                <p><strong className="text-white">Instantaneous Indexing via IndexNow:</strong> Waiting weeks for Google and Bing to crawl new content is archaic. By pushing direct programmatic notifications the second you publish or update content in your CMS, your pages get indexed in minutes, not days.</p>
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <p><strong className="text-foreground">Instantaneous Indexing via IndexNow:</strong> Waiting weeks for Google and Bing to crawl new content is archaic. By pushing direct programmatic notifications the second you publish or update content in your CMS, your pages get indexed in minutes, not days.</p>
               </li>
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ccff00] shrink-0" />
-                <p><strong className="text-white">Dominate SERPs with Rich Results:</strong> Search engines reward clean structure. Dynamic JSON-LD Schema (for offers, products, FAQs, articles, and courses) expands your real estate on results pages with eye-catching badges and pricing details that multiply organic click-through rates.</p>
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <p><strong className="text-foreground">Dominate SERPs with Rich Results:</strong> Search engines reward clean structure. Dynamic JSON-LD Schema (for offers, products, FAQs, articles, and courses) expands your real estate on results pages with eye-catching badges and pricing details that multiply organic click-through rates.</p>
               </li>
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ccff00] shrink-0" />
-                <p><strong className="text-white">Crush Google&apos;s Core Web Vitals Penalties:</strong> Page speed is an official ranking signal and conversion multiplier. With 95+ desktop and 90+ mobile PageSpeed targets, sub-500ms TTFB, and zero layout shifts, we eliminate abandonment rates and slash paid ad CPCs.</p>
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <p><strong className="text-foreground">Crush Google&apos;s Core Web Vitals Penalties:</strong> Page speed is an official ranking signal and conversion multiplier. With 95+ desktop and 90+ mobile PageSpeed targets, sub-500ms TTFB, and zero layout shifts, we eliminate abandonment rates and slash paid ad CPCs.</p>
               </li>
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ccff00] shrink-0" />
-                <p><strong className="text-white">Editorial Freedom Without Dev Deployments:</strong> Your content and marketing teams get a dedicated live-preview SEO panel inside your database or headless CMS to tweak meta titles, canonicals, and social preview cards instantly without touching code or triggering git commits.</p>
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <p><strong className="text-foreground">Editorial Freedom Without Dev Deployments:</strong> Your content and marketing teams get a dedicated live-preview SEO panel inside your database or headless CMS to tweak meta titles, canonicals, and social preview cards instantly without touching code or triggering git commits.</p>
               </li>
             </ul>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
-              <span className="text-[#ccff00]">/</span> The Architectural Edge
+            <h2 className="text-3xl font-display font-semibold mb-6 text-foreground flex items-center gap-2">The Architectural Edge
             </h2>
-            <ul className="space-y-4 text-gray-400">
+            <ul className="space-y-4 text-muted-foreground">
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ccff00] shrink-0" />
-                <p><strong className="text-white">Zero Hardcoded Slop:</strong> Every canonical tag, meta description, and robot directive is computed server-side directly in Next.js Application Root layout and page heads, keeping source code pristine and completely future-proof.</p>
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <p><strong className="text-foreground">Zero Hardcoded Slop:</strong> Every canonical tag, meta description, and robot directive is computed server-side directly in Next.js Application Root layout and page heads, keeping source code pristine and completely future-proof.</p>
               </li>
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ccff00] shrink-0" />
-                <p><strong className="text-white">Self-Healing Link Ecosystems:</strong> Changing a URL slug no longer results in catastrophic 404 errors. Our architecture registers changes and builds permanent 301 redirects on the fly, protecting your hard-earned domain authority.</p>
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <p><strong className="text-foreground">Self-Healing Link Ecosystems:</strong> Changing a URL slug no longer results in catastrophic 404 errors. Our architecture registers changes and builds permanent 301 redirects on the fly, protecting your hard-earned domain authority.</p>
               </li>
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ccff00] shrink-0" />
-                <p><strong className="text-white">Database & CDN Convergence:</strong> True performance isn&apos;t just image compression. We dive into your Supabase database queries, pruning unneeded select fields, eliminating N+1 loop requests, and tuning Vercel Edge caching headers.</p>
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <p><strong className="text-foreground">Database & CDN Convergence:</strong> True performance isn&apos;t just image compression. We dive into your Supabase database queries, pruning unneeded select fields, eliminating N+1 loop requests, and tuning Vercel Edge caching headers.</p>
               </li>
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#ccff00] shrink-0" />
-                <p><strong className="text-white">Transparent Verification Proof:</strong> We never deliver vague assurances. You receive hard, undeniable validation reports—from Lighthouse benchmarks to verified schema tools and Microsoft Clarity session data collection.</p>
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <p><strong className="text-foreground">Transparent Verification Proof:</strong> We never deliver vague assurances. You receive hard, undeniable validation reports—from Lighthouse benchmarks to verified schema tools and Microsoft Clarity session data collection.</p>
               </li>
             </ul>
           </div>
         </div>
 
         {/* 11-Phase Technical Architecture Section */}
-        <div className="mb-20 border-t border-white/10 pt-16">
+        <div className="mb-20 border-t border-border pt-16">
           <div className="max-w-3xl mb-12">
             <div className="inline-block px-3 py-1 mb-4 text-[10px] font-extrabold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
               11-Phase Engineering Blueprint
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight">
               The Comprehensive Technical SEO Implementation
             </h2>
-            <p className="text-gray-400 text-base mt-3">
+            <p className="text-muted-foreground text-base mt-3">
               We execute an uncompromising 11-phase architecture covering every dimension of modern technical SEO, crawlability, search analytics, and frontend speed performance.
             </p>
           </div>
@@ -237,21 +235,21 @@ export default function TechnicalSEOPage() {
             {PHASES.map((phase) => (
               <div 
                 key={phase.number}
-                className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:border-[#ccff00]/40 transition-colors duration-200"
+                className="bg-surface border border-border rounded-[2rem] p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
                     <span className="font-mono font-black text-sm text-[#ccff00] bg-[#ccff00]/10 px-2.5 py-1 rounded border border-[#ccff00]/20">
                       Phase {phase.number}
                     </span>
-                    <span className="text-[11px] font-bold tracking-wide uppercase text-white/60 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
+                    <span className="text-[11px] font-bold tracking-wide uppercase text-muted-foreground bg-surface px-2.5 py-1 rounded-full border border-border">
                       {phase.badge}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 tracking-tight leading-snug">
+                  <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight leading-snug">
                     {phase.title}
                   </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                  <p className="text-sm text-muted-foreground leading-relaxed font-medium">
                     {phase.description}
                   </p>
                 </div>
@@ -262,18 +260,18 @@ export default function TechnicalSEOPage() {
 
         {/* Guaranteed Project Deliverables */}
         <div className="mb-20 bg-[#ccff00]/5 border border-[#ccff00]/20 rounded-3xl p-8 md:p-12">
-          <h2 className="text-2xl sm:text-3xl font-black mb-4 text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black mb-4 text-foreground tracking-tight">
             Guaranteed Project Deliverables & Proof of Work
           </h2>
-          <p className="text-gray-400 mb-8 max-w-2xl text-sm md:text-base">
+          <p className="text-muted-foreground mb-8 max-w-2xl text-sm md:text-base">
             A project is never considered finished until every verification test passes with pristine scores. You receive comprehensive diagnostic proof upon handoff:
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {DELIVERABLES.map((item, index) => (
-              <div key={index} className="flex items-center gap-3.5 bg-white/5 border border-white/10 p-4 rounded-xl">
+              <div key={index} className="flex items-center gap-3.5 bg-surface border border-border p-4 rounded-xl">
                 <CheckCircle2 className="w-5 h-5 text-[#ccff00] shrink-0" />
-                <span className="text-sm font-medium text-white/90 leading-tight">{item}</span>
+                <span className="text-sm font-medium text-foreground/90 leading-tight">{item}</span>
               </div>
             ))}
           </div>
@@ -281,14 +279,14 @@ export default function TechnicalSEOPage() {
 
         {/* Tech Stack & Keywords Pill Cloud */}
         <div className="mb-20">
-          <h2 className="text-2xl font-bold mb-6 text-white tracking-tight">
+          <h2 className="text-2xl font-bold mb-6 text-foreground tracking-tight">
             Architected With Industry-Standard Technologies
           </h2>
           <div className="flex flex-wrap gap-3">
             {KEYWORDS_AND_TECH.map((tech) => (
               <span 
                 key={tech} 
-                className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm font-medium text-white/90 shadow-sm hover:border-[#ccff00]/50 hover:bg-[#ccff00]/10 hover:text-white transition-all duration-200 cursor-default"
+                className="px-4 py-2 bg-surface border border-border rounded-full text-sm font-medium text-foreground shadow-sm hover:border-[#ccff00]/50 hover:bg-[#ccff00]/10 hover:text-foreground transition-all duration-200 cursor-default"
               >
                 {tech}
               </span>
@@ -297,13 +295,13 @@ export default function TechnicalSEOPage() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-3xl p-8 md:p-14 text-center relative overflow-hidden">
+        <div className="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-border rounded-3xl p-8 md:p-14 text-center relative overflow-hidden">
           <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#ccff00]/10 rounded-full blur-3xl pointer-events-none" />
           
           <h3 className="text-3xl md:text-4xl font-black mb-4 tracking-tight">
             Ready to unlock instant indexing & sub-second speeds?
           </h3>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto text-base">
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto text-base">
             Let&apos;s deploy our 11-phase technical SEO and Core Web Vitals architecture onto your Next.js and Supabase ecosystem today.
           </p>
           <Link

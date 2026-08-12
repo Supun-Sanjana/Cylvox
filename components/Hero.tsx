@@ -21,7 +21,7 @@ const CAPABILITIES = [
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const { ref: fieldRef } = usePointerVars<HTMLDivElement>();
+  const { ref: fieldRef } = usePointerVars<HTMLElement>();
   const parallax = useParallax(1);
   const ctaRef = useMagnetic<HTMLAnchorElement>(0.22);
 
@@ -39,12 +39,15 @@ export default function Hero() {
 
   return (
     <section
-      ref={sectionRef}
+      ref={(node) => {
+        sectionRef.current = node;
+        fieldRef.current = node;
+      }}
       id="top"
       className="atmos relative isolate flex min-h-svh flex-col overflow-hidden"
     >
       {/* ── Atmosphere ─────────────────────────────────────────── */}
-      <div ref={fieldRef} className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="dots absolute inset-0 opacity-45" />
         <div className="dots-live absolute inset-0" />
 
@@ -76,7 +79,7 @@ export default function Hero() {
         </motion.div>
 
         <h1 className="font-display mt-7 max-w-[19ch] text-balance text-[clamp(2.9rem,9.2vw,7.5rem)] leading-[0.94] text-foreground">
-          {["From", "vibe-coded", "to"].map((word, i) => (
+          {["From", "invisible", "to"].map((word, i) => (
             <motion.span
               key={word}
               initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
@@ -87,7 +90,7 @@ export default function Hero() {
                 ease: [0.22, 1, 0.28, 1],
               }}
               className={`mr-[0.28em] inline-block ${
-                word === "vibe-coded" ? "italic text-primary" : ""
+                word === "invisible" ? "italic text-muted-foreground" : ""
               }`}
             >
               {word}
@@ -99,7 +102,7 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.42, ease: [0.22, 1, 0.28, 1] }}
             className="inline-block"
           >
-            enterprise-ready
+            page one
             <span className="text-primary">.</span>
           </motion.span>
         </h1>
@@ -124,7 +127,7 @@ export default function Hero() {
           <Link
             ref={ctaRef}
             href="/contact"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-[0_14px_44px_-12px_rgba(204,255,0,0.6)] transition-colors duration-300 hover:bg-foreground"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-[0_14px_44px_-12px_rgba(0,0,0,0.25)] transition-colors duration-300 hover:bg-foreground/80 hover:scale-[1.02]"
           >
             Audit your app
             <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

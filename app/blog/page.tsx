@@ -31,7 +31,7 @@ export default function BlogIndex() {
           { name: "Blog", path: "/blog" },
         ])}
       />
-      <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-white">
+      <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-foreground">
         <div className="mb-16">
           <div className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20">
             Engineering Log
@@ -51,7 +51,7 @@ export default function BlogIndex() {
                 <time className="text-xs font-mono text-muted-foreground">{post.date}</time>
                 <div className="flex gap-2">
                   {post.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-bold uppercase tracking-wider bg-white/5 text-gray-300 px-2 py-0.5 rounded-full">
+                    <span key={tag} className="text-[10px] font-bold uppercase tracking-wider bg-surface text-muted-foreground px-2 py-0.5 rounded-full">
                       {tag}
                     </span>
                   ))}

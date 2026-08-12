@@ -46,6 +46,8 @@ export function usePointerVars<T extends HTMLElement = HTMLDivElement>(
     };
 
     const leave = () => {
+      el.style.setProperty("--mx", "-999px");
+      el.style.setProperty("--my", "-999px");
       if (radius) el.style.setProperty("--scan-r", "0px");
       setActive(false);
     };

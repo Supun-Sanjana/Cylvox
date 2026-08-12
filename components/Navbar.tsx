@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="shrink-0">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 bg-primary text-[#000] font-bold rounded-full
+            className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground font-bold rounded-full
                        text-xs sm:text-sm px-5 py-2 sm:py-2.5
                        shadow-md hover:opacity-90 transition-all duration-200
                        hover:scale-105 active:scale-95"

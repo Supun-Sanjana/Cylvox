@@ -143,7 +143,7 @@ export default function ContactForm() {
                   type="email"
                   required
                   placeholder="jane@example.com"
-                  className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                 />
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function ContactForm() {
                 <select
                   id="projectType"
                   name="projectType"
-                  className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow appearance-none"
+                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow appearance-none"
                 >
                   <option value="">Select a service...</option>
                   {SERVICES.map((service) => (
@@ -172,7 +172,7 @@ export default function ContactForm() {
                   name="budget"
                   type="text"
                   placeholder="e.g. $500 - $1000 or Flexible"
-                  className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                 />
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function ContactForm() {
                 required
                 rows={5}
                 placeholder="Tell us about your goals, current stack, and timeline..."
-                className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none"
+                className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none"
               />
             </div>
 
@@ -245,10 +245,10 @@ export default function ContactForm() {
               whileTap={{ scale: 0.98 }}
               disabled={isSubmitting}
               type="submit"
-              className="w-full bg-primary text-black font-extrabold text-[15px] py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:bg-[#a3cc00] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full bg-primary text-primary-foreground font-extrabold text-[15px] py-4 rounded-[1.5rem] flex items-center justify-center gap-2 shadow-sm hover:opacity-90 hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
-                <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
               ) : (
                 <>
                   Send Message <Send className="w-4 h-4" />

@@ -153,7 +153,7 @@ export default function ProductsPage() {
       />
 
       {/* ── Page Header ─────────────────────────────────────────── */}
-      <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-white">
+      <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-foreground">
         <div className="max-w-3xl">
           <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
             Cylvox Products
@@ -162,7 +162,7 @@ export default function ProductsPage() {
             Automation & SEO tools, built from what{" "}
             <span className="text-[#ccff00]">actually worked</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             No generic template dumps. Every workflow here is pulled straight
             from real client work — the same automations that got a live site to
             95+ PageSpeed and indexed in hours, not weeks. Grab the free ones,

@@ -92,7 +92,7 @@ export default function ProductCard({
                 ? "bg-primary/10 text-primary border-primary/20"
                 : isFlagship
                 ? "bg-primary/15 text-primary border-primary/30"
-                : "bg-white/5 text-white/80 border-white/10"
+                : "bg-surface text-foreground/80 border-border"
             }`}
           >
             {tag}

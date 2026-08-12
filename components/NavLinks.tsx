@@ -4,7 +4,7 @@ import Link from "next/link";
 
 
 const NAV_LINKS = [
-  { href: "/case-studies", label: "Work" },
+  { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
   { href: "/agency-partners", label: "Agency Partners" },
   { href: "/trust-signal-auditor", label: "Trust Signal Auditor" },
