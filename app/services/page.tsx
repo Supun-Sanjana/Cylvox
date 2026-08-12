@@ -3,25 +3,25 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
-  title: "Web Development, Design & SEO Services | Cylvox",
-  description:
-    "Full-stack web development, UI/UX design, technical SEO, and AI workflow automation — explore Cylvox's complete service stack, built to work together.",
-  alternates: { canonical: "/services" },
+  title: 'Services – Cylvox Technical Services',
+  description: 'Cylvox offers technical services: web development, technical SEO, performance optimization, AI automation, and audits.',
+  alternates: { canonical: 'https://cylvox.com/services' },
   openGraph: {
-    title: "Web Development, Design & SEO Services | Cylvox",
-    description: "Full-stack development, design, technical SEO, and AI automation.",
-    url: "/services",
-    siteName: "Cylvox",
-    locale: "en_US",
-    type: "website",
+    title: 'Cylvox Services',
+    description: 'Technical services for modern web products.',
+    url: 'https://cylvox.com/services',
+    siteName: 'Cylvox',
+    images: [{ url: '/og/services.png', width: 1200, height: 630, alt: 'Cylvox Services' }],
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image" as const,
-    title: "Web Development, Design & SEO Services | Cylvox",
-    description: "Full-stack web development, UI/UX design, technical SEO, and AI workflow automation — explore Cylvox's complete service stack.",
-    images: ["/og-image.jpg"],
+    card: 'summary_large_image',
+    title: 'Cylvox Services',
+    description: 'Technical services for modern web products.',
+    images: ['/og/services.png'],
   },
 };
+
 
 export default function ServicesPage() {
   return (

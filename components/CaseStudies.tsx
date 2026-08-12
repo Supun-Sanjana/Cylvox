@@ -4,13 +4,14 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "@/components/SectionLabel";
+import Link from "next/link";
 
 const projects = [
   {
     tag: "SEO & Core Web Vitals",
     title: "From Zero SEO Foundation to a 99/100 Desktop Performance Score",
     image: "/case-studies/out-quest/joinoutquest desktop per.png",
-    client: "OutQuest",
+    slug: 'outquest-technical-seo',
   },
   {
     tag: "Vibe-Code Security Audit",
@@ -118,12 +119,19 @@ export default function CaseStudies() {
                     {project.title}
                   </h3>
                 </div>
-                <span
-                  className="flex size-11 shrink-0 items-center justify-center rounded-full bg-card border border-border text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary"
-                  aria-hidden="true"
-                >
-                  <ArrowUpRight className="size-4" />
-                </span>
+                {project.slug ? (
+                  <Link
+                    href={`/case-studies/${project.slug}`}
+                    aria-label={`Read ${project.title} case study`}
+                    className="flex size-11 shrink-0 items-center justify-center rounded-full bg-card border border-border text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary"
+                  >
+                    <ArrowUpRight className="size-4" />
+                  </Link>
+                ) : (
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-card border border-border text-foreground">
+                    <ArrowUpRight className="size-4" />
+                  </span>
+                )}
               </div>
               <span className="sr-only">{`Project ${i + 1} of ${projects.length}`}</span>
             </li>

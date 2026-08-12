@@ -4,18 +4,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.cylvox.com';
 
   const routes = [
+    // Home
     '',
+    // Case Studies
+    '/case-studies',
+    '/case-studies/outquest-technical-seo',
+    '/case-studies/zymgut-trust-signal-auditor',
+    '/case-studies/acme-web-revamp',
+    // Services
     '/services',
     '/services/web-development',
-    '/services/ui-ux-design',
-    '/services/optimization',
     '/services/technical-seo',
     '/services/ai-automation',
-    '/products',
+    '/services/optimization',
+    '/services/ui-ux-design',
+    // Product
+    '/trust-signal-auditor',
+    // Partnership
+    '/agency-partners',
+    // Content
+    '/blog',
     '/work',
+    '/products',
+    // Company
     '/about',
     '/contact',
-    '/trust-signal-auditor',
   ];
 
   return routes.map((route) => ({
