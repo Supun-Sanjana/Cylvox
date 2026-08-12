@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Chakra_Petch } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/Navbar";
@@ -7,10 +7,18 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, professionalServiceSchema, baseUrl } from "@/lib/seo";
 
-const chakraPetch = Chakra_Petch({
+const geistSans = Geist({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-sans",
+  display: "swap",
+  variable: "--font-geist-sans",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-instrument-serif",
 });
 
 export const metadata: Metadata = {
@@ -47,10 +55,20 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#05080a",
+  colorScheme: "dark" as const,
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${chakraPetch.variable} ${chakraPetch.style.fontFamily}`}>
-      <body className="bg-background">
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${instrumentSerif.variable} bg-background`}
+    >
+      <body className="bg-background text-foreground">
         <JsonLd data={organizationSchema} />
         <JsonLd data={professionalServiceSchema} />
         <Analytics />

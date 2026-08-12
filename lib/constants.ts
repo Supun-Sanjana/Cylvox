@@ -17,6 +17,11 @@ export interface ServiceItem {
   icon: LucideIcon;
   text: string;
   link: string;
+  /**
+   * The raw problems this service exists to remove. Surfaced underneath the
+   * hardened card by the cursor scanner on the homepage.
+   */
+  findings: string[];
 }
 
 export const SERVICES: ServiceItem[] = [
@@ -27,6 +32,11 @@ export const SERVICES: ServiceItem[] = [
     icon: ShieldAlert,
     text: "Deep vulnerability scans, logic flaw fixes, auth hardening, and architectural cleanup for apps built with Cursor, v0, Bolt, or Lovable.",
     link: "/services/web-development",
+    findings: [
+      "Service-role key shipped in the client bundle",
+      "Row-level security never enabled on 6 tables",
+      "Price and quantity trusted from the request body",
+    ],
   },
   {
     number: "02",
@@ -35,6 +45,11 @@ export const SERVICES: ServiceItem[] = [
     icon: Cpu,
     text: "Autonomous n8n pipelines, custom AI agents, and webhook integrations that handle content, leads, and operational tasks 24/7.",
     link: "/services/ai-automation",
+    findings: [
+      "Four hours a day lost to manual copy-paste",
+      "Webhook retries fire twice, duplicating records",
+      "No dead-letter queue when a run fails at 3am",
+    ],
   },
   {
     number: "03",

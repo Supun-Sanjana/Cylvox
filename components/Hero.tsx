@@ -1,442 +1,166 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } from "framer-motion";
-import {
-  ArrowUpRight,
-  ShieldCheck,
-  Zap,
-  Cpu,
-  Database,
-  Lock,
-  CheckCircle2,
-  Check,
-  Terminal,
-  Activity,
-  Sparkles
-} from "lucide-react";
+import { useRef } from "react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Aperture from "./Aperture";
 import { SectionLabel } from "./SectionLabel";
+import { usePointerVars, useParallax, useMagnetic } from "@/lib/motion";
+
+const CAPABILITIES = [
+  "Security audits",
+  "n8n automation",
+  "Headless Sanity",
+  "Core Web Vitals",
+  "Technical SEO",
+  "Next.js engineering",
+  "Supabase scaling",
+  "Conversion UI",
+];
 
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
-  const pointerX = useMotionValue(50);
-  const pointerY = useMotionValue(35);
-  const [isHovering, setIsHovering] = useState(false);
-  const [activeTab, setActiveTab] = useState<"audit" | "automation" | "cms" | "perf">("audit");
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { ref: fieldRef } = usePointerVars<HTMLDivElement>();
+  const parallax = useParallax(1);
+  const ctaRef = useMagnetic<HTMLAnchorElement>(0.22);
 
-  // Framer Motion Scroll Parallax
   const { scrollYProgress } = useScroll({
-    target: heroRef,
+    target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  const deckY = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const deckScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
-  const deckRotateX = useTransform(scrollYProgress, [0, 1], [0, 8]);
-  const auraOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.35]);
-
-  // Track pointer position relative to hero bounds
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-    const onMove = (e: PointerEvent) => {
-      const r = hero.getBoundingClientRect();
-      pointerX.set(((e.clientX - r.left) / r.width) * 100);
-      pointerY.set(((e.clientY - r.top) / r.height) * 100);
-    };
-    hero.addEventListener("pointermove", onMove, { passive: true });
-    return () => hero.removeEventListener("pointermove", onMove);
-  }, [pointerX, pointerY]);
-
-  // Auto switch tabs every 5.5s with easeInOut transition
-  useEffect(() => {
-    const tabs: Array<"audit" | "automation" | "cms" | "perf"> = ["audit", "automation", "cms", "perf"];
-    const interval = setInterval(() => {
-      setActiveTab((current) => {
-        const idx = tabs.indexOf(current);
-        return tabs[(idx + 1) % tabs.length];
-      });
-    }, 5500);
-    return () => clearInterval(interval);
-  }, []);
+  // The aperture sinks and closes as you scroll away from it.
+  const artY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const artScale = useTransform(scrollYProgress, [0, 1], [1, 0.82]);
+  const artOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+  const copyY = useTransform(scrollYProgress, [0, 1], ["0%", "-14%"]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <motion.section
-      ref={heroRef}
+    <section
+      ref={sectionRef}
       id="top"
-      style={{
-        "--x": useMotionTemplate`${pointerX}%`,
-        "--y": useMotionTemplate`${pointerY}%`
-      } as any}
-      onPointerEnter={() => setIsHovering(true)}
-      onPointerLeave={() => setIsHovering(false)}
-      className="hero-shell relative overflow-hidden isolate w-full min-h-[100svh] text-white m-0 rounded-none"
+      className="atmos relative isolate flex min-h-svh flex-col overflow-hidden"
     >
-      {/* ── Squish Exact Sky Blue & Electric Cerulean Gradient Base ── */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background: `
-            radial-gradient(ellipse 90% 80% at 50% -10%, #60a5fa 0%, #3b82f6 30%, #1d4ed8 65%, #0f172a 100%)
-          `,
-        }}
-      />
+      {/* ── Atmosphere ─────────────────────────────────────────── */}
+      <div ref={fieldRef} className="absolute inset-0 -z-10">
+        <div className="dots absolute inset-0 opacity-45" />
+        <div className="dots-live absolute inset-0" />
 
-      {/* ── Squish Ethereal Center Bloom (Pink/Peach/Purple Floral Aura) ── */}
-      <motion.div
-        aria-hidden="true"
-        style={{ opacity: auraOpacity }}
-        className="absolute inset-0 overflow-hidden pointer-events-none z-0"
-      >
-        {/* Central Pink/Peach Glowing Bloom */}
-        <div
-          className="absolute top-[8%] left-[25%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full filter blur-[95px] opacity-80 pointer-events-none animate-aura-1"
-          style={{
-            background: "radial-gradient(circle, rgba(244, 114, 182, 0.75) 0%, rgba(251, 146, 60, 0.55) 35%, rgba(192, 132, 252, 0.35) 65%, transparent 85%)",
-          }}
-        />
+        <motion.div
+          style={{ y: artY, scale: artScale, opacity: artOpacity }}
+          className="absolute left-1/2 top-[4%] w-[74vmin] -translate-x-1/2 sm:w-[62vmin] lg:left-[72%] lg:top-[6%] lg:w-[54vmin]"
+        >
+          <Aperture offset={parallax} className="w-full" />
+        </motion.div>
 
-        {/* Ambient Top Cyan Pulse */}
-        <div
-          className="absolute -top-[20%] -left-[10%] w-[65vw] h-[65vw] max-w-[850px] max-h-[850px] rounded-full filter blur-[110px] opacity-75 pointer-events-none animate-aura-2"
-          style={{
-            background: "radial-gradient(circle, rgba(56, 189, 248, 0.65) 0%, rgba(99, 102, 241, 0.45) 50%, transparent 75%)",
-          }}
-        />
+        {/* Keeps the headline readable where it crosses the bloom */}
+        <div className="scrim absolute inset-0 max-lg:hidden" />
 
-        {/* Squish Signature High-Contrast White Dot Grid Matrix */}
-        <div
-          className="absolute inset-0 opacity-35"
-          style={{
-            backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.9) 1.3px, transparent 1.3px)",
-            backgroundSize: "22px 22px",
-            maskImage: "radial-gradient(circle 400px at var(--x, 50%) var(--y, 35%), #000 0%, #000a 60%, transparent 100%)",
-          }}
-        />
-
-        {/* Noise overlay */}
-        <div className="grain absolute inset-0 opacity-20 mix-blend-overlay" />
-      </motion.div>
-
-      {/* ── Main Hero Content ──────────────────────────────────── */}
-      <div className="relative z-10 pt-[clamp(90px,12vh,140px)] pb-[clamp(40px,7vh,75px)] px-[clamp(16px,5vw,80px)] max-w-[1440px] mx-auto flex flex-col justify-between min-h-[100svh]">
-        
-        {/* Top Grid: Left Copy & Right Interactive Deck */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center my-auto">
-          
-          {/* Left Column: Hero Copy */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="lg:col-span-7 flex flex-col justify-center"
-          >
-          
-
-            {/* Squish-Style Editorial Headline */}
-            <SectionLabel className="mb-4 text-primary">Cylvox Solo Studio</SectionLabel>
-            <h1
-              className="font-display font-semibold text-balance leading-[1.1] tracking-tight
-                         text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground drop-shadow-md"
-            >
-              From <em className="text-primary not-italic">vibe-coded</em> to enterprise-ready.
-            </h1>
-
-            {/* Description */}
-            <p className="max-w-xl text-lg leading-[1.65] text-muted-foreground mb-8 font-medium">
-              An independent solo studio engineering digital systems that move. Specializing in 
-              <strong className="text-foreground font-bold"> n8n AI automations</strong>, 
-              <strong className="text-foreground font-bold"> Headless Sanity CMS</strong>, 
-              <strong className="text-foreground font-bold"> sub-second SEO performance</strong>, and 
-              <strong className="text-foreground font-bold"> security audits for AI-generated apps</strong>.
-            </p>
-
-            {/* HIGH-CONTRAST CALL TO ACTION BUTTONS WITH EXPLICIT DARK TEXT */}
-            <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 max-sm:w-full">
-              <motion.a
-                whileHover={{ scale: 1.04, boxShadow: "0 10px 40px rgba(0,0,0,0.3)" }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ ease: "easeInOut", duration: 0.2 }}
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#09080e] font-black text-sm px-6 py-3.5 sm:px-7 sm:py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:bg-[#ccff00] max-sm:hidden"
-                style={{ color: "#09080e" }}
-              >
-                <span style={{ color: "#09080e" }}>Audit Your App</span>
-                <ArrowUpRight className="w-4.5 h-4.5 stroke-3" style={{ color: "#09080e" }} />
-              </motion.a>
-
-              <motion.a
-                whileHover={{ scale: 1.03, backgroundColor: "rgba(15, 23, 42, 0.9)" }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ ease: "easeInOut", duration: 0.2 }}
-                href="/services"
-                className="inline-flex items-center justify-center gap-2 text-sm font-extrabold text-white px-6 py-3.5 sm:py-4 rounded-full bg-slate-950/70 border border-white/30 backdrop-blur-md shadow-md transition-all duration-200 max-sm:w-full"
-              >
-                Explore Capabilities
-              </motion.a>
-            </div>
-
-          </motion.div>
-
-          {/* Right Column: Interactive LIVE ENGINE Deck (Framed with Parallax Scroll) */}
-          <motion.div
-            id="deck"
-            style={{ y: deckY, scale: deckScale, rotateX: deckRotateX }}
-            className="lg:col-span-5 w-full perspective-1000 mt-4 lg:mt-0 scroll-mt-32"
-          >
-            <div className="relative rounded-2xl border border-white/20 bg-[#0a0d18]/90 p-4 sm:p-5.5 shadow-[0_30px_80px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-3xl">
-              
-              {/* Window Header */}
-              <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-white/10">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-rose-500/90 inline-block shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
-                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-amber-500/90 inline-block shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
-                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500/90 inline-block shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
-                  <span className="ml-1.5 sm:ml-2 text-[11px] sm:text-xs font-mono text-gray-300 flex items-center gap-1.5 font-semibold">
-                    <Terminal className="w-3.5 h-3.5 text-[#ccff00] shrink-0" /> cylvox-system-deck.v2
-                  </span>
-                </div>
-                
-                {/* LIVE ENGINE indicator - STATIC GLOW */}
-                <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 sm:px-2.5 rounded-full border border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
-                  <Activity className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400" /> LIVE ENGINE
-                </div>
-              </div>
-
-              {/* Tab Selector Buttons */}
-              <div className="grid grid-cols-4 gap-1 p-1 sm:p-1.5 bg-white/5 rounded-xl border border-white/10 mb-3.5 text-[11px] sm:text-xs font-bold">
-                {[
-                  { id: "audit", label: "Audit", icon: ShieldCheck },
-                  { id: "automation", label: "n8n AI", icon: Cpu },
-                  { id: "cms", label: "Sanity", icon: Database },
-                  { id: "perf", label: "SEO/Perf", icon: Zap },
-                ].map((t) => {
-                  const Icon = t.icon;
-                  const isActive = activeTab === t.id;
-                  return (
-                    <button
-                      key={t.id}
-                      onClick={() => setActiveTab(t.id as any)}
-                      className={`relative flex items-center justify-center gap-1 py-1.5 px-1 sm:py-2 sm:px-2 rounded-lg transition-all ${
-                        isActive
-                          ? "text-[#09080e] font-extrabold shadow-lg"
-                          : "text-gray-400 hover:text-gray-200 hover:bg-white/5"
-                      }`}
-                    >
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeTabIndicator"
-                          className="absolute inset-0 bg-[#ccff00] rounded-lg shadow-[0_4px_15px_rgba(204,255,0,0.3)]"
-                          transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                        />
-                      )}
-                      <span className="relative z-10 flex items-center gap-1">
-                        <Icon className="w-3.5 h-3.5 shrink-0" /> <span>{t.label}</span>
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Tab Content Display */}
-              <div className="bg-[#050811] rounded-xl p-3.5 sm:p-4.5 border border-white/10 min-h-[250px] sm:min-h-[265px] flex flex-col justify-between font-mono text-xs">
-                
-                {/* 1. VIBE CODE SECURITY AUDIT SCANNER */}
-                {activeTab === "audit" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                    className="space-y-2.5 sm:space-y-3"
-                  >
-                    <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
-                      <span className="text-[#ccff00] font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-                        <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ccff00] shrink-0" /> Vibe-Code Inspector
-                      </span>
-                      <span className="text-[9.5px] sm:text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30 font-extrabold">
-                        GRADE: A+
-                      </span>
-                    </div>
-
-                    <div className="space-y-1.5 sm:space-y-2 text-[10.5px] sm:text-[11px]">
-                      <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
-                        <span className="text-gray-200 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> API Keys & Secrets
-                        </span>
-                        <span className="text-emerald-400 font-bold">0 Leaked Keys</span>
-                      </div>
-
-                      <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
-                        <span className="text-gray-200 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Auth & Rate Limits
-                        </span>
-                        <span className="text-emerald-400 font-bold">Protected</span>
-                      </div>
-
-                      <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
-                        <span className="text-gray-200 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" /> Prompt Injection
-                        </span>
-                        <span className="text-[#ccff00] font-bold">Hardened</span>
-                      </div>
-
-                      <div className="flex items-center justify-between bg-white/[0.04] p-1.5 sm:p-2 rounded-lg border border-white/5">
-                        <span className="text-gray-200 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> SQLi / XSS Code
-                        </span>
-                        <span className="text-emerald-400 font-bold">Cleaned</span>
-                      </div>
-                    </div>
-
-                    <div className="pt-1.5 flex items-center justify-between text-[10.5px] sm:text-[11px] text-gray-400 font-sans">
-                      <span>Status: <strong className="text-white">Bulletproof</strong></span>
-                      <a href="/contact" className="text-[#ccff00] font-bold hover:underline flex items-center gap-1">
-                        Request Audit &rarr;
-                      </a>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* 2. N8N AI WORKFLOWS */}
-                {activeTab === "automation" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                    className="space-y-2.5 sm:space-y-3"
-                  >
-                    <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
-                      <span className="text-cyan-300 font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-                        <Cpu className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 shrink-0" /> n8n AI Pipeline
-                      </span>
-                      <span className="text-[9.5px] sm:text-[10px] text-cyan-300 bg-cyan-500/20 px-2 py-0.5 rounded border border-cyan-500/30 font-bold">
-                        24/7 ACTIVE
-                      </span>
-                    </div>
-
-                    {/* Visual Workflow Nodes */}
-                    <div className="flex items-center justify-between gap-1 py-2 sm:py-3 text-[10px]">
-                      <div className="flex-1 bg-cyan-950/50 border border-cyan-500/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
-                        <span className="block text-gray-400 text-[8.5px]">TRIGGER</span>
-                        <strong className="text-cyan-200 text-[10px]">Webhook</strong>
-                      </div>
-                      <span className="text-[#ccff00] font-bold">&rarr;</span>
-                      <div className="flex-1 bg-[#ccff00]/10 border border-[#ccff00]/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
-                        <span className="block text-gray-400 text-[8.5px]">AI AGENT</span>
-                        <strong className="text-[#ccff00] text-[10px]">n8n Engine</strong>
-                      </div>
-                      <span className="text-[#ccff00] font-bold">&rarr;</span>
-                      <div className="flex-1 bg-emerald-950/50 border border-emerald-500/40 p-1.5 sm:p-2 rounded-lg text-center shadow-inner">
-                        <span className="block text-gray-400 text-[8.5px]">OUTPUT</span>
-                        <strong className="text-emerald-200 text-[10px]">Sanity+Slack</strong>
-                      </div>
-                    </div>
-
-                    <div className="bg-white/[0.04] p-2 rounded-lg border border-white/5 text-[10.5px] sm:text-[11px] space-y-1 text-gray-300">
-                      <div className="flex justify-between">
-                        <span className="text-gray-400">Execution Speed:</span>
-                        <span className="text-emerald-400 font-bold">1.18s avg</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-400">Pipeline Uptime:</span>
-                        <span className="text-emerald-400 font-bold">99.99%</span>
-                      </div>
-                    </div>
-
-                    <p className="text-[10px] text-gray-400 font-sans italic">
-                      Automating web leads, CRM syncing, AI content pipelines & DB actions.
-                    </p>
-                  </motion.div>
-                )}
-
-                {/* 3. HEADLESS CMS (SANITY) */}
-                {activeTab === "cms" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                    className="space-y-2.5 sm:space-y-3"
-                  >
-                    <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
-                      <span className="text-rose-300 font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-                        <Database className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-400 shrink-0" /> Sanity CMS Engine
-                      </span>
-                      <span className="text-[9.5px] sm:text-[10px] text-rose-300 bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/30 font-bold">
-                        ISR REAL-TIME
-                      </span>
-                    </div>
-
-                    <div className="bg-[#03050c] p-2.5 sm:p-3 rounded-lg border border-white/10 font-mono text-[10px] sm:text-[10.5px] text-gray-300 leading-relaxed overflow-hidden">
-                      <span className="text-gray-400">// Sanity GROQ Schema Sync</span><br />
-                      <span className="text-rose-400">*[_type == &quot;landingPage&quot;]</span> &#123;<br />
-                      &nbsp;&nbsp;<span className="text-white">title</span>: <span className="text-amber-200">&quot;Cylvox Solo Studio&quot;</span>,<br />
-                      &nbsp;&nbsp;<span className="text-white">status</span>: <span className="text-emerald-400">&quot;PUBLISHED&quot;</span>,<br />
-                      &nbsp;&nbsp;<span className="text-white">revalidate</span>: <span className="text-[#ccff00]">60</span><br />
-                      &#125;
-                    </div>
-
-                    <div className="flex items-center justify-between text-[10.5px] sm:text-[11px] text-gray-300 pt-1 font-sans">
-                      <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                        <Check className="w-3.5 h-3.5 shrink-0" /> No Code Redeployment Required
-                      </span>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* 4. SPEED & SEO ENGINE */}
-                {activeTab === "perf" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                    className="space-y-2.5 sm:space-y-3"
-                  >
-                    <div className="flex items-center justify-between text-gray-200 border-b border-white/10 pb-2">
-                      <span className="text-emerald-300 font-bold flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-                        <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 shrink-0" /> Core Web Vitals & SEO
-                      </span>
-                      <span className="text-[9.5px] sm:text-[10px] text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/30 font-bold">
-                        99/100 LIGHTHOUSE
-                      </span>
-                    </div>
-
-                    {/* Gauges */}
-                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center py-1.5 sm:py-2 font-mono">
-                      <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-1.5 sm:p-2">
-                        <div className="text-base sm:text-lg font-black text-emerald-400">100</div>
-                        <div className="text-[8.5px] sm:text-[9px] text-gray-300 font-bold">PERF</div>
-                      </div>
-                      <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-1.5 sm:p-2">
-                        <div className="text-base sm:text-lg font-black text-emerald-400">100</div>
-                        <div className="text-[8.5px] sm:text-[9px] text-gray-300 font-bold">SEO</div>
-                      </div>
-                      <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-1.5 sm:p-2">
-                        <div className="text-base sm:text-lg font-black text-[#ccff00]">0.38s</div>
-                        <div className="text-[8.5px] sm:text-[9px] text-gray-300 font-bold">LCP</div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white/[0.04] p-2 rounded-lg border border-white/5 text-[10.5px] sm:text-[11px] space-y-1 text-gray-300">
-                      <div className="flex justify-between">
-                        <span className="text-gray-400">Structured Schema:</span>
-                        <span className="text-emerald-400 font-bold">Validated</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-400">Edge Cache Ratio:</span>
-                        <span className="text-emerald-400 font-bold">99.4%</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
-
+        <div className="horizon absolute inset-x-0 bottom-0 h-[42vh]" />
+        <div className="grain absolute inset-0" />
       </div>
 
-    </motion.section>
+      {/* ── Copy ───────────────────────────────────────────────── */}
+      <motion.div
+        style={{ y: copyY, opacity: copyOpacity }}
+        className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-4 pb-14 pt-36 sm:px-8 sm:pb-20 sm:pt-44 lg:pb-24"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.28, 1] }}
+        >
+          <SectionLabel>Cylvox Solo Studio</SectionLabel>
+        </motion.div>
+
+        <h1 className="font-display mt-7 max-w-[19ch] text-balance text-[clamp(2.9rem,9.2vw,7.5rem)] leading-[0.94] text-foreground">
+          {["From", "vibe-coded", "to"].map((word, i) => (
+            <motion.span
+              key={word}
+              initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{
+                duration: 1,
+                delay: 0.12 + i * 0.09,
+                ease: [0.22, 1, 0.28, 1],
+              }}
+              className={`mr-[0.28em] inline-block ${
+                word === "vibe-coded" ? "italic text-primary" : ""
+              }`}
+            >
+              {word}
+            </motion.span>
+          ))}
+          <motion.span
+            initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1, delay: 0.42, ease: [0.22, 1, 0.28, 1] }}
+            className="inline-block"
+          >
+            enterprise-ready
+            <span className="text-primary">.</span>
+          </motion.span>
+        </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.28, 1] }}
+          className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
+        >
+          An independent studio that audits AI-generated apps for the flaws
+          their builders never saw, then re-engineers them into systems that
+          hold under real traffic.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.68, ease: [0.22, 1, 0.28, 1] }}
+          className="mt-11 flex flex-wrap items-center gap-3 sm:gap-4"
+        >
+          <Link
+            ref={ctaRef}
+            href="/contact"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-[0_14px_44px_-12px_rgba(204,255,0,0.6)] transition-colors duration-300 hover:bg-foreground"
+          >
+            Audit your app
+            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
+
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 rounded-full border border-input px-7 py-4 text-sm font-medium text-foreground transition-colors duration-300 hover:border-primary/60 hover:text-primary"
+          >
+            Explore capabilities
+          </Link>
+        </motion.div>
+      </motion.div>
+
+      {/* ── Drifting capability rail ───────────────────────────── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.9 }}
+        className="relative border-t border-border/70 bg-background/25 py-5 backdrop-blur-sm"
+      >
+        <div className="flex w-max animate-drift items-center gap-10 pl-10">
+          {[...CAPABILITIES, ...CAPABILITIES].map((item, i) => (
+            <span
+              key={`${item}-${i}`}
+              className="tech-label flex shrink-0 items-center gap-10 text-muted-foreground"
+            >
+              {item}
+              <span
+                aria-hidden="true"
+                className="size-1 rounded-full bg-primary/60"
+              />
+            </span>
+          ))}
+        </div>
+      </motion.div>
+    </section>
   );
 }
