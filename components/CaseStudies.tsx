@@ -2,51 +2,75 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "@/components/SectionLabel";
 import Link from "next/link";
+import { CaseStudyCarousel } from "@/components/CaseStudyCarousel";
 
 const projects = [
   {
-    tag: "SEO & Core Web Vitals",
-    title: "Engineering a flawless 99/100 performance infrastructure",
-    description: "From a vibe-coded prototype to an enterprise-ready architecture. We completely rebuilt the technical SEO, dynamic routing, and caching layers to achieve near-instant load times.",
-    image: "/placeholders/squish_veiled_figure_1786554718616.jpg",
-    slug: 'outquest-technical-seo',
+    tag: "Technical SEO Plugin",
+    title: "Zymgut (Brine & Thrive)",
+    description: "Optimized a WordPress health and fermentation blog using custom plugin architecture, dramatically improving organic search visibility for gut health recipes and tutorials.",
+    images: [
+      
+      "/case-studies/zymgut/plugin-score-1.png",
+      "/case-studies/zymgut/plugin-score-2.png"
+    ],
+    slug: 'zymgut',
     features: [
-      { title: "Dynamic Metadata", text: "Automated schema.org generation for every unique page." },
-      { title: "Edge Caching", text: "Global CDN distribution with sub-second ISR revalidation." }
+      { title: "Custom Architecture", text: "Bespoke plugin development for deep technical SEO controls." },
+      { title: "Organic Growth", text: "Structured data implementation for rich recipe snippets." }
     ],
     stats: [
-      { metric: "99/100", label: "Desktop Score", text: "Verified by Google PageSpeed Insights." },
-      { metric: "<1.8s", label: "LCP Time", text: "Lightning fast initial load speeds." }
+      { metric: "100%", label: "Indexing Rate", text: "Automated search engine pings." },
+      { metric: "#1", label: "Page Rankings", text: "Captured high-intent niche keywords." }
     ]
   },
   {
-    tag: "Vibe-Code Security Audit",
-    title: "Hardening a Cursor-Built Fintech App Before $2.5M Seed Round",
-    description: "Founders move fast with AI, but security often lags behind. We audited and secured the entire authentication and database layer to pass strict enterprise compliance checks.",
-    image: "/placeholders/squish_crystals_1786554808524.jpg",
-    slug: '',
+    tag: "Next.js SEO Overhaul",
+    title: "Join OutQuest Global Opportunities",
+    description: "Engineered a complete technical SEO overhaul for a global opportunity platform built on Next.js. Implemented dynamic sitemaps, server-side metadata, and schema markup.",
+    images: [
+      "/case-studies/out-quest/joinoutquest.png",
+      "/case-studies/out-quest/joinoutquest desktop per.png",
+      "/case-studies/out-quest/joinoutquest mobile per.png"
+    ],
+    slug: 'join-outquest',
     features: [
-      { title: "RLS Policies", text: "Strict Row Level Security implementation in Supabase." },
-      { title: "Type Safety", text: "End-to-end generic typing replacing brittle 'any' casts." }
+      { title: "Dynamic Schemas", text: "Automated JSON-LD generation for hundreds of quests." },
+      { title: "Server-Side Metadata", text: "Perfectly optimized open-graph and title tags injected on the edge." }
     ],
     stats: [
-      { metric: "$2.5M", label: "Seed Funding", text: "Successfully cleared technical due diligence." },
-      { metric: "0", label: "Vulnerabilities", text: "Critical exploits patched before launch." }
+      { metric: "99/100", label: "Core Web Vitals", text: "Verified by Google PageSpeed Insights." },
+      { metric: "Fast", label: "Crawl Budget", text: "Optimized XML sitemaps and robots.txt." }
     ]
   },
   {
-    tag: "Headless CMS Migration",
-    title: "WordPress to Headless Sanity CMS Migration with Sub-Second ISR",
-    description: "A complete replatforming to decouple the frontend from the monolithic backend, ensuring a lightweight edge-rendered experience while retaining full editor control.",
-    image: "/placeholders/squish_crystals_1786554808524.jpg",
-    slug: '',
+    tag: "Internal Custom ERP",
+    title: "SG Plantation ERP",
+    description: "Developed a highly secure, custom Next.js Enterprise Resource Planning system for internal plantation management. Engineered for high-concurrency data entry and RBAC.",
+    images: ["/placeholders/squish_crystals_1786554808524.jpg"],
+    slug: 'sg-plantation-erp',
     features: [
-      { title: "Content Modeling", text: "Structured, typed schemas replacing unstructured WYSIWYG blobs." },
-      { title: "Visual Editing", text: "Live real-time preview side-by-side with the Next.js frontend." }
+      { title: "Role-Based Access", text: "Strict data siloing for managers and field workers." },
+      { title: "Real-Time Tracking", text: "Live operational data sync across the plantation." }
     ],
     stats: [
-      { metric: "3x", label: "Conversion Rate", text: "Increase in lead capture post-migration." },
-      { metric: "12ms", label: "TTFB", text: "Time to first byte on static routes globally." }
+      { metric: "0", label: "Downtime", text: "Highly available serverless architecture." },
+      { metric: "10x", label: "Faster Sync", text: "Optimized internal data pipelines." }
+    ]
+  },
+  {
+    tag: "Internal Fintech ERP",
+    title: "Micro Credit Tracking System",
+    description: "Architecting a robust, scalable ERP for tracking micro-credit loans and financial data. Built on a high-performance stack to ensure data integrity and seamless financial operations.",
+    images: ["/placeholders/squish_veiled_figure_1786554718616.jpg"],
+    slug: 'micro-credit-erp',
+    features: [
+      { title: "Financial Ledger", text: "Immutable transactional records and automated sync." },
+      { title: "Data Integrity", text: "End-to-end type safety and strict schema validation." }
+    ],
+    stats: [
+      { metric: "100%", label: "Accuracy", text: "Automated reconciliation pipelines." },
+      { metric: "<50ms", label: "Query Time", text: "Highly optimized database indexes." }
     ]
   }
 ];
@@ -70,13 +94,7 @@ export default function CaseStudies() {
               <div className={`grid lg:grid-cols-2 gap-10 lg:gap-20 items-center ${i % 2 !== 0 ? 'lg:rtl' : ''}`}>
                 {/* Image Side */}
                 <div className={`relative aspect-square sm:aspect-[4/3] lg:aspect-[1.1/1] w-full overflow-hidden rounded-[2.5rem] bg-surface border border-border shadow-sm ${i % 2 !== 0 ? 'ltr:lg:order-last' : ''}`}>
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-                  />
+                  <CaseStudyCarousel images={project.images} title={project.title} />
                 </div>
                 
                 {/* Copy Side */}

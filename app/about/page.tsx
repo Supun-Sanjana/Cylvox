@@ -40,7 +40,7 @@ export default function AboutPage() {
               Independent & Engineer-Led
             </div>
             <h1 className="text-5xl md:text-7xl font-display mb-6 tracking-tight leading-[1.05]">
-              Small team. <em className="text-primary not-italic">No black boxes.</em>
+              One engineer. <em className="text-primary not-italic">No black boxes.</em>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-5">
               Cylvox operates as an independent solo studio to eliminate bloat. Every project is engineered directly without middlemen — no account managers relaying messages, no offshore subcontractors you&apos;ll never meet.
@@ -51,8 +51,8 @@ export default function AboutPage() {
           </div>
           <div className="relative w-full aspect-square rounded-[2.5rem] overflow-hidden border border-border shadow-sm">
             <img
-              src="/placeholders/squish_veiled_figure_1786554718616.jpg"
-              alt="Ethereal representation of our small team"
+              src="/placeholders/squish_dune_solo_figure.jpg"
+              alt="Ethereal representation of a lone, highly skilled engineer"
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>

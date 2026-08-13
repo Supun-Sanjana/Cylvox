@@ -7,10 +7,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Home
     '',
     // Case Studies
-    '/case-studies',
-    '/case-studies/outquest-technical-seo',
-    '/case-studies/zymgut-trust-signal-auditor',
-    '/case-studies/acme-web-revamp',
+    '/case-studies/zymgut',
+    '/case-studies/join-outquest',
+    '/case-studies/sg-plantation-erp',
+    '/case-studies/micro-credit-erp',
     // Services
     '/services',
     '/services/web-development',

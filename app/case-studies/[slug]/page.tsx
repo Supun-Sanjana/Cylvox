@@ -15,32 +15,41 @@ type CaseStudy = {
 };
 
 const caseStudyData: Record<string, CaseStudy> = {
-  'zymgut-trust-signal-auditor': {
-    title: 'Zymgut Trust Signal Auditor',
+  'zymgut': {
+    title: 'Zymgut (Brine & Thrive)',
     client: 'Zymgut',
-    problem: 'Low trust scores due to AI‑generated content',
-    solution: 'Implemented AI‑driven audit and remediation pipeline.',
-    result: 'Trust score increased from 45 to 92.',
-    tech: ['Next.js', 'Vercel', 'OpenAI'],
-    slug: 'zymgut-trust-signal-auditor',
+    problem: 'Low search visibility for gut health recipes',
+    solution: 'Optimized a WordPress health and fermentation blog using custom plugin architecture.',
+    result: 'Dramatically improved organic rankings and indexing via structured data.',
+    tech: ['WordPress', 'PHP', 'Technical SEO', 'Schema.org'],
+    slug: 'zymgut',
   },
-  'acme-web-revamp': {
-    title: 'Acme Web Revamp',
-    client: 'Acme Corp',
-    problem: 'Outdated architecture and poor SEO performance',
-    solution: 'Rebuilt site with modern stack and optimized core web vitals.',
-    result: 'Core Web Vitals ↑ to 99/100, traffic +45%',
-    tech: ['React', 'Tailwind', 'Vercel'],
-    slug: 'acme-web-revamp',
-  },
-  'outquest-technical-seo': {
-    title: 'OutQuest — Complete Technical SEO & Performance Infrastructure',
+  'join-outquest': {
+    title: 'Join OutQuest SEO Overhaul',
     client: 'OutQuest',
-    problem: 'Scalable SEO for dynamic CMS‑driven site',
-    solution: 'Implemented dynamic metadata, sitemap, schema, performance, and crawlability infrastructure.',
-    result: 'Robust SEO foundation with automated indexing and fast page loads.',
-    tech: ['Next.js', 'Supabase', 'Vercel', 'Schema.org'],
-    slug: 'outquest-technical-seo',
+    problem: 'Scalable SEO for dynamic CMS-driven global opportunity platform',
+    solution: 'Engineered a complete technical SEO overhaul with dynamic sitemaps, server-side metadata, and schema markup.',
+    result: 'Captured high-intent search traffic and secured a flawless technical SEO foundation.',
+    tech: ['Next.js', 'Vercel', 'Schema.org'],
+    slug: 'join-outquest',
+  },
+  'sg-plantation-erp': {
+    title: 'SG Plantation ERP',
+    client: 'Internal',
+    problem: 'Manual operational tracking and siloed internal data',
+    solution: 'Developed a highly secure, custom Next.js Enterprise Resource Planning system with strict RBAC.',
+    result: 'Enabled high-concurrency data entry and real-time operational tracking.',
+    tech: ['Next.js', 'PostgreSQL', 'Tailwind'],
+    slug: 'sg-plantation-erp',
+  },
+  'micro-credit-erp': {
+    title: 'Micro Credit ERP / Tracking System',
+    client: 'Internal',
+    problem: 'Inefficient manual loan tracking and reconciliation',
+    solution: 'Architecting a robust, scalable ERP for tracking micro-credit loans and financial data.',
+    result: 'Ensures data integrity, real-time analytics, and seamless financial operations.',
+    tech: ['Next.js', 'Supabase', 'Edge Functions'],
+    slug: 'micro-credit-erp',
   },
 };
 
@@ -82,7 +91,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Home', path: '/' },
-          { name: 'Case Studies', path: '/case-studies' },
+          { name: 'Work', path: '/work' },
           { name: data.title, path: `/case-studies/${data.slug}` },
         ])}
       />
@@ -93,8 +102,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <p className="mb-4"><strong>Solution:</strong> {data.solution}</p>
         <p className="mb-4"><strong>Result:</strong> {data.result}</p>
         <p className="mb-4"><strong>Technologies:</strong> {data.tech.join(', ')}</p>
-        <Link href="/case-studies" className="inline-block mt-6 bg-primary text-primary-foreground rounded-full px-4 py-2 hover:bg-primary/80 transition">
-          Back to Case Studies
+        <Link href="/work" className="inline-block mt-6 bg-primary text-primary-foreground rounded-full px-4 py-2 hover:bg-primary/80 transition">
+          Back to Work
         </Link>
       </section>
     </>
