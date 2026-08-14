@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'OutQuest — Complete Technical SEO & Performance | Cylvox Case Study',
   description: 'How Cylvox built a full technical SEO, indexing, structured data, and performance infrastructure for OutQuest\'s Next.js platform on Vercel with Supabase.',
   alternates: {
-    canonical: `${baseUrl}/case-studies/outquest-technical-seo`,
+    canonical: `${baseUrl}/case-studies/join-outquest`,
   },
   openGraph: {
     title: 'OutQuest — Complete Technical SEO & Performance | Cylvox Case Study',
     description: 'How Cylvox built a full technical SEO, indexing, structured data, and performance infrastructure for OutQuest\'s Next.js platform on Vercel with Supabase.',
-    url: `${baseUrl}/case-studies/outquest-technical-seo`,
+    url: `${baseUrl}/case-studies/join-outquest`,
     siteName: 'Cylvox',
     images: [
       {
@@ -38,7 +38,7 @@ export default function OutQuestCaseStudyPage() {
   const breadcrumb = breadcrumbSchema([
     { name: 'Home', path: '/' },
     { name: 'Case Studies', path: '/case-studies' },
-    { name: 'OutQuest Technical SEO', path: '/case-studies/outquest-technical-seo' },
+    { name: 'OutQuest Technical SEO', path: '/case-studies/join-outquest' },
   ])
 
   return (

@@ -9,77 +9,70 @@ export function TrustSignalHero() {
   const transition = { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const };
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-background pt-32 pb-16">
-      <div className="relative z-10 container mx-auto px-6 max-w-7xl">
-        <div className="flex flex-col items-center text-center space-y-8">
-          
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={transition}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-foreground bg-surface rounded-full border border-border shadow-sm">
-              <CheckCircle2 className="w-4 h-4 text-primary" />
-              Free WordPress Plugin
-            </span>
-          </motion.div>
+    <section className="relative pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <div className="flex-1 text-left">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={transition}
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-foreground bg-surface rounded-full border border-border shadow-sm mb-8">
+            <CheckCircle2 className="w-4 h-4 text-primary" />
+            Free WordPress Plugin
+          </div>
+        </motion.div>
 
-          <motion.h1 
-            className="text-6xl sm:text-7xl lg:text-[5.5rem] font-display tracking-tight leading-[1.05] text-foreground max-w-4xl"
-            initial={reduce ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition, delay: 0.1 }}
-          >
-            Stop Losing Traffic to <br className="hidden md:block" />
-            <em className="text-primary not-italic">Hidden E-E-A-T Gaps.</em>
-          </motion.h1>
+        <motion.h1 
+          className="text-5xl md:text-7xl font-display mb-6 tracking-tight leading-[1.05] text-foreground"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...transition, delay: 0.1 }}
+        >
+          Stop Losing Traffic to <br className="hidden xl:block" />
+          <em className="text-primary not-italic">Hidden E-E-A-T Gaps.</em>
+        </motion.h1>
 
-          <motion.p 
-            className="text-lg md:text-xl text-muted-foreground max-w-[55ch] leading-relaxed"
-            initial={reduce ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition, delay: 0.2 }}
-          >
-            Scan your WordPress site for missing trust signals, indexability traps, and authorship errors. Get a 0-100 score and fix issues before Google drops your rankings.
-          </motion.p>
+        <motion.p 
+          className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...transition, delay: 0.2 }}
+        >
+          Scan your WordPress site for missing trust signals, indexability traps, and authorship errors. Get a 0-100 score and fix issues before Google drops your rankings.
+        </motion.p>
 
-          <motion.div 
-            className="flex flex-col sm:flex-row items-center gap-4 pt-6"
-            initial={reduce ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition, delay: 0.3 }}
+        <motion.div 
+          className="flex flex-col sm:flex-row items-start gap-4 pt-8"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...transition, delay: 0.3 }}
+        >
+          <Link 
+            href="#waitlist" 
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-8 py-4 font-medium transition-transform hover:scale-105"
           >
-            <Link 
-              href="#waitlist" 
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 font-semibold text-primary-foreground bg-primary rounded-full transition-transform duration-300 hover:scale-[1.03]"
-            >
-              Coming Soon to WordPress.org
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
+            Coming Soon to WP.org
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+      </div>
 
-          {/* Hero Visual */}
-          <motion.div 
-            className="w-full max-w-5xl mt-20 relative"
-            initial={reduce ? false : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition, delay: 0.4, duration: 1.2 }}
-          >
-            <div className="relative rounded-[2.5rem] overflow-hidden border border-border bg-surface shadow-sm">
-              <div className="relative w-full aspect-[16/9]">
-                <Image
-                  src="/placeholders/squish_veiled_figure_1786554718616.jpg"
-                  alt="Cylvox Trust Signal Auditor dashboard aesthetic preview"
-                  fill
-                  priority
-                  sizes="(max-width: 1200px) 100vw, 1200px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
+      <div className="flex-1 w-full mt-12 lg:mt-0">
+        <motion.div 
+          className="relative aspect-[4/3] lg:aspect-[1.1/1] w-full rounded-[2.5rem] overflow-hidden border border-border shadow-sm bg-surface"
+          initial={reduce ? false : { opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ ...transition, delay: 0.4, duration: 1.2 }}
+        >
+          <Image
+            src="/placeholders/dune_auditor_monolith.jpg"
+            alt="Dune aesthetic representation of navigating trust signals"
+            fill
+            priority
+            sizes="(max-width: 1200px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </motion.div>
       </div>
     </section>
   );

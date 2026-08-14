@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, Users } from "lucide-react";
+import { ArrowUpRight, Users, Lock } from "lucide-react";
 import { SectionLabel } from "@/components/SectionLabel";
 import Link from "next/link";
 import { CaseStudyCarousel } from "@/components/CaseStudyCarousel";
@@ -9,6 +9,7 @@ const projects = [
     tag: "Technical SEO Plugin",
     title: "Zymgut (Brine & Thrive)",
     padded: true,
+    liveUrl: "https://zymgut.com",
     description: "Optimized a WordPress health and fermentation blog using custom plugin architecture, dramatically improving organic search visibility for gut health recipes and tutorials.",
     images: [
       
@@ -22,13 +23,14 @@ const projects = [
     ],
     stats: [
       { metric: "100%", label: "Indexing Rate", text: "Automated search engine pings." },
-      { metric: "#1", label: "Page Rankings", text: "Captured high-intent niche keywords." }
+      { metric: "Valid", label: "Rich Snippets", text: "Flawless JSON-LD schema injection." }
     ]
   },
   {
     tag: "Next.js SEO Overhaul",
     title: "Join OutQuest Global Opportunities",
     padded: true,
+    liveUrl: "https://joinoutquest.com",
     description: "Engineered a complete technical SEO overhaul for a global opportunity platform built on Next.js. Implemented dynamic sitemaps, server-side metadata, and schema markup.",
     images: [
       "/case-studies/out-quest/joinoutquest.png",
@@ -48,6 +50,7 @@ const projects = [
   {
     tag: "Internal Custom ERP",
     title: "SG Plantation ERP",
+    internal: true,
     description: "Developed a highly secure, custom Next.js Enterprise Resource Planning system for internal plantation management. Engineered for high-concurrency data entry and RBAC.",
     images: ["/placeholders/squish_crystals_1786554808524.jpg"],
     slug: 'sg-plantation-erp',
@@ -63,6 +66,7 @@ const projects = [
   {
     tag: "Internal Fintech ERP",
     title: "Micro Credit Tracking System",
+    internal: true,
     description: "Architecting a robust, scalable ERP for tracking micro-credit loans and financial data. Built on a high-performance stack to ensure data integrity and seamless financial operations.",
     images: ["/placeholders/squish_veiled_figure_1786554718616.jpg"],
     slug: 'micro-credit-erp',
@@ -80,6 +84,7 @@ const projects = [
     title: "NVTI Baddegama",
     collab: true,
     padded: true,
+    liveUrl: "https://nvtibaddegama.site",
     description: "A comprehensive vocational training platform for the Vocational Training Authority Baddegama Centre. Built collaboratively with pure PHP and MySQL, delivering lightning-fast performance without framework bloat.",
     images: ["/case-studies/nvti-baddegama/nvti-baddegama.png"],
     features: [
@@ -152,8 +157,8 @@ export default function CaseStudies() {
                       ))}
                     </div>
 
-                    {project.slug && (
-                      <div className="mt-12">
+                    <div className="mt-12 flex flex-wrap items-center gap-4">
+                      {project.slug && (
                         <Link 
                           href={`/case-studies/${project.slug}`}
                           className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-8 py-4 font-medium transition-transform hover:scale-105"
@@ -161,14 +166,35 @@ export default function CaseStudies() {
                           Read full case study
                           <ArrowUpRight className="size-4" />
                         </Link>
-                      </div>
-                    )}
+                      )}
+                      {(project as any).liveUrl && (
+                        <a 
+                          href={(project as any).liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-transparent text-foreground px-8 py-4 font-medium transition-colors hover:bg-surface"
+                        >
+                          Visit live site
+                          <ArrowUpRight className="size-4" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
 
                 {/* Image Side */}
                 <div className={`max-lg:order-2 relative aspect-square sm:aspect-[4/3] lg:aspect-[1.1/1] w-full overflow-hidden rounded-[2.5rem] bg-surface border border-border shadow-sm ${i % 2 === 0 ? 'lg:order-first' : ''}`}>
                   <CaseStudyCarousel images={project.images} title={project.title} padded={(project as any).padded} />
+                  
+                  {(project as any).internal && (
+                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-8 text-center bg-background/40 backdrop-blur-xl">
+                      <div className="bg-background/90 border border-border/50 p-6 sm:p-8 rounded-2xl max-w-[280px] sm:max-w-xs shadow-2xl">
+                        <Lock className="w-8 h-8 text-muted-foreground mx-auto mb-4 opacity-50" />
+                        <h4 className="font-display text-lg sm:text-xl font-bold mb-2 text-foreground">Internal System</h4>
+                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">This system is developed for internal use only. No preview/live URL available, but full details are in the case study.</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
