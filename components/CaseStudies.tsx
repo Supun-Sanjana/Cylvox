@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Users } from "lucide-react";
 import { SectionLabel } from "@/components/SectionLabel";
 import Link from "next/link";
 import { CaseStudyCarousel } from "@/components/CaseStudyCarousel";
@@ -8,6 +8,7 @@ const projects = [
   {
     tag: "Technical SEO Plugin",
     title: "Zymgut (Brine & Thrive)",
+    padded: true,
     description: "Optimized a WordPress health and fermentation blog using custom plugin architecture, dramatically improving organic search visibility for gut health recipes and tutorials.",
     images: [
       
@@ -27,6 +28,7 @@ const projects = [
   {
     tag: "Next.js SEO Overhaul",
     title: "Join OutQuest Global Opportunities",
+    padded: true,
     description: "Engineered a complete technical SEO overhaul for a global opportunity platform built on Next.js. Implemented dynamic sitemaps, server-side metadata, and schema markup.",
     images: [
       "/case-studies/out-quest/joinoutquest.png",
@@ -72,6 +74,22 @@ const projects = [
       { metric: "100%", label: "Accuracy", text: "Automated reconciliation pipelines." },
       { metric: "<50ms", label: "Query Time", text: "Highly optimized database indexes." }
     ]
+  },
+  {
+    tag: "Institutional Portal",
+    title: "NVTI Baddegama",
+    collab: true,
+    padded: true,
+    description: "A comprehensive vocational training platform for the Vocational Training Authority Baddegama Centre. Built collaboratively with pure PHP and MySQL, delivering lightning-fast performance without framework bloat.",
+    images: ["/case-studies/nvti-baddegama/nvti-baddegama.png"],
+    features: [
+      { title: "Pure PHP Architecture", text: "Lightweight, highly optimized custom backend running on raw PHP & MySQL." },
+      { title: "Dynamic Catalog", text: "Database-driven course listings, leader profiles, and real-time student testimonials." }
+    ],
+    stats: [
+      { metric: "PHP", label: "Core Stack", text: "Zero heavy frameworks, pure performance." },
+      { metric: "Live", label: "Status", text: "Actively serving students and staff." }
+    ]
   }
 ];
 
@@ -91,49 +109,66 @@ export default function CaseStudies() {
             <div key={i} className="flex flex-col gap-6 lg:gap-8">
               
               {/* Main Bento Block */}
-              <div className={`grid lg:grid-cols-2 gap-10 lg:gap-20 items-center ${i % 2 !== 0 ? 'lg:rtl' : ''}`}>
-                {/* Image Side */}
-                <div className={`relative aspect-square sm:aspect-[4/3] lg:aspect-[1.1/1] w-full overflow-hidden rounded-[2.5rem] bg-surface border border-border shadow-sm ${i % 2 !== 0 ? 'ltr:lg:order-last' : ''}`}>
-                  <CaseStudyCarousel images={project.images} title={project.title} />
-                </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                 
                 {/* Copy Side */}
-                <div className="flex flex-col">
-                  <div className="inline-flex">
-                    <span className="rounded-full bg-surface border border-border px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground shadow-sm">
-                      {project.tag}
-                    </span>
-                  </div>
-                  
-                  <h3 className="mt-8 font-display text-4xl sm:text-5xl lg:text-[4rem] leading-[1.05] text-foreground tracking-tight">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-lg">
-                    {project.description}
-                  </p>
-                  
-                  {/* Features */}
-                  <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8 pt-10 border-t border-border">
-                    {project.features.map((feat, j) => (
-                      <div key={j}>
-                        <h4 className="font-display text-2xl mb-3 text-foreground">{feat.title}</h4>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{feat.text}</p>
+                <div className={`max-lg:contents flex flex-col ${i % 2 === 0 ? 'lg:order-last' : ''}`}>
+                  <div className="max-lg:order-1">
+                    <div className="inline-flex flex-wrap items-center gap-2 mb-4 sm:mb-6">
+                      <div className="inline-flex items-center gap-2">
+                        <span className="flex items-center justify-center size-5 rounded-full bg-primary/20">
+                          <span className="size-2 rounded-full bg-primary" />
+                        </span>
+                        <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-muted-foreground">
+                          {project.tag}
+                        </span>
                       </div>
-                    ))}
-                  </div>
-
-                  {project.slug && (
-                    <div className="mt-12">
-                      <Link 
-                        href={`/case-studies/${project.slug}`}
-                        className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-8 py-4 font-medium transition-transform hover:scale-105"
-                      >
-                        Read full case study
-                        <ArrowUpRight className="size-4" />
-                      </Link>
+                      
+                      {(project as any).collab && (
+                        <span className="ml-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent/50 border border-border text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-muted-foreground">
+                          <Users className="w-3.5 h-3.5" />
+                          Collab
+                        </span>
+                      )}
                     </div>
-                  )}
+                    
+                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-display font-medium text-foreground tracking-tight leading-[1.1]">
+                      {project.title}
+                    </h3>
+                  </div>
+                  
+                  <div className="max-lg:order-3">
+                    <p className="mt-4 lg:mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
+                      {project.description}
+                    </p>
+                    
+                    {/* Features */}
+                    <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8 pt-10 border-t border-border">
+                      {project.features.map((feat, j) => (
+                        <div key={j}>
+                          <h4 className="font-display text-2xl mb-3 text-foreground">{feat.title}</h4>
+                          <p className="text-muted-foreground text-sm leading-relaxed">{feat.text}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {project.slug && (
+                      <div className="mt-12">
+                        <Link 
+                          href={`/case-studies/${project.slug}`}
+                          className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-8 py-4 font-medium transition-transform hover:scale-105"
+                        >
+                          Read full case study
+                          <ArrowUpRight className="size-4" />
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Image Side */}
+                <div className={`max-lg:order-2 relative aspect-square sm:aspect-[4/3] lg:aspect-[1.1/1] w-full overflow-hidden rounded-[2.5rem] bg-surface border border-border shadow-sm ${i % 2 === 0 ? 'lg:order-first' : ''}`}>
+                  <CaseStudyCarousel images={project.images} title={project.title} padded={(project as any).padded} />
                 </div>
               </div>
 

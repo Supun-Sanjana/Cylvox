@@ -11,6 +11,8 @@ export default function ContactForm() {
   const [errorMsg, setErrorMsg] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [messageLength, setMessageLength] = useState(0);
+  const MAX_MESSAGE_LENGTH = 1000;
 
   const allowedExtensions = ["txt", "docx", "doc", "csv", "xlsx", "xls", "pdf", "rtf", "odt"];
 
@@ -132,7 +134,7 @@ export default function ContactForm() {
                   name="name"
                   required
                   placeholder="Jane Doe"
-                  className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                  className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                 />
               </div>
               <div className="space-y-2">
@@ -143,7 +145,7 @@ export default function ContactForm() {
                   type="email"
                   required
                   placeholder="jane@example.com"
-                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                 />
               </div>
             </div>
@@ -172,20 +174,31 @@ export default function ContactForm() {
                   name="budget"
                   type="text"
                   placeholder="e.g. $500 - $1000 or Flexible"
-                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-foreground">Project Details</label>
+              <div className="flex items-center justify-between">
+                <label htmlFor="message" className="text-sm font-medium text-foreground">Project Details</label>
+                <span className={`text-xs tabular-nums transition-colors ${
+                  messageLength > MAX_MESSAGE_LENGTH ? 'text-red-400 font-semibold' : 'text-muted-foreground'
+                }`}>
+                  {messageLength} / {MAX_MESSAGE_LENGTH}
+                </span>
+              </div>
               <textarea
                 id="message"
                 name="message"
                 required
                 rows={5}
+                maxLength={MAX_MESSAGE_LENGTH}
+                onChange={(e) => setMessageLength(e.target.value.length)}
                 placeholder="Tell us about your goals, current stack, and timeline..."
-                className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none"
+                className={`w-full bg-background border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none ${
+                  messageLength > MAX_MESSAGE_LENGTH ? 'border-red-400' : 'border-border'
+                }`}
               />
             </div>
 

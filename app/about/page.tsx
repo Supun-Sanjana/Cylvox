@@ -15,6 +15,7 @@ export const metadata = {
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "About Cylvox Solo Studio" }],
   },
   twitter: {
     card: "summary_large_image" as const,
@@ -58,6 +59,37 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* The Engineer Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-border mt-12">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-foreground bg-surface rounded-full border border-border shadow-sm mb-8">
+            The Person Behind Cylvox
+          </div>
+          <h2 className="text-4xl md:text-5xl font-display mb-8 tracking-tight text-foreground">
+            Supun Sanjana
+          </h2>
+          <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p>
+              Cylvox isn&apos;t a brand name for an agency — it&apos;s me. I&apos;m a software engineer based in Sri Lanka, working full-time in software engineering and IT support by day, and running Cylvox in the hours after.
+            </p>
+            <p>
+              I&apos;ve spent years building internal tools, automation pipelines, and production systems — the kind of work that has to hold up, not just demo well. Cylvox is where I bring that same standard to client projects: real performance numbers, real SEO results, and code I&apos;d be comfortable putting my name on.
+            </p>
+            <p>
+              When I&apos;m not writing code, I&apos;m usually deep in an Arduino build, tearing into electronics, or documenting what I&apos;m learning as I work toward AWS/DevOps certifications — because the standard I hold my own work to keeps moving.
+            </p>
+          </div>
+          <div className="mt-10 pt-8 border-t border-border text-primary font-semibold text-lg flex items-center gap-3">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+            </span>
+            Based in Sri Lanka. Working with clients worldwide.
+          </div>
+        </div>
+      </section>
+
       <Process />
     </>
   );

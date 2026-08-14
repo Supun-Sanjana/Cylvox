@@ -3,8 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import Aperture from "./Aperture";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { SectionLabel } from "./SectionLabel";
 import { usePointerVars, useParallax, useMagnetic } from "@/lib/motion";
 
@@ -30,12 +29,15 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
+  const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 100 });
+
   // The aperture sinks and closes as you scroll away from it.
-  const artY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
-  const artScale = useTransform(scrollYProgress, [0, 1], [1, 0.82]);
-  const artOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
-  const copyY = useTransform(scrollYProgress, [0, 1], ["0%", "-14%"]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const artY = useTransform(smoothProgress, [0, 1], ["0%", "22%"]);
+  const artOpacity = useTransform(smoothProgress, [0, 0.85], [1, 0]);
+  const imgZoom = useTransform(smoothProgress, [0, 1], [1.05, 1.4]);
+
+  const copyY = useTransform(smoothProgress, [0, 1], ["0%", "-14%"]);
+  const copyOpacity = useTransform(smoothProgress, [0, 0.7], [1, 0]);
 
   return (
     <section
@@ -44,66 +46,92 @@ export default function Hero() {
         fieldRef.current = node;
       }}
       id="top"
-      className="atmos relative isolate flex min-h-svh flex-col overflow-hidden"
+      className="atmos relative isolate flex min-h-svh flex-col overflow-hidden w-full"
     >
       {/* ── Atmosphere ─────────────────────────────────────────── */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
+      <div className="absolute inset-0 -z-10 pointer-events-none lg:block hidden">
         <div className="dots absolute inset-0 opacity-45" />
         <div className="dots-live absolute inset-0" />
-
-        <motion.div
-          style={{ y: artY, scale: artScale, opacity: artOpacity }}
-          className="absolute left-1/2 top-[4%] w-[74vmin] -translate-x-1/2 sm:w-[62vmin] lg:left-[72%] lg:top-[6%] lg:w-[54vmin]"
-        >
-          <Aperture offset={parallax} className="w-full" />
-        </motion.div>
-
-        {/* Keeps the headline readable where it crosses the bloom */}
-        <div className="scrim absolute inset-0 max-lg:hidden" />
-
-        <div className="horizon absolute inset-x-0 bottom-0 h-[42vh]" />
-        <div className="grain absolute inset-0" />
       </div>
+
+      <motion.div
+        style={{ y: artY, opacity: artOpacity }}
+        className="absolute inset-0 w-full h-full lg:h-auto lg:inset-auto lg:left-[66%] lg:top-1/2 lg:-translate-y-1/2 lg:w-[38vw] lg:max-w-[500px] z-0 lg:z-10"
+      >
+        {/* Full screen on mobile, Framed Window on desktop */}
+        <div className="relative w-full h-full lg:h-auto lg:aspect-[4/5] lg:rounded-[3rem] overflow-hidden lg:border lg:border-black/5 lg:shadow-[0_40px_80px_rgba(0,0,0,0.12)] bg-[#1c1a19] group">
+          <motion.img 
+            src="/hero.jpeg"
+            alt="Monolith Auditing System"
+            style={{
+              scale: imgZoom,
+              x: useTransform(smoothProgress, [0, 1], ["0%", "5%"]),
+              y: useTransform(smoothProgress, [0, 1], ["0%", "5%"])
+            }}
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+            draggable={false}
+          />
+          {/* Inner shadows and grain for depth */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1a19]/90 via-black/40 to-black/20 lg:from-[#1c1a19]/80 lg:via-transparent lg:to-transparent pointer-events-none mix-blend-multiply" />
+          <div className="absolute inset-0 lg:ring-1 lg:ring-inset lg:ring-white/10 lg:rounded-[3rem] pointer-events-none" />
+        </div>
+      </motion.div>
 
       {/* ── Copy ───────────────────────────────────────────────── */}
       <motion.div
         style={{ y: copyY, opacity: copyOpacity }}
-        className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-4 pb-14 pt-36 sm:px-8 sm:pb-20 sm:pt-44 lg:pb-24"
+        className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-4 pb-20 pt-36 sm:px-8 sm:pb-24 lg:justify-center lg:pb-0 lg:pt-0"
       >
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.28, 1] }}
         >
-          <SectionLabel>Cylvox Solo Studio</SectionLabel>
+          <SectionLabel className="max-lg:text-white/90">Cylvox Solo Studio</SectionLabel>
         </motion.div>
 
-        <h1 className="font-display mt-7 max-w-[19ch] text-balance text-[clamp(2.9rem,9.2vw,7.5rem)] leading-[0.94] text-foreground">
+        <h1 className="font-display mt-7 max-w-[19ch] text-balance text-[clamp(2.9rem,9.2vw,7.5rem)] leading-[0.94] text-white lg:text-foreground relative z-20">
           {["From", "invisible", "to"].map((word, i) => (
             <motion.span
               key={word}
-              initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{
-                duration: 1,
-                delay: 0.12 + i * 0.09,
-                ease: [0.22, 1, 0.28, 1],
+              style={{
+                display: "inline-block",
+                y: useTransform(smoothProgress, [0, 1], [0, -(20 + i * 30)]),
+                opacity: useTransform(smoothProgress, [0, 0.3 + i * 0.15], [1, 0])
               }}
-              className={`mr-[0.28em] inline-block ${
-                word === "invisible" ? "italic text-muted-foreground" : ""
-              }`}
             >
-              {word}
+              <motion.span
+                initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{
+                  duration: 1,
+                  delay: 0.12 + i * 0.09,
+                  ease: [0.22, 1, 0.28, 1],
+                }}
+                className={`mr-[0.28em] inline-block ${
+                  word === "invisible" ? "italic text-white/70 lg:text-muted-foreground" : ""
+                }`}
+              >
+                {word}
+              </motion.span>
             </motion.span>
           ))}
           <motion.span
-            initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1, delay: 0.42, ease: [0.22, 1, 0.28, 1] }}
-            className="inline-block"
+            style={{
+              display: "inline-block",
+              y: useTransform(smoothProgress, [0, 1], [0, -110]),
+              opacity: useTransform(smoothProgress, [0, 0.75], [1, 0])
+            }}
           >
-            page one
-            <span className="text-primary">.</span>
+            <motion.span
+              initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1, delay: 0.42, ease: [0.22, 1, 0.28, 1] }}
+              className="inline-block"
+            >
+              page one
+              <span className="text-primary">.</span>
+            </motion.span>
           </motion.span>
         </h1>
 
@@ -111,7 +139,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.28, 1] }}
-          className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
+          className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-white/80 lg:text-muted-foreground sm:text-lg relative z-20"
         >
           An independent studio that audits AI-generated apps for the flaws
           their builders never saw, then re-engineers them into systems that
@@ -122,20 +150,20 @@ export default function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.68, ease: [0.22, 1, 0.28, 1] }}
-          className="mt-11 flex flex-wrap items-center gap-3 sm:gap-4"
+          className="mt-11 flex flex-wrap items-center gap-3 sm:gap-4 relative z-20"
         >
           <Link
             ref={ctaRef}
             href="/contact"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-[0_14px_44px_-12px_rgba(0,0,0,0.25)] transition-colors duration-300 hover:bg-foreground/80 hover:scale-[1.02]"
+            className="group flex h-12 items-center gap-3 overflow-hidden rounded-full bg-primary px-6 font-medium text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg active:scale-95"
           >
-            Audit your app
-            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <span className="relative">Audit your app</span>
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
 
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 rounded-full border border-input px-7 py-4 text-sm font-medium text-foreground transition-colors duration-300 hover:border-primary/60 hover:text-primary"
+            className="flex h-12 items-center px-6 font-medium text-white/90 border border-white/20 hover:bg-white/10 lg:text-muted-foreground lg:border-input rounded-full transition-colors lg:hover:bg-accent lg:hover:text-foreground"
           >
             Explore capabilities
           </Link>
@@ -147,13 +175,13 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.9 }}
-        className="relative border-t border-border/70 bg-background/25 py-5 backdrop-blur-sm"
+        className="relative border-t border-white/10 lg:border-border/70 bg-black/20 lg:bg-background/25 py-5 backdrop-blur-sm z-30 mt-auto"
       >
         <div className="flex w-max animate-drift items-center gap-10 pl-10">
           {[...CAPABILITIES, ...CAPABILITIES].map((item, i) => (
             <span
               key={`${item}-${i}`}
-              className="tech-label flex shrink-0 items-center gap-10 text-muted-foreground"
+              className="tech-label flex shrink-0 items-center gap-10 text-white/70 lg:text-muted-foreground"
             >
               {item}
               <span

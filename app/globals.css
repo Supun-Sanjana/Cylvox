@@ -160,6 +160,18 @@ h1, h2, h3 { margin-top: 0; }
   transition: opacity 0.5s ease;
 }
 
+/* ── Cursor-Reactive Atmosphere ─────────────────────────────── */
+.atmos-scan {
+  background: radial-gradient(
+    circle 300px at var(--mx, -999px) var(--my, -999px),
+    rgba(20, 130, 118, 0.15) 0%,
+    rgba(204, 255, 0, 0.05) 40%,
+    transparent 80%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
 /* ── The Aperture ───────────────────────────────────────────── */
 .aperture-blade {
   position: absolute;

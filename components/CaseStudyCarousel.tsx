@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-export function CaseStudyCarousel({ images, title }: { images: string[], title: string }) {
+export function CaseStudyCarousel({ images, title, padded = false }: { images: string[], title: string, padded?: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export function CaseStudyCarousel({ images, title }: { images: string[], title: 
             alt={`${title} screenshot ${i + 1}`}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
+            className={padded ? "object-contain p-6 sm:p-10" : "object-cover"}
           />
         </div>
       ))}

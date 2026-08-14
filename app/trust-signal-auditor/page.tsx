@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { TrustSignalHero } from "@/components/trust-signal-hero";
 import { BentoFeatures } from "@/components/bento-features";
-import { serviceSchema, baseUrl } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { serviceSchema, breadcrumbSchema, baseUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Trust Signal Auditor | Find E-E-A-T Gaps in WordPress",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     title: "Trust Signal Auditor | Find E-E-A-T Gaps in WordPress",
     description: "Scan your WordPress site for missing trust signals, indexability traps, and authorship errors.",
     url: `${baseUrl}/trust-signal-auditor`,
+    siteName: "Cylvox",
     type: "website",
     images: [
       {
@@ -41,10 +43,11 @@ export default function TrustSignalAuditorPage() {
 
   return (
     <main className="bg-background min-h-screen">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Trust Signal Auditor", path: "/trust-signal-auditor" },
+      ])} />
       <TrustSignalHero />
       <BentoFeatures />
     </main>

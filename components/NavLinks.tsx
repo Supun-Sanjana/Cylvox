@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 
-const NAV_LINKS = [
+export const NAV_LINKS = [
   { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
   { href: "/agency-partners", label: "Agency Partners" },
@@ -12,9 +12,9 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
-export default function NavLinks() {
+export default function NavLinks({ className }: { className?: string }) {
   return (
-    <div className="flex gap-8 text-sm font-semibold max-md:hidden">
+    <div className={className || "flex gap-8 text-sm font-semibold max-md:hidden"}>
       {NAV_LINKS.map(({ href, label }) => (
         <Link key={href} href={href} className="text-muted-foreground hover:text-foreground transition-colors duration-200">
           {label}

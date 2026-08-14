@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
+import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   return (
@@ -31,18 +32,25 @@ export default function Navbar() {
         {/* Navigation Links — client component for active state only */}
         <NavLinks />
 
-        {/* CTA BUTTON — CSS hover/active replaces framer-motion */}
-        <div className="shrink-0">
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground font-bold rounded-full
-                       text-xs sm:text-sm px-5 py-2 sm:py-2.5
-                       shadow-md hover:opacity-90 transition-all duration-200
-                       hover:scale-105 active:scale-95"
-          >
-            <span>Let&apos;s Talk</span>
-            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" aria-hidden="true" />
-          </Link>
+        <div className="flex items-center gap-4">
+          {/* CTA BUTTON — CSS hover/active replaces framer-motion */}
+          <div className="hidden sm:flex shrink-0">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground font-bold rounded-full
+                         text-xs sm:text-sm px-5 py-2 sm:py-2.5
+                         shadow-md hover:opacity-90 transition-all duration-200
+                         hover:scale-105 active:scale-95"
+            >
+              <span>Let&apos;s Talk</span>
+              <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" aria-hidden="true" />
+            </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <MobileMenu>
+            <NavLinks className="flex flex-col gap-6 text-2xl font-display" />
+          </MobileMenu>
         </div>
       </div>
     </nav>

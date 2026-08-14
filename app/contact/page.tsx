@@ -1,15 +1,38 @@
 import ContactForm from "@/components/ContactForm";
 import { SectionLabel } from "@/components/SectionLabel";
 import { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, baseUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Cylvox",
-  description: "Start a conversation with Cylvox to engineer your next digital system.",
+  title: "Contact Cylvox — Start Your Project",
+  description: "Start a conversation with Cylvox to engineer your next digital system. Get a response within 24 hours.",
+  alternates: { canonical: `${baseUrl}/contact` },
+  openGraph: {
+    title: "Contact Cylvox — Start Your Project",
+    description: "Start a conversation with Cylvox to engineer your next digital system. Get a response within 24 hours.",
+    url: `${baseUrl}/contact`,
+    siteName: "Cylvox",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Contact Cylvox" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Cylvox — Start Your Project",
+    description: "Start a conversation with Cylvox to engineer your next digital system.",
+    images: ["/og-image.jpg"],
+  },
 };
+
+const breadcrumbs = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Contact", path: "/contact" },
+]);
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background pt-32 pb-20 px-4 sm:px-8">
+      <JsonLd data={breadcrumbs} />
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         
         {/* Left Side: Visual & Copy */}
