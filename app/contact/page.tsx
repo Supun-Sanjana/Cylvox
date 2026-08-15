@@ -3,6 +3,7 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, baseUrl } from "@/lib/seo";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Contact Cylvox — Start Your Project",
@@ -38,10 +39,12 @@ export default function ContactPage() {
         {/* Left Side: Visual & Copy */}
         <div className="relative w-full h-full min-h-[500px] lg:min-h-[700px] rounded-[2.5rem] overflow-hidden p-8 sm:p-12 flex flex-col justify-between shadow-md">
           {/* Background Image */}
-          <img
+          <Image
             src="/placeholders/squish_crystals_1786554808524.jpg"
             alt="Abstract crystal aesthetic"
-            className="absolute inset-0 w-full h-full object-cover saturate-150 contrast-125"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover saturate-150 contrast-125"
           />
           {/* Overlay to ensure text readability */}
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { SectionLabel } from "./SectionLabel";
 import { usePointerVars, useParallax, useMagnetic } from "@/lib/motion";
@@ -60,17 +61,24 @@ export default function Hero() {
       >
         {/* Full screen on mobile, Framed Window on desktop */}
         <div className="relative w-full h-full lg:h-auto lg:aspect-[4/5] lg:rounded-[3rem] overflow-hidden lg:border lg:border-black/5 lg:shadow-[0_40px_80px_rgba(0,0,0,0.12)] bg-[#1c1a19] group">
-          <motion.img 
-            src="/hero.jpeg"
-            alt="Monolith Auditing System"
+          <motion.div
             style={{
               scale: imgZoom,
               x: useTransform(smoothProgress, [0, 1], ["0%", "5%"]),
               y: useTransform(smoothProgress, [0, 1], ["0%", "5%"])
             }}
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-            draggable={false}
-          />
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image 
+              src="/hero.jpeg"
+              alt="Monolith Auditing System"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover pointer-events-none select-none"
+              draggable={false}
+            />
+          </motion.div>
           {/* Inner shadows and grain for depth */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1a19]/90 via-black/40 to-black/20 lg:from-[#1c1a19]/80 lg:via-transparent lg:to-transparent pointer-events-none mix-blend-multiply" />
           <div className="absolute inset-0 lg:ring-1 lg:ring-inset lg:ring-white/10 lg:rounded-[3rem] pointer-events-none" />

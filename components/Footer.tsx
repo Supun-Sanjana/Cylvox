@@ -22,11 +22,11 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Services</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
-              <li><Link href="/services#technical-seo" className="hover:text-primary transition-colors">Technical SEO</Link></li>
-              <li><Link href="/services#core-web-vitals" className="hover:text-primary transition-colors">Core Web Vitals</Link></li>
-              <li><Link href="/services#web-engineering" className="hover:text-primary transition-colors">Web Engineering</Link></li>
-              <li><Link href="/services#automation" className="hover:text-primary transition-colors">n8n Automation</Link></li>
-              <li><Link href="/services#security-audits" className="hover:text-primary transition-colors">Security Audits</Link></li>
+              <li><Link href="/services/technical-seo" className="hover:text-primary transition-colors">Technical SEO</Link></li>
+              <li><Link href="/services/optimization" className="hover:text-primary transition-colors">Core Web Vitals</Link></li>
+              <li><Link href="/services/web-development" className="hover:text-primary transition-colors">Web Engineering</Link></li>
+              <li><Link href="/services/ai-automation" className="hover:text-primary transition-colors">n8n Automation</Link></li>
+              <li><Link href="/services/web-development" className="hover:text-primary transition-colors">Security Audits</Link></li>
             </ul>
           </div>
 

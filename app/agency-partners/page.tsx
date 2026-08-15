@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbSchema, baseUrl } from "@/lib/seo";
+import { baseUrl, breadcrumbSchema } from "@/lib/seo";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Agency Partnerships — White-Label Engineering | Cylvox",
@@ -43,10 +44,12 @@ export default function AgencyPartnersPage() {
         </div>
         <div className="flex-1 w-full">
           <div className="relative aspect-video lg:aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden border border-border shadow-sm">
-            <img 
+            <Image 
               src="/placeholders/squish_dune_hero.jpg" 
               alt="Golden sand merging with geometric monoliths" 
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
             />
           </div>
         </div>
@@ -84,7 +87,7 @@ export default function AgencyPartnersPage() {
           
           <div className="md:col-span-1 bg-surface border border-border rounded-[2.5rem] overflow-hidden group">
             <div className="relative aspect-square w-full">
-              <img src="/placeholders/squish_dune_compass.jpg" alt="Technical SEO Compass" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+              <Image src="/placeholders/squish_dune_compass.jpg" alt="Technical SEO Compass" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-semibold mb-3 text-foreground">Technical SEO & Audits</h3>
@@ -94,7 +97,7 @@ export default function AgencyPartnersPage() {
 
           <div className="md:col-span-1 bg-surface border border-border rounded-[2.5rem] overflow-hidden group">
             <div className="relative aspect-square w-full">
-              <img src="/placeholders/squish_dune_flow.jpg" alt="Performance Flow" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+              <Image src="/placeholders/squish_dune_flow.jpg" alt="Performance Flow" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-semibold mb-3 text-foreground">Performance Replatforming</h3>
@@ -104,7 +107,7 @@ export default function AgencyPartnersPage() {
 
           <div className="md:col-span-1 bg-surface border border-border rounded-[2.5rem] overflow-hidden group">
             <div className="relative aspect-square w-full">
-              <img src="/placeholders/squish_dune_monolith.jpg" alt="Secure Monolith" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+              <Image src="/placeholders/squish_dune_monolith.jpg" alt="Secure Monolith" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-semibold mb-3 text-foreground">Secure Architecture</h3>

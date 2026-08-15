@@ -12,21 +12,19 @@ import {
 
 export interface ServiceItem {
   number: string;
+  id: string;
   title: string;
   badge: string;
   icon: LucideIcon;
   text: string;
   link: string;
-  /**
-   * The raw problems this service exists to remove. Surfaced underneath the
-   * hardened card by the cursor scanner on the homepage.
-   */
   findings: string[];
 }
 
 export const SERVICES: ServiceItem[] = [
   {
     number: "01",
+    id: "technical-seo",
     title: "Technical SEO & Schema Engine",
     badge: "IndexNow & JSON-LD",
     icon: Search,
@@ -40,6 +38,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     number: "02",
+    id: "core-web-vitals",
     title: "Core Web Vitals & Speed Tuning",
     badge: "Sub-Second LCP",
     icon: Zap,
@@ -53,6 +52,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     number: "03",
+    id: "backend-scaling",
     title: "Supabase & Backend Scaling",
     badge: "Postgres & Edge API",
     icon: Server,
@@ -66,6 +66,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     number: "04",
+    id: "security-audits",
     title: "Vibe-Coded App Audits",
     badge: "Security & Code",
     icon: ShieldAlert,
@@ -79,6 +80,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     number: "05",
+    id: "automation",
     title: "AI Workflows & n8n",
     badge: "Automation",
     icon: Cpu,
@@ -92,6 +94,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     number: "06",
+    id: "headless-cms",
     title: "Headless CMS Integration",
     badge: "Sanity & Content",
     icon: Database,
@@ -105,6 +108,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     number: "07",
+    id: "ui-ux",
     title: "Brand & UI/UX Design",
     badge: "Conversion UI",
     icon: Palette,
@@ -118,6 +122,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     number: "08",
+    id: "web-engineering",
     title: "Full-Stack Web Engineering",
     badge: "Next.js & React",
     icon: Code2,

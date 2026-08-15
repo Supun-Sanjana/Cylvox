@@ -1,6 +1,7 @@
 import Process from "@/components/Process";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
+import Image from "next/image";
 
 export const metadata = {
   title: "About Cylvox | Independent Web Engineering Solo Studio",
@@ -51,10 +52,12 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="relative w-full aspect-square rounded-[2.5rem] overflow-hidden border border-border shadow-sm">
-            <img
+            <Image
               src="/placeholders/squish_dune_solo_figure.jpg"
               alt="Ethereal representation of a lone, highly skilled engineer"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
             />
           </div>
         </div>

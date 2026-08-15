@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Cylvox Solo Studio — Next.js & AI Automation",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Next.js Web Development & AI Automation Studio | Cylvox",
     description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
-    images: ["/og-image.jpg"],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 
