@@ -18,8 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/ai-automation',
     '/services/optimization',
     '/services/ui-ux-design',
-    // Product
+    // Product & Plugin Legal
     '/trust-signal-auditor',
+    '/trust-signal-auditor/terms',
+    '/trust-signal-auditor/privacy',
     // Partnership
     '/agency-partners',
     // Content
