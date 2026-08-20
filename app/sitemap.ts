@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/case-studies/join-outquest',
     '/case-studies/sg-plantation-erp',
     '/case-studies/micro-credit-erp',
+    '/case-studies/nvti-baddegama',
     // Services
     '/services',
     '/services/web-development',
@@ -26,6 +27,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/agency-partners',
     // Content
     '/blog',
+    '/blog/why-n8n-for-automation',
+    '/blog/nextjs-app-router-seo',
     '/work',
     '/products',
     // Company

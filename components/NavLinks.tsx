@@ -4,12 +4,10 @@ import Link from "next/link";
 
 
 export const NAV_LINKS = [
-  { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
-  { href: "/agency-partners", label: "Agency Partners" },
-  { href: "/trust-signal-auditor", label: "Trust Signal Auditor" },
+  { href: "/work", label: "Work" },
+  { href: "/products", label: "Products" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function NavLinks({ className }: { className?: string }) {

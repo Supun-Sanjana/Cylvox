@@ -9,14 +9,10 @@ import { SectionLabel } from "./SectionLabel";
 import { usePointerVars, useParallax, useMagnetic } from "@/lib/motion";
 
 const CAPABILITIES = [
-  "Security audits",
-  "n8n automation",
-  "Headless Sanity",
-  "Core Web Vitals",
-  "Technical SEO",
-  "Next.js engineering",
-  "Supabase scaling",
-  "Conversion UI",
+  "AI Automation",
+  "n8n",
+  "AI Agents",
+  "Production Engineering",
 ];
 
 export default function Hero() {
@@ -99,7 +95,7 @@ export default function Hero() {
         </motion.div>
 
         <h1 className="font-display mt-7 max-w-[19ch] text-balance text-[clamp(2.9rem,9.2vw,7.5rem)] leading-[0.94] text-white lg:text-foreground relative z-20">
-          {["From", "invisible", "to"].map((word, i) => (
+          {["AI", "systems", "that"].map((word, i) => (
             <motion.span
               key={word}
               style={{
@@ -116,9 +112,7 @@ export default function Hero() {
                   delay: 0.12 + i * 0.09,
                   ease: [0.22, 1, 0.28, 1],
                 }}
-                className={`mr-[0.28em] inline-block ${
-                  word === "invisible" ? "italic text-white/70 lg:text-muted-foreground" : ""
-                }`}
+                className={`mr-[0.28em] inline-block`}
               >
                 {word}
               </motion.span>
@@ -137,7 +131,7 @@ export default function Hero() {
               transition={{ duration: 1, delay: 0.42, ease: [0.22, 1, 0.28, 1] }}
               className="inline-block"
             >
-              page one
+              actually run your business
               <span className="text-primary">.</span>
             </motion.span>
           </motion.span>
@@ -149,9 +143,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.28, 1] }}
           className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-white/80 lg:text-muted-foreground sm:text-lg relative z-20"
         >
-          An independent studio that audits AI-generated apps for the flaws
-          their builders never saw, then re-engineers them into systems that
-          hold under real traffic.
+          Cylvox designs and builds production-ready automations, AI agents and internal systems that eliminate repetitive operational work.
         </motion.p>
 
         <motion.div
@@ -162,18 +154,18 @@ export default function Hero() {
         >
           <Link
             ref={ctaRef}
-            href="/contact"
+            href="/#audit"
             className="group flex h-12 items-center gap-3 overflow-hidden rounded-full bg-primary px-6 font-medium text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg active:scale-95"
           >
-            <span className="relative">Audit your app</span>
+            <span className="relative">Get an Automation Assessment</span>
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
 
           <Link
-            href="/services"
+            href="/work"
             className="flex h-12 items-center px-6 font-medium text-white/90 border border-white/20 hover:bg-white/10 lg:text-muted-foreground lg:border-input rounded-full transition-colors lg:hover:bg-accent lg:hover:text-foreground"
           >
-            Explore capabilities
+            See Our Work
           </Link>
         </motion.div>
       </motion.div>
@@ -186,7 +178,7 @@ export default function Hero() {
         className="relative border-t border-white/10 lg:border-border/70 bg-black/20 lg:bg-background/25 py-5 backdrop-blur-sm z-30 mt-auto"
       >
         <div className="flex w-max animate-drift items-center gap-10 pl-10">
-          {[...CAPABILITIES, ...CAPABILITIES].map((item, i) => (
+          {[...CAPABILITIES, ...CAPABILITIES, ...CAPABILITIES, ...CAPABILITIES].map((item, i) => (
             <span
               key={`${item}-${i}`}
               className="tech-label flex shrink-0 items-center gap-10 text-white/70 lg:text-muted-foreground"

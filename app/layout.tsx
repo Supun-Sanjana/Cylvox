@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
@@ -71,7 +72,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="bg-background text-foreground">
         <JsonLd data={organizationSchema} />
         <JsonLd data={professionalServiceSchema} />
-        <Analytics />
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
         <Navbar />
         <main className="overflow-hidden relative">
           {children}
