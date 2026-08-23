@@ -19,6 +19,8 @@
   --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
   --color-jade: var(--jade);
+  --color-warm-gold: var(--warm-gold);
+  --color-warm-coral: var(--warm-coral);
 
   --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -31,12 +33,14 @@
 }
 
 /* ── Palette ────────────────────────────────────────────────────
-   5 colours total: void, mist, signal (brand lime), jade, muted   */
+   7 colours total: void, mist, signal (brand lime), jade, muted, warm gold, warm coral */
 :root {
-  --void:   #09090b;
+  --void:   #0A0F14;
   --mist:   #fafafa;
   --signal: #ccff00;
-  --jade:   #0b312e;
+  --jade:   #4F5D75;
+  --warm-gold: #D4A373;
+  --warm-coral: #EF8354;
 
   --background: var(--mist);
   --foreground: var(--void);
