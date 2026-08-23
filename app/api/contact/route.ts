@@ -141,9 +141,11 @@ export async function POST(req: Request) {
       });
     }
 
+    // 1. Send notification to site owner
     const data = await resend.emails.send({
-      from: 'Cylvox Contact Form <onboarding@resend.dev>',
+      from: 'Cylvox <onboarding@resend.dev>', // TODO: Update to verified domain e.g., hello@cylvox.com
       to: 'infor.ssupun@gmail.com',
+      replyTo: email,
       subject: `New Lead from Cylvox: ${name} (${projectType || 'General'})`,
       attachments: attachments.length > 0 ? attachments : undefined,
       html: `
@@ -155,6 +157,29 @@ export async function POST(req: Request) {
         <p><strong>Attachment Included:</strong> ${attachments.length > 0 ? attachments[0].filename : 'None'}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
+      `,
+    });
+
+    // 2. Send auto-responder confirmation to the client
+    // Note: This requires a verified domain in Resend. onboarding@resend.dev only allows sending to your own email.
+    await resend.emails.send({
+      from: 'Cylvox <onboarding@resend.dev>', // TODO: Must update this to a verified domain (e.g. hello@cylvox.com) for external delivery
+      to: email,
+      subject: `We've received your request - Cylvox`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <h2>Hi ${name},</h2>
+          <p>Thanks for reaching out to Cylvox!</p>
+          <p>This is an automated confirmation that we've received your project inquiry. We are reviewing the details and will get back to you within 24 hours to discuss the next steps.</p>
+          <br/>
+          <p><strong>Your Message Summary:</strong></p>
+          <blockquote style="border-left: 4px solid #eee; padding-left: 1rem; color: #555;">
+            ${message.replace(/\n/g, '<br>')}
+          </blockquote>
+          <br/>
+          <p>Best regards,</p>
+          <p><strong>Supun Sanjana</strong><br/>Cylvox Solo Studio</p>
+        </div>
       `,
     });
 

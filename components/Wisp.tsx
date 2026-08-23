@@ -352,29 +352,59 @@ function Mascot({ state, blink }: { state: MascotState; blink: boolean }) {
       viewBox="0 0 120 120"
     >
       <defs>
-        <radialGradient id="wispBodyGrad" cx="35%" cy="30%" r="75%">
-          <stop offset="0%" stopColor="#3fe0a8" />
-          <stop offset="100%" stopColor="#159a70" />
+        <radialGradient id="slimeBody" cx="40%" cy="30%" r="60%">
+          <stop offset="0%" stopColor="#a3ffcf" />
+          <stop offset="100%" stopColor="#22c58e" />
         </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
       </defs>
       <g className={styles.mFloat}>
-        <line className={styles.mLeg} x1="46" y1="78" x2="38" y2="92" />
-        <line className={styles.mLeg} x1="52" y1="82" x2="47" y2="96" />
-        <line className={styles.mLeg} x1="68" y1="82" x2="73" y2="96" />
-        <line className={styles.mLeg} x1="74" y1="78" x2="82" y2="92" />
-        <circle className={styles.mLanternGlow} cx="60" cy="88" r="10" />
-        <circle className={styles.mLantern} cx="60" cy="86" r="6" />
-        <g className={styles.mAntenna} style={{ transformOrigin: '50px 32px' }}>
-          <path d="M50,32 Q42,16 36,10" />
-          <circle className={styles.mTip} cx="36" cy="10" r="3.5" />
+        {/* Glow behind body */}
+        <path d="M 35,60 C 35,30 45,20 60,20 C 75,20 85,30 85,60 C 85,80 70,80 60,80 C 50,80 35,80 35,60" fill="#22c58e" opacity="0.4" filter="url(#glow)" />
+        
+        {/* Main blob body */}
+        <path d="M 35,60 C 35,30 45,20 60,20 C 75,20 85,30 85,60 C 85,80 70,80 60,80 C 50,80 35,80 35,60" fill="url(#slimeBody)" className={styles.mBody} />
+
+        {/* Highlight / gelatinous shine */}
+        <path d="M 45,30 C 50,27 55,27 60,28 C 55,31 50,37 45,45 C 44,40 43,35 45,30" fill="#ffffff" opacity="0.6" />
+
+        {/* Little stubby arms */}
+        <path d="M 35,50 Q 25,45 28,55 Q 32,60 38,57" fill="url(#slimeBody)" />
+        <path d="M 85,50 Q 95,45 92,55 Q 88,60 82,57" fill="url(#slimeBody)" />
+
+        {/* Eyes (grouped for blink animation) */}
+        <g className={styles.mEye} style={{ transformOrigin: '52px 50px' }}>
+          <ellipse cx="52" cy="50" rx="4.5" ry="6.5" fill="#0a1210" />
+          <circle cx="51" cy="48" r="1.5" fill="#ffffff" />
         </g>
-        <g className={styles.mAntenna} style={{ transformOrigin: '70px 32px' }}>
-          <path d="M70,32 Q78,16 84,10" />
-          <circle className={styles.mTip} cx="84" cy="10" r="3.5" />
+        <g className={styles.mEye} style={{ transformOrigin: '68px 50px' }}>
+          <ellipse cx="68" cy="50" rx="4.5" ry="6.5" fill="#0a1210" />
+          <circle cx="67" cy="48" r="1.5" fill="#ffffff" />
         </g>
-        <ellipse className={styles.mBody} cx="60" cy="52" rx="27" ry="30" />
-        <circle className={styles.mEye} cx="51" cy="50" r="3.6" />
-        <circle className={styles.mEye} cx="69" cy="50" r="3.6" />
+        
+        {/* Mouths based on state */}
+        {state === 'worried' ? (
+          <path d="M 57,60 Q 60,57 63,60" fill="none" stroke="#0a1210" strokeWidth="2.5" strokeLinecap="round" />
+        ) : state === 'scanning' ? (
+          <circle cx="60" cy="58" r="2" fill="none" stroke="#0a1210" strokeWidth="2" />
+        ) : state === 'happy' ? (
+          <path d="M 56,56 Q 60,61 64,56" fill="none" stroke="#0a1210" strokeWidth="2.5" strokeLinecap="round" />
+        ) : (
+          <path d="M 57,57 Q 60,60 63,57" fill="none" stroke="#0a1210" strokeWidth="2.5" strokeLinecap="round" />
+        )}
+        
+        {/* Sparkles */}
+        <g fill="#a3ffcf">
+           <polygon points="85,10 87,15 92,17 87,19 85,24 83,19 78,17 83,15" opacity="0.8"/>
+           <polygon points="35,15 36,18 39,19 36,20 35,23 34,20 31,19 34,18" opacity="0.6"/>
+           <polygon points="95,35 96,37 98,38 96,39 95,41 94,39 92,38 94,37" opacity="0.5"/>
+        </g>
       </g>
     </svg>
   );
@@ -384,16 +414,33 @@ function MascotIcon() {
   return (
     <svg viewBox="0 0 120 120" width="40" height="40">
       <defs>
-        <radialGradient id="wispBubbleGrad" cx="35%" cy="30%" r="75%">
-          <stop offset="0%" stopColor="#3fe0a8" />
-          <stop offset="100%" stopColor="#159a70" />
+        <radialGradient id="slimeBodyIcon" cx="40%" cy="30%" r="60%">
+          <stop offset="0%" stopColor="#a3ffcf" />
+          <stop offset="100%" stopColor="#22c58e" />
         </radialGradient>
       </defs>
-      <circle fill="#22c58e" opacity="0.3" cx="60" cy="82" r="9" />
-      <circle fill="#22c58e" cx="60" cy="80" r="5.5" />
-      <ellipse fill="url(#wispBubbleGrad)" cx="60" cy="50" rx="26" ry="29" />
-      <circle fill="#0a1210" cx="51" cy="48" r="3.4" />
-      <circle fill="#0a1210" cx="69" cy="48" r="3.4" />
+      
+      {/* Glow behind body */}
+      <path d="M 35,60 C 35,30 45,20 60,20 C 75,20 85,30 85,60 C 85,80 70,80 60,80 C 50,80 35,80 35,60" fill="#22c58e" opacity="0.3" />
+      
+      {/* Main blob body */}
+      <path d="M 35,60 C 35,30 45,20 60,20 C 75,20 85,30 85,60 C 85,80 70,80 60,80 C 50,80 35,80 35,60" fill="url(#slimeBodyIcon)" />
+
+      {/* Highlight / gelatinous shine */}
+      <path d="M 45,30 C 50,27 55,27 60,28 C 55,31 50,37 45,45 C 44,40 43,35 45,30" fill="#ffffff" opacity="0.6" />
+
+      {/* Little stubby arms */}
+      <path d="M 35,50 Q 25,45 28,55 Q 32,60 38,57" fill="url(#slimeBodyIcon)" />
+      <path d="M 85,50 Q 95,45 92,55 Q 88,60 82,57" fill="url(#slimeBodyIcon)" />
+
+      {/* Eyes */}
+      <ellipse cx="52" cy="50" rx="4" ry="6" fill="#0a1210" />
+      <ellipse cx="68" cy="50" rx="4" ry="6" fill="#0a1210" />
+      <circle cx="51" cy="48" r="1.5" fill="#ffffff" />
+      <circle cx="67" cy="48" r="1.5" fill="#ffffff" />
+
+      {/* Mouth */}
+      <path d="M 57,57 Q 60,60 63,57" fill="none" stroke="#0a1210" strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   );
 }
