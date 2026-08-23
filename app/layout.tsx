@@ -6,7 +6,8 @@ import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import { organizationSchema, professionalServiceSchema, baseUrl } from "@/lib/seo";
+import { organizationSchema, professionalServiceSchema, websiteSchema, baseUrl } from "@/lib/seo";
+import Wisp from "@/components/Wisp";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -24,8 +25,8 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Next.js Web Development & AI Automation Studio | Cylvox",
-  description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
+  title: "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
+  description: "Cylvox is an independent technical SEO studio for crawlability, structured data, Core Web Vitals, and search automation on complex websites.",
   verification: {
     google: "MbW7OSda4rJ-b1SVXUwbjwuheieijZeB4_GUeUJL70Y",
   },
@@ -33,8 +34,8 @@ export const metadata: Metadata = {
     icon: "/logo.png"
   },
   openGraph: {
-    title: "Next.js Web Development & AI Automation Studio | Cylvox",
-    description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
+    title: "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
+    description: "Technical SEO architecture, performance engineering, and search automation for complex websites.",
     url: baseUrl,
     siteName: "Cylvox",
     locale: "en_US",
@@ -44,20 +45,20 @@ export const metadata: Metadata = {
         url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Cylvox Solo Studio — Next.js & AI Automation",
+        alt: "Cylvox Technical SEO, Core Web Vitals, and Search Automation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Next.js Web Development & AI Automation Studio | Cylvox",
-    description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
+    title: "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
+    description: "Technical SEO architecture, performance engineering, and search automation for complex websites.",
     images: [`${baseUrl}/og-image.jpg`],
   },
 };
 
 export const viewport = {
-  themeColor: "#05080a",
+  themeColor: "#0A0F14",
   colorScheme: "dark" as const,
   width: "device-width",
   initialScale: 1,
@@ -73,11 +74,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <JsonLd data={organizationSchema} />
         <JsonLd data={professionalServiceSchema} />
         <Suspense fallback={null}>
+        <JsonLd data={websiteSchema} />
           <Analytics />
         </Suspense>
         <Navbar />
         <main className="overflow-hidden relative">
-          {children}
+          {children}`
+          <Wisp />`
         </main>
         <Footer />
       </body>

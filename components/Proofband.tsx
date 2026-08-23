@@ -19,7 +19,7 @@ export default function ProofBand() {
       {/* Background Subtle Gradient */}
       <div
         className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full filter blur-[140px] pointer-events-none opacity-20"
-        style={{ background: "radial-gradient(circle, rgba(168, 85, 247, 0.4), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(204, 255, 0, 0.24), transparent 70%)" }}
       />
 
       <div className="px-4 py-20 sm:px-8 sm:py-28 relative z-10 mx-auto max-w-7xl">

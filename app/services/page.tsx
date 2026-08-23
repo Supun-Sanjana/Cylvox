@@ -4,8 +4,8 @@ import { breadcrumbSchema } from "@/lib/seo";
 import Image from "next/image";
 
 export const metadata = {
-  title: 'Services – Cylvox Technical Services',
-  description: 'Cylvox offers technical services: web development, technical SEO, performance optimization, AI automation, and audits.',
+  title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
+  description: 'Technical SEO is Cylvox’s core service: crawlability, schema, Core Web Vitals, search automation, and web engineering for complex sites.',
   alternates: { canonical: '/services' },
   openGraph: {
     title: 'Cylvox Services',
@@ -36,13 +36,13 @@ export default function ServicesPage() {
       <section className="relative pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div className="flex-1 text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-foreground bg-surface rounded-full border border-border shadow-sm mb-8">
-            Full Capability Range
+            Technical SEO is the foundation
           </div>
           <h1 className="text-5xl md:text-7xl font-display mb-6 tracking-tight leading-[1.05] text-foreground">
-            The full <em className="text-primary not-italic">service stack.</em>
+            Technical SEO first. <em className="text-primary not-italic">The rest compounds it.</em>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            From first pixel to production traffic: design, engineering, technical SEO, and the automation that keeps things running after launch. Each service below is a specialty in its own right, not a bolt-on.
+            We begin with crawlability, performance, and structured search signals. AI automation and engineering then make those gains repeatable.
           </p>
         </div>
         <div className="flex-1 w-full">

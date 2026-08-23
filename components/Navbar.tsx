@@ -36,13 +36,13 @@ export default function Navbar() {
           {/* CTA BUTTON — CSS hover/active replaces framer-motion */}
           <div className="hidden sm:flex shrink-0">
             <Link
-              href="/#audit"
+              href="/contact"
               className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground font-bold rounded-full
                          text-xs sm:text-sm px-5 py-2 sm:py-2.5
                          shadow-md hover:opacity-90 transition-all duration-200
                          hover:scale-105 active:scale-95"
             >
-              <span>Get Automation Audit</span>
+              <span>Get SEO Audit</span>
               <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" aria-hidden="true" />
             </Link>
           </div>

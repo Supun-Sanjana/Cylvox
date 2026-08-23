@@ -155,14 +155,12 @@ export default function ProductsPage() {
       {/* ── Page Header ─────────────────────────────────────────── */}
       <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-foreground">
         <div className="max-w-3xl">
-          <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
-            Cylvox Products
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+          <SectionLabel className="mb-6">Cylvox Products</SectionLabel>
+          <h1 className="font-display text-4xl md:text-6xl mb-6 tracking-tight leading-[1.15] text-foreground">
             Automation & SEO tools, built from what{" "}
-            <span className="text-[#ccff00]">actually worked</span>
+            <span className="text-jade">actually worked</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+          <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
             No generic template dumps. Every workflow here is pulled straight
             from real client work — the same automations that got a live site to
             95+ PageSpeed and indexed in hours, not weeks. Grab the free ones,
@@ -279,7 +277,7 @@ export default function ProductsPage() {
 
               <a
                 href="/contact?ref=full-bundle"
-                className="inline-flex items-center gap-2 bg-primary text-black font-bold rounded-full px-8 py-3.5 text-sm shadow-md hover:opacity-90 transition-opacity shrink-0"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold rounded-full px-8 py-3.5 text-sm shadow-md hover:opacity-90 transition-opacity shrink-0"
               >
                 <span>Get the Bundle</span>
                 <Zap className="w-4 h-4 stroke-[2.5]" />

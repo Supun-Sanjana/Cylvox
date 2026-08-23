@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.cylvox.com';
+  const lastModified = new Date('2026-08-23');
 
   const routes = [
     // Home
@@ -36,10 +37,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
   ];
 
-  return routes.map((route) => ({
+  return routes.map((route) => {
+    const priority = route === '' ? 1 : route === '/services/technical-seo' ? 0.95 : route === '/services' ? 0.9 : 0.7;
+
+    return {
     url: `${baseUrl}${route}`,
-    lastModified: new Date(),
+    lastModified,
     changeFrequency: route === '' ? 'yearly' : 'monthly',
-    priority: route === '' ? 1 : 0.8,
-  }));
+    priority,
+    };
+  });
 }

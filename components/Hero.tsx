@@ -9,10 +9,10 @@ import { SectionLabel } from "./SectionLabel";
 import { usePointerVars, useParallax, useMagnetic } from "@/lib/motion";
 
 const CAPABILITIES = [
+  "Technical SEO",
+  "Core Web Vitals",
+  "Search Automation",
   "AI Automation",
-  "n8n",
-  "AI Agents",
-  "Production Engineering",
 ];
 
 export default function Hero() {
@@ -53,7 +53,7 @@ export default function Hero() {
 
       <motion.div
         style={{ y: artY, opacity: artOpacity }}
-        className="absolute inset-0 w-full h-full lg:h-auto lg:inset-auto lg:left-[66%] lg:top-1/2 lg:-translate-y-1/2 lg:w-[38vw] lg:max-w-[500px] z-0 lg:z-10"
+        className="absolute inset-0 z-0 h-full w-full lg:inset-auto lg:right-[max(2rem,calc((100%-80rem)/2+2rem))] lg:left-auto lg:top-1/2 lg:h-auto lg:w-[min(38vw,480px)] lg:-translate-y-1/2"
       >
         {/* Full screen on mobile, Framed Window on desktop */}
         <div className="relative w-full h-full lg:h-auto lg:aspect-[4/5] lg:rounded-[3rem] overflow-hidden lg:border lg:border-black/5 lg:shadow-[0_40px_80px_rgba(0,0,0,0.12)] bg-[#1c1a19] group">
@@ -84,8 +84,9 @@ export default function Hero() {
       {/* ── Copy ───────────────────────────────────────────────── */}
       <motion.div
         style={{ y: copyY, opacity: copyOpacity }}
-        className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-4 pb-20 pt-36 sm:px-8 sm:pb-24 lg:justify-center lg:pb-0 lg:pt-0"
+        className="relative z-20 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-4 pb-20 pt-36 sm:px-8 sm:pb-24 lg:justify-center lg:pb-0 lg:pt-0"
       >
+        <div className="flex w-full flex-col lg:max-w-[calc(100%-min(38vw,480px)-2.5rem)]">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,8 +95,8 @@ export default function Hero() {
           <SectionLabel className="max-lg:text-white/90">Cylvox Solo Studio</SectionLabel>
         </motion.div>
 
-        <h1 className="font-display mt-7 max-w-[19ch] text-balance text-[clamp(2.9rem,9.2vw,7.5rem)] leading-[0.94] text-white lg:text-foreground relative z-20">
-          {["AI", "systems", "that"].map((word, i) => (
+        <h1 className="font-display relative z-20 mt-7 max-w-[16ch] text-balance text-[clamp(2.9rem,8vw,6.25rem)] leading-[0.94] text-white lg:text-foreground">
+          {["Technical", "SEO", "that"].map((word, i) => (
             <motion.span
               key={word}
               style={{
@@ -131,7 +132,7 @@ export default function Hero() {
               transition={{ duration: 1, delay: 0.42, ease: [0.22, 1, 0.28, 1] }}
               className="inline-block"
             >
-              actually run your business
+              turns performance into growth
               <span className="text-primary">.</span>
             </motion.span>
           </motion.span>
@@ -143,7 +144,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.28, 1] }}
           className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-white/80 lg:text-muted-foreground sm:text-lg relative z-20"
         >
-          Cylvox designs and builds production-ready automations, AI agents and internal systems that eliminate repetitive operational work.
+          Technical SEO, Core Web Vitals, and search automation for complex websites that need to be found, fast, and trusted.
         </motion.p>
 
         <motion.div
@@ -154,20 +155,21 @@ export default function Hero() {
         >
           <Link
             ref={ctaRef}
-            href="/#audit"
+            href="/contact"
             className="group flex h-12 items-center gap-3 overflow-hidden rounded-full bg-primary px-6 font-medium text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg active:scale-95"
           >
-            <span className="relative">Get an Automation Assessment</span>
+            <span className="relative">Get a Technical SEO Audit</span>
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
 
           <Link
-            href="/work"
+            href="/services/technical-seo"
             className="flex h-12 items-center px-6 font-medium text-white/90 border border-white/20 hover:bg-white/10 lg:text-muted-foreground lg:border-input rounded-full transition-colors lg:hover:bg-accent lg:hover:text-foreground"
           >
-            See Our Work
+            Explore Technical SEO
           </Link>
         </motion.div>
+        </div>
       </motion.div>
 
       {/* ── Drifting capability rail ───────────────────────────── */}

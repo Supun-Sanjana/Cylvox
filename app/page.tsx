@@ -8,12 +8,12 @@ import Closing from "@/components/Closing";
 import { baseUrl } from "@/lib/seo";
 
 export const metadata = {
-  title:       "Next.js Web Development & AI Automation Studio | Cylvox",
-  description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
+  title:       "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
+  description: "Technical SEO architecture, Core Web Vitals optimization, and search automation for complex websites.",
   alternates: { canonical: baseUrl },
   openGraph: {
-    title:       "Next.js Web Development & AI Automation Studio | Cylvox",
-    description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
+    title:       "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
+    description: "Technical SEO architecture, Core Web Vitals optimization, and search automation for complex websites.",
     url:         baseUrl,
     siteName:    "Cylvox",
     locale:      "en_US",
@@ -23,14 +23,14 @@ export const metadata = {
         url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Cylvox Solo Studio — Next.js & AI Automation",
+        alt: "Cylvox Technical SEO, Core Web Vitals, and Search Automation",
       },
     ],
   },
   twitter: {
     card:        "summary_large_image",
-    title:       "Next.js Web Development & AI Automation Studio | Cylvox",
-    description: "Cylvox Solo Studio engineers high-concurrency Next.js web applications, headless Sanity CMS architectures, and autonomous n8n workflows for modern enterprises.",
+    title:       "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
+    description: "Technical SEO architecture, Core Web Vitals optimization, and search automation for complex websites.",
     images:      [`${baseUrl}/og-image.jpg`],
   },
 };

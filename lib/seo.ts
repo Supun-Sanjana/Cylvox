@@ -1,5 +1,9 @@
 export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.cylvox.com";
 
+export function absoluteUrl(path = "/"): string {
+  return new URL(path, baseUrl).toString();
+}
+
 export const areaServedSchema = [
   {
     "@type": "Country",
@@ -30,11 +34,12 @@ export const areaServedSchema = [
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${baseUrl}/#organization`,
   name: "Cylvox Solo Studio",
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
   description:
-    "Cylvox is an independent solo studio building high-performing experiences.",
+    "Cylvox is an independent technical SEO studio specializing in crawlability, structured data, Core Web Vitals, and search automation.",
   sameAs: ["https://www.fiverr.com/s/R717Am8"],
   areaServed: areaServedSchema,
 };
@@ -42,30 +47,45 @@ export const organizationSchema = {
 export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": `${baseUrl}/#professional-service`,
   name: "Cylvox Solo Studio",
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
   image: `${baseUrl}/logo.png`,
   description:
-    "Cylvox is an independent solo studio building high-performing experiences, scalable web applications, technical SEO, and automated workflows.",
+    "Cylvox provides technical SEO architecture, Core Web Vitals optimization, search automation, and high-concurrency web engineering.",
   sameAs: ["https://www.fiverr.com/s/R717Am8"],
   priceRange: "$$",
   areaServed: areaServedSchema,
 };
 
 type BreadcrumbItem = { name: string; path: string };
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${baseUrl}/#website`,
+  url: baseUrl,
+  name: "Cylvox",
+  description:
+    "Technical SEO, Core Web Vitals optimization, structured data, and search automation for complex websites.",
+  publisher: {
+    "@id": `${baseUrl}/#organization`,
+  },
+  inLanguage: "en",
+};
+
 
 export function breadcrumbSchema(items: BreadcrumbItem[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "@id": `${baseUrl}/#breadcrumb`,
+    "@id": `${absoluteUrl(items[items.length - 1]?.path || "/")}#breadcrumb`,
     name: "Breadcrumbs",
     itemListElement: items.map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `${baseUrl}${item.path}`,
+      item: absoluteUrl(item.path),
     })),
   };
 }
@@ -82,13 +102,12 @@ export function serviceSchema({ name, description, path, serviceType }: ServiceS
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType,
+    "@id": `${absoluteUrl(path)}#service`,
+    url: absoluteUrl(path),
     name,
     description,
     provider: {
-      "@type": "ProfessionalService",
-      name: "Cylvox",
-      url: baseUrl,
-      areaServed: areaServedSchema,
+      "@id": `${baseUrl}/#professional-service`,
     },
     areaServed: areaServedSchema,
   };

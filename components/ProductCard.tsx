@@ -127,7 +127,7 @@ export default function ProductCard({
         ) : (
           <Link
             href={ctaHref}
-            className="inline-flex items-center justify-center gap-2 w-full rounded-full px-5 py-3 text-sm font-bold transition-all duration-200 bg-primary text-black hover:opacity-90 shadow-md"
+            className="inline-flex items-center justify-center gap-2 w-full rounded-full px-5 py-3 text-sm font-bold transition-all duration-200 bg-primary text-primary-foreground hover:opacity-90 shadow-md"
           >
             <span>{cta}</span>
             <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
