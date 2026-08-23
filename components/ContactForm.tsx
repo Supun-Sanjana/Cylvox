@@ -5,13 +5,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2, AlertCircle, Paperclip, FileText, X, Upload } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  defaultDomain?: string;
+  defaultIssues?: string;
+}
+
+export default function ContactForm({ defaultDomain, defaultIssues }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [messageLength, setMessageLength] = useState(0);
+  
+  const initialMessage = defaultIssues && defaultDomain 
+    ? `Regarding ${defaultDomain} — found: ${defaultIssues}\n\n`
+    : "";
+  const [message, setMessage] = useState(initialMessage);
+  const [messageLength, setMessageLength] = useState(initialMessage.length);
   const MAX_MESSAGE_LENGTH = 1000;
 
   const allowedExtensions = ["txt", "docx", "doc", "csv", "xlsx", "xls", "pdf", "rtf", "odt"];
@@ -194,7 +204,11 @@ export default function ContactForm() {
                 required
                 rows={5}
                 maxLength={MAX_MESSAGE_LENGTH}
-                onChange={(e) => setMessageLength(e.target.value.length)}
+                value={message}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                  setMessageLength(e.target.value.length);
+                }}
                 placeholder="Tell us about your goals, current stack, and timeline..."
                 className={`w-full bg-background border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none ${
                   messageLength > MAX_MESSAGE_LENGTH ? 'border-red-400' : 'border-border'

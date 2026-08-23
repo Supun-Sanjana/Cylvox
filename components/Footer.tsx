@@ -13,13 +13,13 @@ export default function Footer() {
           <p className="text-muted-foreground leading-relaxed text-sm font-medium">
             An independent solo studio specialising in Technical SEO, high-concurrency web engineering, and autonomous n8n workflows. We architect unfair advantages — from page-speed to page one.
           </p>
-          <div className="mt-5 text-sm font-medium text-muted-foreground flex items-center gap-3 border-t border-border/50 pt-4">
+          <div className="mt-5 text-sm font-medium text-muted-foreground flex items-center gap-3 border-t border-border/50 pt-4" itemScope itemType="https://schema.org/Person">
             <span className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary border border-primary/20 shrink-0">SS</span>
             <div className="flex flex-col">
               <span className="text-foreground font-semibold">
-                By <Link href="/about" rel="author" className="hover:text-primary transition-colors">Supun Sanjana</Link>
+                By <Link href="/about" rel="author" itemProp="url" className="hover:text-primary transition-colors"><span itemProp="name">Supun Sanjana</span></Link>
               </span>
-              <span className="text-xs text-muted-foreground mt-0.5">
+              <span className="text-xs text-muted-foreground mt-0.5" itemProp="jobTitle">
                 Independent Web Engineer & Technical SEO Specialist.
               </span>
             </div>

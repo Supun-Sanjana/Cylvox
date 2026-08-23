@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import type { ScanIssue, ScanResult } from '@/lib/wisp/types';
+import { buildContactUrl } from '@/lib/wisp/buildContactUrl';
 import styles from './Wisp.module.css';
 
 type MascotState = 'idle' | 'scanning' | 'worried' | 'happy';
@@ -46,17 +48,22 @@ function cx(...classes: Array<string | false | undefined>): string {
 }
 
 export default function Wisp() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [showGreet, setShowGreet] = useState(false);
   const [blink, setBlink] = useState(false);
   const [mascotState, setMascotState] = useState<MascotState>('idle');
 
   const [url, setUrl] = useState('');
+  const [scannedDomain, setScannedDomain] = useState('');
   const [scanning, setScanning] = useState(false);
   const [ticker, setTicker] = useState("Paste a URL and I'll take a look.");
   const [verdict, setVerdict] = useState('');
   const [issues, setIssues] = useState<ScanIssue[] | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [gateEmail, setGateEmail] = useState('');
+  const [gateSubmitted, setGateSubmitted] = useState(false);
+  const [gateLoading, setGateLoading] = useState(false);
 
   const confettiRef = useRef<HTMLDivElement>(null);
   const tickerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -143,6 +150,14 @@ export default function Wisp() {
     try {
       const result = await requestScan(url);
       const criticalCount = result.issues.filter((iss) => iss.sev === 'critical').length;
+      
+      let domainStr = '';
+      try {
+        domainStr = new URL(result.finalUrl).hostname;
+      } catch {
+        domainStr = url;
+      }
+      setScannedDomain(domainStr);
 
       if (result.clean) {
         setMascotState('happy');
@@ -178,11 +193,45 @@ export default function Wisp() {
   function handleFixSelf() {
     alert('Would expand into a short "fix this yourself" guide per issue.');
   }
-  function handleContact() {
-    alert('Would open a contact form referencing these exact findings.');
+
+  async function handleContact() {
+    if (!issues) return;
+    try {
+      await fetch('/api/wisp-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          domain: scannedDomain,
+          issues,
+          source: 'contact'
+        })
+      });
+    } catch (err) {
+      console.error('Failed to log lead', err);
+    }
+    router.push(buildContactUrl(scannedDomain, issues));
   }
-  function handleEmailGate() {
-    alert('Would prompt for email → unlocks a full multi-page scan.');
+
+  async function handleEmailGate() {
+    if (!gateEmail || !scannedDomain || !issues) return;
+    setGateLoading(true);
+    try {
+      await fetch('/api/wisp-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: gateEmail,
+          domain: scannedDomain,
+          issues,
+          source: 'registration'
+        })
+      });
+      setGateSubmitted(true);
+    } catch (err) {
+      console.error('Failed to register lead', err);
+    } finally {
+      setGateLoading(false);
+    }
   }
 
   return (
@@ -249,10 +298,30 @@ export default function Wisp() {
                     </button>
                   </div>
                   <div className={styles.gate}>
-                    <p>Want every page checked, not just the homepage?</p>
-                    <button className={cx(styles.btn, styles.btnGhost)} onClick={handleEmailGate}>
-                      Scan full site →
-                    </button>
+                    {gateSubmitted ? (
+                      <div className={styles.gateSuccess}>
+                        <p>Check your inbox — full results in a few minutes.</p>
+                      </div>
+                    ) : (
+                      <>
+                        <p>Your other pages on {scannedDomain || 'this site'} likely have the same problem — enter your email and I&apos;ll check them too.</p>
+                        <div className={styles.gateInputRow}>
+                          <input 
+                            className={styles.input} 
+                            type="email" 
+                            placeholder="you@domain.com"
+                            value={gateEmail} 
+                            onChange={(e) => setGateEmail(e.target.value)} 
+                          />
+                          <button className={cx(styles.btn, styles.btnGhost)} onClick={handleEmailGate} disabled={gateLoading || !gateEmail}>
+                            {gateLoading ? '...' : 'Scan full site →'}
+                          </button>
+                        </div>
+                        <p className={styles.gateDisclosure}>
+                          We&apos;ll check the other pages on your site the same way — nothing leaves it, we&apos;re just looking at more of it.
+                        </p>
+                      </>
+                    )}
                   </div>
                 </>
               )}

@@ -30,7 +30,15 @@ const breadcrumbs = breadcrumbSchema([
   { name: "Contact", path: "/contact" },
 ]);
 
-export default function ContactPage() {
+type PageProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export default async function ContactPage({ searchParams }: PageProps) {
+  const resolvedParams = await searchParams;
+  const domain = typeof resolvedParams.domain === 'string' ? resolvedParams.domain : undefined;
+  const issues = typeof resolvedParams.issues === 'string' ? resolvedParams.issues : undefined;
+
   return (
     <div className="min-h-screen bg-background pt-32 pb-20 px-4 sm:px-8">
       <JsonLd data={breadcrumbs} />
@@ -78,7 +86,7 @@ export default function ContactPage() {
 
         {/* Right Side: Form */}
         <div className="w-full">
-          <ContactForm />
+          <ContactForm defaultDomain={domain} defaultIssues={issues} />
         </div>
 
       </div>

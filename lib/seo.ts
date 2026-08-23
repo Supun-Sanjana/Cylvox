@@ -46,6 +46,8 @@ export const organizationSchema = {
     "@type": "Person",
     name: "Supun Sanjana",
     url: `${baseUrl}/about`,
+    jobTitle: "Independent Web Engineer",
+    description: "Supun Sanjana is an independent web engineer and technical SEO specialist building high-concurrency websites.",
   },
 };
 
@@ -66,6 +68,8 @@ export const professionalServiceSchema = {
     "@type": "Person",
     name: "Supun Sanjana",
     url: `${baseUrl}/about`,
+    jobTitle: "Independent Web Engineer",
+    description: "Supun Sanjana is an independent web engineer and technical SEO specialist building high-concurrency websites.",
   },
 };
 
@@ -85,6 +89,8 @@ export const websiteSchema = {
     "@type": "Person",
     name: "Supun Sanjana",
     url: `${baseUrl}/about`,
+    jobTitle: "Independent Web Engineer",
+    description: "Supun Sanjana is an independent web engineer and technical SEO specialist building high-concurrency websites.",
   },
   inLanguage: "en",
 };

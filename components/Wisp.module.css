@@ -423,6 +423,33 @@
   font-size: 11.5px;
   padding: 9px;
 }
+.gateInputRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.gateInputRow .input {
+  flex: 1;
+}
+.gateInputRow .btn {
+  width: auto;
+  white-space: nowrap;
+}
+.gateDisclosure {
+  font-size: 10px !important;
+  color: #4d6b5f !important;
+  margin-top: 8px;
+  margin-bottom: 0 !important;
+}
+.gateSuccess {
+  text-align: center;
+  padding: 8px 0;
+}
+.gateSuccess p {
+  color: var(--emerald);
+  margin: 0;
+  font-weight: 500;
+}
 
 /* ---- confetti ---- */
 .confettiContainer {
