@@ -13,9 +13,16 @@ export default function Footer() {
           <p className="text-muted-foreground leading-relaxed text-sm font-medium">
             An independent solo studio specialising in Technical SEO, high-concurrency web engineering, and autonomous n8n workflows. We architect unfair advantages — from page-speed to page one.
           </p>
-          <div className="mt-5 text-sm font-medium text-muted-foreground flex items-center gap-1.5">
-            <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[10px] text-primary border border-primary/30">SS</span>
-            By <Link href="/about" rel="author" className="text-foreground hover:text-primary transition-colors font-semibold">Supun Sanjana</Link>
+          <div className="mt-5 text-sm font-medium text-muted-foreground flex items-center gap-3 border-t border-border/50 pt-4">
+            <span className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary border border-primary/20 shrink-0">SS</span>
+            <div className="flex flex-col">
+              <span className="text-foreground font-semibold">
+                By <Link href="/about" rel="author" className="hover:text-primary transition-colors">Supun Sanjana</Link>
+              </span>
+              <span className="text-xs text-muted-foreground mt-0.5">
+                Independent Web Engineer & Technical SEO Specialist.
+              </span>
+            </div>
           </div>
         </div>
 
