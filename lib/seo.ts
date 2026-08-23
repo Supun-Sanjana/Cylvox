@@ -42,6 +42,11 @@ export const organizationSchema = {
     "Cylvox is an independent technical SEO studio specializing in crawlability, structured data, Core Web Vitals, and search automation.",
   sameAs: ["https://www.fiverr.com/s/R717Am8"],
   areaServed: areaServedSchema,
+  founder: {
+    "@type": "Person",
+    name: "Supun Sanjana",
+    url: `${baseUrl}/about`,
+  },
 };
 
 export const professionalServiceSchema = {
@@ -57,6 +62,11 @@ export const professionalServiceSchema = {
   sameAs: ["https://www.fiverr.com/s/R717Am8"],
   priceRange: "$$",
   areaServed: areaServedSchema,
+  founder: {
+    "@type": "Person",
+    name: "Supun Sanjana",
+    url: `${baseUrl}/about`,
+  },
 };
 
 type BreadcrumbItem = { name: string; path: string };
@@ -70,6 +80,11 @@ export const websiteSchema = {
     "Technical SEO, Core Web Vitals optimization, structured data, and search automation for complex websites.",
   publisher: {
     "@id": `${baseUrl}/#organization`,
+  },
+  author: {
+    "@type": "Person",
+    name: "Supun Sanjana",
+    url: `${baseUrl}/about`,
   },
   inLanguage: "en",
 };

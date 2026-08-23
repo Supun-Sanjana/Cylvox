@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
   description: "Cylvox is an independent technical SEO studio for crawlability, structured data, Core Web Vitals, and search automation on complex websites.",
+  authors: [{ name: "Supun Sanjana", url: `${baseUrl}/about` }],
   verification: {
     google: "MbW7OSda4rJ-b1SVXUwbjwuheieijZeB4_GUeUJL70Y",
   },

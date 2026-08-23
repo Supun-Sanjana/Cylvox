@@ -13,6 +13,10 @@ export default function Footer() {
           <p className="text-muted-foreground leading-relaxed text-sm font-medium">
             An independent solo studio specialising in Technical SEO, high-concurrency web engineering, and autonomous n8n workflows. We architect unfair advantages — from page-speed to page one.
           </p>
+          <div className="mt-5 text-sm font-medium text-muted-foreground flex items-center gap-1.5">
+            <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[10px] text-primary border border-primary/30">SS</span>
+            By <Link href="/about" rel="author" className="text-foreground hover:text-primary transition-colors font-semibold">Supun Sanjana</Link>
+          </div>
         </div>
 
         {/* Right: Links Grid */}
