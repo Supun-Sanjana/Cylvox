@@ -87,13 +87,37 @@ widget prototype already renders — `sev` maps directly to `.sev-critical`
 Wiring the widget to this route should just mean replacing the mock
 `mockFindings` array with a real `fetch('/api/wisp-scan', ...)` call.
 
+## Multi-page scan (added 2026-08-25)
+
+The email-gated "scan full site" flow is now real, not a stub. It lives
+outside `runScan.ts` on purpose — reuses the same fetch/SSRF guards and
+the authorship + structured-data checks, but skips the robots.txt-based
+indexability check per-page (that check is domain-wide, not page-wide;
+re-running it N times would be redundant and slower for no benefit).
+
+```
+lib/wisp/discoverPages.ts   sitemap.xml first, homepage-link fallback; MAX_PAGES = 8
+lib/wisp/detectPlatform.ts  cheap WordPress heuristic, drives the report page's CTA
+lib/wisp/multiScan.ts       orchestrator — bounded concurrency (3), no queue needed at this size
+
+app/api/wisp-scan-multi/route.ts   does the scan synchronously in-request, then emails the result
+app/report/[token]/page.tsx        public, token-gated report page — this is what the email links to
+
+supabase/migrations/20260825_wisp_multi_scans.sql
+```
+
+This runs synchronously inside one request rather than a background
+job — at 8 pages / concurrency 3 it comfortably finishes in well under
+a minute on a normal site, which is why a queue wasn't worth building
+yet. If `MAX_PAGES` grows meaningfully past 8, or scanned sites turn
+out to be consistently slow to respond, that's the point to revisit a
+real job queue instead of raising `maxDuration` further.
+
+The old n8n-webhook-and-a-lie flow it replaced is gone — see the
+comment in `app/api/wisp-lead/route.ts`.
+
 ## What's deliberately NOT in this pass
 
-- **Multi-page scanning.** This only ever fetches the homepage. The
-  email-gated "scan full site" flow from the widget prototype needs a
-  separate, bigger piece of work (crawl + queue + likely a background
-  job, since scanning a whole site synchronously in one request isn't
-  realistic). Worth its own planning pass rather than bolting onto this.
 - **AI-written summaries.** The `title`/`body` copy is static per
   check right now. If you want Wisp's personality voice woven into the
   actual findings (not just the scanning-ticker lines), that's a small,

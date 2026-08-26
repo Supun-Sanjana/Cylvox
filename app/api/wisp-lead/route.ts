@@ -28,15 +28,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Database error' }, { status: 500 });
     }
 
-    if (body.source === 'registration') {
-      if (process.env.N8N_WISP_REGISTRATION_WEBHOOK_URL) {
-        fetch(process.env.N8N_WISP_REGISTRATION_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        }).catch((err) => console.error('n8n trigger failed', err));
-      }
-    } else if (body.source === 'contact') {
+    // Note: 'registration' (the "scan my full site" email gate) no
+    // longer flows through this route — it posts straight to
+    // /api/wisp-scan-multi, which does the actual multi-page scan,
+    // its own wisp_leads insert, and the report email. This route now
+    // only handles 'contact' leads. Kept the 'registration' value in
+    // the DB check constraint for historical rows.
+    if (body.source === 'contact') {
       // Notify on contact-form leads
       // Using n8n webhook if available, or any existing system.
       // Since the brief says "Resend a plain notification email to yourself... (can live in the same route)"

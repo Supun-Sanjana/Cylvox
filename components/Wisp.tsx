@@ -64,6 +64,8 @@ export default function Wisp() {
   const [gateEmail, setGateEmail] = useState('');
   const [gateSubmitted, setGateSubmitted] = useState(false);
   const [gateLoading, setGateLoading] = useState(false);
+  const [gateError, setGateError] = useState<string | null>(null);
+  const [gateReportUrl, setGateReportUrl] = useState<string | null>(null);
 
   const confettiRef = useRef<HTMLDivElement>(null);
   const tickerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -215,20 +217,27 @@ export default function Wisp() {
   async function handleEmailGate() {
     if (!gateEmail || !scannedDomain || !issues) return;
     setGateLoading(true);
+    setGateError(null);
     try {
-      await fetch('/api/wisp-lead', {
+      const res = await fetch('/api/wisp-scan-multi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: gateEmail,
-          domain: scannedDomain,
+          url: scannedDomain,
           issues,
-          source: 'registration'
         })
       });
+      const data = await res.json();
+      if (!res.ok) {
+        setGateError(data?.message ?? "Couldn't scan the rest of the site — try again shortly.");
+        return;
+      }
+      setGateReportUrl(data.reportUrl);
       setGateSubmitted(true);
     } catch (err) {
-      console.error('Failed to register lead', err);
+      console.error('Failed to run multi-page scan', err);
+      setGateError("Couldn't scan the rest of the site — try again shortly.");
     } finally {
       setGateLoading(false);
     }
@@ -300,11 +309,18 @@ export default function Wisp() {
                   <div className={styles.gate}>
                     {gateSubmitted ? (
                       <div className={styles.gateSuccess}>
-                        <p>Check your inbox — full results in a few minutes.</p>
+                        <p>Done — we&apos;ve emailed the full report to {gateEmail}.</p>
+                        {gateReportUrl && (
+                          <p>
+                            <a href={gateReportUrl} className={styles.gateReportLink}>
+                              View it now →
+                            </a>
+                          </p>
+                        )}
                       </div>
                     ) : (
                       <>
-                        <p>Your other pages on {scannedDomain || 'this site'} likely have the same problem — enter your email and I&apos;ll check them too.</p>
+                        <p>Your other pages on {scannedDomain || 'this site'} likely have the same problem — enter your email and I&apos;ll check up to 8 of them now.</p>
                         <div className={styles.gateInputRow}>
                           <input 
                             className={styles.input} 
@@ -314,12 +330,13 @@ export default function Wisp() {
                             onChange={(e) => setGateEmail(e.target.value)} 
                           />
                           <button className={cx(styles.btn, styles.btnGhost)} onClick={handleEmailGate} disabled={gateLoading || !gateEmail}>
-                            {gateLoading ? '...' : 'Scan full site →'}
+                            {gateLoading ? 'Scanning…' : 'Scan full site →'}
                           </button>
                         </div>
                         <p className={styles.gateDisclosure}>
-                          We&apos;ll check the other pages on your site the same way — nothing leaves it, we&apos;re just looking at more of it.
+                          Scanning up to 8 pages takes under a minute. We&apos;ll email you a link either way — you don&apos;t have to wait here.
                         </p>
+                        {gateError && <p className={styles.gateDisclosure}>{gateError}</p>}
                       </>
                     )}
                   </div>
