@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 export default function NvtiCaseStudyPage() {
   const breadcrumb = breadcrumbSchema([
     { name: 'Home', path: '/' },
-    { name: 'Case Studies', path: '/case-studies' },
+    { name: 'Work', path: '/work' },
     { name: 'NVTI Baddegama', path: '/case-studies/nvti-baddegama' },
   ])
 

@@ -1,6 +1,6 @@
 import Services from "@/components/Services";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, baseUrl } from "@/lib/seo";
 import Image from "next/image";
 
 export const metadata = {
@@ -8,18 +8,19 @@ export const metadata = {
   description: 'Technical SEO is Cylvox’s core service: crawlability, schema, Core Web Vitals, search automation, and web engineering for complex sites.',
   alternates: { canonical: '/services' },
   openGraph: {
-    title: 'Cylvox Services',
-    description: 'Technical services for modern web products.',
-    url: 'https://cylvox.com/services',
+    title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
+    description: 'Cylvox delivers technical SEO architecture, Core Web Vitals optimization, search automation, and web engineering for complex modern websites.',
+    url: `${baseUrl}/services`,
     siteName: 'Cylvox',
-    images: [{ url: '/og/services.png', width: 1200, height: 630, alt: 'Cylvox Services' }],
+    locale: 'en_US',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Cylvox Technical SEO Services' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cylvox Services',
-    description: 'Technical services for modern web products.',
-    images: ['/og/services.png'],
+    title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
+    description: 'Cylvox delivers technical SEO architecture, Core Web Vitals optimization, search automation, and web engineering for complex modern websites.',
+    images: ['/og-image.jpg'],
   },
 };
 

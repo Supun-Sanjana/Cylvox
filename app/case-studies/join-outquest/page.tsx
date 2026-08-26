@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'Cylvox',
     images: [
       {
-        url: '/og/case-study.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'OutQuest Case Study',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'OutQuest — Complete Technical SEO & Performance | Cylvox Case Study',
     description: 'How Cylvox built a full technical SEO, indexing, structured data, and performance infrastructure for OutQuest\'s Next.js platform on Vercel with Supabase.',
-    images: ['/og/case-study.png'],
+    images: ['/og-image.jpg'],
   },
 }
 
@@ -37,7 +37,7 @@ export default function OutQuestCaseStudyPage() {
   // Breadcrumb schema
   const breadcrumb = breadcrumbSchema([
     { name: 'Home', path: '/' },
-    { name: 'Case Studies', path: '/case-studies' },
+    { name: 'Work', path: '/work' },
     { name: 'OutQuest Technical SEO', path: '/case-studies/join-outquest' },
   ])
 

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'Cylvox',
     images: [
       {
-        url: '/og/case-study.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Zymgut Case Study',
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Zymgut (Brine & Thrive) — Technical SEO Plugin | Cylvox Case Study',
     description: 'How Cylvox developed a custom WordPress plugin architecture to dramatically improve organic search visibility and structured data for Zymgut.',
-    images: ['/og/case-study.png'],
+    images: ['/og-image.jpg'],
   },
 }
 
 export default function ZymgutCaseStudyPage() {
   const breadcrumb = breadcrumbSchema([
     { name: 'Home', path: '/' },
-    { name: 'Case Studies', path: '/case-studies' },
+    { name: 'Work', path: '/work' },
     { name: 'Zymgut (Brine & Thrive)', path: '/case-studies/zymgut' },
   ])
 

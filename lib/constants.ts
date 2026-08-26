@@ -31,9 +31,9 @@ export const SERVICES: ServiceItem[] = [
     text: "Make every important page fast, crawlable, indexable, and eligible for rich results.",
     link: "/services/technical-seo",
     findings: [
-      "Four hours a day lost to manual lead qualification",
-      "Endless copy-pasting between CRM and spreadsheets",
-      "No dead-letter queue when a manual process fails at 3am",
+      "LCP at 4.8s on a mid-range device losing customers",
+      "Zero structured data, meaning no organic rich results",
+      "Crawl budget wasted on orphan pages and broken redirects",
     ],
   },
   {
@@ -45,9 +45,9 @@ export const SERVICES: ServiceItem[] = [
     text: "Automate search operations and repetitive business workflows with dependable AI and API orchestration.",
     link: "/services/ai-automation",
     findings: [
-      "Service-role key shipped in the client bundle",
-      "Row-level security never enabled on database tables",
-      "Slow queries bringing down the entire application",
+      "Four hours a day lost to manual lead qualification",
+      "Endless copy-pasting between CRM and spreadsheets",
+      "No dead-letter queue when a manual process fails at 3am",
     ],
   },
   {
@@ -59,9 +59,9 @@ export const SERVICES: ServiceItem[] = [
     text: "Build resilient web systems that support technical SEO, performance, and reliable business operations.",
     link: "/services/web-development",
     findings: [
-      "LCP at 4.8s on a mid-range device losing customers",
-      "Zero structured data, meaning no organic rich results",
-      "Unstable API integrations failing silently",
+      "Service-role key shipped in the client bundle",
+      "Row-level security never enabled on database tables",
+      "Slow queries bringing down the entire application",
     ],
   },
 ];

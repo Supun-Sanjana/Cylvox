@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'Cylvox',
     images: [
       {
-        url: '/og/case-study.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Micro Credit ERP Case Study',
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Micro Credit ERP — Robust Tracking System | Cylvox Case Study',
     description: 'Architecting a robust, scalable ERP for tracking micro-credit loans and financial data.',
-    images: ['/og/case-study.png'],
+    images: ['/og-image.jpg'],
   },
 }
 
 export default function MicroCreditCaseStudyPage() {
   const breadcrumb = breadcrumbSchema([
     { name: 'Home', path: '/' },
-    { name: 'Case Studies', path: '/case-studies' },
+    { name: 'Work', path: '/work' },
     { name: 'Micro Credit ERP', path: '/case-studies/micro-credit-erp' },
   ])
 

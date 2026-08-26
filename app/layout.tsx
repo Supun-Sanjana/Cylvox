@@ -80,8 +80,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </Suspense>
         <Navbar />
         <main className="overflow-hidden relative">
-          {children}`
-          <Wisp />`
+          {children}
+          <Wisp />
         </main>
         <Footer />
       </body>

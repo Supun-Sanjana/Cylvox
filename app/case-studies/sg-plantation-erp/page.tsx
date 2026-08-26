@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'Cylvox',
     images: [
       {
-        url: '/og/case-study.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'SG Plantation ERP Case Study',
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'SG Plantation ERP — Custom High-Concurrency System | Cylvox Case Study',
     description: 'How Cylvox developed a highly secure, custom Next.js Enterprise Resource Planning system for internal plantation management.',
-    images: ['/og/case-study.png'],
+    images: ['/og-image.jpg'],
   },
 }
 
 export default function SgPlantationCaseStudyPage() {
   const breadcrumb = breadcrumbSchema([
     { name: 'Home', path: '/' },
-    { name: 'Case Studies', path: '/case-studies' },
+    { name: 'Work', path: '/work' },
     { name: 'SG Plantation ERP', path: '/case-studies/sg-plantation-erp' },
   ])
 

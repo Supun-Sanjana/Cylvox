@@ -33,11 +33,12 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Services</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
+              <li><Link href="/services" className="hover:text-primary transition-colors">All Services</Link></li>
               <li><Link href="/services/technical-seo" className="hover:text-primary transition-colors">Technical SEO</Link></li>
               <li><Link href="/services/optimization" className="hover:text-primary transition-colors">Core Web Vitals</Link></li>
               <li><Link href="/services/web-development" className="hover:text-primary transition-colors">Web Engineering</Link></li>
               <li><Link href="/services/ai-automation" className="hover:text-primary transition-colors">n8n Automation</Link></li>
-              <li><Link href="/services/web-development" className="hover:text-primary transition-colors">Security Audits</Link></li>
+              <li><Link href="/services/ui-ux-design" className="hover:text-primary transition-colors">UI/UX Design</Link></li>
             </ul>
           </div>
 
@@ -45,7 +46,9 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Explore</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
+              <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
               <li><Link href="/work" className="hover:text-primary transition-colors">Work</Link></li>
+              <li><Link href="/products" className="hover:text-primary transition-colors">Products</Link></li>
               <li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
               <li><Link href="/agency-partners" className="hover:text-primary transition-colors">Agency Partners</Link></li>
               <li><Link href="/trust-signal-auditor" className="hover:text-primary transition-colors">Trust Signal Auditor</Link></li>

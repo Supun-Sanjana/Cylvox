@@ -40,14 +40,34 @@ export const organizationSchema = {
   logo: `${baseUrl}/logo.png`,
   description:
     "Cylvox is an independent technical SEO studio specializing in crawlability, structured data, Core Web Vitals, and search automation.",
-  sameAs: ["https://www.fiverr.com/s/R717Am8"],
+  sameAs: [
+    "https://www.fiverr.com/s/R717Am8",
+    "https://www.linkedin.com/in/sanjana-supun",
+    "https://github.com/Supun-Sanjana",
+    "https://www.upwork.com/freelancers/~01070df5b63ecea5bf",
+  ],
+  knowsAbout: [
+    "Technical SEO",
+    "Core Web Vitals Optimization",
+    "Next.js App Router Architecture",
+    "Schema.org Structured Data",
+    "IndexNow Search Automation",
+    "n8n Workflow Automation",
+    "React Server Components",
+    "Supabase PostgreSQL",
+  ],
   areaServed: areaServedSchema,
   founder: {
     "@type": "Person",
+    "@id": `${baseUrl}/about#person`,
     name: "Supun Sanjana",
     url: `${baseUrl}/about`,
-    jobTitle: "Independent Web Engineer",
+    jobTitle: "Lead Web Engineer & Technical SEO Specialist",
     description: "Supun Sanjana is an independent web engineer and technical SEO specialist building high-concurrency websites.",
+    sameAs: [
+      "https://www.linkedin.com/in/sanjana-supun",
+      "https://github.com/Supun-Sanjana",
+    ],
   },
 };
 
@@ -61,14 +81,28 @@ export const professionalServiceSchema = {
   image: `${baseUrl}/logo.png`,
   description:
     "Cylvox provides technical SEO architecture, Core Web Vitals optimization, search automation, and high-concurrency web engineering.",
-  sameAs: ["https://www.fiverr.com/s/R717Am8"],
+  sameAs: [
+    "https://www.fiverr.com/s/R717Am8",
+    "https://www.linkedin.com/in/sanjana-supun",
+    "https://github.com/Supun-Sanjana",
+    "https://www.upwork.com/freelancers/~01070df5b63ecea5bf",
+  ],
+  knowsAbout: [
+    "Technical SEO",
+    "Core Web Vitals Optimization",
+    "Next.js App Router Architecture",
+    "Schema.org Structured Data",
+    "IndexNow Search Automation",
+    "n8n Workflow Automation",
+  ],
   priceRange: "$$",
   areaServed: areaServedSchema,
   founder: {
     "@type": "Person",
+    "@id": `${baseUrl}/about#person`,
     name: "Supun Sanjana",
     url: `${baseUrl}/about`,
-    jobTitle: "Independent Web Engineer",
+    jobTitle: "Lead Web Engineer & Technical SEO Specialist",
     description: "Supun Sanjana is an independent web engineer and technical SEO specialist building high-concurrency websites.",
   },
 };
@@ -168,5 +202,78 @@ export function productListSchema(products: ProductItem[]) {
         },
       },
     })),
+  };
+}
+
+/* ─── FAQ Page Schema (AEO / GEO critical) ─── */
+
+type FaqItem = { question: string; answer: string };
+
+export function faqPageSchema(faqs: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+/* ─── Article / BlogPosting Schema ─── */
+
+type ArticleSchemaInput = {
+  title: string;
+  description: string;
+  slug: string;
+  datePublished: string;
+  dateModified?: string;
+  tags?: string[];
+};
+
+export function articleSchema({
+  title,
+  description,
+  slug,
+  datePublished,
+  dateModified,
+  tags,
+}: ArticleSchemaInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["BlogPosting", "TechArticle"],
+    headline: title,
+    description,
+    datePublished,
+    dateModified: dateModified || datePublished,
+    keywords: tags?.join(", "),
+    author: {
+      "@type": "Person",
+      "@id": `${baseUrl}/about#person`,
+      name: "Supun Sanjana",
+      url: `${baseUrl}/about`,
+      jobTitle: "Lead Web Engineer & Technical SEO Specialist",
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
+      name: "Cylvox Solo Studio",
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${baseUrl}/blog/${slug}`,
+    },
+    isPartOf: {
+      "@id": `${baseUrl}/#website`,
+    },
+    inLanguage: "en",
   };
 }

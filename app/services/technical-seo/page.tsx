@@ -2,7 +2,41 @@ import Link from "next/link";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
+import FAQ from "@/components/FAQ";
+import { breadcrumbSchema, serviceSchema, faqPageSchema } from "@/lib/seo";
+
+const TECHNICAL_SEO_FAQS = [
+  {
+    question: "What is technical SEO and why does it matter?",
+    answer:
+      "Technical SEO is the practice of optimizing server architecture, crawlability, indexability, structured data, and rendering performance so search engines can efficiently discover, process, and rank your content. Without solid technical SEO foundations, even the highest-quality content won't appear in search results because crawlers can't access or interpret it. Google processes over 8.5 billion searches daily and now evaluates Core Web Vitals as a direct ranking signal — making technical SEO the non-negotiable baseline for organic visibility.",
+  },
+  {
+    question: "How does technical SEO differ from on-page and off-page SEO?",
+    answer:
+      "Technical SEO focuses on infrastructure — server response times, crawl budget optimization, XML sitemaps, robots.txt directives, structured data markup, and Core Web Vitals performance metrics. On-page SEO covers content optimization including title tags, heading hierarchy, keyword density, and internal linking. Off-page SEO addresses backlink acquisition and brand authority signals. All three disciplines work together as a unified search strategy, but technical SEO is the foundation that determines whether search engines can even find and index your on-page content.",
+  },
+  {
+    question: "What are Core Web Vitals and how do they affect rankings?",
+    answer:
+      "Core Web Vitals are Google's three key performance metrics that measure real-world user experience — Largest Contentful Paint (LCP under 2.5 seconds), Interaction to Next Paint (INP under 200 milliseconds), and Cumulative Layout Shift (CLS under 0.1). Since 2021, Core Web Vitals have been a confirmed Google ranking signal within the Page Experience system. Sites that pass all three thresholds receive a measurable ranking boost over competitors with poor performance scores, making Core Web Vitals optimization a critical component of any technical SEO strategy.",
+  },
+  {
+    question: "How does Next.js App Router improve technical SEO?",
+    answer:
+      "Next.js App Router leverages React Server Components to render 100% of HTML, headings, navigation links, and JSON-LD structured data on the server, completely eliminating client-side JavaScript dependencies for Googlebot crawling and indexing. The built-in generateMetadata API produces dynamic title tags, canonical URLs, and OpenGraph images at the edge, achieving sub-200ms TTFB. This server-first architecture ensures every page is fully crawlable on first request — a critical technical SEO advantage over client-rendered frameworks.",
+  },
+  {
+    question: "What is IndexNow and how does it speed up search indexing?",
+    answer:
+      "IndexNow is an open protocol that lets websites push instant notifications to search engines including Bing, Yandex, and partner networks when content is created, updated, or deleted — reducing indexing latency from days to minutes. At Cylvox, we wire IndexNow into CMS publish events via automated n8n workflows, ensuring every content change triggers an immediate ping to search engine APIs. This eliminates the traditional wait for organic crawling and gives your fresh content a significant speed-to-index advantage.",
+  },
+  {
+    question: "How long does a technical SEO audit take and what does it include?",
+    answer:
+      "A comprehensive Cylvox technical SEO audit typically takes 2–3 weeks and covers our complete 11-phase engineering blueprint. The audit evaluates crawlability and zero-orphan page validation, indexability controls, Core Web Vitals performance tuning, structured data validation, canonical URL integrity, robots.txt and dynamic sitemap architecture, next-gen image optimization, 301 redirect chain resolution, and competitive performance benchmarking — all verified with PageSpeed Insights, Lighthouse, and Schema.org validation reports.",
+  },
+];
 
 export const metadata = {
   title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
@@ -165,9 +199,44 @@ export default function TechnicalSEOPage() {
           Technical SEO & <span className="text-[#ccff00]">Core Web Vitals Architecture</span>
         </h1>
         
-        <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed max-w-3xl">
+        {/* BLUF Definition for AEO / GEO Extraction */}
+        <p className="text-xl md:text-2xl text-foreground font-semibold mb-6 leading-relaxed max-w-3xl">
+          Technical SEO is the practice of optimizing a website&apos;s server architecture, crawlability, indexability, structured data, and rendering performance so search engines and AI crawlers can discover, evaluate, and index pages without friction. Cylvox delivers this as an 11-phase engineering blueprint.
+        </p>
+
+        <p className="text-lg text-muted-foreground mb-12 leading-relaxed max-w-3xl">
           We engineer bulletproof search infrastructures for high-growth Next.js and Supabase websites. By uniting real-time indexing automation, server-side rendered metadata, structured JSON-LD schema, and aggressive Core Web Vitals optimization, we turn search algorithms into your unfair commercial advantage.
         </p>
+
+        {/* Semantic Comparison Table for GEO / Rich Snippets */}
+        <div className="mb-16 max-w-4xl overflow-x-auto border border-border rounded-2xl bg-surface/50">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-surface border-b border-border">
+              <tr>
+                <th className="p-4 font-bold text-foreground">Discipline</th>
+                <th className="p-4 font-bold text-foreground">Focus Area</th>
+                <th className="p-4 font-bold text-foreground">Cylvox Implementation</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border text-muted-foreground">
+              <tr>
+                <td className="p-4 font-semibold text-foreground">Technical SEO</td>
+                <td className="p-4">Infrastructure, crawling, rendering, schema, speed</td>
+                <td className="p-4">Core Web Vitals optimization, JSON-LD, Next.js RSCs</td>
+              </tr>
+              <tr>
+                <td className="p-4 font-semibold text-foreground">On-Page SEO</td>
+                <td className="p-4">Content quality, heading structure, keyword density</td>
+                <td className="p-4">CMS-integrated SEO fields, automated canonicals</td>
+              </tr>
+              <tr>
+                <td className="p-4 font-semibold text-foreground">Off-Page SEO</td>
+                <td className="p-4">Backlink profile, brand mentions, domain authority</td>
+                <td className="p-4">Automated 301 redirects to preserve link equity</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         {/* Why You Need This & What We Deliver Split */}
         <div className="grid md:grid-cols-2 gap-12 mb-20 border-t border-border pt-12">
@@ -293,6 +362,18 @@ export default function TechnicalSEOPage() {
               </span>
             ))}
           </div>
+        </div>
+
+
+
+        {/* FAQ Section */}
+        <div className="mb-20 border-t border-border pt-16">
+          <JsonLd data={faqPageSchema(TECHNICAL_SEO_FAQS)} />
+          <FAQ
+            faqs={TECHNICAL_SEO_FAQS}
+            title="Frequently Asked Questions"
+            subtitle="Common questions about technical SEO architecture, Core Web Vitals optimization, and our engineering process."
+          />
         </div>
 
         {/* Bottom CTA */}
