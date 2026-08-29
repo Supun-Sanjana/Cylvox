@@ -2,14 +2,14 @@
 
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
-import { SectionLabel } from "./SectionLabel";
+
 import ContactForm from "./ContactForm";
 
 export default function Closing() {
   return (
     <section
       id="contact"
-      className="px-4 py-20 sm:px-8 sm:py-28 relative overflow-hidden bg-background"
+      className="px-4 py-20 sm:px-8 sm:py-32 relative overflow-hidden bg-background"
     >
       {/* Background glow circle */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
@@ -23,33 +23,36 @@ export default function Closing() {
           }}
           transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
           className="w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] filter blur-[90px] opacity-100 mix-blend-screen"
-          style={{ background: "radial-gradient(circle, rgba(204, 255, 0, 0.35) 0%, rgba(204, 255, 0, 0.15) 40%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(204, 255, 0, 0.45) 0%, rgba(204, 255, 0, 0.2) 40%, transparent 70%)" }}
         />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="flex flex-col items-center text-center mb-16">
-          <Reveal direction="up">
-            <SectionLabel>Get Started</SectionLabel>
-            <h2
-              className="mt-5 font-display font-semibold tracking-tight leading-[1.1]
-                         text-5xl sm:text-6xl lg:text-7xl max-w-3xl mb-9 text-foreground"
-            >
-              Let&apos;s build the system
-              <br />
-              people{" "}
-              <em className="text-primary not-italic">
-                remember.
-              </em>
-            </h2>
-          </Reveal>
-        </div>
-
-        <Reveal direction="up" delay={0.2}>
-          <div className="max-w-3xl mx-auto text-left">
-            <ContactForm />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          
+          <div className="flex flex-col text-left">
+            <Reveal direction="up">
+              <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-4 block">
+                Start a project
+              </span>
+              <h2 className="font-display tracking-tight leading-[1.1] text-5xl sm:text-6xl lg:text-7xl mb-6 text-foreground">
+                Let&apos;s build something
+                <br />
+                <em className="text-primary not-italic">
+                  unforgettable.
+                </em>
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-md leading-relaxed">
+                Whether you need a technical SEO overhaul, a custom Next.js web application, or automated API workflows—we're ready to engineer your growth. Reach out and we'll get back to you within 24 hours.
+              </p>
+            </Reveal>
           </div>
-        </Reveal>
+
+          <Reveal direction="up" delay={0.2}>
+            <ContactForm />
+          </Reveal>
+
+        </div>
       </div>
     </section>
   );

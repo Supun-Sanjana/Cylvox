@@ -1,8 +1,7 @@
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
+import HomeHero from "@/components/HomeHero";
+import HomeServices from "@/components/HomeServices";
 import CaseStudies from "@/components/CaseStudies";
 import ProofBand from "@/components/Proofband";
-import Process from "@/components/Process";
 import Closing from "@/components/Closing";
 
 import { baseUrl } from "@/lib/seo";
@@ -61,13 +60,12 @@ const HOMEPAGE_FAQS = [
 export default function Page() {
   return (
     <>
-      <Hero />
-      <Services />
+      <HomeHero />
+      <HomeServices />
       <CaseStudies />
       <ProofBand />
-      <Process />
       
-      <div className="border-t border-border bg-background">
+      <div className="bg-background">
         <JsonLd data={faqPageSchema(HOMEPAGE_FAQS)} />
         <FAQ
           faqs={HOMEPAGE_FAQS}

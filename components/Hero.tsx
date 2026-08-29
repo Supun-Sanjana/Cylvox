@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { SectionLabel } from "./SectionLabel";
+
 import { usePointerVars, useParallax, useMagnetic } from "@/lib/motion";
 
 const CAPABILITIES = [
@@ -43,13 +43,9 @@ export default function Hero() {
         fieldRef.current = node;
       }}
       id="top"
-      className="atmos relative isolate flex min-h-svh flex-col overflow-hidden w-full"
+      className=" relative isolate flex min-h-svh flex-col overflow-hidden w-full"
     >
-      {/* ── Atmosphere ─────────────────────────────────────────── */}
-      <div className="absolute inset-0 -z-10 pointer-events-none lg:block hidden">
-        <div className="dots absolute inset-0 opacity-45" />
-        <div className="dots-live absolute inset-0" />
-      </div>
+
 
       <motion.div
         style={{ y: artY, opacity: artOpacity }}
@@ -75,7 +71,7 @@ export default function Hero() {
               draggable={false}
             />
           </motion.div>
-          {/* Inner shadows and grain for depth */}
+          {/* Inner shadows and  for depth */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1a19]/90 via-black/40 to-black/20 lg:from-[#1c1a19]/80 lg:via-transparent lg:to-transparent pointer-events-none mix-blend-multiply" />
           <div className="absolute inset-0 lg:ring-1 lg:ring-inset lg:ring-white/10 lg:rounded-[3rem] pointer-events-none" />
         </div>
@@ -87,13 +83,6 @@ export default function Hero() {
         className="relative z-20 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-4 pb-20 pt-36 sm:px-8 sm:pb-24 lg:justify-center lg:pb-0 lg:pt-0"
       >
         <div className="flex w-full flex-col lg:max-w-[calc(100%-min(38vw,480px)-2.5rem)]">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.28, 1] }}
-        >
-          <SectionLabel className="max-lg:text-white/90">Cylvox Solo Studio</SectionLabel>
-        </motion.div>
 
         <h1 className="font-display relative z-20 mt-7 max-w-[16ch] text-balance text-[clamp(2.9rem,8vw,6.25rem)] leading-[0.94] text-white lg:text-foreground">
           {["Technical", "SEO", "that"].map((word, i) => (

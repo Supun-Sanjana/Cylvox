@@ -44,8 +44,8 @@ export default function Aperture({ offset = { x: 0, y: 0 }, scrollYProgress, cla
         className="absolute -inset-[10%] rounded-full opacity-60 animate-aperture-breathe"
         style={{
           background:
-            "radial-gradient(circle at 50% 52%, rgba(224,122,95,0.3) 0%, rgba(244,162,97,0.2) 42%, transparent 68%)",
-          filter: "blur(60px)",
+            "radial-gradient(circle at 50% 52%, rgba(204,255,0,0.08) 0%, rgba(204,255,0,0.05) 42%, transparent 68%)",
+          filter: "blur(70px)",
         }}
       />
 
@@ -58,9 +58,9 @@ export default function Aperture({ offset = { x: 0, y: 0 }, scrollYProgress, cla
             style={{
               transform: `rotate(${(360 / OUTER) * i}deg)`,
               opacity: 0.7,
-              filter: "blur(16px)",
+              filter: "blur(20px)",
               background:
-                "linear-gradient(178deg, rgba(233,196,106,0.4) 0%, rgba(244,162,97,0.3) 36%, rgba(231,111,81,0.25) 64%, transparent 88%)",
+                "linear-gradient(178deg, rgba(204,255,0,0.15) 0%, rgba(204,255,0,0.1) 36%, rgba(11,49,46,0.15) 64%, transparent 88%)",
             }}
           />
         ))}
@@ -75,9 +75,9 @@ export default function Aperture({ offset = { x: 0, y: 0 }, scrollYProgress, cla
             style={{
               transform: `rotate(${(360 / INNER) * i + 18}deg)`,
               opacity: 0.65,
-              filter: "blur(12px)",
+              filter: "blur(16px)",
               background:
-                "linear-gradient(176deg, rgba(255,230,150,0.6) 0%, rgba(244,162,97,0.4) 42%, rgba(231,111,81,0.2) 74%, transparent 92%)",
+                "linear-gradient(176deg, rgba(204,255,0,0.25) 0%, rgba(204,255,0,0.15) 42%, rgba(11,49,46,0.2) 74%, transparent 92%)",
             }}
           />
         ))}
@@ -91,7 +91,7 @@ export default function Aperture({ offset = { x: 0, y: 0 }, scrollYProgress, cla
             className="absolute inset-0"
             style={{
               borderRadius: "46% 54% 50% 50% / 62% 58% 42% 38%",
-              border: "1px solid rgba(80,40,20,0.15)",
+              border: "1px solid rgba(204,255,0,0.15)",
               transformOrigin: "50% 78%",
               transform: `rotate(${(360 / OUTER) * i + 9}deg)`,
             }}
@@ -113,21 +113,21 @@ export default function Aperture({ offset = { x: 0, y: 0 }, scrollYProgress, cla
       />
 
       {/* Pupil — a soft void rather than a hard black disc */}
-      <motion.div className="aperture-pupil absolute inset-[39%] rounded-full bg-[#3d1b11]/10 opacity-80 mix-blend-multiply" style={{ scale: pupilScale }} />
+      <motion.div className="aperture-pupil absolute inset-[39%] rounded-full bg-[#0a0f14]/10 opacity-40 mix-blend-multiply" style={{ scale: pupilScale }} />
 
       {/* Concentric hairline rings */}
-      <div className="aperture-ring absolute inset-[22%] rounded-full border border-[#f4a261]/10" />
+      <div className="aperture-ring absolute inset-[22%] rounded-full border border-[#ccff00]/10" />
       <div
         className="absolute inset-[38%] rounded-full"
-        style={{ border: "1px solid rgba(244,162,97,0.4)" }}
+        style={{ border: "1px solid rgba(204,255,0,0.2)" }}
       />
       <div
         className="absolute inset-[6%] rounded-full"
-        style={{ border: "1px solid rgba(80,40,20,0.1)" }}
+        style={{ border: "1px solid rgba(204,255,0,0.05)" }}
       />
 
-      {/* Grain, so the diffusion reads as film rather than CSS blur */}
-      <div className="grain absolute -inset-[18%] rounded-full" />
+      {/* , so the diffusion reads as film rather than CSS blur */}
+      <div className=" absolute -inset-[18%] rounded-full" />
     </motion.div>
   );
 }

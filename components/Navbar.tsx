@@ -12,8 +12,8 @@ export default function Navbar() {
       <div
         className="pointer-events-auto flex items-center justify-between gap-4 w-full max-w-7xl min-h-14
                    px-5 py-2.5 sm:px-6
-                   border border-border/50 rounded-full
-                   bg-surface/60 backdrop-blur-3xl saturate-150
+                   border border-white/[0.06] rounded-2xl
+                   bg-[#0a0f14]/70 backdrop-blur-3xl saturate-150
                    shadow-sm"
         style={{
           WebkitBackdropFilter: "blur(24px)",

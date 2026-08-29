@@ -127,27 +127,27 @@ export default function ContactForm({ defaultDomain, defaultIssues }: ContactFor
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onSubmit={handleSubmit}
-            className="space-y-6"
+            className="space-y-4"
           >
             {errorMsg && (
-              <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-xl flex items-center gap-3 text-red-400 text-sm font-medium">
+              <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-xl flex items-center gap-3 text-red-400 text-sm font-medium">
                 <AlertCircle className="w-5 h-5 shrink-0" />
                 {errorMsg}
               </div>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="space-y-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
                 <label htmlFor="name" className="text-sm font-medium text-foreground">Name</label>
                 <input
                   id="name"
                   name="name"
                   required
                   placeholder="Jane Doe"
-                  className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                  className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label htmlFor="email" className="text-sm font-medium text-foreground">Email</label>
                 <input
                   id="email"
@@ -155,18 +155,18 @@ export default function ContactForm({ defaultDomain, defaultIssues }: ContactFor
                   type="email"
                   required
                   placeholder="jane@example.com"
-                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                  className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="space-y-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
                 <label htmlFor="projectType" className="text-sm font-medium text-foreground">Project Type</label>
                 <select
                   id="projectType"
                   name="projectType"
-                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow appearance-none"
+                  className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow appearance-none"
                 >
                   <option value="">Select a service...</option>
                   {SERVICES.map((service) => (
@@ -177,22 +177,22 @@ export default function ContactForm({ defaultDomain, defaultIssues }: ContactFor
                   <option value="Other">Other</option>
                 </select>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label htmlFor="budget" className="text-sm font-medium text-foreground">Estimated Budget</label>
                 <input
                   id="budget"
                   name="budget"
                   type="text"
                   placeholder="e.g. $500 - $1000 or Flexible"
-                  className="w-full bg-background border border-border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+                  className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
                 />
               </div>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <label htmlFor="message" className="text-sm font-medium text-foreground">Project Details</label>
-                <span className={`text-xs tabular-nums transition-colors ${
+                <span className={`text-[10px] tabular-nums transition-colors ${
                   messageLength > MAX_MESSAGE_LENGTH ? 'text-red-400 font-semibold' : 'text-muted-foreground'
                 }`}>
                   {messageLength} / {MAX_MESSAGE_LENGTH}
@@ -202,7 +202,7 @@ export default function ContactForm({ defaultDomain, defaultIssues }: ContactFor
                 id="message"
                 name="message"
                 required
-                rows={5}
+                rows={3}
                 maxLength={MAX_MESSAGE_LENGTH}
                 value={message}
                 onChange={(e) => {
@@ -210,15 +210,15 @@ export default function ContactForm({ defaultDomain, defaultIssues }: ContactFor
                   setMessageLength(e.target.value.length);
                 }}
                 placeholder="Tell us about your goals, current stack, and timeline..."
-                className={`w-full bg-background border rounded-[1.25rem] px-4 py-3.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none ${
+                className={`w-full bg-background border rounded-xl px-4 py-2.5 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none ${
                   messageLength > MAX_MESSAGE_LENGTH ? 'border-red-400' : 'border-border'
                 }`}
               />
             </div>
 
             {/* Custom File Attachment Field */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">Attach Document <span className="text-muted-foreground font-normal">(Optional)</span></label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-foreground">Attach Document <span className="text-muted-foreground font-normal text-xs">(Optional)</span></label>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -232,36 +232,38 @@ export default function ContactForm({ defaultDomain, defaultIssues }: ContactFor
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full bg-background/60 hover:bg-background border border-dashed border-border hover:border-primary/60 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-center transition-all group"
+                  className="w-full bg-background/60 hover:bg-background border border-dashed border-border hover:border-primary/60 rounded-xl py-4 px-6 flex flex-row items-center justify-center gap-3 text-center transition-all group"
                 >
-                  <div className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center group-hover:scale-105 group-hover:border-primary/50 transition-all">
-                    <Upload className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <div className="w-8 h-8 rounded-full bg-surface border border-border flex items-center justify-center group-hover:scale-105 group-hover:border-primary/50 transition-all">
+                    <Upload className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
                   </div>
-                  <div className="text-sm font-medium text-foreground">
-                    Click to attach a file <span className="text-primary font-semibold">or browse</span>
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    Supports txt, docx, csv, xlsx, pdf (Max size: 2 MB)
+                  <div className="flex flex-col items-start">
+                    <div className="text-sm font-medium text-foreground">
+                      Click to attach a file <span className="text-primary font-semibold">or browse</span>
+                    </div>
+                    <div className="text-[10px] text-muted-foreground">
+                      Supports txt, docx, csv, pdf (Max size: 2 MB)
+                    </div>
                   </div>
                 </button>
               ) : (
-                <div className="w-full bg-background border border-border/80 rounded-xl p-4 flex items-center justify-between gap-3 animate-in fade-in zoom-in-95 duration-200">
+                <div className="w-full bg-background border border-border/80 rounded-xl p-3 flex items-center justify-between gap-3 animate-in fade-in zoom-in-95 duration-200">
                   <div className="flex items-center gap-3 overflow-hidden">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                      <FileText className="w-5 h-5 text-primary" />
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                      <FileText className="w-4 h-4 text-primary" />
                     </div>
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden flex flex-col items-start">
                       <p className="text-sm font-medium text-foreground truncate">{selectedFile.name}</p>
-                      <p className="text-xs text-muted-foreground">{formatFileSize(selectedFile.size)}</p>
+                      <p className="text-xs text-muted-foreground leading-none">{formatFileSize(selectedFile.size)}</p>
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={removeFile}
-                    className="p-2 hover:bg-destructive/10 rounded-lg text-muted-foreground hover:text-red-400 transition-colors"
+                    className="p-1.5 hover:bg-destructive/10 rounded-md text-muted-foreground hover:text-red-400 transition-colors"
                     title="Remove attachment"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="w-4 h-4" />
                   </button>
                 </div>
               )}
@@ -272,7 +274,7 @@ export default function ContactForm({ defaultDomain, defaultIssues }: ContactFor
               whileTap={{ scale: 0.98 }}
               disabled={isSubmitting}
               type="submit"
-              className="w-full bg-primary text-primary-foreground font-extrabold text-[15px] py-4 rounded-[1.5rem] flex items-center justify-center gap-2 shadow-sm hover:opacity-90 hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full bg-primary text-primary-foreground font-extrabold text-[15px] py-3 rounded-xl flex items-center justify-center gap-2 shadow-sm hover:opacity-90 hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed mt-2"
             >
               {isSubmitting ? (
                 <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />

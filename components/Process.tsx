@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
-import { SectionLabel } from "./SectionLabel";
 
 const steps = [
   {
@@ -31,7 +30,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="px-4 py-20 sm:px-8 sm:py-28 relative bg-background"
+      className="px-4 py-20 sm:px-8 sm:py-32 relative bg-background"
     >
       <div className="mx-auto max-w-7xl">
         {/* Section header */}
@@ -41,14 +40,10 @@ export default function Process() {
                        max-md:grid-cols-1 max-md:gap-y-6"
           >
             <div>
-              <SectionLabel>Our Process</SectionLabel>
               <h2
-                className="mt-5 text-balance font-display text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl text-foreground"
+                className="mt-5 text-balance font-display text-4xl sm:text-5xl lg:text-6xl text-foreground"
               >
-                A clear path from{" "}
-                <em className="text-primary not-italic">
-                  prototype to scale.
-                </em>
+                How we work.
               </h2>
             </div>
 
@@ -60,27 +55,27 @@ export default function Process() {
         </Reveal>
 
         <div
-          className="grid grid-cols-4 gap-6 mt-14
+          className="grid grid-cols-4 gap-6 mt-16
                      max-sm:grid-cols-1"
         >
           {steps.map((step, i) => (
             <Reveal key={step.number} delay={i * 0.15} direction="up">
               <motion.div
-                className={`group relative min-h-80 py-10 px-8 transition-all duration-300 rounded-[2.5rem] cursor-default bg-surface border border-border shadow-sm
-                            hover:shadow-md hover:-translate-y-1
+                className={`group relative min-h-80 py-10 px-8 transition-all duration-300 rounded-[2.5rem] cursor-default bg-surface border border-border shadow-sm backdrop-blur-sm overflow-hidden
+                            hover:shadow-md hover:-translate-y-1 hover:border-white/10
                             ${i > 0
                               ? "max-sm:mt-4"
                               : ""
                             }
                             max-sm:min-h-60 max-sm:py-8 max-sm:px-6`}
               >
-                <span className="block mb-16 font-bold text-lg text-primary
+                <span className="block mb-16 font-display text-3xl text-primary
                                  max-sm:mb-10">
                   {step.number}
                 </span>
                 <h3
                   className="font-display font-semibold tracking-tight
-                             text-2xl leading-tight mb-4 text-foreground"
+                             text-3xl leading-tight mb-4 text-foreground"
                 >
                   {step.title}
                 </h3>
@@ -89,11 +84,8 @@ export default function Process() {
                 </p>
 
                 {/* Animated bottom highlight indicator on hover */}
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute bottom-0 left-0 right-0 h-[3px] bg-primary origin-left"
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-[3px] bg-primary origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
                 />
               </motion.div>
             </Reveal>

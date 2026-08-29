@@ -1,5 +1,5 @@
 import ContactForm from "@/components/ContactForm";
-import { SectionLabel } from "@/components/SectionLabel";
+
 import { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, baseUrl } from "@/lib/seo";
@@ -62,7 +62,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
               Start a Conversation
             </div>
             <h1 className="font-display font-semibold text-5xl sm:text-6xl tracking-tight leading-[1.05] text-white mb-6">
-              Let's engineer your next <em className="text-primary not-italic">unfair advantage.</em>
+              Let's engineer your next <em className="text-[#ccff00] not-italic">unfair advantage.</em>
             </h1>
             <p className="text-lg text-white/80 leading-relaxed max-w-md">
               Whether you need a vibe-coded app hardened for production, an autonomous pipeline, or a high-performance headless CMS—we're ready to build. Let's make something incredible.
@@ -72,7 +72,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
           <div className="relative z-10 space-y-6 mt-12 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-3xl w-fit">
             <div className="flex flex-col">
               <span className="text-xs font-bold text-white/60 uppercase tracking-wider mb-1">Email Us Directly</span>
-              <a href="mailto:hello@cylvox.com" className="text-white text-xl font-medium hover:text-primary transition-colors">
+              <a href="mailto:hello@cylvox.com" className="text-white text-xl font-medium hover:text-[#ccff00] transition-colors">
                 hello@cylvox.com
               </a>
             </div>

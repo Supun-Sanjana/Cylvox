@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
 import Link from "next/link";
-import { SectionLabel } from "./SectionLabel";
+
 import { SERVICES as services } from "@/lib/constants";
 
 export default function Services() {
@@ -16,7 +16,7 @@ export default function Services() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <Reveal direction="up">
-          <SectionLabel>Our Capabilities</SectionLabel>
+          
           <h2
             className="mt-5 text-balance font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-foreground"
           >

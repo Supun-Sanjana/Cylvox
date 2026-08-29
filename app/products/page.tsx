@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, productListSchema } from "@/lib/seo";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
-import { SectionLabel } from "@/components/SectionLabel";
+
 import { Hammer, ShieldCheck, Zap } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -155,7 +155,7 @@ export default function ProductsPage() {
       {/* ── Page Header ─────────────────────────────────────────── */}
       <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-foreground">
         <div className="max-w-3xl">
-          <SectionLabel className="mb-6">Cylvox Products</SectionLabel>
+          
           <h1 className="font-display text-4xl md:text-6xl mb-6 tracking-tight leading-[1.15] text-foreground">
             Automation & SEO tools, built from what{" "}
             <span className="text-jade">actually worked</span>
@@ -172,7 +172,7 @@ export default function ProductsPage() {
       {/* ── Free Templates ──────────────────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-16 pb-20">
         <Reveal>
-          <SectionLabel className="mb-4">Start Free</SectionLabel>
+          
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
             Three n8n workflows you can import and run today. Built to prove the
             quality before you consider anything paid.
@@ -194,7 +194,7 @@ export default function ProductsPage() {
       {/* ── Paid Templates ──────────────────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-8 pb-20">
         <Reveal>
-          <SectionLabel className="mb-4">Go Deeper</SectionLabel>
+          
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
             These automate the parts of running an SEO-driven site that actually
             eat your time — competitor tracking, performance monitoring, and full

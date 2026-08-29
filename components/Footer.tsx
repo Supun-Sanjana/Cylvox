@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { InteractiveSkewText } from "./InteractiveSkewText";
 
 export default function Footer() {
   return (
@@ -78,8 +77,8 @@ export default function Footer() {
             <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Socials</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
               <li>
-                <span className="text-muted-foreground/50 inline-flex items-center gap-1 cursor-default">
-                  X / Twitter <span className="text-[10px] text-muted-foreground/30 ml-1">(soon)</span>
+                <span className="text-muted-foreground/40 inline-flex items-center gap-1 cursor-default">
+                  X / Twitter <span className="text-[10px] text-muted-foreground/40 ml-1">(soon)</span>
                 </span>
               </li>
               <li>
@@ -98,15 +97,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Massive Brand Text */}
-      <div className="border-t border-border pt-8 overflow-hidden flex flex-col items-center">
-        <InteractiveSkewText />
-        
-        {/* Copyright Bar */}
-        <div className="w-full px-4 sm:px-8 mx-auto max-w-7xl py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-semibold text-muted-foreground border-t border-border mt-8">
-          <p>&copy; {new Date().getFullYear()} Cylvox Solo Studio. All rights reserved.</p>
-          <p>Technical SEO &amp; Web Engineering.</p>
-        </div>
+      {/* Copyright Bar */}
+      <div className="w-full px-4 sm:px-8 mx-auto max-w-7xl py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-semibold text-muted-foreground border-t border-border mt-8">
+        <p>&copy; {new Date().getFullYear()} Cylvox Solo Studio. All rights reserved.</p>
+        <p>Technical SEO &amp; Web Engineering.</p>
       </div>
     </footer>
   );
