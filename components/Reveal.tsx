@@ -41,7 +41,7 @@ export default function Reveal({
       variants={getVariants()}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "0px" }}
       transition={{
         duration: 0.7,
         delay,

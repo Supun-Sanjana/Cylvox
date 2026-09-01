@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { blogPosts } from "@/lib/blog";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
@@ -33,8 +34,8 @@ export default function BlogIndex() {
           { name: "Blog", path: "/blog" },
         ])}
       />
-      <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-foreground">
-        <div className="mb-16">
+      <div className="pt-32 pb-24 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-foreground">
+        <div className="mb-16 max-w-4xl">
           <div className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20">
             Engineering Log
           </div>
@@ -48,28 +49,41 @@ export default function BlogIndex() {
 
         <div className="flex flex-col gap-8">
           {blogPosts.map((post) => (
-            <article key={post.slug} className="group relative bg-surface border border-border rounded-2xl p-6 sm:p-8 hover:border-primary/50 transition-colors">
-              <div className="flex items-center gap-3 mb-4">
-                <time className="text-xs font-mono text-muted-foreground">{post.date}</time>
-                <div className="flex gap-2">
-                  {post.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-bold uppercase tracking-wider bg-surface text-muted-foreground px-2 py-0.5 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
+            <article key={post.slug} className="group relative bg-surface border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-colors flex flex-col md:flex-row">
+              {post.image && (
+                <div className="w-full md:w-2/5 lg:w-1/3 shrink-0 relative aspect-[16/9] md:aspect-auto border-b md:border-b-0 md:border-r border-border overflow-hidden bg-background/50">
+                  <Image 
+                    src={post.image} 
+                    alt={post.title} 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
-                <Link href={`/blog/${post.slug}`}>
-                  <span className="absolute inset-0"></span>
-                  {post.title}
-                </Link>
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                {post.excerpt}
-              </p>
-              <div className="mt-6 flex items-center gap-2 text-primary text-sm font-bold">
-                Read Article <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+              )}
+              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                  <time className="text-xs font-mono text-muted-foreground">{post.date}</time>
+                  <div className="flex gap-2 flex-wrap">
+                    {post.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-bold uppercase tracking-wider bg-background border border-border text-muted-foreground px-2 py-0.5 rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-display font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                  <Link href={`/blog/${post.slug}`}>
+                    <span className="absolute inset-0 z-10"></span>
+                    {post.title}
+                  </Link>
+                </h2>
+                <p className="text-muted-foreground leading-relaxed max-w-2xl">
+                  {post.excerpt}
+                </p>
+                <div className="mt-6 flex items-center gap-2 text-primary text-sm font-bold">
+                  Read Article <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                </div>
               </div>
             </article>
           ))}

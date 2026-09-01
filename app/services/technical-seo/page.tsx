@@ -182,7 +182,7 @@ export default function TechnicalSEOPage() {
         })}
       />
       
-      <div className="max-w-6xl">
+      <div className="w-full">
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
@@ -195,21 +195,21 @@ export default function TechnicalSEOPage() {
           Complete Indexing & Performance Architecture
         </div>
         
-        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight max-w-4xl">
+        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
           Technical SEO & <span className="text-[#ccff00]">Core Web Vitals Architecture</span>
         </h1>
         
         {/* BLUF Definition for AEO / GEO Extraction */}
-        <p className="text-xl md:text-2xl text-foreground font-semibold mb-6 leading-relaxed max-w-3xl">
+        <p className="text-xl md:text-2xl text-foreground font-semibold mb-6 leading-relaxed">
           Technical SEO is the practice of optimizing a website&apos;s server architecture, crawlability, indexability, structured data, and rendering performance so search engines and AI crawlers can discover, evaluate, and index pages without friction. Cylvox delivers this as an 11-phase engineering blueprint.
         </p>
 
-        <p className="text-lg text-muted-foreground mb-12 leading-relaxed max-w-3xl">
+        <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
           We engineer bulletproof search infrastructures for high-growth Next.js and Supabase websites. By uniting real-time indexing automation, server-side rendered metadata, structured JSON-LD schema, and aggressive Core Web Vitals optimization, we turn search algorithms into your unfair commercial advantage.
         </p>
 
         {/* Semantic Comparison Table for GEO / Rich Snippets */}
-        <div className="mb-16 max-w-4xl overflow-x-auto border border-border rounded-2xl bg-surface/50">
+        <div className="mb-16 overflow-x-auto border border-border rounded-2xl bg-surface/50">
           <table className="w-full text-left text-sm">
             <thead className="bg-surface border-b border-border">
               <tr>
@@ -289,7 +289,7 @@ export default function TechnicalSEOPage() {
 
         {/* 11-Phase Technical Architecture Section */}
         <div className="mb-20 border-t border-border pt-16">
-          <div className="max-w-3xl mb-12">
+          <div className="mb-12">
             <div className="inline-block px-3 py-1 mb-4 text-[10px] font-extrabold tracking-wider uppercase bg-[#ccff00]/10 text-[#ccff00] rounded-full border border-[#ccff00]/20">
               11-Phase Engineering Blueprint
             </div>
@@ -333,7 +333,7 @@ export default function TechnicalSEOPage() {
           <h2 className="text-2xl sm:text-3xl font-black mb-4 text-foreground tracking-tight">
             Guaranteed Project Deliverables & Proof of Work
           </h2>
-          <p className="text-muted-foreground mb-8 max-w-2xl text-sm md:text-base">
+          <p className="text-muted-foreground mb-8 text-sm md:text-base">
             A project is never considered finished until every verification test passes with pristine scores. You receive comprehensive diagnostic proof upon handoff:
           </p>
           

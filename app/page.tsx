@@ -43,6 +43,8 @@ export const metadata = {
 import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
 import { faqPageSchema } from "@/lib/seo";
+import HomeHero from "@/components/HomeHero";
+import HomeServices from "@/components/HomeServices";
 
 const HOMEPAGE_FAQS = [
   {

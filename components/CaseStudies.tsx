@@ -150,6 +150,95 @@ export default function CaseStudies() {
           </div>
         </div>
 
+        {/* ── Row 2: Zymgut & Micro Credit ERP ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-4 h-full">
+          
+          {/* Card 4 ── Left Stack (Zymgut) */}
+          <div className="md:col-span-1 lg:col-span-5 flex flex-col gap-4">
+            <Reveal direction="up" delay={0.1} className="flex-1">
+              <Link href="/case-studies/zymgut" className="group block relative w-full h-full min-h-[400px] sm:min-h-[450px] rounded-[2.5rem] overflow-hidden bg-surface border border-border p-8 sm:p-10 flex flex-col transition-all hover:border-white/10">
+                
+                {/* Graphic Overlay */}
+                <div className="absolute -top-10 -right-10 size-[280px] rounded-full border-[12px] border-white/5 flex items-center justify-center z-0 transition-transform duration-700 group-hover:scale-105 group-hover:border-white/10">
+                  <div className="size-[200px] rounded-full border-[2px] border-dashed border-white/10" />
+                  <span className="absolute font-display text-[40px] text-white/5 group-hover:text-white/10 transition-colors">SEO</span>
+                </div>
+                
+                <div className="relative z-10 mt-auto pointer-events-none">
+                  <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3 block">
+                    Technical SEO Plugin
+                  </span>
+                  <h3 className="font-display text-3xl sm:text-4xl text-foreground mb-4">
+                    Zymgut (Brine & Thrive)
+                  </h3>
+                  <p className="text-muted-foreground text-sm sm:text-base max-w-[280px] mb-8 leading-relaxed">
+                    A custom WordPress architecture to dramatically improve organic search visibility and structured data.
+                  </p>
+                  
+                  <div className="flex items-center justify-between pointer-events-auto">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 rounded-full border border-border bg-background/50 text-[10px] uppercase font-bold text-muted-foreground backdrop-blur-md">
+                        Custom Plugin
+                      </span>
+                      <span className="px-3 py-1 rounded-full border border-border bg-background/50 text-[10px] uppercase font-bold text-muted-foreground backdrop-blur-md">
+                        Structured Data
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center justify-center size-10 rounded-full border border-border bg-surface/50 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors shrink-0 backdrop-blur-md">
+                      <ArrowUpRight className="size-4" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          </div>
+
+          {/* Card 5 ── Large Right (Micro Credit ERP) */}
+          <Reveal direction="up" delay={0.2} className="lg:col-span-7 h-full">
+            <Link href="/case-studies/micro-credit-erp" className="group block relative w-full h-full min-h-[400px] sm:min-h-[450px] rounded-[2.5rem] overflow-hidden bg-surface border border-border transition-all hover:border-white/10">
+              
+              {/* Abstract Background Design */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
+              <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
+              
+              <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] border border-white/5 rounded-full" />
+              <div className="absolute -bottom-10 -right-10 w-[400px] h-[400px] border border-primary/10 rounded-full" />
+              
+              {/* Content overlaid at bottom */}
+              <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 z-10">
+                <div className="mt-auto">
+                  <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3 block">
+                    Financial Architecture
+                  </span>
+                  <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-4">
+                    Micro Credit ERP
+                  </h3>
+                  <p className="text-muted-foreground text-sm sm:text-base max-w-md mb-8 leading-relaxed">
+                    Architecting a robust, scalable ERP for tracking micro-credit loans, real-time financial data, and automated disbursement.
+                  </p>
+                  
+                  <div className="flex items-center justify-between pointer-events-auto">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 rounded-full border border-border bg-background/50 text-[10px] uppercase font-bold text-muted-foreground backdrop-blur-md">
+                        Real-time Data
+                      </span>
+                      <span className="px-3 py-1 rounded-full border border-border bg-background/50 text-[10px] uppercase font-bold text-muted-foreground backdrop-blur-md">
+                        Scalable Backend
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center justify-center size-12 rounded-full border border-border bg-surface/50 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors backdrop-blur-md">
+                      <ArrowUpRight className="size-5" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Reveal>
+
+        </div>
+
       </div>
     </section>
   );

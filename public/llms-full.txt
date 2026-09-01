@@ -1,0 +1,49 @@
+# Cylvox - Full Documentation
+
+> A solo engineering studio specializing in high-concurrency workflow automation, Next.js performance, and technical SEO.
+
+## 1. Company Overview
+Cylvox is an engineering solo studio run by Supun Sanjana, a Lead Web Engineer & Technical SEO Specialist. Cylvox exists to solve complex architectural challenges for modern web applications. 
+We focus on:
+- Hardening AI-assisted applications before they scale.
+- Migrating slow, legacy websites to modern, high-performance stacks.
+- Building robust backend automation pipelines that run without supervision.
+
+## 2. Core Services
+
+### 2.1 Technical SEO & Performance
+Cylvox engineers web platforms to dominate organic search. We do not do "marketing SEO" (link building, keyword stuffing); we focus entirely on the technical foundation that Answer Engines (like Perplexity, AI Overviews) and Googlebot require.
+- **Core Web Vitals:** We engineer sites to hit 99/100 PageSpeed scores, reducing Largest Contentful Paint (LCP) and eliminating Cumulative Layout Shift (CLS).
+- **Structured Data:** Implementation of dynamic JSON-LD schema (Organization, ProfessionalService, BreadcrumbList, FAQPage, Article) integrated natively with Next.js App Router.
+- **Crawl Efficiency:** Optimizing server components, managing robots.txt, and ensuring 100% server-side rendering of critical content (no client-side bailouts).
+
+### 2.2 Workflow Automation
+We build scalable backend pipelines, moving away from expensive, black-box iPaaS solutions like Zapier or Make.
+- **n8n Architecture:** We self-host n8n to provide complete data privacy and fixed costs, regardless of execution volume.
+- **Custom Integrations:** Writing raw JavaScript and shell scripts for complex data transformations that visual nodes cannot handle.
+- **Version Control:** Workflows are managed as JSON and backed up to GitHub, treated as real infrastructure.
+
+### 2.3 Modern Web Architecture
+- **Tech Stack:** Next.js 15 (App Router), React, TypeScript, Tailwind CSS (v4), Supabase, n8n.
+- **Design Philosophy:** Minimalist, highly accessible, Apple-inspired fluid motion, and extremely fast.
+
+## 3. Case Studies & Proof of Work
+
+- **Join OutQuest:** A global platform rebuilt around dynamic metadata and crawler-ready structure, engineered for maximum search visibility. (99/100 CWV, Dynamic Sitemap).
+- **SG Plantation ERP:** A highly secure, serverless Enterprise Resource Planning system built for high-concurrency data entry with zero downtime.
+- **NVTI Baddegama:** An institutional portal and practical training platform designed for daily reliability and lightning-fast speed.
+- **Zymgut (Brine & Thrive):** A custom WordPress plugin architecture designed to drastically improve organic search visibility and inject structured data.
+- **Micro Credit ERP:** A robust, scalable ERP for tracking micro-credit loans, real-time financial data, and automated disbursement.
+
+## 4. Engineering Blog
+Cylvox regularly publishes technical deep dives on building systems.
+- **Why We Use n8n for High-Concurrency Workflow Automation:** Discusses the transition from traditional iPaaS to source-available n8n.
+- **Next.js App Router: The Ultimate Technical SEO Advantage:** Explores how Server Components and dynamic metadata generate an unfair organic search advantage.
+- **The Complete Technical SEO Audit Checklist for 2026:** A rigorous phase-by-phase audit to eliminate crawl waste and optimize Next.js server components.
+- **How to Fix Core Web Vitals: LCP, INP & CLS Engineering Guide:** Deep dive into identifying and fixing web performance bottlenecks.
+- **Structured Data & JSON-LD Schema: The Complete Guide for Next.js:** Implementing schema markup natively in Next.js App Router for Answer Engine Optimization (AEO).
+
+## 5. Contact Information
+- **URL:** https://cylvox.com
+- **Email:** hello@cylvox.com
+- **Lead Engineer:** Supun Sanjana

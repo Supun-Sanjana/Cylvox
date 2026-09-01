@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -62,7 +63,7 @@
   --input: rgba(255, 255, 255, 0.06);
   --ring: var(--signal);
 
-  --radius: 1.75rem;
+  --radius: 0.75rem;
 }
 
 @layer base {

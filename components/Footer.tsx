@@ -8,7 +8,7 @@ export default function Footer() {
         
         {/* Left: About Paragraph */}
         <div className="max-w-sm">
-          <h3 className="font-display font-bold text-primary mb-4 text-xl">Cylvox.</h3>
+          <h3 className="font-display font-bold text-primary mb-4 text-3xl sm:text-4xl">Cylvox.</h3>
           <p className="text-muted-foreground leading-relaxed text-sm font-medium">
             An independent solo studio specialising in Technical SEO, high-concurrency web engineering, and autonomous n8n workflows. We architect unfair advantages — from page-speed to page one.
           </p>

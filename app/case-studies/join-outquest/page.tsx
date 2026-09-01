@@ -192,6 +192,7 @@ export default function OutQuestCaseStudyPage() {
                     src="/case-studies/out-quest/joinoutquest desktop per.png" 
                     alt="OutQuest Desktop PageSpeed Insights Score of 99" 
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </div>
@@ -203,6 +204,7 @@ export default function OutQuestCaseStudyPage() {
                     src="/case-studies/out-quest/joinoutquest mobile per.png" 
                     alt="OutQuest Mobile PageSpeed Insights Score" 
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </div>

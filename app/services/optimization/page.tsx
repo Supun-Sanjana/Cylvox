@@ -58,7 +58,7 @@ export default function OptimizationPage() {
         <h1 className="text-5xl md:text-7xl font-display mb-6 tracking-tight leading-[1.05]">
           Performance & <em className="text-primary not-italic">SEO Optimization</em>
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed max-w-3xl">
+        <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed">
           A slow website costs you customers. We specialize in deep technical optimization, improving Core Web Vitals, enhancing technical SEO, and turbocharging WordPress and Next.js sites so you rank higher and convert better.
         </p>
 

@@ -66,7 +66,7 @@ export default function WebDevelopmentPage() {
         <h1 className="text-5xl md:text-7xl font-display mb-6 tracking-tight leading-[1.05]">
           High-Performance <em className="text-primary not-italic">Web Development</em>
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed max-w-3xl">
+        <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed">
           We build scalable, fast, and secure digital products. From powerful B2B SaaS platforms to high-converting marketing sites, our engineering team leverages the best tools in the industry to deliver excellence.
         </p>
 

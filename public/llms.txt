@@ -1,0 +1,24 @@
+# Cylvox
+
+> A solo engineering studio specializing in high-concurrency workflow automation, Next.js performance, and technical SEO.
+
+## About Cylvox
+Cylvox is run by Supun Sanjana, a Lead Web Engineer & Technical SEO Specialist. We harden AI-assisted apps before they scale, migrate slow legacy sites to modern stacks, and build automation that runs without supervision. Proof, not promises.
+
+## Key Services
+- **Technical SEO & Core Web Vitals:** We engineer sites to hit 99/100 PageSpeed scores, implement dynamic JSON-LD structured data, and architect Next.js server components for maximum crawl efficiency.
+- **Workflow Automation:** We build scalable backend pipelines using self-hosted n8n, replacing expensive traditional iPaaS (like Zapier) with robust, version-controlled automation.
+- **Modern Web Architecture:** Migrating and building custom solutions using Next.js 15, React, TypeScript, and modern headless infrastructure.
+
+## Navigation
+- [Home](/)
+- [Services](/services)
+- [Technical SEO](/services/technical-seo)
+- [Case Studies & Work](/work)
+- [Engineering Blog](/blog)
+- [About](/about)
+- [Contact](/contact)
+
+## Contact
+Email: hello@cylvox.com
+URL: https://cylvox.com

@@ -58,7 +58,7 @@ export default function UIUXDesignPage() {
         <h1 className="text-5xl md:text-7xl font-display mb-6 tracking-tight leading-[1.05]">
           Premium <em className="text-primary not-italic">UI/UX Design</em>
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed max-w-3xl">
+        <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed">
           Design isn't just about making things look good—it's about making them work flawlessly. Our UI/UX design process focuses on user research, wireframing, prototyping, and creating stunning visual interfaces that drive engagement and conversions.
         </p>
 
