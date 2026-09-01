@@ -95,13 +95,8 @@ export default function Hero() {
               }}
             >
               <motion.span
-                initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
+                initial={false}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  duration: 1,
-                  delay: 0.12 + i * 0.09,
-                  ease: [0.22, 1, 0.28, 1],
-                }}
                 className={`mr-[0.28em] inline-block`}
               >
                 {word}
@@ -116,9 +111,8 @@ export default function Hero() {
             }}
           >
             <motion.span
-              initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
+              initial={false}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 1, delay: 0.42, ease: [0.22, 1, 0.28, 1] }}
               className="inline-block"
             >
               turns performance into growth

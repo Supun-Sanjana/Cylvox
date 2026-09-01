@@ -1,10 +1,16 @@
-import HomeHero from "@/components/HomeHero";
-import HomeServices from "@/components/HomeServices";
+import dynamic from "next/dynamic";
+import Hero from "@/components/Hero";
 import CaseStudies from "@/components/CaseStudies";
-import ProofBand from "@/components/Proofband";
-import Closing from "@/components/Closing";
 
 import { baseUrl } from "@/lib/seo";
+
+// Below-the-fold, framer-motion-heavy sections — split out of the
+// initial bundle. ssr stays true (default) so content is still
+// server-rendered for crawlers; only the JS chunk is deferred.
+const Services = dynamic(() => import("@/components/Services"));
+const ProofBand = dynamic(() => import("@/components/Proofband"));
+const Process = dynamic(() => import("@/components/Process"));
+const Closing = dynamic(() => import("@/components/Closing"));
 
 export const metadata = {
   title:       "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
