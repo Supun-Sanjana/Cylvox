@@ -44,6 +44,6 @@ Cylvox regularly publishes technical deep dives on building systems.
 - **Structured Data & JSON-LD Schema: The Complete Guide for Next.js:** Implementing schema markup natively in Next.js App Router for Answer Engine Optimization (AEO).
 
 ## 5. Contact Information
-- **URL:** https://cylvox.com
+- **URL:** https://www.cylvox.com
 - **Email:** hello@cylvox.com
 - **Lead Engineer:** Supun Sanjana

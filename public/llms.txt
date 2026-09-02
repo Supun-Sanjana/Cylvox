@@ -11,14 +11,14 @@ Cylvox is run by Supun Sanjana, a Lead Web Engineer & Technical SEO Specialist. 
 - **Modern Web Architecture:** Migrating and building custom solutions using Next.js 15, React, TypeScript, and modern headless infrastructure.
 
 ## Navigation
-- [Home](/)
-- [Services](/services)
-- [Technical SEO](/services/technical-seo)
-- [Case Studies & Work](/work)
-- [Engineering Blog](/blog)
-- [About](/about)
-- [Contact](/contact)
+- [Home](https://www.cylvox.com/)
+- [Services](https://www.cylvox.com/services)
+- [Technical SEO](https://www.cylvox.com/services/technical-seo)
+- [Case Studies & Work](https://www.cylvox.com/work)
+- [Engineering Blog](https://www.cylvox.com/blog)
+- [About](https://www.cylvox.com/about)
+- [Contact](https://www.cylvox.com/contact)
 
 ## Contact
 Email: hello@cylvox.com
-URL: https://cylvox.com
+URL: https://www.cylvox.com
