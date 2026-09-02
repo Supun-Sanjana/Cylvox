@@ -77,8 +77,8 @@ export default function Footer() {
             <h4 className="font-bold text-foreground mb-4 text-xs uppercase tracking-wider">Socials</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
               <li>
-                <span className="text-muted-foreground/40 inline-flex items-center gap-1 cursor-default">
-                  X / Twitter <span className="text-[10px] text-muted-foreground/40 ml-1">(soon)</span>
+                <span className="text-muted-foreground inline-flex items-center gap-1 cursor-default">
+                  X / Twitter <span className="text-[10px] text-muted-foreground ml-1">(soon)</span>
                 </span>
               </li>
               <li>
