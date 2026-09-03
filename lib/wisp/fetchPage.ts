@@ -163,16 +163,25 @@ async function readBodyCapped(res: Response, controller: AbortController): Promi
  * Best-effort robots.txt fetch. Failures here should never break the scan —
  * if robots.txt is unreachable, we simply skip that one check.
  */
-export async function fetchRobotsTxt(origin: string): Promise<string | null> {
+export interface RobotsTxtResult {
+  status: number | null;
+  text: string | null;
+}
+
+export async function fetchRobotsTxtInfo(origin: string): Promise<RobotsTxtResult> {
   try {
     const res = await fetch(`${origin}/robots.txt`, {
       headers: { 'User-Agent': USER_AGENT },
       signal: AbortSignal.timeout(ROBOTS_TIMEOUT_MS),
     });
-    if (!res.ok) return null;
+    if (!res.ok) return { status: res.status, text: null };
     const text = await res.text();
-    return text.slice(0, 50_000);
+    return { status: res.status, text: text.slice(0, 50_000) };
   } catch {
-    return null;
+    return { status: null, text: null };
   }
+}
+
+export async function fetchRobotsTxt(origin: string): Promise<string | null> {
+  return (await fetchRobotsTxtInfo(origin)).text;
 }
