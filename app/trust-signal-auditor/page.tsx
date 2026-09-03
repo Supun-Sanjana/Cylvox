@@ -142,7 +142,7 @@ export default function TrustSignalAuditorPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-foreground font-bold">•</span>
-                    <span><strong>GPLv2 Licensed:</strong> Free and open source hosted on the official WordPress.org plugin directory.</span>
+                    <span><strong>GPLv2 Licensed:</strong> {TRUSTLYNE_PLUGIN_URL ? "Free and open source, hosted on the official WordPress.org plugin directory." : "Free and open source — launching soon on the WordPress.org plugin directory."}</span>
                   </li>
                 </ul>
               </div>
