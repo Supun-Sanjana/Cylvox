@@ -5,6 +5,7 @@ export interface ScanIssue {
   sev: Severity;
   title: string;
   body: string;
+  howToFix?: string;
 }
 
 export interface ScanResult {

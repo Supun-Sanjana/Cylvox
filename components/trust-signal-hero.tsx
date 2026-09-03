@@ -2,6 +2,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Download, Sparkles } from "lucide-react";
+import { TRUSTLYNE_PLUGIN_URL } from "@/lib/wisp/pluginConfig";
 
 export function TrustSignalHero() {
   const reduce = useReducedMotion();
@@ -35,7 +36,7 @@ export function TrustSignalHero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...transition, delay: 0.2 }}
       >
-        Trust Signal Auditor scans your WordPress site for missing trust signals, indexability traps, and authorship errors. Calculate your 0–100 E-E-A-T readiness score and fix critical issues before Google drops your rankings.
+        Trust Signal Auditor scans your WordPress site for missing trust signals, indexability traps, and authorship errors so you can fix critical issues before they undermine discoverability.
       </motion.p>
 
       <motion.div 
@@ -44,15 +45,17 @@ export function TrustSignalHero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...transition, delay: 0.3 }}
       >
-        <a 
-          href="https://wordpress.org/plugins/trust-signal-auditor/" 
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-8 py-4 font-semibold text-sm sm:text-base transition-transform hover:scale-[1.03] shadow-md"
-        >
-          <Download className="w-4 h-4" />
-          Download on WordPress.org
-        </a>
+        {TRUSTLYNE_PLUGIN_URL ? (
+          <a href={TRUSTLYNE_PLUGIN_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-8 py-4 font-semibold text-sm sm:text-base transition-transform hover:scale-[1.03] shadow-md">
+            <Download className="w-4 h-4" />
+            Install Trustlyne
+          </a>
+        ) : (
+          <a href="#interactive-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-8 py-4 font-semibold text-sm sm:text-base transition-transform hover:scale-[1.03] shadow-md">
+            <Download className="w-4 h-4" />
+            Trustlyne coming soon
+          </a>
+        )}
         <a 
           href="#interactive-audit" 
           className="inline-flex items-center justify-center gap-2 rounded-full bg-surface border border-border text-foreground px-8 py-4 font-semibold text-sm sm:text-base hover:bg-muted transition-colors"

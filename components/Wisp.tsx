@@ -66,6 +66,7 @@ export default function Wisp() {
   const [gateLoading, setGateLoading] = useState(false);
   const [gateError, setGateError] = useState<string | null>(null);
   const [gateReportUrl, setGateReportUrl] = useState<string | null>(null);
+  const [selectedIssue, setSelectedIssue] = useState<ScanIssue | null>(null);
 
   const confettiRef = useRef<HTMLDivElement>(null);
   const tickerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -189,11 +190,9 @@ export default function Wisp() {
     }
   }
 
-  // These three are intentionally stubs — see README-wisp-scan.md for what
-  // each needs before it's real (fix guide content, contact form, email
-  // capture + multi-page scan queue).
   function handleFixSelf() {
-    alert('Would expand into a short "fix this yourself" guide per issue.');
+    const firstIssue = issues?.[0];
+    if (firstIssue) setSelectedIssue(firstIssue);
   }
 
   async function handleContact() {
@@ -292,9 +291,20 @@ export default function Wisp() {
                   <div className={styles.issueBody}>
                     <b>{issue.title}</b>
                     <span>{issue.body}</span>
+                    <button className={styles.btnGhost} onClick={() => setSelectedIssue(issue)} type="button">
+                      How to fix
+                    </button>
                   </div>
                 </div>
               ))}
+
+              {selectedIssue && (
+                <div className={styles.gate} role="dialog" aria-label={`How to fix ${selectedIssue.title}`}>
+                  <div className={styles.verdict}>How to fix: {selectedIssue.title}</div>
+                  <p>{selectedIssue.howToFix ?? 'Review the finding against your page source and apply the smallest change that resolves it.'}</p>
+                  <button className={cx(styles.btn, styles.btnGhost)} onClick={() => setSelectedIssue(null)}>Close guide</button>
+                </div>
+              )}
 
               {!errorMessage && issues.length > 0 && (
                 <>

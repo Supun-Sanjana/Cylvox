@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
     
-    if (body.source === 'registration' && !body.email) {
-      return NextResponse.json({ error: 'Email required for registration' }, { status: 400 });
+    if ((body.source === 'registration' || body.source === 'plugin-waitlist') && !body.email) {
+      return NextResponse.json({ error: 'Email required for this lead type' }, { status: 400 });
     }
 
     const { error } = await supabase.from('wisp_leads').insert({
@@ -32,9 +32,9 @@ export async function POST(req: NextRequest) {
     // longer flows through this route — it posts straight to
     // /api/wisp-scan-multi, which does the actual multi-page scan,
     // its own wisp_leads insert, and the report email. This route now
-    // only handles 'contact' leads. Kept the 'registration' value in
-    // the DB check constraint for historical rows.
-    if (body.source === 'contact') {
+    // only handles 'contact' and 'plugin-waitlist' leads. Kept the
+    // 'registration' value in the DB check constraint for historical rows.
+    if (body.source === 'contact' || body.source === 'plugin-waitlist') {
       // Notify on contact-form leads
       // Using n8n webhook if available, or any existing system.
       // Since the brief says "Resend a plain notification email to yourself... (can live in the same route)"
@@ -45,8 +45,8 @@ export async function POST(req: NextRequest) {
         await resend.emails.send({
           from: 'Wisp Leads <hello@cylvox.com>',
           to: 'hello@cylvox.com',
-          subject: `New Wisp Lead (Contact): ${body.domain}`,
-          text: `A user wants Cylvox to fix their Wisp issues.\n\nDomain: ${body.domain}\nIssues: ${JSON.stringify(body.issues, null, 2)}`
+          subject: `New Wisp Lead (${body.source}): ${body.domain}`,
+          text: `A user submitted a Wisp lead.\n\nSource: ${body.source}\nEmail: ${body.email || 'not provided'}\nDomain: ${body.domain}\nIssues: ${JSON.stringify(body.issues, null, 2)}`
         }).catch(console.error);
       }
     }

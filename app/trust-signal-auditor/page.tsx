@@ -5,6 +5,7 @@ import { BentoFeatures } from "@/components/bento-features";
 import { TrustSignalScanPreview } from "@/components/trust-signal-scan-preview";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, baseUrl } from "@/lib/seo";
+import { TRUSTLYNE_PLUGIN_URL } from "@/lib/wisp/pluginConfig";
 import { 
   ShieldCheck, 
   Download, 
@@ -20,13 +21,13 @@ import {
 
 export const metadata: Metadata = {
   title: "Trust Signal Auditor — WordPress E-E-A-T & Trust Signal Plugin",
-  description: "Scan your WordPress site for missing trust signals, indexability traps, and authorship errors. Calculate your 0–100 E-E-A-T readiness score and remediate issues.",
+  description: "Scan your WordPress site for missing trust signals, indexability traps, and authorship errors with a real, lightweight audit.",
   alternates: {
     canonical: `${baseUrl}/trust-signal-auditor`,
   },
   openGraph: {
     title: "Trust Signal Auditor — WordPress E-E-A-T & Trust Signal Plugin",
-    description: "Scan your WordPress site for missing trust signals, indexability traps, and authorship errors. Calculate your 0–100 E-E-A-T readiness score.",
+    description: "Scan your WordPress site for missing trust signals, indexability traps, and authorship errors with a real, lightweight audit.",
     url: `${baseUrl}/trust-signal-auditor`,
     siteName: "Cylvox",
     type: "website",
@@ -58,13 +59,13 @@ const pluginSchema = {
     "price": "0",
     "priceCurrency": "USD",
   },
-  "description": "Trust Signal Auditor scans your WordPress site for missing trust signals, indexability traps, and authorship errors. Calculate your 0–100 E-E-A-T readiness score and fix issues with AI-assisted schema & bio remediation.",
+  "description": "Trust Signal Auditor scans your WordPress site for missing trust signals, indexability traps, and authorship errors.",
   "author": {
     "@type": "Organization",
     "name": "Cylvox Solo Studio",
     "url": baseUrl,
   },
-  "downloadUrl": "https://wordpress.org/plugins/trust-signal-auditor/",
+  ...(TRUSTLYNE_PLUGIN_URL ? { "downloadUrl": TRUSTLYNE_PLUGIN_URL } : {}),
   "softwareVersion": "1.0.0",
 };
 
@@ -92,7 +93,7 @@ export default function TrustSignalAuditorPage() {
             Audit Your Entire Site in Seconds
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg mt-3">
-            Test the live scan dashboard below to inspect how issues are identified and preview the human-reviewed AI remediation drawer.
+            Run the live Wisp scan below to inspect real indexability, authorship, structured-data, and on-page findings.
           </p>
         </div>
 
@@ -243,15 +244,16 @@ export default function TrustSignalAuditorPage() {
               <Lock className="w-3.5 h-3.5" />
               Privacy Policy
             </Link>
-            <a
-              href="https://wordpress.org/plugins/trust-signal-auditor/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-foreground text-background text-xs font-semibold hover:opacity-90 transition-opacity"
-            >
-              <Download className="w-3.5 h-3.5" />
-              WP.org Listing
-            </a>
+            {TRUSTLYNE_PLUGIN_URL ? (
+              <a href={TRUSTLYNE_PLUGIN_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-foreground text-background text-xs font-semibold hover:opacity-90 transition-opacity">
+                <Download className="w-3.5 h-3.5" />
+                Install Trustlyne
+              </a>
+            ) : (
+              <Link href="#interactive-audit" className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-muted text-foreground text-xs font-semibold hover:bg-muted/80 transition-opacity">
+                Trustlyne coming soon
+              </Link>
+            )}
           </div>
         </div>
       </section>
