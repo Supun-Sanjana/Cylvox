@@ -49,7 +49,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <MobileMenu>
-            <NavLinks className="flex flex-col gap-6 text-2xl font-display" />
+            <NavLinks className="flex flex-col gap-6 text-2xl font-display" mobile />
           </MobileMenu>
         </div>
       </div>

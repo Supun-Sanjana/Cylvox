@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { X } from 'lucide-react';
 import type { ScanIssue, ScanResult } from '@/lib/wisp/types';
 import { buildContactUrl } from '@/lib/wisp/buildContactUrl';
 import styles from './Wisp.module.css';
@@ -104,9 +105,34 @@ export default function Wisp() {
     };
   }, []);
 
+  // One-time intro bubble so the launcher doesn't read as a generic support-chat
+  // widget on first visit — only ever shown once per browser.
+  useEffect(() => {
+    if (open) return;
+    let seen = false;
+    try {
+      seen = localStorage.getItem('wisp-intro-seen') === '1';
+    } catch {
+      // localStorage unavailable (privacy mode, etc.) — just skip the intro.
+      return;
+    }
+    if (seen) return;
+    const timer = setTimeout(() => setShowGreet(true), 2500);
+    return () => clearTimeout(timer);
+  }, [open]);
+
+  function dismissGreet() {
+    setShowGreet(false);
+    try {
+      localStorage.setItem('wisp-intro-seen', '1');
+    } catch {
+      // ignore — non-critical
+    }
+  }
+
   function togglePanel() {
     setOpen((o) => !o);
-    setShowGreet(false);
+    dismissGreet();
   }
 
   function fireConfetti() {
@@ -174,7 +200,7 @@ export default function Wisp() {
       } else {
         setMascotState('worried');
         setVerdict(`${result.issues.length} issue${result.issues.length > 1 ? 's' : ''} found on your homepage`);
-        setTicker(`Found ${criticalCount} thing${criticalCount === 1 ? '' : 's'} worth fixing.`);
+        setTicker(`Found ${result.issues.length} thing${result.issues.length === 1 ? '' : 's'} worth fixing.`);
       }
 
       setIssues(result.issues);
@@ -244,7 +270,14 @@ export default function Wisp() {
 
   return (
     <div className={styles.wispRoot}>
-      {showGreet && <div className={styles.greet}>Hi. I&rsquo;m Wisp — want me to look at this site?</div>}
+      {showGreet && (
+        <div className={styles.greet}>
+          <button className={styles.greetClose} onClick={dismissGreet} aria-label="Dismiss">
+            <X className="w-3 h-3" />
+          </button>
+          <span>👋 Not a chatbot — I run a free, instant SEO scan on your site.</span>
+        </div>
+      )}
 
       <div className={cx(styles.panel, open && styles.panelOpen)}>
         <div className={styles.panelHead}>
@@ -291,7 +324,7 @@ export default function Wisp() {
                   <div className={styles.issueBody}>
                     <b>{issue.title}</b>
                     <span>{issue.body}</span>
-                    <button className={styles.btnGhost} onClick={() => setSelectedIssue(issue)} type="button">
+                    <button className={styles.issueAction} onClick={() => setSelectedIssue(issue)} type="button">
                       How to fix
                     </button>
                   </div>
@@ -357,9 +390,12 @@ export default function Wisp() {
         </div>
       </div>
 
-      <button className={styles.bubble} onClick={togglePanel} aria-label="Open Wisp">
-        <MascotIcon />
-      </button>
+      <div className={styles.launcher}>
+        <span className={styles.launcherLabel}>Free SEO Scan</span>
+        <button className={styles.bubble} onClick={togglePanel} aria-label="Open Wisp — free SEO scan tool">
+          <MascotIcon />
+        </button>
+      </div>
 
       <div ref={confettiRef} className={styles.confettiContainer} />
     </div>

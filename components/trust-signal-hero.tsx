@@ -2,7 +2,7 @@
 import { FormEvent, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Download, Sparkles, Loader2 } from "lucide-react";
+import { ShieldCheck, Download, Loader2, Bell } from "lucide-react";
 import { TRUSTLYNE_PLUGIN_URL } from "@/lib/wisp/pluginConfig";
 
 export function TrustSignalHero() {
@@ -80,7 +80,7 @@ export function TrustSignalHero() {
             You&rsquo;re on the list — we&rsquo;ll email you at launch.
           </span>
         ) : (
-          <form onSubmit={handleWaitlist} className="inline-flex w-full sm:w-auto flex-col xs:flex-row gap-2">
+          <form onSubmit={handleWaitlist} className="inline-flex w-full sm:w-auto flex-col sm:flex-row gap-2">
             <input
               type="email"
               required
@@ -88,14 +88,14 @@ export function TrustSignalHero() {
               onChange={(event) => setEmail(event.target.value)}
               placeholder="you@example.com"
               aria-label="Email for Trustlyne launch notification"
-              className="min-w-0 flex-1 rounded-full border border-border bg-background px-5 py-4 text-sm outline-none focus:ring-2 focus:ring-violet-500"
+              className="min-w-0 flex-1 rounded-full border border-border bg-background px-5 py-4 text-sm text-foreground outline-none focus:ring-2 focus:ring-primary"
             />
             <button
               type="submit"
               disabled={waitlistState === "loading"}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-6 py-4 font-semibold text-sm sm:text-base transition-transform hover:scale-[1.03] shadow-md disabled:opacity-60"
             >
-              {waitlistState === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+              {waitlistState === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> : <Bell className="w-4 h-4" />}
               {waitlistState === "loading" ? "Joining…" : "Notify me at launch"}
             </button>
           </form>
@@ -103,13 +103,7 @@ export function TrustSignalHero() {
         {waitlistState === "error" && (
           <span className="w-full text-center text-xs text-red-600 sm:w-auto sm:text-left">Please try again.</span>
         )}
-        <a 
-          href="#interactive-audit" 
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-surface border border-border text-foreground px-8 py-4 font-semibold text-sm sm:text-base hover:bg-muted transition-colors"
-        >
-          <Sparkles className="w-4 h-4 text-amber-500" />
-          Interactive Demo
-        </a>
+
       </motion.div>
 
       {/* Trust Badges */}

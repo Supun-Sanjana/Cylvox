@@ -27,7 +27,7 @@ const MouseRevealImage = () => {
 
   return (
     <div 
-      className="absolute inset-0 bg-surface rounded-[2.5rem] overflow-hidden border border-border shadow-2xl"
+      className="absolute inset-0 bg-surface rounded-[2.5rem] overflow-hidden border border-border"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -37,7 +37,7 @@ const MouseRevealImage = () => {
         src="/placeholders/squish_crystals_1786554808524.jpg" 
         alt="Abstract background"
         fill
-        sizes="100vw"
+        sizes="(max-width: 1024px) 0vw, 60vw"
         className="object-cover opacity-50 mix-blend-luminosity"
         priority
       />
@@ -55,7 +55,7 @@ const MouseRevealImage = () => {
           src="/placeholders/squish_crystals_1786554808524.jpg" 
           alt="Abstract background"
           fill
-          sizes="100vw"
+          sizes="(max-width: 1024px) 0vw, 60vw"
           className="object-cover opacity-90 saturate-150 contrast-125"
           priority
         />
@@ -98,7 +98,7 @@ export default function HomeHero() {
           src="/placeholders/squish_crystals_1786554808524.jpg" 
           alt="Abstract background"
           fill
-          sizes="100vw"
+          sizes="(max-width: 1024px) 100vw, 0vw"
           className="object-cover opacity-60 saturate-150"
           priority
         />
@@ -115,7 +115,7 @@ export default function HomeHero() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.28, 1] }}
           className="lg:col-span-5 flex flex-col items-start text-left pt-10 lg:pt-0"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-surface text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-8 shadow-sm backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-surface text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-8">
             <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
             Technical Studio
           </div>
@@ -131,7 +131,7 @@ export default function HomeHero() {
           </p>
           
           <div className="flex flex-wrap items-center gap-4">
-            <Link href="/contact" className="group relative flex h-14 items-center justify-center gap-3 rounded-full bg-primary px-8 font-bold text-black transition-transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(204,255,0,0.2)]">
+            <Link href="/contact" className="group relative flex h-14 items-center justify-center gap-3 rounded-full bg-primary px-8 font-bold text-black transition-transform hover:scale-105 active:scale-95">
               Start a Project
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>

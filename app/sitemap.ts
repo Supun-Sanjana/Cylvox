@@ -21,9 +21,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/optimization',
     '/services/ui-ux-design',
     // Product & Plugin Legal
-    '/trust-signal-auditor',
-    '/trust-signal-auditor/terms',
-    '/trust-signal-auditor/privacy',
+    '/products/n8n-templates',
+    '/products/trust-signal-auditor',
+    '/products/trust-signal-auditor/terms',
+    '/products/trust-signal-auditor/privacy',
     // Partnership
     '/agency-partners',
     // Content — Blog Hub + All Posts
