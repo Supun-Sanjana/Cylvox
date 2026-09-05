@@ -7,12 +7,12 @@ import { baseUrl } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Next.js & React Web App Development Solo Studio | Cylvox",
-  description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
+  title: "Next.js Web Engineering for Technical SEO | Cylvox",
+  description: "Web engineering built to serve technical SEO and Core Web Vitals — Next.js, Supabase, and infrastructure that keeps rankings fast, crawlable, and scalable.",
   alternates: { canonical: `${baseUrl}/services/web-development` },
   openGraph: {
-    title: "Next.js & React Web App Development Solo Studio | Cylvox",
-    description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
+    title: "Next.js Web Engineering for Technical SEO | Cylvox",
+    description: "Web engineering built to serve technical SEO and Core Web Vitals — Next.js, Supabase, and infrastructure that keeps rankings fast, crawlable, and scalable.",
     url: `${baseUrl}/services/web-development`,
     siteName: "Cylvox",
     locale: "en_US",
@@ -21,18 +21,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: "Next.js & React Web App Development Solo Studio | Cylvox",
-    description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
+    title: "Next.js Web Engineering for Technical SEO | Cylvox",
+    description: "Web engineering built to serve technical SEO and Core Web Vitals — Next.js, Supabase, and infrastructure that keeps rankings fast, crawlable, and scalable.",
     images: [`${baseUrl}/og-image.jpg`],
   },
 };
 
 const TECH_STACK = [
-  "Next.js", "React", "Express.js", "MongoDB", "Mongoose ODM", 
-  "Supabase", "Prisma ORM", "Java", "Spring Boot", "PostgreSQL", 
-  "MySQL", "Postman", "Vercel", "Cloudflare", "WordPress", 
-  "Elementor", "NestJS", "AWS", "Docker", "CI/CD", 
-  "GitHub Actions", "Tailwind CSS", "SCSS", "TanStack Query (React Query)"
+  "Next.js", "React", "Supabase", "PostgreSQL", "Prisma ORM", 
+  "Vercel", "Cloudflare", "Tailwind CSS"
 ];
 
 export default function WebDevelopmentPage() {
@@ -47,11 +44,11 @@ export default function WebDevelopmentPage() {
       />
       <JsonLd
         data={serviceSchema({
-          name: "Next.js & React Web App Development",
+          name: "Next.js Web Engineering",
           description:
-            "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
+            "Web engineering built to serve technical SEO and Core Web Vitals — Next.js, Supabase, and infrastructure that keeps rankings fast, crawlable, and scalable.",
           path: "/services/web-development",
-          serviceType: "Web Application Development",
+          serviceType: "Web Engineering",
         })}
       />
       <div className="max-w-4xl">
@@ -66,10 +63,10 @@ export default function WebDevelopmentPage() {
           Next.js & React Engineering
         </div>
         <h1 className="text-5xl md:text-7xl font-display mb-6 tracking-tight leading-[1.05]">
-          High-Performance <em className="text-primary not-italic">Web Development</em>
+          Web Engineering, <em className="text-primary not-italic">Built to Rank</em>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-16 leading-relaxed">
-          We build scalable, fast, and secure digital products. From powerful B2B SaaS platforms to high-converting marketing sites, our engineering team leverages the best tools in the industry to deliver excellence.
+          We build digital experiences optimized for visibility and performance. From server-rendered architectures to Core Web Vitals optimization, our engineering team leverages modern infrastructure to deliver measurable SEO outcomes.
         </p>
 
         <div className="grid md:grid-cols-2 gap-12 mb-20 border-t border-border pt-12">
@@ -100,15 +97,15 @@ export default function WebDevelopmentPage() {
             <ul className="space-y-4 text-muted-foreground">
               <li className="flex items-start gap-3">
                 <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                <p><strong className="text-foreground">Custom Web Applications:</strong> Full-stack MERN & Next.js applications tailored to your exact business logic.</p>
+                <p><strong className="text-foreground">Server-Rendered Experiences:</strong> Fast, SEO-optimized Next.js architectures built for maximum search visibility.</p>
               </li>
               <li className="flex items-start gap-3">
                 <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                <p><strong className="text-foreground">API & Backend Engineering:</strong> Secure, robust REST and GraphQL APIs using Express.js, NestJS, or Spring Boot.</p>
+                <p><strong className="text-foreground">Core Web Vitals Optimization:</strong> Engineering practices that ensure your LCP, CLS, and INP metrics are always in the green.</p>
               </li>
               <li className="flex items-start gap-3">
                 <div className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                <p><strong className="text-foreground">Database Architecture:</strong> Optimized data modeling using PostgreSQL, MongoDB, Prisma, and Supabase.</p>
+                <p><strong className="text-foreground">Scalable Infrastructure:</strong> Reliable edge deployment and optimized database architecture using Vercel, Supabase, and PostgreSQL.</p>
               </li>
             </ul>
           </div>
@@ -124,8 +121,8 @@ export default function WebDevelopmentPage() {
         </div>
 
         <div className="bg-surface border border-border rounded-[2.5rem] p-10 md:p-16 text-center shadow-sm">
-          <h3 className="text-4xl font-display tracking-tight mb-4 text-foreground">Ready to build something exceptional?</h3>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">Stop settling for mediocre web apps. Let's architect a digital system that gives your business an unfair advantage.</p>
+          <h3 className="text-4xl font-display tracking-tight mb-4 text-foreground">Ready to accelerate your growth?</h3>
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">Stop settling for underperforming infrastructure. Let's architect a web presence that drives traffic and outranks the competition.</p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold rounded-full
