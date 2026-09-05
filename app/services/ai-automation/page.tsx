@@ -3,25 +3,27 @@ import { ArrowUpRight } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
+import { baseUrl } from "@/lib/seo";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "AI Workflow Automation Solo Studio (n8n) | Cylvox",
   description: "Automate your business processes with custom AI workflows. We build powerful automation pipelines using n8n and modern AI models to save you time.",
-  alternates: { canonical: "/services/ai-automation" },
+  alternates: { canonical: `${baseUrl}/services/ai-automation` },
   openGraph: {
     title: "AI Workflow Automation Solo Studio (n8n) | Cylvox",
     description: "Automate your business processes with custom AI workflows. We build powerful automation pipelines using n8n and modern AI models to save you time.",
-    url: "/services/ai-automation",
+    url: `${baseUrl}/services/ai-automation`,
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox AI Automation Services" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Cylvox AI Automation Services" }],
   },
   twitter: {
     card: "summary_large_image" as const,
     title: "AI Workflow Automation Solo Studio (n8n) | Cylvox",
     description: "Automate your business processes with custom AI workflows. We build powerful automation pipelines using n8n and modern AI models to save you time.",
-    images: ["/og-image.jpg"],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQ from "@/components/FAQ";
-import { breadcrumbSchema, serviceSchema, faqPageSchema } from "@/lib/seo";
+import { breadcrumbSchema, serviceSchema, faqPageSchema, baseUrl } from "@/lib/seo";
 
 const TECHNICAL_SEO_FAQS = [
   {
@@ -38,26 +39,26 @@ const TECHNICAL_SEO_FAQS = [
   },
 ];
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
   description:
-    "End-to-end technical SEO architecture, dynamic CMS metadata, automated IndexNow search submission, JSON-LD structured schema, and 95+ Core Web Vitals optimization for Next.js and Supabase websites.",
-  alternates: { canonical: "/services/technical-seo" },
+    "End-to-end technical SEO architecture, automated sitemaps, IndexNow integration, JSON-LD structured schema, and 95+ Core Web Vitals performance tuning for Next.js and Supabase websites.",
+  alternates: { canonical: `${baseUrl}/services/technical-seo` },
   openGraph: {
     title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
     description:
       "End-to-end technical SEO architecture, automated sitemaps, IndexNow integration, JSON-LD schema, and 95+ Core Web Vitals performance tuning.",
-    url: "/services/technical-seo",
+    url: `${baseUrl}/services/technical-seo`,
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox Technical SEO Services" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Cylvox Technical SEO Services" }],
   },
   twitter: {
     card: "summary_large_image" as const,
     title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
-    description: "End-to-end technical SEO architecture, dynamic CMS metadata, automated IndexNow search submission, JSON-LD structured schema, and 95+ Core Web Vitals optimization for Next.js and Supabase websites.",
-    images: ["/og-image.jpg"],
+    description: "End-to-end technical SEO architecture, automated sitemaps, IndexNow integration, JSON-LD schema, and 95+ Core Web Vitals performance tuning.",
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

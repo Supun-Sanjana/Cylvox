@@ -5,19 +5,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Zymgut (Brine & Thrive) — Technical SEO Plugin | Cylvox Case Study',
+  title: 'Zymgut (Brine & Thrive) — Technical SEO Plugin | Cylvox',
   description: 'How Cylvox developed a custom WordPress plugin architecture to dramatically improve organic search visibility and structured data for Zymgut.',
   alternates: {
     canonical: `${baseUrl}/case-studies/zymgut`,
   },
   openGraph: {
-    title: 'Zymgut (Brine & Thrive) — Technical SEO Plugin | Cylvox Case Study',
+    title: 'Zymgut (Brine & Thrive) — Technical SEO Plugin | Cylvox',
     description: 'How Cylvox developed a custom WordPress plugin architecture to dramatically improve organic search visibility and structured data for Zymgut.',
     url: `${baseUrl}/case-studies/zymgut`,
     siteName: 'Cylvox',
     images: [
       {
-        url: '/og-image.jpg',
+        url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Zymgut Case Study',
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zymgut (Brine & Thrive) — Technical SEO Plugin | Cylvox Case Study',
+    title: 'Zymgut (Brine & Thrive) — Technical SEO Plugin | Cylvox',
     description: 'How Cylvox developed a custom WordPress plugin architecture to dramatically improve organic search visibility and structured data for Zymgut.',
-    images: ['/og-image.jpg'],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 }
 
@@ -43,6 +43,17 @@ export default function ZymgutCaseStudyPage() {
   return (
     <>
       <JsonLd data={breadcrumb} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: "Zymgut (Brine & Thrive) — Technical SEO Plugin | Cylvox",
+        description: "How Cylvox developed a custom WordPress plugin architecture to dramatically improve organic search visibility and structured data for Zymgut.",
+        author: { "@type": "Person", name: "Supun Sanjana", url: `${baseUrl}/about` },
+        publisher: { "@type": "Organization", name: "Cylvox Solo Studio", logo: { "@type": "ImageObject", url: `${baseUrl}/logo.png` } },
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${baseUrl}/case-studies/zymgut` },
+        datePublished: "2026-08-26",
+        inLanguage: "en"
+      }} />
       
       <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-background font-display pb-20">
         {/* Hero Section */}

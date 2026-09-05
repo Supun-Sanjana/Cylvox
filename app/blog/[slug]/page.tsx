@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { getBlogPostBySlug, blogPosts } from "@/lib/blog";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbSchema, articleSchema } from "@/lib/seo";
+import { breadcrumbSchema, articleSchema, baseUrl } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -38,13 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.date,
       modifiedTime: post.dateModified || post.date,
       authors: [post.author],
-      images: [{ url: post.image || "/og-image.jpg", width: 1200, height: 630, alt: post.title }],
+      images: [{ url: post.image?.startsWith('http') ? post.image : `${baseUrl}${post.image || '/og-image.jpg'}`, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [post.image || "/og-image.jpg"],
+      images: [post.image?.startsWith('http') ? post.image : `${baseUrl}${post.image || '/og-image.jpg'}`],
     },
   };
 }

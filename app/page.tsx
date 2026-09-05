@@ -1,18 +1,15 @@
+import { Metadata } from "next";
 import dynamic from "next/dynamic";
-import Hero from "@/components/Hero";
 import CaseStudies from "@/components/CaseStudies";
-
 import { baseUrl } from "@/lib/seo";
 
 // Below-the-fold, framer-motion-heavy sections — split out of the
 // initial bundle. ssr stays true (default) so content is still
 // server-rendered for crawlers; only the JS chunk is deferred.
-const Services = dynamic(() => import("@/components/Services"));
 const ProofBand = dynamic(() => import("@/components/Proofband"));
-const Process = dynamic(() => import("@/components/Process"));
 const Closing = dynamic(() => import("@/components/Closing"));
 
-export const metadata = {
+export const metadata: Metadata = {
   title:       "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
   description: "Technical SEO architecture, Core Web Vitals optimization, and search automation for complex websites.",
   alternates: { canonical: baseUrl },
@@ -42,7 +39,7 @@ export const metadata = {
 
 import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
-import { faqPageSchema } from "@/lib/seo";
+import { faqPageSchema, breadcrumbSchema } from "@/lib/seo";
 import HomeHero from "@/components/HomeHero";
 import HomeServices from "@/components/HomeServices";
 
@@ -68,6 +65,7 @@ const HOMEPAGE_FAQS = [
 export default function Page() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }])} />
       <HomeHero />
       <HomeServices />
       <CaseStudies />

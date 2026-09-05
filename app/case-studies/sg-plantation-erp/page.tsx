@@ -5,19 +5,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'SG Plantation ERP — Custom High-Concurrency System | Cylvox Case Study',
+  title: 'SG Plantation ERP — Custom High-Concurrency System | Cylvox',
   description: 'How Cylvox developed a highly secure, custom Next.js Enterprise Resource Planning system for internal plantation management.',
   alternates: {
     canonical: `${baseUrl}/case-studies/sg-plantation-erp`,
   },
   openGraph: {
-    title: 'SG Plantation ERP — Custom High-Concurrency System | Cylvox Case Study',
+    title: 'SG Plantation ERP — Custom High-Concurrency System | Cylvox',
     description: 'How Cylvox developed a highly secure, custom Next.js Enterprise Resource Planning system for internal plantation management.',
     url: `${baseUrl}/case-studies/sg-plantation-erp`,
     siteName: 'Cylvox',
     images: [
       {
-        url: '/og-image.jpg',
+        url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'SG Plantation ERP Case Study',
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SG Plantation ERP — Custom High-Concurrency System | Cylvox Case Study',
+    title: 'SG Plantation ERP — Custom High-Concurrency System | Cylvox',
     description: 'How Cylvox developed a highly secure, custom Next.js Enterprise Resource Planning system for internal plantation management.',
-    images: ['/og-image.jpg'],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 }
 
@@ -43,6 +43,17 @@ export default function SgPlantationCaseStudyPage() {
   return (
     <>
       <JsonLd data={breadcrumb} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: "SG Plantation ERP — Custom High-Concurrency System | Cylvox",
+        description: "How Cylvox developed a highly secure, custom Next.js Enterprise Resource Planning system for internal plantation management.",
+        author: { "@type": "Person", name: "Supun Sanjana", url: `${baseUrl}/about` },
+        publisher: { "@type": "Organization", name: "Cylvox Solo Studio", logo: { "@type": "ImageObject", url: `${baseUrl}/logo.png` } },
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${baseUrl}/case-studies/sg-plantation-erp` },
+        datePublished: "2026-08-26",
+        inLanguage: "en"
+      }} />
       
       <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-background font-display pb-20">
         {/* Hero Section */}

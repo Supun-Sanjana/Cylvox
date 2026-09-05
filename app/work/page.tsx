@@ -1,26 +1,28 @@
 import CaseStudies from "@/components/CaseStudies";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
+import { baseUrl } from "@/lib/seo";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Case Studies | Web Development & Automation | Cylvox",
   description:
     "See how Cylvox hardens AI-assisted apps, migrates slow sites to modern stacks, and builds automation that runs without supervision. Real projects, not theory.",
-  alternates: { canonical: "/work" },
+  alternates: { canonical: `${baseUrl}/work` },
   openGraph: {
     title: "Case Studies | Web Development & Automation | Cylvox",
     description: "Real projects: audits, migrations, performance, and automation builds.",
-    url: "/work",
+    url: `${baseUrl}/work`,
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox Case Studies" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Cylvox Case Studies" }],
   },
   twitter: {
     card: "summary_large_image" as const,
     title: "Case Studies | Web Development & Automation | Cylvox",
     description: "See how Cylvox hardens AI-assisted apps, migrates slow sites to modern stacks, and builds automation that runs without supervision.",
-    images: ["/og-image.jpg"],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

@@ -2,27 +2,28 @@ import Process from "@/components/Process";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
 import Image from "next/image";
+import { baseUrl } from "@/lib/seo";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "About Cylvox | Independent Web Engineering Solo Studio",
-  description:
-    "Cylvox is an independent, engineer-led solo studio. The person who builds your product is who you talk to directly — no account managers, no black-box handoffs.",
-  alternates: { canonical: "/about" },
+  description: "Cylvox is an independent, engineer-led solo studio. The person who builds your product is who you talk to directly — no account managers, no handoffs.",
+  alternates: { canonical: `${baseUrl}/about` },
   openGraph: {
     title: "About Cylvox | Independent Web Engineering Solo Studio",
     description:
       "An independent, engineer-led solo studio. No account managers, no black-box handoffs.",
-    url: "/about",
+    url: `${baseUrl}/about`,
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "About Cylvox Solo Studio" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "About Cylvox Solo Studio" }],
   },
   twitter: {
     card: "summary_large_image" as const,
     title: "About Cylvox | Independent Web Engineering Solo Studio",
     description: "Cylvox is an independent, engineer-led solo studio. The person who builds your product is who you talk to directly.",
-    images: ["/og-image.jpg"],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

@@ -5,19 +5,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'OutQuest — Complete Technical SEO & Performance | Cylvox Case Study',
+  title: 'OutQuest — Complete Technical SEO & Performance | Cylvox',
   description: 'How Cylvox built a full technical SEO, indexing, structured data, and performance infrastructure for OutQuest\'s Next.js platform on Vercel with Supabase.',
   alternates: {
     canonical: `${baseUrl}/case-studies/join-outquest`,
   },
   openGraph: {
-    title: 'OutQuest — Complete Technical SEO & Performance | Cylvox Case Study',
+    title: 'OutQuest — Complete Technical SEO & Performance | Cylvox',
     description: 'How Cylvox built a full technical SEO, indexing, structured data, and performance infrastructure for OutQuest\'s Next.js platform on Vercel with Supabase.',
     url: `${baseUrl}/case-studies/join-outquest`,
     siteName: 'Cylvox',
     images: [
       {
-        url: '/og-image.jpg',
+        url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'OutQuest Case Study',
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OutQuest — Complete Technical SEO & Performance | Cylvox Case Study',
+    title: 'OutQuest — Complete Technical SEO & Performance | Cylvox',
     description: 'How Cylvox built a full technical SEO, indexing, structured data, and performance infrastructure for OutQuest\'s Next.js platform on Vercel with Supabase.',
-    images: ['/og-image.jpg'],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 }
 
@@ -44,6 +44,17 @@ export default function OutQuestCaseStudyPage() {
   return (
     <>
       <JsonLd data={breadcrumb} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: "OutQuest — Complete Technical SEO & Performance | Cylvox",
+        description: "How Cylvox built a full technical SEO, indexing, structured data, and performance infrastructure for OutQuest's Next.js platform on Vercel with Supabase.",
+        author: { "@type": "Person", name: "Supun Sanjana", url: `${baseUrl}/about` },
+        publisher: { "@type": "Organization", name: "Cylvox Solo Studio", logo: { "@type": "ImageObject", url: `${baseUrl}/logo.png` } },
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${baseUrl}/case-studies/join-outquest` },
+        datePublished: "2026-08-26",
+        inLanguage: "en"
+      }} />
       
       <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-background font-display pb-20">
         {/* Hero Section */}

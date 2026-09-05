@@ -20,13 +20,13 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Trust Signal Auditor — WordPress E-E-A-T & Trust Signal Plugin",
+  title: "Trust Signal Auditor — WordPress E-E-A-T Plugin | Cylvox",
   description: "Scan your WordPress site for missing trust signals, indexability traps, and authorship errors with a real, lightweight audit.",
   alternates: {
     canonical: `${baseUrl}/products/trust-signal-auditor`,
   },
   openGraph: {
-    title: "Trust Signal Auditor — WordPress E-E-A-T & Trust Signal Plugin",
+    title: "Trust Signal Auditor — WordPress E-E-A-T Plugin | Cylvox",
     description: "Scan your WordPress site for missing trust signals, indexability traps, and authorship errors with a real, lightweight audit.",
     url: `${baseUrl}/products/trust-signal-auditor`,
     siteName: "Cylvox",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trust Signal Auditor — WordPress E-E-A-T & Trust Signal Plugin",
+    title: "Trust Signal Auditor — WordPress E-E-A-T Plugin | Cylvox",
     description: "Scan your WordPress site for missing trust signals, indexability traps, and authorship errors.",
     images: [`${baseUrl}/og-image.jpg`],
   },

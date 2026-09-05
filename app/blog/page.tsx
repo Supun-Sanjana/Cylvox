@@ -3,25 +3,27 @@ import Image from "next/image";
 import { blogPosts } from "@/lib/blog";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
+import { baseUrl } from "@/lib/seo";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Engineering Blog | Cylvox Solo Studio",
-  description: "Insights, tutorials, and case studies on Next.js development, n8n automation, and technical SEO.",
-  alternates: { canonical: "/blog" },
+export const metadata: Metadata = {
+  title: "Technical SEO, Automation & Web Engineering Blog | Cylvox",
+  description: "In-depth technical articles on Next.js architecture, n8n workflow automation, Core Web Vitals optimization, and structured data implementation.",
+  alternates: { canonical: `${baseUrl}/blog` },
   openGraph: {
-    title: "Engineering Blog | Cylvox Solo Studio",
-    description: "Insights, tutorials, and case studies on Next.js development, n8n automation, and technical SEO.",
-    url: "/blog",
+    title: "Technical SEO, Automation & Web Engineering Blog | Cylvox",
+    description: "In-depth technical articles on Next.js architecture, n8n workflow automation, Core Web Vitals optimization, and structured data implementation.",
+    url: `${baseUrl}/blog`,
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox Engineering Blog" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Cylvox Engineering Blog" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Engineering Blog | Cylvox Solo Studio",
-    description: "Insights, tutorials, and case studies on Next.js development, n8n automation, and technical SEO.",
-    images: ["/og-image.jpg"],
+    title: "Technical SEO, Automation & Web Engineering Blog | Cylvox",
+    description: "In-depth technical articles on Next.js architecture, n8n workflow automation, Core Web Vitals optimization, and structured data implementation.",
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

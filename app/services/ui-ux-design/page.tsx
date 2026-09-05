@@ -3,25 +3,27 @@ import { ArrowUpRight } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
+import { baseUrl } from "@/lib/seo";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Premium UI/UX Design Services | Cylvox",
+export const metadata: Metadata = {
+  title: "UI/UX Design & User Experience Engineering | Cylvox",
   description: "User-centric interface and experience design that converts. We craft digital experiences that are intuitive, beautiful, and aligned with your business goals.",
-  alternates: { canonical: "/services/ui-ux-design" },
+  alternates: { canonical: `${baseUrl}/services/ui-ux-design` },
   openGraph: {
-    title: "Premium UI/UX Design Services | Cylvox",
+    title: "UI/UX Design & User Experience Engineering | Cylvox",
     description: "User-centric interface and experience design that converts. We craft digital experiences that are intuitive, beautiful, and aligned with your business goals.",
-    url: "/services/ui-ux-design",
+    url: `${baseUrl}/services/ui-ux-design`,
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox UI/UX Design Services" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Cylvox UI/UX Design Services" }],
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: "Premium UI/UX Design Services | Cylvox",
+    title: "UI/UX Design & User Experience Engineering | Cylvox",
     description: "User-centric interface and experience design that converts. We craft digital experiences that are intuitive, beautiful, and aligned with your business goals.",
-    images: ["/og-image.jpg"],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

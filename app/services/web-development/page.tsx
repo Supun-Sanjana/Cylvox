@@ -3,25 +3,27 @@ import { ArrowUpRight } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
+import { baseUrl } from "@/lib/seo";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Next.js & React Web App Development Solo Studio | Cylvox",
   description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
-  alternates: { canonical: "/services/web-development" },
+  alternates: { canonical: `${baseUrl}/services/web-development` },
   openGraph: {
     title: "Next.js & React Web App Development Solo Studio | Cylvox",
     description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
-    url: "/services/web-development",
+    url: `${baseUrl}/services/web-development`,
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox Web Development Services" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Cylvox Web Development Services" }],
   },
   twitter: {
     card: "summary_large_image" as const,
     title: "Next.js & React Web App Development Solo Studio | Cylvox",
     description: "High-performance full-stack web development using modern technologies: Next.js, React, MERN stack, Supabase, Postgres, Java Spring Boot, and more.",
-    images: ["/og-image.jpg"],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

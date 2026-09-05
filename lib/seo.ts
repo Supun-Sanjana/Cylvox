@@ -198,7 +198,7 @@ export function productListSchema(products: ProductItem[]) {
           price: product.price,
           priceCurrency: product.priceCurrency || "USD",
           availability: "https://schema.org/InStock",
-          url: `${baseUrl}/products`,
+          url: `${baseUrl}/products/n8n-templates`,
         },
       },
     })),

@@ -5,19 +5,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'NVTI Baddegama — Institutional Training Portal | Cylvox Case Study',
+  title: 'NVTI Baddegama — Institutional Training Portal | Cylvox',
   description: 'Built collaboratively with pure PHP and MySQL, delivering lightning-fast performance for the Vocational Training Authority.',
   alternates: {
     canonical: `${baseUrl}/case-studies/nvti-baddegama`,
   },
   openGraph: {
-    title: 'NVTI Baddegama — Institutional Training Portal | Cylvox Case Study',
+    title: 'NVTI Baddegama — Institutional Training Portal | Cylvox',
     description: 'Built collaboratively with pure PHP and MySQL, delivering lightning-fast performance for the Vocational Training Authority.',
     url: `${baseUrl}/case-studies/nvti-baddegama`,
     siteName: 'Cylvox',
     images: [
       {
-        url: '/case-studies/nvti-baddegama/nvti-baddegama.png',
+        url: `${baseUrl}/case-studies/nvti-baddegama/nvti-baddegama.png`,
         width: 1200,
         height: 630,
         alt: 'NVTI Baddegama Case Study',
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NVTI Baddegama — Institutional Training Portal | Cylvox Case Study',
+    title: 'NVTI Baddegama — Institutional Training Portal | Cylvox',
     description: 'Built collaboratively with pure PHP and MySQL, delivering lightning-fast performance for the Vocational Training Authority.',
-    images: ['/case-studies/nvti-baddegama/nvti-baddegama.png'],
+    images: [`${baseUrl}/case-studies/nvti-baddegama/nvti-baddegama.png`],
   },
 }
 
@@ -43,6 +43,17 @@ export default function NvtiCaseStudyPage() {
   return (
     <>
       <JsonLd data={breadcrumb} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: "NVTI Baddegama — Institutional Training Portal | Cylvox",
+        description: "Built collaboratively with pure PHP and MySQL, delivering lightning-fast performance for the Vocational Training Authority.",
+        author: { "@type": "Person", name: "Supun Sanjana", url: `${baseUrl}/about` },
+        publisher: { "@type": "Organization", name: "Cylvox Solo Studio", logo: { "@type": "ImageObject", url: `${baseUrl}/logo.png` } },
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${baseUrl}/case-studies/nvti-baddegama` },
+        datePublished: "2026-08-26",
+        inLanguage: "en"
+      }} />
       
       <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-background font-display pb-20">
         {/* Hero Section */}

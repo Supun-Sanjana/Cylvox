@@ -2,25 +2,26 @@ import Services from "@/components/Services";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, baseUrl } from "@/lib/seo";
 import Image from "next/image";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
   description: 'Technical SEO is Cylvox’s core service: crawlability, schema, Core Web Vitals, search automation, and web engineering for complex sites.',
-  alternates: { canonical: '/services' },
+  alternates: { canonical: `${baseUrl}/services` },
   openGraph: {
     title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
     description: 'Cylvox delivers technical SEO architecture, Core Web Vitals optimization, search automation, and web engineering for complex modern websites.',
     url: `${baseUrl}/services`,
     siteName: 'Cylvox',
     locale: 'en_US',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Cylvox Technical SEO Services' }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: 'Cylvox Technical SEO Services' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
     description: 'Cylvox delivers technical SEO architecture, Core Web Vitals optimization, search automation, and web engineering for complex modern websites.',
-    images: ['/og-image.jpg'],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

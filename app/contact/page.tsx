@@ -6,22 +6,22 @@ import { breadcrumbSchema, baseUrl } from "@/lib/seo";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Contact Cylvox — Start Your Project",
-  description: "Start a conversation with Cylvox to engineer your next digital system. Get a response within 24 hours.",
+  title: "Start Your Web Engineering Project — Contact Cylvox",
+  description: "Start your web engineering project with Cylvox. Technical SEO, Core Web Vitals optimization, and automation — get a detailed response within 24 hours.",
   alternates: { canonical: `${baseUrl}/contact` },
   openGraph: {
-    title: "Contact Cylvox — Start Your Project",
-    description: "Start a conversation with Cylvox to engineer your next digital system. Get a response within 24 hours.",
+    title: "Start Your Web Engineering Project — Contact Cylvox",
+    description: "Start your web engineering project with Cylvox. Technical SEO, Core Web Vitals optimization, and automation — get a detailed response within 24 hours.",
     url: `${baseUrl}/contact`,
     siteName: "Cylvox",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Contact Cylvox" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Contact Cylvox" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Cylvox — Start Your Project",
+    title: "Start Your Web Engineering Project — Contact Cylvox",
     description: "Start a conversation with Cylvox to engineer your next digital system.",
-    images: ["/og-image.jpg"],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 

@@ -5,19 +5,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Micro Credit ERP — Robust Tracking System | Cylvox Case Study',
-  description: 'Architecting a robust, scalable ERP for tracking micro-credit loans and financial data.',
+  title: 'Micro Credit ERP — Robust Tracking System | Cylvox',
+  description: 'How Cylvox architected a robust, scalable ERP system for tracking micro-credit loans, repayments, and financial reporting with real-time dashboards and role-based access control.',
   alternates: {
     canonical: `${baseUrl}/case-studies/micro-credit-erp`,
   },
   openGraph: {
-    title: 'Micro Credit ERP — Robust Tracking System | Cylvox Case Study',
-    description: 'Architecting a robust, scalable ERP for tracking micro-credit loans and financial data.',
+    title: 'Micro Credit ERP — Robust Tracking System | Cylvox',
+    description: 'How Cylvox architected a robust, scalable ERP system for tracking micro-credit loans, repayments, and financial reporting with real-time dashboards and role-based access control.',
     url: `${baseUrl}/case-studies/micro-credit-erp`,
     siteName: 'Cylvox',
     images: [
       {
-        url: '/og-image.jpg',
+        url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Micro Credit ERP Case Study',
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Micro Credit ERP — Robust Tracking System | Cylvox Case Study',
-    description: 'Architecting a robust, scalable ERP for tracking micro-credit loans and financial data.',
-    images: ['/og-image.jpg'],
+    title: 'Micro Credit ERP — Robust Tracking System | Cylvox',
+    description: 'How Cylvox architected a robust, scalable ERP system for tracking micro-credit loans, repayments, and financial reporting.',
+    images: [`${baseUrl}/og-image.jpg`],
   },
 }
 
@@ -43,6 +43,17 @@ export default function MicroCreditCaseStudyPage() {
   return (
     <>
       <JsonLd data={breadcrumb} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: "Micro Credit ERP — Robust Tracking System | Cylvox",
+        description: "Architecting a robust, scalable ERP for tracking micro-credit loans and financial data.",
+        author: { "@type": "Person", name: "Supun Sanjana", url: `${baseUrl}/about` },
+        publisher: { "@type": "Organization", name: "Cylvox Solo Studio", logo: { "@type": "ImageObject", url: `${baseUrl}/logo.png` } },
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${baseUrl}/case-studies/micro-credit-erp` },
+        datePublished: "2026-08-26",
+        inLanguage: "en"
+      }} />
       
       <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-background font-display pb-20">
         {/* Hero Section */}

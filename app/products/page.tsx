@@ -1,26 +1,26 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, baseUrl } from "@/lib/seo";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Automation & SEO Products | Cylvox",
-  description: "n8n Automation Templates and Trust Signal Auditor (Trustlyne).",
-  alternates: { canonical: "/products" },
+  title: "SEO Automation Tools & WordPress Plugins | Cylvox",
+  description: "Production-tested n8n automation templates and the Trust Signal Auditor WordPress plugin — tools built from real client work to improve SEO, indexing, and E-E-A-T.",
+  alternates: { canonical: `${baseUrl}/products` },
   openGraph: {
-    title: "Automation & SEO Products | Cylvox",
-    description: "n8n Automation Templates and Trust Signal Auditor (Trustlyne).",
-    url: "/products",
+    title: "SEO Automation Tools & WordPress Plugins | Cylvox",
+    description: "Production-tested n8n automation templates and the Trust Signal Auditor WordPress plugin — tools built from real client work to improve SEO, indexing, and E-E-A-T.",
+    url: `${baseUrl}/products`,
     siteName: "Cylvox",
     type: "website",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Cylvox Products" }],
+    images: [{ url: `${baseUrl}/og-image.jpg`, width: 1200, height: 630, alt: "Cylvox Products" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Automation & SEO Products | Cylvox",
-    description: "n8n Automation Templates and Trust Signal Auditor (Trustlyne).",
-    images: ["/og-image.jpg"],
+    title: "SEO Automation Tools & WordPress Plugins | Cylvox",
+    description: "Production-tested n8n automation templates and the Trust Signal Auditor WordPress plugin — tools built from real client work to improve SEO, indexing, and E-E-A-T.",
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 
@@ -32,6 +32,29 @@ export default function ProductsHubPage() {
           { name: "Home", path: "/" },
           { name: "Products", path: "/products" },
         ])}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Cylvox Products",
+          description: "SEO automation tools and WordPress plugins by Cylvox.",
+          numberOfItems: 2,
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "n8n Automation Templates",
+              url: `${baseUrl}/products/n8n-templates`,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Trust Signal Auditor",
+              url: `${baseUrl}/products/trust-signal-auditor`,
+            },
+          ],
+        }}
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
         <h1 className="font-display text-4xl md:text-5xl font-bold mb-12 text-foreground">

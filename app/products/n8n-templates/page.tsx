@@ -3,6 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, productListSchema } from "@/lib/seo";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
+import { baseUrl } from "@/lib/seo";
 
 import { Hammer, ShieldCheck, Zap } from "lucide-react";
 
@@ -10,18 +11,18 @@ export const metadata: Metadata = {
   title: "n8n Automation Templates for SEO & WordPress | Cylvox",
   description:
     "Free and premium n8n workflow templates for technical SEO, Core Web Vitals monitoring, and content automation — built from real client results, not generic bundles.",
-  alternates: { canonical: "/products/n8n-templates" },
+  alternates: { canonical: `${baseUrl}/products/n8n-templates` },
   openGraph: {
     title: "n8n Automation Templates for SEO & WordPress | Cylvox",
     description:
       "Free and premium n8n workflow templates for technical SEO, Core Web Vitals monitoring, and content automation.",
-    url: "/products/n8n-templates",
+    url: `${baseUrl}/products/n8n-templates`,
     siteName: "Cylvox",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Cylvox n8n Automation Templates for SEO & WordPress",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     title: "n8n Automation Templates for SEO & WordPress | Cylvox",
     description:
       "Free and premium n8n workflow templates for technical SEO, Core Web Vitals monitoring, and content automation.",
-    images: ["/og-image.jpg"],
+    images: [`${baseUrl}/og-image.jpg`],
   },
 };
 
