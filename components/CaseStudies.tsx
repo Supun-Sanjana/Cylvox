@@ -32,6 +32,13 @@ export default function CaseStudies() {
                  <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-overlay" />
               </div>
 
+              {/* Big Graphic Overlay */}
+              <div className="absolute -top-10 -right-10 sm:-top-16 sm:-right-16 size-[280px] sm:size-[400px] rounded-full border-[24px] sm:border-[32px] border-white/5 flex items-center justify-center z-0 transition-transform duration-700 group-hover:scale-105 group-hover:border-white/10 pointer-events-none">
+                <span className="font-display text-[120px] sm:text-[180px] text-white/5 leading-none transition-colors duration-700 group-hover:text-white/10 tracking-tighter">
+                  99
+                </span>
+              </div>
+
               {/* Content overlaid at bottom */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 z-10 bg-gradient-to-t from-background via-background/60 to-transparent">
                 <div className="mt-auto">
@@ -161,27 +168,27 @@ export default function CaseStudies() {
                 {/* Graphic Overlay */}
                 <div className="absolute -top-10 -right-10 size-[280px] rounded-full border-[12px] border-white/5 flex items-center justify-center z-0 transition-transform duration-700 group-hover:scale-105 group-hover:border-white/10">
                   <div className="size-[200px] rounded-full border-[2px] border-dashed border-white/10" />
-                  <span className="absolute font-display text-[40px] text-white/5 group-hover:text-white/10 transition-colors">SEO</span>
+                  <span className="absolute font-display text-[32px] text-white/5 group-hover:text-white/10 transition-colors">HEALTH</span>
                 </div>
                 
                 <div className="relative z-10 mt-auto pointer-events-none">
                   <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-3 block">
-                    Technical SEO Plugin
+                    Health Niche Blog
                   </span>
                   <h3 className="font-display text-3xl sm:text-4xl text-foreground mb-4">
                     Zymgut (Brine & Thrive)
                   </h3>
                   <p className="text-muted-foreground text-sm sm:text-base max-w-[280px] mb-8 leading-relaxed">
-                    A custom WordPress architecture to dramatically improve organic search visibility and structured data.
+                    A specialized health and wellness platform designed for high performance, readability, and organic growth.
                   </p>
                   
                   <div className="flex items-center justify-between pointer-events-auto">
                     <div className="flex flex-wrap gap-2">
                       <span className="px-3 py-1 rounded-full border border-border bg-background/50 text-[10px] uppercase font-bold text-muted-foreground backdrop-blur-md">
-                        Custom Plugin
+                        Content Platform
                       </span>
                       <span className="px-3 py-1 rounded-full border border-border bg-background/50 text-[10px] uppercase font-bold text-muted-foreground backdrop-blur-md">
-                        Structured Data
+                        WordPress
                       </span>
                     </div>
                     

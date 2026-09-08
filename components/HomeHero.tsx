@@ -115,10 +115,7 @@ export default function HomeHero() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.28, 1] }}
           className="lg:col-span-5 flex flex-col items-start text-left pt-10 lg:pt-0"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-surface text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-8">
-            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
-            Technical Studio
-          </div>
+
           
           <h1 className="font-display text-6xl sm:text-7xl xl:text-[6.5rem] tracking-tight leading-[0.95] text-foreground mb-8 drop-shadow-sm">
             Precision <br />

@@ -145,11 +145,13 @@ export default function ProductsPage() {
             name: t.name,
             description: t.description,
             price: "0",
+            image: t.image,
           })),
           ...PAID_TEMPLATES.map((t) => ({
             name: t.name,
             description: t.description,
             price: t.tag.replace(/[^0-9]/g, ""),
+            image: t.image,
           })),
         ])}
       />

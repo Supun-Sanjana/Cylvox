@@ -22,33 +22,48 @@ export interface RateLimitResult {
 export async function checkRateLimit(domain: string, ipHash: string): Promise<RateLimitResult> {
   const domainSince = new Date(Date.now() - DOMAIN_COOLDOWN_HOURS * 60 * 60 * 1000).toISOString();
 
-  const { count: domainCount, error: domainErr } = await supabase
-    .from('wisp_scans')
-    .select('id', { count: 'exact', head: true })
-    .eq('domain', domain)
-    .gte('created_at', domainSince);
+  try {
+    const { count: domainCount, error: domainErr } = await supabase
+      .from('wisp_scans')
+      .select('id', { count: 'exact', head: true })
+      .eq('domain', domain)
+      .gte('created_at', domainSince);
 
-  if (domainErr) throw domainErr;
-  if ((domainCount ?? 0) > 0) {
-    return { allowed: false, reason: 'domain_cooldown' };
+    if (domainErr) {
+      console.warn('Wisp domain rate limit check failed:', domainErr);
+      return { allowed: true };
+    }
+    if ((domainCount ?? 0) > 0) {
+      return { allowed: false, reason: 'domain_cooldown' };
+    }
+
+    const daySince = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const { count: ipCount, error: ipErr } = await supabase
+      .from('wisp_scans')
+      .select('id', { count: 'exact', head: true })
+      .eq('ip_hash', ipHash)
+      .gte('created_at', daySince);
+
+    if (ipErr) {
+      console.warn('Wisp IP rate limit check failed:', ipErr);
+      return { allowed: true };
+    }
+    if ((ipCount ?? 0) >= MAX_SCANS_PER_IP_PER_DAY) {
+      return { allowed: false, reason: 'ip_limit' };
+    }
+
+    return { allowed: true };
+  } catch (err) {
+    console.warn('Wisp rate limit check threw an exception, failing open:', err);
+    return { allowed: true };
   }
-
-  const daySince = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-  const { count: ipCount, error: ipErr } = await supabase
-    .from('wisp_scans')
-    .select('id', { count: 'exact', head: true })
-    .eq('ip_hash', ipHash)
-    .gte('created_at', daySince);
-
-  if (ipErr) throw ipErr;
-  if ((ipCount ?? 0) >= MAX_SCANS_PER_IP_PER_DAY) {
-    return { allowed: false, reason: 'ip_limit' };
-  }
-
-  return { allowed: true };
 }
 
 export async function recordScan(domain: string, ipHash: string): Promise<void> {
-  const { error } = await supabase.from('wisp_scans').insert({ domain, ip_hash: ipHash });
-  if (error) throw error;
+  try {
+    const { error } = await supabase.from('wisp_scans').insert({ domain, ip_hash: ipHash });
+    if (error) console.warn('Failed to record wisp scan:', error);
+  } catch (err) {
+    console.warn('Exception recording wisp scan:', err);
+  }
 }

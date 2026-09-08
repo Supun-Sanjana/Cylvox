@@ -68,7 +68,7 @@
         "genericAuthType": "httpBasicAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"title\": \"{{ $('Parse & Sanitize Draft').item.json.title }}\",\n  \"content\": \"{{ $('Parse & Sanitize Draft').item.json.content }}\",\n  \"status\": \"draft\",\n  \"excerpt\": \"{{ $('Parse & Sanitize Draft').item.json.metaDescription }}\",\n  \"featured_media\": 0\n}",
+        "jsonBody": "={\n  \"title\": \"{{ $('Parse & Sanitize Draft').item.json.title }}\",\n  \"content\": \"<img src=\\\"{{ $('Fetch Stock Image').item.json.photos[0].src.large }}\\\" alt=\\\"{{ $('Fetch Stock Image').item.json.photos[0].alt }}\\\" />\\n\\n{{ $('Parse & Sanitize Draft').item.json.content }}\",\n  \"status\": \"draft\",\n  \"excerpt\": \"{{ $('Parse & Sanitize Draft').item.json.metaDescription }}\",\n  \"featured_media\": 0\n}",
         "options": {}
       },
       "id": "f1000000-0000-4000-8000-000000000005",

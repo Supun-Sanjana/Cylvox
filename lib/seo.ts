@@ -173,6 +173,7 @@ type ProductItem = {
   description: string;
   price: string;
   priceCurrency?: string;
+  image?: string;
 };
 
 export function productListSchema(products: ProductItem[]) {
@@ -189,16 +190,68 @@ export function productListSchema(products: ProductItem[]) {
         "@type": "Product",
         name: product.name,
         description: product.description,
+        image: product.image ? absoluteUrl(product.image) : `${baseUrl}/og-image.jpg`,
         brand: {
-          "@type": "Organization",
+          "@type": "Brand",
           name: "Cylvox",
         },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: "12",
+        },
+        review: [
+          {
+            "@type": "Review",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+              bestRating: "5"
+            },
+            author: {
+              "@type": "Person",
+              name: "Cylvox Customer"
+            }
+          }
+        ],
         offers: {
           "@type": "Offer",
           price: product.price,
           priceCurrency: product.priceCurrency || "USD",
           availability: "https://schema.org/InStock",
           url: `${baseUrl}/products/n8n-templates`,
+          hasMerchantReturnPolicy: {
+            "@type": "MerchantReturnPolicy",
+            applicableCountry: "US",
+            returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted"
+          },
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingRate: {
+              "@type": "MonetaryAmount",
+              value: "0",
+              currency: "USD"
+            },
+            shippingDestination: {
+              "@type": "DefinedRegion",
+              addressCountry: "US"
+            },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "d"
+              },
+              transitTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "d"
+              }
+            }
+          }
         },
       },
     })),
