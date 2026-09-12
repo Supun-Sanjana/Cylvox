@@ -195,25 +195,6 @@ export function productListSchema(products: ProductItem[]) {
           "@type": "Brand",
           name: "Cylvox",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "5.0",
-          reviewCount: "12",
-        },
-        review: [
-          {
-            "@type": "Review",
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: "5",
-              bestRating: "5"
-            },
-            author: {
-              "@type": "Person",
-              name: "Cylvox Customer"
-            }
-          }
-        ],
         offers: {
           "@type": "Offer",
           price: product.price,
