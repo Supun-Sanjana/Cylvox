@@ -118,9 +118,9 @@ export default function HomeHero() {
 
           
           <h1 className="font-display text-6xl sm:text-7xl xl:text-[6.5rem] tracking-tight leading-[0.95] text-foreground mb-8 drop-shadow-sm">
-            Precision <br />
-            <span className="text-white">Engineered</span> <br />
-            <em className="text-primary not-italic">Infrastructure.</em>
+            Precision-Engineered <br />
+            <span className="text-white">Technical SEO &</span> <br />
+            <em className="text-primary not-italic">Software Development.</em>
           </h1>
           
           <p className="text-lg sm:text-xl text-white/80 max-w-xl mb-12 font-light leading-relaxed drop-shadow-sm">

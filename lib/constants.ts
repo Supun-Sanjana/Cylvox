@@ -56,7 +56,7 @@ export const SERVICES: ServiceItem[] = [
     title: "Web Engineering",
     badge: "Next.js & Supabase",
     icon: Code2,
-    text: "Build resilient web systems that support technical SEO, performance, and reliable business operations.",
+    text: "Full-stack software development on Next.js and Supabase — engineered for technical SEO, performance, and reliable business operations.",
     link: "/services/web-development",
     findings: [
       "Service-role key shipped in the client bundle",

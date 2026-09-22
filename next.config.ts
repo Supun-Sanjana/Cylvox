@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       { source: "/trust-signal-auditor", destination: "/products/trust-signal-auditor", permanent: true },
       { source: "/trust-signal-auditor/terms", destination: "/products/trust-signal-auditor/terms", permanent: true },
       { source: "/trust-signal-auditor/privacy", destination: "/products/trust-signal-auditor/privacy", permanent: true },
+      { source: "/case-studies/outquest-technical-seo", destination: "/case-studies/join-outquest", permanent: true },
     ]
   },
 };

@@ -49,6 +49,10 @@ const HOMEPAGE_FAQS = [
     answer: "Cylvox operates as an independent technical studio offering high-end Technical SEO architecture, Core Web Vitals optimization, automated n8n workflows, Next.js web engineering, and UI/UX design. We specialize in building fast, scalable search infrastructure for complex modern websites."
   },
   {
+    question: "Does Cylvox provide software development services?",
+    answer: "Yes. Alongside technical SEO, Cylvox provides full-stack software development on Next.js and Supabase — custom web applications and systems engineered for performance, reliability, and search visibility from day one."
+  },
+  {
     question: "Who is behind Cylvox?",
     answer: "Cylvox is an independent solo studio founded and run by Supun Sanjana — a technical SEO specialist and web engineer. You work directly with the engineer building your systems, avoiding account managers and black-box agency processes."
   },
