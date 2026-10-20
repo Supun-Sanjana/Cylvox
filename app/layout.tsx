@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, professionalServiceSchema, websiteSchema, baseUrl } from "@/lib/seo";
 import Wisp from "@/components/Wisp";
+import Script from "next/script";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -72,10 +73,23 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       className={`${geistSans.variable} ${instrumentSerif.variable} bg-background`}
     >
       <body className="bg-background text-foreground">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-3SXPM1PVCS"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3SXPM1PVCS');
+  `}
+        </Script>
+
         <JsonLd data={organizationSchema} />
         <JsonLd data={professionalServiceSchema} />
         <Suspense fallback={null}>
-        <JsonLd data={websiteSchema} />
+          <JsonLd data={websiteSchema} />
           <Analytics />
         </Suspense>
         <Navbar />
