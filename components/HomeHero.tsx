@@ -44,7 +44,7 @@ const MouseRevealImage = () => {
       {/* Base Monochrome Image */}
       <Image 
         src="/placeholders/squish_crystals_1786554808524.jpg" 
-        alt="Abstract background"
+        alt=""
         fill
         sizes="(max-width: 1024px) 0vw, 60vw"
         className="object-cover opacity-55 mix-blend-luminosity"
@@ -61,7 +61,7 @@ const MouseRevealImage = () => {
       >
         <Image 
           src="/placeholders/squish_crystals_1786554808524.jpg" 
-          alt="Abstract background"
+          alt=""
           fill
           sizes="(max-width: 1024px) 0vw, 60vw"
           className="object-cover opacity-90 saturate-150 contrast-125"
@@ -80,7 +80,7 @@ const MouseRevealImage = () => {
       >
         <Image 
           src="/placeholders/squish_crystals_1786554808524.jpg" 
-          alt="Abstract background"
+          alt=""
           fill
           sizes="(max-width: 1024px) 0vw, 60vw"
           className="object-cover opacity-95 saturate-150 contrast-125"
@@ -154,7 +154,7 @@ export default function HomeHero() {
       <div className="absolute inset-0 z-0 lg:hidden">
         <Image 
           src="/placeholders/squish_crystals_1786554808524.jpg" 
-          alt="Abstract background"
+          alt=""
           fill
           sizes="(max-width: 1024px) 100vw, 0vw"
           className="object-cover opacity-60 saturate-150"

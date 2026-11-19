@@ -271,6 +271,7 @@ type ArticleSchemaInput = {
   datePublished: string;
   dateModified?: string;
   tags?: string[];
+  image?: string;
 };
 
 export function articleSchema({
@@ -280,6 +281,7 @@ export function articleSchema({
   datePublished,
   dateModified,
   tags,
+  image,
 }: ArticleSchemaInput) {
   return {
     "@context": "https://schema.org",
@@ -287,7 +289,7 @@ export function articleSchema({
     headline: title,
     description,
     url: `${baseUrl}/blog/${slug}`,
-    image: `${baseUrl}/og-image.jpg`,
+    image: image ? absoluteUrl(image) : `${baseUrl}/og-image.jpg`,
     datePublished,
     dateModified: dateModified || datePublished,
     keywords: tags,

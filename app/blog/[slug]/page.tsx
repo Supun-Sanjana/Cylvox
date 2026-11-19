@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.date,
       modifiedTime: post.dateModified || post.date,
       authors: [post.author],
-      images: [{ url: post.image?.startsWith('http') ? post.image : `${baseUrl}${post.image || '/og-image.jpg'}`, width: 1200, height: 630, alt: post.title }],
+      images: [{ url: post.image?.startsWith('http') ? post.image : `${baseUrl}${post.image || '/og-image.jpg'}`, width: 1200, height: 630, alt: post.imageAlt || post.title }],
     },
     twitter: {
       card: "summary_large_image",
@@ -65,9 +65,12 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: post.date,
     dateModified: post.dateModified,
     tags: post.tags,
+    image: post.image,
   });
 
-  const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
+  const relatedPosts = (post.relatedSlugs || [])
+    .map((relatedSlug) => blogPosts.find((candidate) => candidate.slug === relatedSlug))
+    .filter((candidate): candidate is (typeof blogPosts)[number] => Boolean(candidate));
 
   return (
     <>
@@ -125,7 +128,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="relative w-full aspect-[21/9] rounded-3xl overflow-hidden border border-border mb-16 shadow-2xl bg-surface">
             <Image 
               src={post.image} 
-              alt={post.title} 
+              alt={post.imageAlt || post.title}
               fill 
               className="object-cover"
               priority 
@@ -141,15 +144,15 @@ export default async function BlogPostPage({ params }: Props) {
         
         {/* Contextual CTA */}
         <div className="mt-16 mx-auto max-w-3xl bg-gradient-to-br from-[#ccff00]/10 to-transparent border border-[#ccff00]/20 p-8 rounded-2xl">
-          <h3 className="text-2xl font-display font-bold mb-3 text-foreground">Need this implemented?</h3>
+          <h3 className="text-2xl font-display font-bold mb-3 text-foreground">{post.ctaTitle || "Need this implemented?"}</h3>
           <p className="text-muted-foreground mb-6">
-            Stop losing traffic to poor site architecture. We engineer Next.js websites that dominate search results.
+            {post.ctaText || "Get practical engineering support for your website."}
           </p>
           <Link
-            href="/services/technical-seo"
+            href={post.ctaHref || "/services/technical-seo"}
             className="inline-flex items-center gap-2 bg-[#ccff00] text-[#09080e] font-bold rounded-full px-6 py-3 hover:bg-[#a3cc00] transition-colors"
           >
-            <span>View Technical SEO Services</span>
+            <span>{post.ctaLabel || "Explore our services"}</span>
             <ArrowUpRight className="w-4 h-4 stroke-[3]" />
           </Link>
         </div>
@@ -166,7 +169,7 @@ export default async function BlogPostPage({ params }: Props) {
                   <div className="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto border-b sm:border-b-0 sm:border-r border-border bg-surface shrink-0">
                     <Image 
                       src={rp.image} 
-                      alt={rp.title} 
+                      alt={rp.imageAlt || rp.title}
                       fill 
                       className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
                       sizes="(max-width: 640px) 100vw, 400px"

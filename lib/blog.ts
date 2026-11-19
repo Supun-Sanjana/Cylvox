@@ -4,11 +4,17 @@ export type BlogPost = {
   excerpt: string;
   content: string;
   image?: string;
+  imageAlt?: string;
   date: string;
   dateModified?: string;
   readingTime?: string;
   author: string;
   tags: string[];
+  relatedSlugs?: string[];
+  ctaTitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  ctaLabel?: string;
 };
 
 export const blogPosts: BlogPost[] = [
@@ -16,6 +22,7 @@ export const blogPosts: BlogPost[] = [
     title: "Why We Use n8n for High-Concurrency Workflow Automation",
     slug: "why-n8n-for-automation",
     image: "/images/blog/n8n-automation.jpg",
+    imageAlt: "n8n workflow automation diagram",
     excerpt: "Discover how moving from Zapier to n8n reduced our automation latency by 80% and improved reliability for enterprise clients.",
     content: `
       <h2>The Problem with Traditional iPaaS</h2>
@@ -33,23 +40,29 @@ export const blogPosts: BlogPost[] = [
       <p>By migrating a recent client's lead enrichment pipeline to a self-hosted n8n instance, we cut their monthly automation overhead by $1,200 while reducing end-to-end latency from 15 seconds to under 2 seconds. In the world of instant sales outreach, those 13 seconds are the difference between a closed deal and a lost lead.</p>
     `,
     date: "2026-08-01",
-    dateModified: "2026-08-01",
+    dateModified: "2026-11-19",
     readingTime: "4 min read",
     author: "Cylvox Solo Studio",
-    tags: ["Automation", "n8n", "Engineering"]
+    tags: ["Automation", "n8n", "Engineering"],
+    relatedSlugs: ["technical-seo-audit-tools", "technical-seo-audit-checklist"],
+    ctaTitle: "Need an automation workflow built?",
+    ctaText: "Get help designing and implementing reliable n8n workflows for your business processes.",
+    ctaHref: "/services/ai-automation",
+    ctaLabel: "Explore AI workflow automation",
   },
   {
     title: "Next.js SEO: App Router Metadata, Rendering & Best Practices",
     slug: "nextjs-app-router-seo",
     image: "/images/blog/nextjs-seo.jpg",
+    imageAlt: "Next.js App Router SEO implementation example",
     excerpt: "A practical guide to Next.js SEO, covering App Router metadata, server rendering, canonical URLs, and structured data.",
     content: `
       <h2>How Next.js App Router handles SEO</h2>
-      <p>With the introduction of the App Router, Next.js fundamentally changed how we approach technical SEO. Server Components aren't just a performance optimization—they're an SEO superpower.</p>
+      <p>The Next.js App Router provides server and client rendering options, metadata APIs, and file-based routing. Search visibility still depends on accessible, useful page content and correct technical implementation.</p>
       <p>Use this framework guide alongside the broader <a href="/blog/technical-seo-audit-checklist">technical SEO audit checklist</a> when reviewing a Next.js site. For custom implementation, see our <a href="/services/web-development">Next.js web development service</a>.</p>
 
       <h2>Rendering and crawlable page content</h2>
-      <p>By utilizing React Server Components (RSC), we can guarantee that all critical content, navigation links, and structured data are shipped in the initial HTML payload. Googlebot doesn't have to wait for JavaScript to execute; the content is just <em>there</em>.</p>
+      <p>Server-rendered output can make important content available in the initial response. Verify the rendered HTML and test client-rendered routes as well; framework choice alone does not guarantee crawlability or indexing.</p>
       
       <h2>Configure metadata, titles, and canonical URLs</h2>
       <p>The <code>generateMetadata</code> API allows us to fetch data from our CMS and dynamically construct title tags, canonical URLs, and OpenGraph images on the server before the page even reaches the browser.</p>
@@ -62,33 +75,39 @@ export const blogPosts: BlogPost[] = [
 }</code></pre>
 
       <h2>Core Web Vitals as a Ranking Factor</h2>
-      <p>We consistently hit 99+ Lighthouse scores by ruthlessly eliminating client-side JavaScript, leveraging Next.js Image optimization, and utilizing aggressive edge caching. When your Time to First Byte (TTFB) is measured in milliseconds, search engines take notice.</p>
+      <p>Measure performance on representative routes with lab and field data. Image optimization, reducing unnecessary JavaScript, and caching can help, but results depend on the application and hosting setup. See our <a href="/blog/fix-core-web-vitals">Core Web Vitals optimization guide</a>.</p>
     `,
     date: "2026-08-05",
-    dateModified: "2026-08-05",
+    dateModified: "2026-11-19",
     readingTime: "3 min read",
     author: "Cylvox Solo Studio",
-    tags: ["Next.js", "SEO", "Performance"]
+    tags: ["Next.js", "SEO", "Performance"],
+    relatedSlugs: ["technical-seo-audit-checklist", "json-ld-structured-data-nextjs"],
+    ctaTitle: "Need a search-friendly Next.js build?",
+    ctaText: "We build Next.js applications with crawlability, metadata, and performance considered from the start.",
+    ctaHref: "/services/web-development",
+    ctaLabel: "Explore Next.js web development",
   },
   {
     title: "Technical SEO Audit Checklist: How to Audit a Website",
     slug: "technical-seo-audit-checklist",
     image: "/images/blog/seo-audit.jpg",
-    excerpt: "Use this technical SEO audit checklist to review crawlability, indexing, Core Web Vitals, structured data, and rendering—and prioritize what to fix.",
+    imageAlt: "Technical SEO audit report and checklist",
+    excerpt: "Use this technical SEO audit checklist to review crawlability, indexing, Core Web Vitals, structured data, and rendering, then prioritize fixes for your site.",
     content: `
       <h2>What is a technical SEO audit?</h2>
-      <p>A technical SEO audit is the comprehensive evaluation of a website's server architecture, crawlability, indexability, structured data, and rendering performance. According to <a href="https://developers.google.com/search/docs/fundamentals/how-search-works" target="_blank" rel="noopener noreferrer">Google Search Central</a>, if search engines cannot crawl and parse your pages efficiently, even the highest quality content will fail to rank. At Cylvox, we treat the technical SEO audit not just as a diagnostic checklist, but as an engineering blueprint for search dominance.</p>
+      <p>A technical SEO audit reviews whether search engines can access, understand, and index important pages. It also identifies technical issues that can affect user experience and organic visibility. An audit helps prioritize fixes; it cannot guarantee rankings.</p>
 
       <h2>How to perform a technical SEO audit: crawlability and indexability</h2>
       <p>The foundation of technical SEO starts with ensuring bots can actually access your content.</p>
       <ul>
         <li><strong>Robots.txt Architecture:</strong> Ensure your <code>robots.txt</code> explicitly permits beneficial crawlers (Googlebot, Bingbot) while disallowing internal API endpoints and admin panels.</li>
         <li><strong>XML Sitemaps:</strong> Deploy dynamic XML sitemaps that automatically include new routes and purge 404s. Segment them if you have over 10,000 URLs.</li>
-        <li><strong>Canonical URL Enforcement:</strong> Every indexable page must have a self-referential canonical tag to prevent duplicate content penalties.</li>
+        <li><strong>Canonical URLs:</strong> Check that canonical tags identify the preferred URL where duplicate or substantially similar URLs exist.</li>
       </ul>
 
       <h2>Phase 2 — Core Web Vitals Assessment</h2>
-      <p>Since 2021, Google has used Core Web Vitals as a confirmed ranking signal. Improving these metrics directly correlates with higher conversion rates and better search visibility.</p>
+      <p>Core Web Vitals are user experience signals used in Google Search. They are one part of a broader evaluation and do not guarantee better rankings when improved.</p>
       <p>For metric definitions, diagnosis, and practical fixes, see our guide to <a href="/blog/fix-core-web-vitals">Core Web Vitals optimization</a>.</p>
       
       <div class="my-6 overflow-x-auto">
@@ -124,14 +143,14 @@ export const blogPosts: BlogPost[] = [
 
       <h2>Phase 3 — Structured Data Validation</h2>
       <p>Use our <a href="/blog/json-ld-structured-data-nextjs">JSON-LD structured data guide for Next.js</a> for implementation examples and validation steps.</p>
-      <p>JSON-LD structured data is how you communicate directly with Answer Engines and AI search models. It secures rich results (like review stars and FAQ accordions) on the SERP.</p>
+      <p>Structured data helps search engines interpret page content and may make a page eligible for supported rich results when it follows the relevant guidelines. Markup does not guarantee enhanced display or rankings.</p>
       <ul>
         <li>Deploy <code>Organization</code> and <code>WebSite</code> schema on the homepage.</li>
         <li>Validate all markup using the <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener noreferrer">Google Rich Results Test</a> and the <a href="https://validator.schema.org/" target="_blank" rel="noopener noreferrer">Schema.org Validator</a>.</li>
       </ul>
 
       <h2>Phase 4 — Server & Rendering Architecture</h2>
-      <p>Client-Side Rendering (CSR) is an SEO killer. Moving to Server-Side Rendering (SSR) or React Server Components (RSC) ensures HTML is fully baked upon request.</p>
+      <p>Client-side rendering is not automatically an SEO problem, but it can add rendering complexity and delay content discovery. Verify what important pages expose in their rendered HTML and whether critical links and content are accessible to crawlers.</p>
       <p>For framework-specific guidance, continue to our <a href="/blog/nextjs-app-router-seo">Next.js SEO guide</a>.</p>
 
       <h2>Phase 5 — Crawlability and Indexing</h2>
@@ -139,6 +158,15 @@ export const blogPosts: BlogPost[] = [
 
       <h2>Choosing Technical SEO Audit Tools</h2>
       <p>Combine Search Console data with a crawler and performance tools. Our guide to <a href="/blog/technical-seo-audit-tools">technical SEO audit tools and workflow</a> explains what each tool can and cannot tell you.</p>
+
+      <h2>Site architecture, URL structure, and breadcrumbs</h2>
+      <p>Check that important pages sit within a logical hierarchy, use readable and stable URLs, and have useful navigation paths. Breadcrumb markup should match visible breadcrumbs when present.</p>
+
+      <h2>Mobile rendering, HTTPS, and redirects</h2>
+      <p>Compare mobile and desktop rendered content, confirm important links and content work on mobile, and verify HTTP URLs redirect to the preferred HTTPS version without redirect loops.</p>
+
+      <h2>Metadata, errors, and image accessibility</h2>
+      <p>Review unique page titles and descriptions, meaningful heading structure, broken links, soft 404s, and server errors. Ensure informative images have useful alt text and decorative images use empty alt text.</p>
 
       <h2>Technical SEO Audit Summary Checklist</h2>
       <div class="my-6 overflow-x-auto">
@@ -173,27 +201,32 @@ export const blogPosts: BlogPost[] = [
       <p>Need help executing this checklist? Check out our <a href="/services/technical-seo">Technical SEO Services</a> or <a href="/contact">contact Cylvox</a> for a comprehensive audit of your web infrastructure.</p>
     `,
     date: "2026-08-20",
-    dateModified: "2026-08-21",
+    dateModified: "2026-11-19",
     readingTime: "8 min read",
     author: "Cylvox Solo Studio",
-    tags: ["Technical SEO", "SEO Audit", "Checklist"]
+    tags: ["Technical SEO", "SEO Audit", "Checklist"],
+    relatedSlugs: ["technical-seo-crawlability-indexing", "technical-seo-audit-tools"],
+    ctaTitle: "Want help with your technical SEO audit?",
+    ctaText: "Get a prioritized review of crawlability, indexing, structured data, and technical performance.",
+    ctaHref: "/services/technical-seo",
+    ctaLabel: "Explore technical SEO audit services",
   },
   {
     title: "Core Web Vitals Optimization: Fix LCP, INP & CLS",
     slug: "fix-core-web-vitals",
     image: "/images/blog/cwv-speed.jpg",
-    excerpt: "A rigorous engineering guide to fixing Core Web Vitals. Learn how to diagnose and resolve poor LCP, INP, and CLS scores in Next.js applications.",
+    excerpt: "Learn how to measure and improve Core Web Vitals in Next.js by diagnosing LCP, INP, and CLS issues with field and lab data.",
     content: `
       <h2>Core Web Vitals optimization: what to measure</h2>
-      <p>Core Web Vitals (CWV) are a set of specific factors that Google considers crucial in a webpage's overall user experience. As a confirmed ranking signal since 2021, passing the CWV assessment is no longer optional for competitive SEO. According to <a href="https://web.dev/vitals/" target="_blank" rel="noopener noreferrer">web.dev</a>, sites that meet the thresholds for all three metrics see a 24% lower abandonment rate.</p>
+      <p>Core Web Vitals measure aspects of loading, interactivity, and visual stability. They are part of Google's page experience signals, but passing the assessment does not guarantee rankings. Review the current metric definitions and thresholds at <a href="https://web.dev/vitals/" target="_blank" rel="noopener noreferrer">web.dev</a>.</p>
       <p>For a complete technical review that includes performance, use the <a href="/blog/technical-seo-audit-checklist">technical SEO audit checklist</a>. If you need hands-on performance work, explore <a href="/services/optimization">Core Web Vitals optimization</a>.</p>
 
       <h2>Fixing Largest Contentful Paint (LCP) — Target &lt; 2.5s</h2>
       <p>LCP measures loading performance. It marks the time in the page load timeline when the page's main content has likely loaded.</p>
       <p><strong>Engineering Solutions:</strong></p>
       <ul>
-        <li><strong>Image Priority:</strong> If using Next.js, always add the <code>priority</code> prop to your above-the-fold components.</li>
-        <li><strong>Edge Caching:</strong> Cache HTML responses at the CDN edge to bring TTFB below 200ms.</li>
+        <li><strong>Prioritize the LCP resource:</strong> Identify the actual LCP element, then ensure its resource is discoverable and not unnecessarily delayed.</li>
+        <li><strong>Reduce server and network delays:</strong> Measure TTFB and use caching where it fits the application; do not assume a fixed target applies to every site.</li>
       </ul>
 <pre><code>// Optimize Hero Images in Next.js
 import Image from 'next/image';
@@ -202,7 +235,7 @@ export default function Hero() {
   return (
     &lt;Image 
       src="/hero-image.avif" 
-      alt="Hero" 
+      alt="Descriptive alternative text for the page's hero image"
       fill
       priority 
       fetchpriority="high"
@@ -214,7 +247,7 @@ export default function Hero() {
       <p>INP replaced First Input Delay (FID). It measures a page's overall responsiveness to user interactions (clicks, taps, and keyboard inputs). If a button click feels "laggy", you have an INP problem.</p>
       <p><strong>Engineering Solutions:</strong></p>
       <ul>
-        <li><strong>RSC over Client Components:</strong> Push state and logic to the server. Only use <code>"use client"</code> for interactive leaves of your component tree.</li>
+        <li><strong>Reduce main-thread work:</strong> Limit unnecessary JavaScript and split long tasks; use server components where appropriate for the app.</li>
         <li><strong>Defer Scripts:</strong> Use the Next.js <code>next/script</code> tag with <code>strategy="lazyOnload"</code> for non-critical third parties.</li>
       </ul>
 
@@ -222,7 +255,7 @@ export default function Hero() {
       <p>CLS measures visual stability. It quantifies how much page content shifts around unexpectedly as assets load, which frustrates users.</p>
       <p><strong>Engineering Solutions:</strong></p>
       <ul>
-        <li><strong>Explicit Dimensions:</strong> Always define <code>width</code> and <code>height</code> attributes on your <code>&lt;img&gt;</code> tags.</li>
+        <li><strong>Reserve media space:</strong> Provide intrinsic dimensions or an aspect ratio so images and embeds do not unexpectedly move surrounding content.</li>
         <li><strong>Skeleton Screens:</strong> When fetching data client-side, render fixed-height skeleton placeholders so the layout remains stable when data arrives.</li>
       </ul>
 
@@ -231,19 +264,26 @@ export default function Hero() {
       <p>Use these checks as part of the full <a href="/blog/technical-seo-audit-checklist">technical SEO audit checklist</a>. For implementation support, explore our <a href="/services/optimization">Core Web Vitals optimization service</a>.</p>
     `,
     date: "2026-08-15",
-    dateModified: "2026-08-16",
+    dateModified: "2026-11-19",
     readingTime: "10 min read",
     author: "Cylvox Solo Studio",
-    tags: ["Core Web Vitals", "Performance", "Technical SEO"]
+    tags: ["Core Web Vitals", "Performance", "Technical SEO"],
+    imageAlt: "Core Web Vitals performance metrics dashboard",
+    relatedSlugs: ["technical-seo-audit-checklist", "technical-seo-audit-tools"],
+    ctaTitle: "Need help improving Core Web Vitals?",
+    ctaText: "Get an engineering review of loading, responsiveness, and layout stability on your site.",
+    ctaHref: "/services/optimization",
+    ctaLabel: "Explore performance optimization",
   },
   {
     title: "Structured Data & JSON-LD Schema: The Complete Guide for Next.js",
     slug: "json-ld-structured-data-nextjs",
     image: "/images/blog/jsonld-schema.jpg",
-    excerpt: "Learn why JSON-LD is critical for Answer Engine Optimization (AEO) and how to implement dynamic schema markup natively in Next.js App Router.",
+    imageAlt: "JSON-LD structured data example for a Next.js page",
+    excerpt: "Learn how to add JSON-LD structured data in Next.js App Router, choose relevant schema types, and validate your markup.",
     content: `
       <h2>What Is Structured Data and Why Does It Matter?</h2>
-      <p>Structured data is a standardized format for providing explicit clues about the meaning of a page. According to <a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data" target="_blank" rel="noopener noreferrer">Google's structured data documentation</a>, utilizing schema markup enables search engines to understand your entities and display Rich Results. More importantly for 2026, it is the fundamental vocabulary used by Answer Engines (like Perplexity and AI Overviews) to confidently extract facts.</p>
+      <p>Structured data is a standardized format for describing page content. Search engines can use eligible markup to understand entities and, for supported types, consider pages for enhanced search results. Markup must match visible content and does not guarantee a rich result or ranking change. See <a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data" target="_blank" rel="noopener noreferrer">Google's structured data documentation</a>.</p>
       <p>Schema is one part of a complete <a href="/blog/technical-seo-audit-checklist">technical SEO audit</a>. Review the whole site, then validate structured data separately.</p>
 
       <h2>JSON-LD vs Microdata vs RDFa — Why JSON-LD Wins</h2>
@@ -278,18 +318,18 @@ export default function Hero() {
         </table>
       </div>
 
-      <h2>Essential Schema Types for Business Websites</h2>
-      <p>In our work with clients at Cylvox, deploying these core schemas has reliably improved organic click-through rates (CTR) by up to 30%:</p>
+      <h2>Choose relevant Schema.org types</h2>
+      <p>Use types that accurately describe the visible page and follow the search feature’s current eligibility rules. Structured data can clarify entities, but it does not by itself guarantee higher click-through rates.</p>
       <ul>
         <li><strong>Organization / WebSite:</strong> Establishes your core brand entity, logo, and social profiles.</li>
-        <li><strong>ProfessionalService / LocalBusiness:</strong> Qualifies your commercial intent and geographic service area.</li>
-        <li><strong>BreadcrumbList:</strong> Explicitly maps your site architecture so Google displays clean URL paths in the SERP.</li>
-        <li><strong>FAQPage:</strong> One of the most powerful schemas for Answer Engine Optimization (AEO).</li>
+        <li><strong>Service:</strong> Describes a service offered by an organization.</li>
+        <li><strong>BreadcrumbList:</strong> Describes a breadcrumb trail that should match the page’s visible navigation.</li>
+        <li><strong>FAQPage:</strong> Use only when the page contains visible questions and answers, and follow Google’s current feature guidelines.</li>
         <li><strong>Article / BlogPosting:</strong> Validates authorship, publication dates, and modifications.</li>
       </ul>
 
       <h2>Implementing JSON-LD in Next.js App Router</h2>
-      <p>With Next.js App Router, injecting JSON-LD is incredibly straightforward. Because Server Components render on the server, you can securely fetch data from your CMS (like Supabase) and generate dynamic schema without shipping any client-side JavaScript.</p>
+      <p>In Next.js App Router, you can render a JSON-LD script from a server component. Escape untrusted string values before serialization and ensure each page’s structured data describes content visible on that page.</p>
       <p>Here is how we structure our reusable schema component:</p>
 <pre><code>// components/JsonLd.tsx
 export default function JsonLd({ data }: { data: any }) {
@@ -311,15 +351,21 @@ export default function JsonLd({ data }: { data: any }) {
       <p>Use the validation steps in our <a href="/blog/technical-seo-audit-checklist">technical SEO audit checklist</a>, or explore our <a href="/services/technical-seo">technical SEO consulting and audit services</a> for implementation support.</p>
     `,
     date: "2026-08-10",
-    dateModified: "2026-08-11",
+    dateModified: "2026-11-19",
     readingTime: "9 min read",
     author: "Cylvox Solo Studio",
-    tags: ["Structured Data", "JSON-LD", "Next.js", "Schema.org"]
+    tags: ["Structured Data", "JSON-LD", "Next.js", "Schema.org"],
+    relatedSlugs: ["technical-seo-audit-checklist", "nextjs-app-router-seo"],
+    ctaTitle: "Need structured data implemented and checked?",
+    ctaText: "We can review your JSON-LD, page entities, and technical SEO implementation together.",
+    ctaHref: "/services/technical-seo",
+    ctaLabel: "Explore technical SEO services",
   },
   {
     title: "Technical SEO Crawlability and Indexing: A Practical Guide",
     slug: "technical-seo-crawlability-indexing",
     image: "/images/blog/seo-audit.jpg",
+    imageAlt: "Technical SEO crawl and index coverage report",
     excerpt: "Learn how to check whether important pages can be crawled, discovered, and indexed, using robots.txt, XML sitemaps, canonicals, status codes, and internal links.",
     content: `
       <h2>How crawlability and indexing work</h2>
@@ -342,12 +388,18 @@ export default function JsonLd({ data }: { data: any }) {
     dateModified: "2026-11-19",
     readingTime: "6 min read",
     author: "Supun Sanjana",
-    tags: ["Technical SEO", "Crawlability", "Indexing"]
+    tags: ["Technical SEO", "Crawlability", "Indexing"],
+    relatedSlugs: ["technical-seo-audit-checklist", "technical-seo-audit-tools"],
+    ctaTitle: "Need help diagnosing crawl or index issues?",
+    ctaText: "Get a technical review of crawlability, indexability, redirects, and internal discovery.",
+    ctaHref: "/services/technical-seo",
+    ctaLabel: "Explore technical SEO audit services",
   },
   {
     title: "Technical SEO Audit Tools: A Practical Workflow",
     slug: "technical-seo-audit-tools",
     image: "/images/blog/seo-audit.jpg",
+    imageAlt: "Technical SEO audit tools and workflow",
     excerpt: "Choose the right tools for a technical SEO audit and learn how to combine Search Console, crawlers, URL Inspection, and performance reports into a useful workflow.",
     content: `
       <h2>Start with the audit question, not the tool</h2>
@@ -368,7 +420,12 @@ export default function JsonLd({ data }: { data: any }) {
     dateModified: "2026-11-19",
     readingTime: "5 min read",
     author: "Supun Sanjana",
-    tags: ["Technical SEO", "SEO Audit", "Tools"]
+    tags: ["Technical SEO", "SEO Audit", "Tools"],
+    relatedSlugs: ["technical-seo-audit-checklist", "technical-seo-crawlability-indexing"],
+    ctaTitle: "Want help turning audit findings into fixes?",
+    ctaText: "Get a prioritized technical SEO review with recommendations for implementation.",
+    ctaHref: "/services/technical-seo",
+    ctaLabel: "Explore technical SEO audit services",
   }
 ];
 
