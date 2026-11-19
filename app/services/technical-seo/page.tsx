@@ -367,6 +367,19 @@ export default function TechnicalSEOPage() {
 
 
 
+        <section className="mb-20 border-t border-border pt-16">
+          <h2 className="mb-4 font-display text-3xl font-semibold text-foreground">Technical SEO audit resources</h2>
+          <p className="mb-8 max-w-3xl text-muted-foreground">Use these guides to understand key parts of a technical SEO audit and the checks we use when diagnosing complex websites.</p>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            <li><Link className="text-primary hover:underline" href="/blog/technical-seo-audit-checklist">Technical SEO audit checklist</Link></li>
+            <li><Link className="text-primary hover:underline" href="/blog/technical-seo-crawlability-indexing">Crawlability and indexing guide</Link></li>
+            <li><Link className="text-primary hover:underline" href="/blog/technical-seo-audit-tools">Technical SEO audit tools and workflow</Link></li>
+            <li><Link className="text-primary hover:underline" href="/blog/nextjs-app-router-seo">Next.js SEO guide</Link></li>
+            <li><Link className="text-primary hover:underline" href="/blog/fix-core-web-vitals">Core Web Vitals optimization guide</Link></li>
+            <li><Link className="text-primary hover:underline" href="/blog/json-ld-structured-data-nextjs">Structured data and JSON-LD guide</Link></li>
+          </ul>
+        </section>
+
         {/* FAQ Section */}
         <div className="mb-20 border-t border-border pt-16">
           <JsonLd data={faqPageSchema(TECHNICAL_SEO_FAQS)} />

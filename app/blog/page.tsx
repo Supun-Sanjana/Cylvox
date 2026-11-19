@@ -49,8 +49,17 @@ export default function BlogIndex() {
           </p>
         </div>
 
+        <section className="mb-12 rounded-3xl border border-primary/25 bg-primary/5 p-6 sm:p-8">
+          <p className="mb-2 text-xs font-bold uppercase tracking-wider text-primary">Start here · Technical SEO pillar</p>
+          <h2 className="mb-3 font-display text-2xl sm:text-3xl font-bold text-foreground">
+            <Link href="/blog/technical-seo-audit-checklist" className="hover:text-primary transition-colors">Technical SEO Audit Checklist: How to Audit a Website</Link>
+          </h2>
+          <p className="max-w-3xl text-muted-foreground">A practical starting point for checking crawlability, indexing, performance, structured data, and rendering, with links to focused guides for each area.</p>
+        </section>
+
+        <h2 className="mb-6 font-display text-2xl font-bold">Technical SEO guides</h2>
         <div className="flex flex-col gap-8">
-          {blogPosts.map((post) => (
+          {[...blogPosts].filter((post) => post.slug !== "technical-seo-audit-checklist").map((post) => (
             <article key={post.slug} className="group relative bg-surface border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-colors flex flex-col md:flex-row">
               {post.image && (
                 <div className="w-full md:w-2/5 lg:w-1/3 shrink-0 relative aspect-[16/9] md:aspect-auto border-b md:border-b-0 md:border-r border-border overflow-hidden bg-background/50">

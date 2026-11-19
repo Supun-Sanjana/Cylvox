@@ -32,6 +32,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog/why-n8n-for-automation',
     '/blog/nextjs-app-router-seo',
     '/blog/technical-seo-audit-checklist',
+    '/blog/technical-seo-crawlability-indexing',
+    '/blog/technical-seo-audit-tools',
     '/blog/fix-core-web-vitals',
     '/blog/json-ld-structured-data-nextjs',
     '/work',

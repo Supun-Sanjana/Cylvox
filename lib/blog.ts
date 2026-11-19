@@ -315,6 +315,60 @@ export default function JsonLd({ data }: { data: any }) {
     readingTime: "9 min read",
     author: "Cylvox Solo Studio",
     tags: ["Structured Data", "JSON-LD", "Next.js", "Schema.org"]
+  },
+  {
+    title: "Technical SEO Crawlability and Indexing: A Practical Guide",
+    slug: "technical-seo-crawlability-indexing",
+    image: "/images/blog/seo-audit.jpg",
+    excerpt: "Learn how to check whether important pages can be crawled, discovered, and indexed, using robots.txt, XML sitemaps, canonicals, status codes, and internal links.",
+    content: `
+      <h2>How crawlability and indexing work</h2>
+      <p>Crawling lets search engines fetch a URL. Indexing is the separate process of evaluating and storing its content. A page can be crawlable without being indexed, so investigate both stages when search visibility is missing.</p>
+      <p>Use this guide as one part of the <a href="/blog/technical-seo-audit-checklist">technical SEO audit checklist</a>. For help diagnosing site-wide issues, see our <a href="/services/technical-seo">technical SEO consulting and audit services</a>.</p>
+      <h2>Check robots.txt and page-level directives</h2>
+      <p>Confirm that robots.txt does not block important paths. Then inspect page-level robots directives such as noindex. Robots.txt controls crawling; it is not a reliable way to remove a URL from search results.</p>
+      <h2>Review XML sitemap coverage</h2>
+      <p>Include canonical, indexable URLs that return successful responses. Compare sitemap URLs with Search Console indexing reports and investigate important pages that are missing or excluded.</p>
+      <h2>Validate status codes, redirects, and canonicals</h2>
+      <p>Check that intended landing pages return 200 status codes, redirects resolve directly to the final destination, and canonical tags point to the preferred URL version.</p>
+      <h2>Find orphan pages and improve internal discovery</h2>
+      <p>Important URLs should be reachable through relevant internal links. Compare a crawl of linked pages with the sitemap and known landing pages to find URLs that lack useful internal links.</p>
+      <h2>Confirm indexing in Search Console</h2>
+      <p>Use URL Inspection for individual priority pages and the Page Indexing report for patterns. Requesting indexing does not guarantee inclusion; resolve the underlying issue and let Google recrawl.</p>
+      <h2>Continue the technical SEO audit</h2>
+      <p>After crawl and index checks, review <a href="/blog/fix-core-web-vitals">Core Web Vitals</a>, <a href="/blog/json-ld-structured-data-nextjs">structured data</a>, and <a href="/blog/nextjs-app-router-seo">Next.js rendering and metadata</a> as part of the full audit.</p>
+    `,
+    date: "2026-11-19",
+    dateModified: "2026-11-19",
+    readingTime: "6 min read",
+    author: "Supun Sanjana",
+    tags: ["Technical SEO", "Crawlability", "Indexing"]
+  },
+  {
+    title: "Technical SEO Audit Tools: A Practical Workflow",
+    slug: "technical-seo-audit-tools",
+    image: "/images/blog/seo-audit.jpg",
+    excerpt: "Choose the right tools for a technical SEO audit and learn how to combine Search Console, crawlers, URL Inspection, and performance reports into a useful workflow.",
+    content: `
+      <h2>Start with the audit question, not the tool</h2>
+      <p>Each tool reports a different view of a website. Start by defining the issue you need to diagnose, then compare evidence across sources. Use this workflow with our <a href="/blog/technical-seo-audit-checklist">technical SEO audit checklist</a>.</p>
+      <h2>Google Search Console for search and indexing evidence</h2>
+      <p>Use Search Console to review queries, landing pages, indexing patterns, sitemap processing, and URL Inspection details. It reflects Google’s view of your property, but it does not replace a full site crawl.</p>
+      <h2>A crawler for site-wide technical patterns</h2>
+      <p>Crawl the site to find status codes, redirect chains, missing or duplicated metadata, canonical inconsistencies, internal links, and orphan candidates. Configure crawl limits and rendering options to match the site.</p>
+      <h2>PageSpeed Insights for page performance</h2>
+      <p>Use PageSpeed Insights to review lab diagnostics and available field data. For guidance on interpreting and fixing the metrics, see our <a href="/blog/fix-core-web-vitals">Core Web Vitals optimization guide</a>.</p>
+      <h2>Structured data validation tools</h2>
+      <p>Validate supported rich result markup with Google’s Rich Results Test, and use Schema.org Validator to inspect general vocabulary and syntax. Read the <a href="/blog/json-ld-structured-data-nextjs">JSON-LD guide for Next.js</a> for implementation details.</p>
+      <h2>Build a repeatable audit workflow</h2>
+      <ol><li>Export priority landing pages and queries from Search Console.</li><li>Crawl the site and compare URLs with the XML sitemap.</li><li>Inspect representative URLs with URL Inspection and performance tools.</li><li>Validate structured data where it is present.</li><li>Prioritize issues by affected pages, business value, and implementation effort.</li></ol>
+      <p>Need help turning findings into fixes? Explore our <a href="/services/technical-seo">technical SEO audit services</a>.</p>
+    `,
+    date: "2026-11-19",
+    dateModified: "2026-11-19",
+    readingTime: "5 min read",
+    author: "Supun Sanjana",
+    tags: ["Technical SEO", "SEO Audit", "Tools"]
   }
 ];
 
