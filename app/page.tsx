@@ -10,12 +10,12 @@ const ProofBand = dynamic(() => import("@/components/Proofband"));
 const Closing = dynamic(() => import("@/components/Closing"));
 
 export const metadata: Metadata = {
-  title:       "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
-  description: "Technical SEO architecture, Core Web Vitals optimization, and search automation for complex websites.",
+  title:       "Technical SEO Consultant & Software Development | Cylvox",
+  description: "Technical SEO consulting, audits, and implementation for complex websites, with performance-focused software development.",
   alternates: { canonical: baseUrl },
   openGraph: {
-    title:       "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
-    description: "Technical SEO architecture, Core Web Vitals optimization, and search automation for complex websites.",
+    title:       "Technical SEO Consultant & Software Development | Cylvox",
+    description: "Technical SEO consulting, audits, and implementation for complex websites, with performance-focused software development.",
     url:         baseUrl,
     siteName:    "Cylvox",
     locale:      "en_US",
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
         url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Cylvox Technical SEO, Core Web Vitals, and Search Automation",
+        alt: "Cylvox technical SEO consulting and software development",
       },
     ],
   },
   twitter: {
     card:        "summary_large_image",
-    title:       "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
-    description: "Technical SEO architecture, Core Web Vitals optimization, and search automation for complex websites.",
+    title:       "Technical SEO Consultant & Software Development | Cylvox",
+    description: "Technical SEO consulting, audits, and implementation for complex websites, with performance-focused software development.",
     images:      [`${baseUrl}/og-image.jpg`],
   },
 };
@@ -46,7 +46,7 @@ import HomeServices from "@/components/HomeServices";
 const HOMEPAGE_FAQS = [
   {
     question: "What services does Cylvox offer?",
-    answer: "Cylvox operates as an independent technical studio offering high-end Technical SEO architecture, Core Web Vitals optimization, automated n8n workflows, Next.js web engineering, and UI/UX design. We specialize in building fast, scalable search infrastructure for complex modern websites."
+    answer: "Cylvox provides technical SEO consulting and audits, Core Web Vitals optimization, software development, n8n workflow automation, and UI/UX design for complex websites."
   },
   {
     question: "Does Cylvox provide software development services?",

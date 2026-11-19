@@ -5,12 +5,12 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
-  description: 'Technical SEO is Cylvox’s core service: crawlability, schema, Core Web Vitals, search automation, and web engineering for complex sites.',
+  title: 'Technical SEO Services & Consulting | Cylvox',
+  description: 'Explore technical SEO consulting and audit services, Core Web Vitals optimization, web development, workflow automation, and UI/UX design.',
   alternates: { canonical: `${baseUrl}/services` },
   openGraph: {
-    title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
-    description: 'Cylvox delivers technical SEO architecture, Core Web Vitals optimization, search automation, and web engineering for complex modern websites.',
+    title: 'Technical SEO Services & Consulting | Cylvox',
+    description: 'Explore technical SEO consulting and audit services, Core Web Vitals optimization, web development, workflow automation, and UI/UX design.',
     url: `${baseUrl}/services`,
     siteName: 'Cylvox',
     locale: 'en_US',
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Technical SEO Services, Core Web Vitals & Automation | Cylvox',
-    description: 'Cylvox delivers technical SEO architecture, Core Web Vitals optimization, search automation, and web engineering for complex modern websites.',
+    title: 'Technical SEO Services & Consulting | Cylvox',
+    description: 'Explore technical SEO consulting and audit services, Core Web Vitals optimization, web development, workflow automation, and UI/UX design.',
     images: [`${baseUrl}/og-image.jpg`],
   },
 };

@@ -40,14 +40,14 @@ const TECHNICAL_SEO_FAQS = [
 ];
 
 export const metadata: Metadata = {
-  title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
+  title: "Technical SEO Consultant & Audit Services | Cylvox",
   description:
-    "End-to-end technical SEO architecture, automated sitemaps, IndexNow integration, JSON-LD structured schema, and 95+ Core Web Vitals performance tuning for Next.js and Supabase websites.",
+    "Technical SEO consulting and audit services for complex websites. Find and fix crawlability, indexing, structured data, and performance issues.",
   alternates: { canonical: `${baseUrl}/services/technical-seo` },
   openGraph: {
-    title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
+    title: "Technical SEO Consultant & Audit Services | Cylvox",
     description:
-      "End-to-end technical SEO architecture, automated sitemaps, IndexNow integration, JSON-LD schema, and 95+ Core Web Vitals performance tuning.",
+      "Technical SEO consulting and audit services for complex websites. Find and fix crawlability, indexing, structured data, and performance issues.",
     url: `${baseUrl}/services/technical-seo`,
     siteName: "Cylvox",
     locale: "en_US",
@@ -56,8 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: "Technical SEO, Schema & Core Web Vitals Solo Studio | Cylvox",
-    description: "End-to-end technical SEO architecture, automated sitemaps, IndexNow integration, JSON-LD schema, and 95+ Core Web Vitals performance tuning.",
+    title: "Technical SEO Consultant & Audit Services | Cylvox",
+    description: "Technical SEO consulting and audit services for complex websites. Find and fix crawlability, indexing, structured data, and performance issues.",
     images: [`${baseUrl}/og-image.jpg`],
   },
 };
@@ -175,9 +175,9 @@ export default function TechnicalSEOPage() {
       />
       <JsonLd
         data={serviceSchema({
-          name: "Technical SEO, Schema & Core Web Vitals Optimization",
+          name: "Technical SEO Consulting & Audit Services",
           description:
-            "End-to-end technical SEO architecture, dynamic CMS metadata, automated IndexNow search submission, JSON-LD structured schema, and 95+ Core Web Vitals optimization.",
+            "Technical SEO consulting and audit services to identify and resolve crawlability, indexing, structured data, rendering, and performance issues on complex websites.",
           path: "/services/technical-seo",
           serviceType: "Technical SEO & Performance Optimization",
         })}
@@ -197,16 +197,16 @@ export default function TechnicalSEOPage() {
         </div>
         
         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
-          Technical SEO & <span className="text-[#ccff00]">Core Web Vitals Architecture</span>
+          Technical SEO Consultant & <span className="text-[#ccff00]">Audit Services</span>
         </h1>
         
         {/* BLUF Definition for AEO / GEO Extraction */}
         <p className="text-xl md:text-2xl text-foreground font-semibold mb-6 leading-relaxed">
-          Technical SEO is the practice of optimizing a website&apos;s server architecture, crawlability, indexability, structured data, and rendering performance so search engines and AI crawlers can discover, evaluate, and index pages without friction. Cylvox delivers this as an 11-phase engineering blueprint.
+          Cylvox provides technical SEO consulting and audit services to find and resolve issues with crawling, indexing, structured data, rendering, and site performance.
         </p>
 
         <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
-          We engineer bulletproof search infrastructures for high-growth Next.js and Supabase websites. By uniting real-time indexing automation, server-side rendered metadata, structured JSON-LD schema, and aggressive Core Web Vitals optimization, we turn search algorithms into your unfair commercial advantage.
+          Get a prioritized technical SEO audit, clear implementation recommendations, and hands-on engineering support for complex websites, including Next.js and Supabase platforms.
         </p>
 
         {/* Semantic Comparison Table for GEO / Rich Snippets */}

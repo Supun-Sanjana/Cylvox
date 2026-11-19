@@ -7,12 +7,12 @@ import { baseUrl } from "@/lib/seo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Technical SEO, Automation & Web Engineering Blog | Cylvox",
-  description: "In-depth technical articles on Next.js architecture, n8n workflow automation, Core Web Vitals optimization, and structured data implementation.",
+  title: "Technical SEO & Web Development Guides | Cylvox",
+  description: "Practical guides to technical SEO audits, Next.js SEO, Core Web Vitals, structured data, and workflow automation.",
   alternates: { canonical: `${baseUrl}/blog` },
   openGraph: {
-    title: "Technical SEO, Automation & Web Engineering Blog | Cylvox",
-    description: "In-depth technical articles on Next.js architecture, n8n workflow automation, Core Web Vitals optimization, and structured data implementation.",
+    title: "Technical SEO & Web Development Guides | Cylvox",
+    description: "Practical guides to technical SEO audits, Next.js SEO, Core Web Vitals, structured data, and workflow automation.",
     url: `${baseUrl}/blog`,
     siteName: "Cylvox",
     locale: "en_US",
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical SEO, Automation & Web Engineering Blog | Cylvox",
-    description: "In-depth technical articles on Next.js architecture, n8n workflow automation, Core Web Vitals optimization, and structured data implementation.",
+    title: "Technical SEO & Web Development Guides | Cylvox",
+    description: "Practical guides to technical SEO audits, Next.js SEO, Core Web Vitals, structured data, and workflow automation.",
     images: [`${baseUrl}/og-image.jpg`],
   },
 };

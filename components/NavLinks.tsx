@@ -8,8 +8,17 @@ type NavChild = { href: string; label: string; description?: string };
 type NavItem = { href: string; label: string; children?: NavChild[] };
 
 export const NAV_LINKS: NavItem[] = [
-  { href: "/services", label: "Services" },
-  { href: "/services/technical-seo", label: "Technical SEO" },
+  {
+    href: "/services",
+    label: "Services",
+    children: [
+      { href: "/services/technical-seo", label: "Technical SEO Consulting & Audits", description: "Crawlability, indexing, schema, and search performance." },
+      { href: "/services/optimization", label: "Core Web Vitals & Performance", description: "Diagnose and improve real user experience metrics." },
+      { href: "/services/web-development", label: "Web Development", description: "Next.js and Supabase applications." },
+      { href: "/services/ai-automation", label: "AI Workflow Automation", description: "n8n workflows and API integrations." },
+      { href: "/services/ui-ux-design", label: "UI/UX Design", description: "Product interfaces and experiences." },
+    ],
+  },
   { href: "/blog", label: "Blog" },
   { href: "/work", label: "Work" },
   {

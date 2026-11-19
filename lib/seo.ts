@@ -35,11 +35,12 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${baseUrl}/#organization`,
-  name: "Cylvox Solo Studio",
+  name: "Cylvox",
+  alternateName: "Cylvox Solo Studio",
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
   description:
-    "Cylvox is an independent technical SEO studio specializing in crawlability, structured data, Core Web Vitals, and search automation.",
+    "Cylvox provides technical SEO consulting and audits, performance optimization, software development, and workflow automation for complex websites.",
   sameAs: [
     "https://www.fiverr.com/s/R717Am8",
     "https://www.linkedin.com/in/sanjana-supun",
@@ -48,6 +49,9 @@ export const organizationSchema = {
   ],
   knowsAbout: [
     "Technical SEO",
+    "Technical SEO Audits",
+    "Technical SEO Consulting",
+    "Software Development",
     "Core Web Vitals Optimization",
     "Next.js App Router Architecture",
     "Schema.org Structured Data",
@@ -75,12 +79,12 @@ export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${baseUrl}/#professional-service`,
-  name: "Cylvox Solo Studio",
+  name: "Cylvox",
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
   image: `${baseUrl}/logo.png`,
   description:
-    "Cylvox provides technical SEO architecture, Core Web Vitals optimization, search automation, and high-concurrency web engineering.",
+    "Cylvox provides technical SEO consulting and audits, Core Web Vitals optimization, software development, and search automation.",
   sameAs: [
     "https://www.fiverr.com/s/R717Am8",
     "https://www.linkedin.com/in/sanjana-supun",
@@ -115,7 +119,7 @@ export const websiteSchema = {
   url: baseUrl,
   name: "Cylvox",
   description:
-    "Technical SEO, Core Web Vitals optimization, structured data, and search automation for complex websites.",
+    "Technical SEO consulting and audits, performance optimization, software development, and workflow automation for complex websites.",
   publisher: {
     "@id": `${baseUrl}/#organization`,
   },
@@ -282,9 +286,11 @@ export function articleSchema({
     "@type": ["BlogPosting", "TechArticle"],
     headline: title,
     description,
+    url: `${baseUrl}/blog/${slug}`,
+    image: `${baseUrl}/og-image.jpg`,
     datePublished,
     dateModified: dateModified || datePublished,
-    keywords: tags?.join(", "),
+    keywords: tags,
     author: {
       "@type": "Person",
       "@id": `${baseUrl}/about#person`,
@@ -295,7 +301,7 @@ export function articleSchema({
     publisher: {
       "@type": "Organization",
       "@id": `${baseUrl}/#organization`,
-      name: "Cylvox Solo Studio",
+      name: "Cylvox",
       logo: {
         "@type": "ImageObject",
         url: `${baseUrl}/logo.png`,

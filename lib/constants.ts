@@ -38,6 +38,20 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     number: "02",
+    id: "web-engineering",
+    title: "Web Development",
+    badge: "Next.js & Supabase",
+    icon: Code2,
+    text: "Full-stack software development on Next.js and Supabase — engineered for technical SEO, performance, and reliable business operations.",
+    link: "/services/web-development",
+    findings: [
+      "Service-role key shipped in the client bundle",
+      "Row-level security never enabled on database tables",
+      "Slow queries bringing down the entire application",
+    ],
+  },
+  {
+    number: "03",
     id: "ai-automation",
     title: "AI Automation",
     badge: "n8n & AI Agents",
@@ -48,20 +62,6 @@ export const SERVICES: ServiceItem[] = [
       "Four hours a day lost to manual lead qualification",
       "Endless copy-pasting between CRM and spreadsheets",
       "No dead-letter queue when a manual process fails at 3am",
-    ],
-  },
-  {
-    number: "03",
-    id: "web-engineering",
-    title: "Web Engineering",
-    badge: "Next.js & Supabase",
-    icon: Code2,
-    text: "Full-stack software development on Next.js and Supabase — engineered for technical SEO, performance, and reliable business operations.",
-    link: "/services/web-development",
-    findings: [
-      "Service-role key shipped in the client bundle",
-      "Row-level security never enabled on database tables",
-      "Slow queries bringing down the entire application",
     ],
   },
 ];

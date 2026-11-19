@@ -17,12 +17,12 @@ const services = [
   },
   {
     number: "02",
-    id: "ai-automation",
-    title: "AI Automation",
-    badge: "n8n & AI Agents",
-    icon: Cpu,
-    text: "Automate search operations and repetitive business workflows with dependable AI and API orchestration.",
-    link: "/services/ai-automation",
+    id: "web-engineering",
+    title: "Web Development",
+    badge: "Next.js & Supabase",
+    icon: Code2,
+    text: "Build fast, reliable web applications with technical SEO and performance considered from the start.",
+    link: "/services/web-development",
   },
   {
     number: "03",
@@ -35,12 +35,12 @@ const services = [
   },
   {
     number: "04",
-    id: "web-engineering",
-    title: "Web Engineering",
-    badge: "Next.js & Supabase",
-    icon: Code2,
-    text: "Full-stack software development on Next.js and Supabase — engineered for technical SEO, performance, and reliable business operations.",
-    link: "/services/web-development",
+    id: "ai-automation",
+    title: "AI Automation",
+    badge: "n8n & AI Agents",
+    icon: Cpu,
+    text: "Automate search operations and repetitive business workflows with dependable AI and API orchestration.",
+    link: "/services/ai-automation",
   },
 ];
 

@@ -26,8 +26,8 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
-  description: "Cylvox is an independent technical SEO studio for crawlability, structured data, Core Web Vitals, and search automation on complex websites.",
+  title: { default: "Technical SEO Consultant & Software Development | Cylvox", template: "%s" },
+  description: "Technical SEO consulting, audits, and implementation for complex websites, with performance-focused software development.",
   authors: [{ name: "Supun Sanjana", url: `${baseUrl}/about` }],
   verification: {
     google: "MbW7OSda4rJ-b1SVXUwbjwuheieijZeB4_GUeUJL70Y",
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     icon: "/logo.png"
   },
   openGraph: {
-    title: "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
-    description: "Technical SEO architecture, performance engineering, and search automation for complex websites.",
+    title: "Technical SEO Consultant & Software Development | Cylvox",
+    description: "Technical SEO consulting, audits, and implementation for complex websites, with performance-focused software development.",
     url: baseUrl,
     siteName: "Cylvox",
     locale: "en_US",
@@ -47,14 +47,14 @@ export const metadata: Metadata = {
         url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Cylvox Technical SEO, Core Web Vitals, and Search Automation",
+        alt: "Cylvox technical SEO consulting and software development",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical SEO, Core Web Vitals & Search Automation | Cylvox",
-    description: "Technical SEO architecture, performance engineering, and search automation for complex websites.",
+    title: "Technical SEO Consultant & Software Development | Cylvox",
+    description: "Technical SEO consulting, audits, and implementation for complex websites, with performance-focused software development.",
     images: [`${baseUrl}/og-image.jpg`],
   },
 };
