@@ -25,11 +25,20 @@ const MouseRevealImage = () => {
     });
   };
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+    setIsHovered(true);
+  };
+
   return (
     <div 
       className="absolute inset-0 bg-surface rounded-[2.5rem] overflow-hidden border border-border"
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Base Monochrome Image */}
@@ -38,17 +47,16 @@ const MouseRevealImage = () => {
         alt="Abstract background"
         fill
         sizes="(max-width: 1024px) 0vw, 60vw"
-        className="object-cover opacity-50 mix-blend-luminosity"
+        className="object-cover opacity-55 mix-blend-luminosity"
         priority
       />
       
-      {/* Top Colorful Image (Masked by Mouse) */}
+      {/* 1. Default Left-Top Corner Colorful Highlight (Always glowing on default) */}
       <div 
-        className="absolute inset-0 transition-opacity duration-500 ease-out"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          opacity: isHovered ? 1 : 0,
-          WebkitMaskImage: `radial-gradient(circle 900px at ${mousePos.x}px ${mousePos.y}px, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)`,
-          maskImage: `radial-gradient(circle 900px at ${mousePos.x}px ${mousePos.y}px, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)`
+          WebkitMaskImage: `radial-gradient(circle 620px at 35% 22%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 35%, rgba(0,0,0,0.3) 65%, rgba(0,0,0,0) 85%)`,
+          maskImage: `radial-gradient(circle 620px at 35% 22%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 35%, rgba(0,0,0,0.3) 65%, rgba(0,0,0,0) 85%)`
         }}
       >
         <Image 
@@ -60,6 +68,56 @@ const MouseRevealImage = () => {
           priority
         />
       </div>
+
+      {/* 2. Interactive Cursor Highlight (Illuminates wherever cursor hovers) */}
+      <div 
+        className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          WebkitMaskImage: `radial-gradient(circle 850px at ${mousePos.x}px ${mousePos.y}px, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)`,
+          maskImage: `radial-gradient(circle 850px at ${mousePos.x}px ${mousePos.y}px, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)`
+        }}
+      >
+        <Image 
+          src="/placeholders/squish_crystals_1786554808524.jpg" 
+          alt="Abstract background"
+          fill
+          sizes="(max-width: 1024px) 0vw, 60vw"
+          className="object-cover opacity-95 saturate-150 contrast-125"
+          priority
+        />
+      </div>
+
+      {/* 3. Default Left-Top Ambient Glow Aura (Gives life and radiance to the scene) */}
+      <div 
+        className="absolute -top-12 left-[24%] -translate-x-1/2 w-[480px] h-[480px] rounded-full pointer-events-none blur-[95px] opacity-45 mix-blend-screen"
+        style={{
+          background: "radial-gradient(circle, rgba(204,255,0,0.38) 0%, rgba(204,255,0,0.12) 40%, rgba(11,49,46,0.15) 65%, transparent 80%)",
+        }}
+      />
+      <div 
+        className="absolute top-10 left-[32%] -translate-x-1/2 w-[280px] h-[280px] rounded-full pointer-events-none blur-[65px] opacity-40 mix-blend-color-dodge animate-pulse"
+        style={{
+          background: "radial-gradient(circle, rgba(204,255,0,0.65) 0%, rgba(204,255,0,0.18) 45%, transparent 75%)",
+          animationDuration: "4s",
+        }}
+      />
+
+      {/* 4. Interactive Cursor Ambient Glow */}
+      <div 
+        className="absolute w-[360px] h-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none blur-[80px] mix-blend-screen transition-opacity duration-500"
+        style={{
+          left: `${mousePos.x}px`,
+          top: `${mousePos.y}px`,
+          opacity: isHovered ? 0.35 : 0,
+          background: "radial-gradient(circle, rgba(204,255,0,0.4) 0%, rgba(204,255,0,0.1) 50%, transparent 80%)",
+        }}
+      />
+
+      {/* 5. Subtle Top-Left Edge Rim Highlight */}
+      <div 
+        className="absolute inset-0 rounded-[2.5rem] pointer-events-none border border-primary/25 [mask-image:radial-gradient(circle_520px_at_35%_22%,black_0%,transparent_70%)]" 
+      />
 
       <div className="absolute inset-0 bg-gradient-to-tr from-background/90 via-transparent to-transparent pointer-events-none" />
     </div>
